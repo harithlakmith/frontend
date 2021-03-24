@@ -29,6 +29,7 @@ import Show_Bus from './component/Show_Bus';
 //import Check_Out from './component/Check_Out';
 //import checkout from './component/checkout';
 import Ticket from './component/Ticket';
+import Session_Ticket from './component/Session_Ticket';
 
 
 class App extends Component {
@@ -197,6 +198,9 @@ render(){
           <Ticket />
           </Route>
 
+          <Route path="/ticket-session" >
+          <Session_Ticket />
+          </Route>
           
 
 

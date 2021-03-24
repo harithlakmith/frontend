@@ -64,11 +64,18 @@ componentDidMount(){
     var s = '/select-route?s='+MaxSeats;
 
     const seslist = MySession.length ? (
-      MySession.map(ses=> {
+      MySession.map(ses=> {      var t = "/ticket-session?sid="+ ses.SId;
                             return(   <div class="card alert-info text-info p-3 m-3">
                                         <h3 class="">{ses.RNum}&nbsp;&nbsp;{ses.Start} - {ses.Stop}</h3>
-                                        <h5>On: {Moment(ses.Date).format('YYYY-MM-DD')}</h5>
-                                        <h5>At: {Moment(ses.StartTime).format('LT')}</h5>
+                                          <div class="row">
+                                            <div class="col-lg-7">
+                                              <h5>On: {Moment(ses.Date).format('YYYY-MM-DD')}</h5>
+                                              <h5>At: {Moment(ses.StartTime).format('LT')}</h5>
+                                            </div>
+                                            <div class="col-lg-4 text-right">
+                                              <a href={t} class="btn btn-info">Tickets</a>
+                                            </div>
+                                          </div>
                                       </div>);
                           })
       ):(
