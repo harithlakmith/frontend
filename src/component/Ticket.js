@@ -3,13 +3,11 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React ,{Component}from "react";
 import axios from "axios";
-import { RouteComponentProps, BrowserRouter, Switch, Route, Link, useLocation, useRouteMatch,withRouter, useParams} from "react-router-dom";
+import { useRouteMatch,withRouter, useParams} from "react-router-dom";
 import Moment,{ now } from "moment";
 import { Barcode } from 'react-barcode';
-import jsPDF from 'jspdf';  
-import html2canvas from 'html2canvas'; 
-import Button from "react-validation/build/button";
-
+import Pdf from "react-to-pdf";
+const ref = React.createRef();
 
 class Ticket extends Component {
 
@@ -34,24 +32,7 @@ class Ticket extends Component {
           this.setState(
             {[e.target.name]:e.target.value,
             });   
-      }
-
-      printDocument() {  
-        const input = document.getElementById('pdfdiv');  
-        html2canvas(input)  
-          .then((canvas) => {  
-            var imgWidth = 200;  
-            var pageHeight = 290;  
-            var imgHeight = canvas.height * imgWidth / canvas.width;  
-            var heightLeft = imgHeight;  
-            const imgData = canvas.toDataURL('image/png');  
-            const pdf = new jsPDF('p', 'mm', 'a4')  
-            var position = 0;  
-            var heightLeft = imgHeight;  
-            pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);  
-            pdf.save("download.pdf");  
-          });  
-      }  
+      } 
 
       componentDidMount() {
           //const value = queryString.parse(this.props.location.search);
@@ -59,6 +40,7 @@ class Ticket extends Component {
           this.setState({
                 success : value.get('success'),
                 ticket: JSON.parse(localStorage.getItem('ticket')),
+                userInfo:JSON.parse(localStorage.getItem('userInfo')),
               });
 
           if(value.get('success')=="true"){
@@ -103,12 +85,14 @@ class Ticket extends Component {
 
 render(){
 
-  const {success,ticket} = this.state;
+  const {success,ticket,userInfo} = this.state;
+  const pdfname = 'Ticketz-#'+ ticket.tid+'_'+userInfo.Id+'.pdf';
   if(success=="true"){
      return(
 
 
         <div class="row justify-content-md-center mt-5 pt-5">
+  
           <div class="col-lg-4 p-3 mt-5 ">
           <div class="container">
               <div class="row">
@@ -134,46 +118,42 @@ render(){
                    </div>
                 </div>
               </div>
-            </div>   
-            
+
+              <div class="row align-items-end text-center">
+                <div class="col-lg">
+                    <Pdf targetRef={ref} filename={pdfname}  x={.5} y={.5} scale={1}>
+                      {({ toPdf }) => <button class="btn btn-lg btn-info mt-5" onClick={toPdf}>Download Ticket</button>}
+                    </Pdf>
+                </div>
+              </div>
+
+            </div> 
           </div>
-          <div  class="col-lg-4 p-3">
+          <div ref={ref}  class="col-lg-4 p-3">
               <div class=" pt-0  mt-3">
    
-                  <div class="card bg-dark text-light p-4 ">
-                      <h1 class="card-title text-light text-center mt-4">
+                  <div class="card border-primary py-4 ">
+                      <h1 class="card-title  text-center mt-4">
                         <u>Your Ticket #{ticket.tid}</u>
                       </h1>
-                   
-        <table id="pdfdiv" class="table table-hover table-info table-bordered">
-                <thead>
-                  <tr class="bg-info">
-                    <th scope="col-lg-3">Bus No</th>
-                    <th scope="col-lg-3">Driver Name</th>
-                    <th scope="col-lg-3">Driver No</th>
-                    <th scope="col-lg-3">Conductor Name</th>
-                    <th scope="col-lg-3">Conductor No</th>
-                    <th scope="col-lg-3">No of Seats</th>
-                    <th scope="col-lg-3">Email</th>
-                   
-                  </tr>
-                </thead>
-                <tbody>
-                <tr>ok</tr>
-                </tbody>
-              </table>
                 
                       <div  class="card-body text-center">
-                              <h5 class="card-title text-light">{ticket.sesDate}</h5>
-                              <p class="card-text">{ticket.routeNo}&nbsp;&nbsp;{ticket.routeStartHolt}-{ticket.routeStopHolt}&nbsp;&nbsp;#{ticket.sid}</p>
+                              <h5 class="card-title">{ticket.sesDate}</h5>
+                              <p class="card-text h4">{ticket.routeNo}&nbsp;&nbsp;{ticket.routeStartHolt}-{ticket.routeStopHolt}&nbsp;&nbsp;[{ticket.busNo}]</p>
                               <p class="card-text">No of Seats : {ticket.seats}</p>
                               <p class="card-text">From : {ticket.fromHolt}</p>
                               <p class="card-text">To : {ticket.toHolt}</p>
                               <h5 class="card-title text-success">Bus reach to {ticket.fromHolt} <br/> @ {ticket.ArrivedTime}</h5> 
-                              <h4 class="card-title text-light">Ticket Price :Rs {ticket.ticketPrice}/=</h4>
-                              <Button onClick={this.printDocument}>  
-                        Generate Pdf  
-                                </Button> 
+                              <h4 class="card-title h2"> Price :Rs {ticket.ticketPrice}/=</h4>
+                             
+                              <div class="alert alert-warning text-left text-warning h6" role="alert">
+                                  P-Id&nbsp;: {ticket.paymentIntent}<br/>
+                                  C-Id&nbsp;: {userInfo.Id}<br/>
+                                  S-Id&nbsp;: #{ticket.sid}
+                              </div>
+                              <div class="alert alert-success h6" role="alert">
+                                Payment is Succesful!
+                              </div>
                       </div>
 
               
