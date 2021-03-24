@@ -23,6 +23,7 @@ class Ticket extends Component {
         ticket:[],
         success:undefined,
         msgStatus:[],
+        sms:'',
       };
         this.handleChange = this.handleChange.bind(this);
         this.sendsms = this.sendsms.bind(this);
@@ -69,11 +70,18 @@ class Ticket extends Component {
                   .then(res=>{
                     this.setState({
                       msgStatus: res.data,
+                      sms:res.data.code,
+                    });
+
+                  },error=>{
+                    this.setState({
+                      sms:'',
                     });
 
                   }).catch(err=>{
                     this.setState({
                       msgStatus: err.data,
+                      sms:'',
                     })
                   })
       }
@@ -85,8 +93,13 @@ class Ticket extends Component {
 
 render(){
 
-  const {success,ticket,userInfo} = this.state;
+  const {success,ticket,userInfo,sms} = this.state;
   const pdfname = 'Ticketz-#'+ ticket.tid+'_'+userInfo.Id+'.pdf';
+  var smsshow = "";
+  if(sms=="ok"){
+    smsshow = "ok"
+  }else{
+    smsshow = ""};
   if(success=="true"){
      return(
 
@@ -98,31 +111,46 @@ render(){
               <div class="row">
                 <div class="col-lg">
                   <div class="alert alert-success" role="alert">
-                    Payment is Succesful!
+                  <i class="fas fa-check-circle"></i>&nbsp;&nbsp;Payment is Succesful!
                   </div>
                 </div>
               </div>
 
-              <div class="row">
-                <div class="col-lg">
-                  <div class="alert alert-success" role="alert">
-                      Ticket details sent your mobile number (SMS)
-                  </div>
-                </div>
-              </div>
+              {smsshow?(
+
+                      <div class="row">
+                      <div class="col-lg">
+                        <div class="alert alert-success" role="alert">
+                        <i class="fas fa-envelope"></i>&nbsp;&nbsp;Ticket details sent your mobile number (SMS)
+                        </div>
+                      </div>
+                      </div>
+              ):(
+
+                      <div class="row">
+                      <div class="col-lg">
+                        <div class="alert alert-warning text-center" role="alert">
+                        <i class="fas fa-envelope"></i>&nbsp;&nbsp;Ticket details can't sent your mobile number<br/>
+                        <button class="btn btn-sm mt-2 btn-warning " onClick={this.sendsms}>Try Again</button>
+                        </div>
+                      </div>
+                      </div>
+
+              )}
+
 
               <div class="row align-items-end">
                 <div class="col-lg">
                     <div class="alert alert-danger" role="alert">
-                     *Payment cannot refundable. Please keep softcopy of the ticket in your phone or smartdevices.
+                    <i class="fas fa-exclamation-circle"></i>&nbsp;&nbsp;Payment cannot refundable. Please keep softcopy of the ticket in your phone or smartdevices.
                    </div>
                 </div>
               </div>
 
               <div class="row align-items-end text-center">
                 <div class="col-lg">
-                    <Pdf targetRef={ref} filename={pdfname}  x={.5} y={.5} scale={1}>
-                      {({ toPdf }) => <button class="btn btn-lg btn-info mt-5" onClick={toPdf}>Download Ticket</button>}
+                    <Pdf targetRef={ref} filename={pdfname}  x={1} y={1} scale={1}>
+                      {({ toPdf }) => <button class="btn btn-lg btn-info mt-5" onClick={toPdf}>Download Ticket&nbsp;&nbsp;<i class="fas fa-download"></i></button>}
                     </Pdf>
                 </div>
               </div>
@@ -170,7 +198,9 @@ render(){
     
    );
   }else{
-     return(<u>unsuccess</u>);
+     return( <div class="alert alert-danger h6" role="alert">
+                Payment is Unsuccesful!
+              </div>);
   }
     
   
