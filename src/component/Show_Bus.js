@@ -3,6 +3,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { Component } from "react";
 import axios from "axios";
+import authHeader from "./../services/auth-header";
 
 class Show_Bus extends Component {
 
@@ -10,7 +11,7 @@ class Show_Bus extends Component {
     buses: []
   }
 componentDidMount(){
-    axios.get('http://localhost:5000/BusInfo')
+    axios.get('http://localhost:5000/BusInfo',{ headers: authHeader() })
       .then(res => {
         
         this.setState({
@@ -41,7 +42,7 @@ componentDidMount(){
         )
       })
     ) : (
-      <div className="center">No Busus available</div>
+      <div className="center">No Buses available</div>
     );
 
 

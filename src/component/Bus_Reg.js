@@ -39,7 +39,7 @@ class Bus_Reg extends React.Component {
         Password: this.state.password,
         ConfirmPassword:this.state.password
         
-      })
+      }, { headers: authHeader() })
       .then((json) => {
         console.log(json.data);
       });

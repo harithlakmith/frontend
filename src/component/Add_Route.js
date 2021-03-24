@@ -51,7 +51,7 @@ class Add_Route extends React.Component {
         Duration: parseInt(this.state.fullTime),
         Distance: parseInt(this.state.fullDistance),
         RNum: this.state.RNum,
-      })
+      }, { headers: authHeader() })
       .then(res => {
         this.setState({
           postRoute: res.data.RId
@@ -74,7 +74,7 @@ class Add_Route extends React.Component {
         Time: parseFloat(this.state.time),
         Distance: parseInt(this.state.dist),
        
-      })
+      }, { headers: authHeader() })
       .then(res => {
         this.setState({
           nextHaltId: res.data.HoltId,
