@@ -3,7 +3,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React ,{Component}from "react";
 import axios from "axios";
-import { RouteComponentProps, BrowserRouter, Switch, Route, Link, useLocation, useRouteMatch,withRouter, useParams} from "react-router-dom";
+import { Redirect, useRouteMatch,withRouter, useParams} from "react-router-dom";
 import Moment,{ now } from "moment";
 import { loadStripe } from "@stripe/stripe-js";
 // Make sure to call `loadStripe` outside of a component’s render to avoid
@@ -180,7 +180,9 @@ class Book_Now extends Component {
        
 
 render(){
- 
+  if (JSON.parse(localStorage.getItem('role'))!='Passenger'){
+    return <Redirect to={'/sign-in'} />
+  }
 
      
   return (

@@ -5,7 +5,7 @@ import React ,{Component}from "react";
 import axios from "axios";
 import { useRouteMatch,withRouter, useParams} from "react-router-dom";
 import Moment,{ now } from "moment";
-import { Barcode } from 'react-barcode';
+import { Barcode,useBarcode } from 'react-barcode';
 import Pdf from "react-to-pdf";
 const ref = React.createRef();
 
@@ -129,27 +129,35 @@ render(){
 
                       <div class="row">
                       <div class="col-lg">
-                        <div class="alert alert-warning text-center" role="alert">
+                        <div class="alert alert-warning" role="alert">
                         <i class="fas fa-envelope"></i>&nbsp;&nbsp;Ticket details can't sent your mobile number<br/>
-                        <button class="btn btn-sm mt-2 btn-warning " onClick={this.sendsms}>Try Again</button>
-                        </div>
+                        <div class="text-center">
+                        <button class="btn btn-sm mt-2 btn-warning text-center" onClick={this.sendsms}>Try Again</button>
+                        </div></div>
                       </div>
                       </div>
 
               )}
 
+                <div class="row align-items-end">
+                <div class="col-lg">
+                    <div class="alert alert-info" role="alert">
+                    <i class="fas fa-info-circle"></i>&nbsp;&nbsp;Your bus ({ticket.busNo}) will reach {ticket.fromHolt} @{ticket.ArrivedTime}.<b>Please stay at halt by this time.</b> 
+                   </div>
+                </div>
+              </div>
 
               <div class="row align-items-end">
                 <div class="col-lg">
                     <div class="alert alert-danger" role="alert">
-                    <i class="fas fa-exclamation-circle"></i>&nbsp;&nbsp;Payment cannot refundable. Please keep softcopy of the ticket in your phone or smartdevices.
+                    <i class="fas fa-exclamation-circle"></i>&nbsp;&nbsp;Payment cannot<b> Refundable</b>. Please keep softcopy of the ticket in your phone or smartdevice.
                    </div>
                 </div>
               </div>
 
               <div class="row align-items-end text-center">
                 <div class="col-lg">
-                    <Pdf targetRef={ref} filename={pdfname}  x={1} y={1} scale={1}>
+                    <Pdf targetRef={ref} filename={pdfname}  x={.5} y={.5} scale={1}>
                       {({ toPdf }) => <button class="btn btn-lg btn-info mt-5" onClick={toPdf}>Download Ticket&nbsp;&nbsp;<i class="fas fa-download"></i></button>}
                     </Pdf>
                 </div>
@@ -157,10 +165,10 @@ render(){
 
             </div> 
           </div>
-          <div ref={ref}  class="col-lg-4 p-3">
+          <div ref={ref} style={{width: 10500, height: 10500}}   class="col-lg-4 p-3">
               <div class=" pt-0  mt-3">
    
-                  <div class="card border-primary py-4 ">
+                  <div  class="card border-primary py-4 ">
                       <h1 class="card-title  text-center mt-4">
                         <u>Your Ticket #{ticket.tid}</u>
                       </h1>
@@ -173,7 +181,6 @@ render(){
                               <p class="card-text">To : {ticket.toHolt}</p>
                               <h5 class="card-title text-success">Bus reach to {ticket.fromHolt} <br/> @ {ticket.ArrivedTime}</h5> 
                               <h4 class="card-title h2"> Price :Rs {ticket.ticketPrice}/=</h4>
-                             
                               <div class="alert alert-warning text-left text-warning h6" role="alert">
                                   P-Id&nbsp;: {ticket.paymentIntent}<br/>
                                   C-Id&nbsp;: {userInfo.Id}<br/>
@@ -182,6 +189,7 @@ render(){
                               <div class="alert alert-success h6" role="alert">
                                 Payment is Succesful!
                               </div>
+                             
                       </div>
 
               

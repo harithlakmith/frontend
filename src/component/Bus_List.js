@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 import queryString from 'query-string';
 import axios from 'axios'
 //import './Bus_List.css';
-import { RouteComponentProps, BrowserRouter, Switch, Route, Link, useLocation, useRouteMatch,withRouter, useParams} from "react-router-dom";
+import {  Redirect,useRouteMatch,withRouter, useParams} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { RichText, Date } from 'prismic-reactjs';
 import Moment from 'moment';
@@ -41,6 +41,9 @@ class Bus_List extends Component {
 
     
       render(){
+        if (JSON.parse(localStorage.getItem('role'))!='Passenger'){
+          return <Redirect to={'/sign-in'} />
+        }
 
         const { buses, load } = this.state
    
