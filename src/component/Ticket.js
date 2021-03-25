@@ -42,7 +42,7 @@ class Ticket extends Component {
               });
 
           if(value.get('success')=="true"){
-              // this.sendsms();
+               this.sendsms();
           }   
       }
 
@@ -203,8 +203,20 @@ render(){
     
    );
   }else{
-     return( <div class="alert alert-danger h6" role="alert">
-                Payment is Unsuccesful!
+     return( <div>
+      <br/> <br/> <br/> <br/><br/> <br/>
+      <div class="container">
+        <div class="row justify-content-md-center">
+          <div class="col-lg-5 text-center">
+               <div class="alert alert-danger h6" role="alert">
+                Payment is Unsuccesful!<br/>
+                <a href="/home" class="m-4 btn btn-danger">Home Page</a>
+              </div>
+
+          </div>
+        </div>
+      </div>
+    
               </div>);
   }
     
