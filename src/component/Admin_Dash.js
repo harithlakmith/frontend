@@ -23,7 +23,7 @@ render(){
         <br></br>
        
         <div class="row">
-          <div class="col-lg-8 h2 mb-4 ">Settings - Routes</div>
+          <div class="col-lg-8 h2 mb-4 "><i class="fas fa-cogs"></i>&nbsp;&nbsp;Settings - Routes</div>
         </div>
      
         <div class="row">
@@ -61,7 +61,7 @@ render(){
         </div>
      
         <div class="row">
-          <div class="col-lg-8 h2 mb-4">Settings - Buses</div>
+          <div class="col-lg-8 h2 mb-4"><i class="fas fa-cogs"></i>&nbsp;&nbsp;Settings - Buses</div>
         </div>
      
         <div class="row">
@@ -89,7 +89,7 @@ render(){
         </div>
        
         <div class="row">
-          <div class="col-lg-8 h2 mb-2">Settings - Session</div>
+          <div class="col-lg-8 h2 mb-2"><i class="fas fa-cogs"></i>&nbsp;&nbsp;Settings - Session</div>
         </div>
         <br></br>
         <div class="row">
