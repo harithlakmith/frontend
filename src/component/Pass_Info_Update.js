@@ -28,17 +28,18 @@ handleChange = (e) => {
 componentDidMount() { 
   var Pass = JSON.parse(localStorage.getItem('userInfo'));
   var PEmail = Pass.Email; 
-  axios.get('http://localhost:5000/Passenger/'+PEmail,{ headers: authHeader() })  
+  this.setState({
+    nic:Pass.NIC,
+  })
+  axios.get('http://localhost:5000/Passenger/'+ PEmail,{ headers: authHeader() })  
       .then(res => {  
           this.setState({ 
-		  
-            nic: res.data.NIC, 
+
             Fname: res.data.FirstName,
             Lname: res.data.LastName,  
             telephone: res.data.Tp,  
             email: PEmail,  
-            password : res.data.Password 
-            
+            //password : res.data.Password   
         });  
 
       })  
@@ -67,12 +68,14 @@ UpdatePassenger(e) {
   });
   axios.post('http://localhost:5000/api/Accounts/PassUpdate', obj, { headers: authHeader() })  
       .then(res => console.log(res.data));  
-    //  debugger;  
-      //this.props.history.push('/Businfo')  
-}  
+
+} 
+
+
+
   render() {
 	  var NIC = this.state.nic;
-	  //const { nic } = response.data;
+
   return (
 
     <div class="row justify-content-md-center">

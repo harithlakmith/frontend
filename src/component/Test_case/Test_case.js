@@ -24,7 +24,7 @@ import axios from 'axios';
 	  
 		AddPass = () => {
 		  //event.preventDefault();
-		  axios.post('http://localhost:5000/Passenger', {
+		  axios.post('localhost:5000/api/Accounts/PassengerRegister', {
 			//PID: parseInt(this.state.NIC),
 			Name: this.state.First_name,
 			Email: this.state.Email,
@@ -48,16 +48,14 @@ render() {
 <div class="row justify-content-md-center">
     <div class="col-lg-6 mt-5 ">
        <div  class=" mt-5 p-3 ">
-          <div class="card bg-light text-dark mt-1">
-					<h1 class="card-title"><i class="fas fa-users"></i>&nbsp;&nbsp;
+          <div class="card bg-light text-dark mt-1 p-3">
+					<h1 class="p-3 text-center card-title"><i class="fas fa-users"></i>&nbsp;&nbsp;
 			  			<u>Passenger Registration Form</u>
 					</h1>
-	
-		  <div class="">
 
 		  	<form>
 			
-				<div class="form-group">
+				<div class="form-group ">
 	
 					<div class="form-group">
 			   			<input type="text" pattern="[0-9]*" class="form-control" name="NIC" onChange={this.handleChange} value={this.state.NIC} placeholder="NIC" required="required"/>
@@ -82,7 +80,7 @@ render() {
 					</div>
 			</form>
 	
-		  </div>
+		
 		</div>
 	</div>
 	</div>
