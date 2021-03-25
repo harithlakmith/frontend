@@ -73,7 +73,14 @@ class App extends Component {
 
 render(){
   const { currentUser, showModeratorBoard, showAdminBoard, jwttoken, role, userInfo } = this.state;
+  var up = '';
   
+  if(role =="BusController"){
+        up=<a class="dropdown-item" href="/update-bus">Update profile</a>;
+  }else if(role=="Passenger"){
+        up=<a class="dropdown-item" href="/update-passenger">Update profile</a>;
+  }
+
   return (
   
     <div>
@@ -100,7 +107,7 @@ render(){
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                  aria-haspopup="true" aria-expanded="false">Hi, {userInfo.FirstName}{userInfo.BusNo}</a>
                   <div class="dropdown-menu">
-                      <a class="dropdown-item" href="/update-passenger">My profile</a>
+                      {up}
                       <a class="dropdown-item" href="#"></a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="/home" onClick={this.logOut}>Log Out</a>

@@ -2,6 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 //import "./Update_Bus.css";
 import React from "react";
 import axios from "axios";
+import {Redirect, withRouter} from 'react-router-dom';
 import authHeader from "./../services/auth-header";
 
 class Update_Bus extends React.Component {
@@ -21,7 +22,9 @@ this.UpdatePassword = this.UpdatePassword.bind(this);
         DriverName: '' , 
         DriverRegNo:'',
         ConductorName:'', 
-        ConductorRegNo:'' 
+        ConductorRegNo:'' ,
+        upPassOk:'',
+        upInfoOk:'',
 
     }  
 }  
@@ -32,7 +35,7 @@ handleChange = (e) => {
 
 componentDidMount() {
   var Bus = JSON.parse(localStorage.getItem("userInfo"));
-  var BusNum = "ND7852";
+  var BusNum = Bus.BusNo;
   axios
     .get("http://localhost:5000/BusInfo/" + BusNum, { headers: authHeader() })
     .then((response) => {
@@ -66,7 +69,16 @@ UpdatePassword(e) {
     .post("http://localhost:5000/api/Accounts/PasswordUpdate", obj, {
       headers: authHeader(),
     })
-    .then((res) => console.log(res.data));
+    .then((res) => {
+      this.setState({
+              upPassOk:"ok"
+      },error=>{
+        this.setState({
+          upPassOk:""
+          })
+  
+      })
+    });
   // debugger;
   //this.props.history.push('/Studentlist')
 }  
@@ -88,7 +100,16 @@ UpdateInfo(e) {
     .post("http://localhost:5000/api/Accounts/BusInfoUpdate", obj, {
       headers: authHeader(),
     })
-    .then((res) => console.log(res.data));
+    .then((res) => {
+      this.setState({
+        upInfoOk:"ok"
+        })
+    },error=>{
+      this.setState({
+        upInfoOk:""
+        })
+
+    });
   //  debugger;
   //this.props.history.push('/Businfo')
 }
@@ -100,11 +121,14 @@ UpdateInfo(e) {
 
 
 render(){
+  if (JSON.parse(localStorage.getItem('role'))!='BusController'){
+    return <Redirect to={'/sign-in'} />
+  }
   const{BusInfo}=this.state;
   return (
-    <div class="card bg-primary p-3 mt-5">
+    <div class="card p-3 mt-5">
         <div class="card-body mt-5 ">
-          <h1 class="card-title text-light">
+          <h1 class="card-title">
             <u>Update Bus Information</u>
           </h1>
           <br></br>
@@ -185,7 +209,7 @@ render(){
                     <input
                       type="text"
                       name="Seats"
-                      value={BusInfo.Seats}
+                      value={this.state.Seats}
                       onChange={this.handleChange}
                       min="1"
                       max="54"

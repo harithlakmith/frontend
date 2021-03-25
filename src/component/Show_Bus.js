@@ -49,9 +49,10 @@ componentDidMount(){
   return (
     <div>
       <div class="container p-1">
-        <div class="box">
+      <br></br><br></br>
+        <div class="mt-5">
           <h1>
-            <u>Buses Information</u>
+            <u>Buses Information List</u>
           </h1>
 
           <br></br>
