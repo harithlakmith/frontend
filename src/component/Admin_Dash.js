@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-//import "./Admin_Dash.css";
-import { render } from "react-dom";
-import { Redirect, withRouter } from "react-router-dom";
+
 
 class Admin_Dash extends Component {
   render() {

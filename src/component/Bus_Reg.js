@@ -1,6 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-//import "./Bus_Reg.css";
-//import "bootstrap/dist/css/bootstrap.min.css";
+
 import React from "react";
 import axios from "axios";
 import authHeader from "./../services/auth-header";

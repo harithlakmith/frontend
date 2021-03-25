@@ -1,12 +1,6 @@
 import React, { Component } from 'react'
-//import './welcome-text/welcome_text.css';
-//import './css/datepicker.css';
-//import './css/bootstrap.min.css';
-//import './css/tooplate-style.css';
-//import './Find_Bus.css';
 import {Redirect, withRouter} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-//import welcome_text from './welcome-text/welcome_text';
 import axios from 'axios'
 
  class Find_Bus extends Component {

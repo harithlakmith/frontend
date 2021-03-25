@@ -1,5 +1,4 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-//import "./Session_Pass.css";
 import React from "react";
 import axios from "axios";
 

@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { Component } from "react";
 //import "./bus_dash.css";
-import Moment,{ now } from "moment";
+import Moment from "moment";
 import {Redirect, withRouter} from 'react-router-dom';
 
 import axios from "axios";
@@ -20,7 +20,8 @@ class Bus_Dash extends Component {
       DriverNo:'',
       Email:'',
       MaxSeats:'',
-      MySession:[]
+      MySession:[],
+      Ticket:[],
     }
 
   }
@@ -51,8 +52,31 @@ componentDidMount(){
         this.setState({
           MySession:res.data
         });
-      })
+      });
+
+     
   }
+
+  /*Booked=(sid)=>{
+    var book = 0;
+    axios.get("http://localhost:5000/Ticket/session/"+sid)
+    .then(res=>{
+        this.setState({
+            Ticket:res.data,
+          
+        });
+    })
+
+    this.state.Ticket.length?(
+      this.state.Ticket.map(Tick=>{
+        book = book + parseInt(Tick.NoOfSeats);
+      })
+    ):(
+        book = ''
+    );
+
+    return book;
+  }*/
 
   render() {
    if (JSON.parse(localStorage.getItem('role'))!='BusController'){

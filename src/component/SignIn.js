@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Redirect, withRouter} from 'react-router-dom';
 import AuthService from "./../services/auth.service";

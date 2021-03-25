@@ -1,5 +1,4 @@
-import logo from "./../logo.svg";
-//import "./Add_Route.css";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import axios from "axios";

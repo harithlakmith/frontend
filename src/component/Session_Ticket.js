@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
-import { withRouter, useParams} from "react-router-dom";
+import { withRouter} from "react-router-dom";
 
  class Session_Ticket extends Component {
 
@@ -49,7 +49,7 @@ componentDidMount(){
                        <td class ="">{ses.ToHalt}</td>
                        <td class ="">{ses.PId}</td>
                        <td class ="">{ses.NoOfSeats}</td>
-                       <td class ="">{ses.PStatus}</td>
+                       
                        <td class ="">{ses.Date}</td>
                        <td class ="">{ses.Price}</td>
                        </tr>
@@ -66,7 +66,7 @@ componentDidMount(){
                 </h1>
                 <br></br>
                 <div class="row">
-                    <div class="">
+                    <div class="text-center">
                     <table class="table table-hover table-info table-bordered text-center">
                         <thead>
                             <tr class="bg-info">
@@ -76,7 +76,7 @@ componentDidMount(){
                                 <th scope="col-lg-4">To</th>
                                 <th scope="col-lg-4">Passenger Id</th>
                                 <th scope="col-lg-4">No of Seats</th>
-                                <th scope="col-lg-4">Payment Staus</th>
+                               
                                 <th scope="col-lg-4">Date</th>
                                 <th scope="col-lg-4">Price</th>
                             </tr>

@@ -1,8 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-//import "./Update_Bus.css";
 import React from "react";
 import axios from "axios";
-import {Redirect, withRouter} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 import authHeader from "./../services/auth-header";
 
 class Update_Bus extends React.Component {

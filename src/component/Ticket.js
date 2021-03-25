@@ -1,11 +1,8 @@
-//import logo from "./../../logo.svg";
-//import "./Book_Now.css";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import React ,{Component}from "react";
 import axios from "axios";
-import { useRouteMatch,withRouter, useParams} from "react-router-dom";
-import Moment,{ now } from "moment";
-import { Barcode,useBarcode } from 'react-barcode';
+import {withRouter} from "react-router-dom";
 import Pdf from "react-to-pdf";
 const ref = React.createRef();
 
@@ -23,7 +20,7 @@ class Ticket extends Component {
         ticket:[],
         success:undefined,
         msgStatus:[],
-        sms:'',
+        sms:'', 
       };
         this.handleChange = this.handleChange.bind(this);
         this.sendsms = this.sendsms.bind(this);

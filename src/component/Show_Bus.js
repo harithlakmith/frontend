@@ -1,5 +1,4 @@
-//import logo from "./../../logo.svg";
-//import "./Show_Bus.css";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { Component } from "react";
 import axios from "axios";

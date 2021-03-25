@@ -1,10 +1,9 @@
-//import logo from "./../../logo.svg";
-//import "./Book_Now.css";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import React ,{Component}from "react";
 import axios from "axios";
-import { Redirect, useRouteMatch,withRouter, useParams} from "react-router-dom";
-import Moment,{ now } from "moment";
+import { Redirect, withRouter} from "react-router-dom";
+import Moment from "moment";
 import { loadStripe } from "@stripe/stripe-js";
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.

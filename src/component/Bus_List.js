@@ -1,14 +1,10 @@
 
 import React, {Component} from 'react'
-import queryString from 'query-string';
 import axios from 'axios'
-//import './Bus_List.css';
-import {  Redirect,useRouteMatch,withRouter, useParams} from "react-router-dom";
+import {  Redirect,withRouter} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { RichText, Date } from 'prismic-reactjs';
 import Moment from 'moment';
-import ContentLoader from "react-content-loader"
-//import location  from 'react-router';
+
 
 
 class Bus_List extends Component {
