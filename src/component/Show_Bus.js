@@ -56,8 +56,8 @@ componentDidMount(){
 
           <br></br>
           <div class="row">
-            <div class="box-box1"></div>
-            <div class="box-bo2">
+          
+            <div class="col-lg">
               <table class="table table-hover table-info table-bordered">
                 <thead>
                   <tr class="bg-info">
@@ -81,12 +81,7 @@ componentDidMount(){
           </div>
 
           <hr />
-          <div class="hint-text">
-            Tiketz{" "}
-            <a href="#">
-              <i>Smart Travelling for Smart Lifestyle</i>
-            </a>
-          </div>
+         
         </div>
       </div>
     </div>

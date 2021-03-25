@@ -73,6 +73,7 @@ class App extends Component {
 
 render(){
   const { currentUser, showModeratorBoard, showAdminBoard, jwttoken, role, userInfo } = this.state;
+  
   return (
   
     <div>
@@ -100,7 +101,7 @@ render(){
                  aria-haspopup="true" aria-expanded="false">Hi, {userInfo.FirstName}{userInfo.BusNo}</a>
                   <div class="dropdown-menu">
                       <a class="dropdown-item" href="/update-passenger">My profile</a>
-                      <a class="dropdown-item" href="#">Setting</a>
+                      <a class="dropdown-item" href="#"></a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="/home" onClick={this.logOut}>Log Out</a>
                   </div>
