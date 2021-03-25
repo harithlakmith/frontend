@@ -1,176 +1,94 @@
-import React, { Component } from "react";
-import axios from "axios";
-import "bootstrap/dist/css/bootstrap.min.css";
-//import "./Admin_Dash.css";
-import { render } from "react-dom";
-import { Redirect, withRouter } from "react-router-dom";
+import React, { Component } from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios';
 
-class Admin_Dash extends Component {
-  render() {
-    /*if (JSON.parse(localStorage.getItem("role")) != "Administrator") {
-      return <Redirect to={"/sign-in"} />;
-    }*/
-    return (
-      <div class="container p-1">
-        <div class="mt-5">
-          <br></br>
-          <br></br>
-          <br></br>
-          <div class="row">
-            <div class="col-lg-6 h1  mb-4 ">
-              <u><i class="fas fa-user-cog"></i>&nbsp;Admin Dashboard</u>
-              
-              
-            </div>
-          </div>
-          <br></br>
+ class Test_case extends Component {
 
-          <div class="row">
-            <div class="col-lg-8 h2 mb-4 ">
-              Settings - Routes&nbsp;&nbsp;
-            </div>
-          </div>
+	constructor(props){ 
+		super(props) 
+		this.state = {
+		  NIC:'',
+		  First_name:'',
+		  Last_name:'',
+		  Email:'',
+		  Password:'',
+		  Telephone:''
+		};
+	    this.handleChange = this.handleChange.bind(this);
+		this.AddPass = this.AddPass.bind(this);
+	  }
+	  
+		handleChange = (e) => {
+		  this.setState({[e.target.name]:e.target.value});
+		}
+	  
+		AddPass = () => {
+		  //event.preventDefault();
+		  axios.post('http://localhost:5000/Passenger', {
+			//PID: parseInt(this.state.NIC),
+			Name: this.state.First_name,
+			Email: this.state.Email,
+			Password: this.state.Password,
+			Tp: parseInt(this.state.Telephone),
+			Token : 'test',
+			Verified:0
+	
+		})
+		  .then(json => {
+		  
+			  console.log(json.data);  
+			
+		  });   
+	
+		}
+	
+render() {
+	return (
+	
+<div class="row justify-content-md-center">
+    <div class="col-lg-6 mt-5 ">
+       <div  class=" mt-5 p-3 ">
+          <div class="card bg-light text-dark mt-1">
+					<h1 class="card-title"><i class="fas fa-users"></i>&nbsp;&nbsp;
+			  			<u>Passenger Registration Form</u>
+					</h1>
+	
+		  <div class="">
 
-          <div class="row">
-            <div class="col-lg-4">
-              <div class="card border-primary mb-3">
-                <div class="card-header h5">
-                  <i class="fas fa-list-ol"></i> &nbsp;&nbsp;Route List
-                </div>
-                <div class="card-body text-center">
-                  <p class="card-text">
-                    Click below button for displaying the infomation list of bus
-                    Routes.
-                  </p>
-                  <a href="/" class="btn btn-primary m-2 disabled">
-                    Show Route
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4">
-              <div class="card border-primary mb-3">
-                <div class="card-header h5">
-                  <i class="fas fa-route"></i>&nbsp;&nbsp;Add New Route
-                </div>
-                <div class="card-body text-center">
-                  <p class="card-text">
-                    Click below button for Adding new routes to the system.
-                  </p>
-                  <a href="/add-route" class="btn btn-primary m-2">
-                    Add Route
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4">
-              <div class="card border-primary mb-3 ">
-                <div class="card-header h5">
-                  <i class="fas fa-route"></i>&nbsp;&nbsp;Edit Routes
-                </div>
-                <div class="card-body text-center">
-                  <p class="card-text">
-                    Click below button for updating the information of registerd
-                    routes.
-                  </p>
-                  <a href="/" class="btn btn-primary m-2 disabled">
-                    Edit Route
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <hr></hr>
-          <div class="row">
-            <div class="col-lg-8 h2 mb-4">
-              Settings - Buses&nbsp;
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-lg-4">
-              <div class="card border-primary mb-3">
-                <div class="card-header h5">
-                  <i class="fas fa-list-ol"></i> &nbsp;&nbsp;Bus List
-                </div>
-                <div class="card-body text-center">
-                  <p class="card-text">
-                    Click below button for Displaying the information list of
-                    buses
-                  </p>
-                  <a href="/show-buses" class="btn btn-primary m-2">
-                    Bus List
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4">
-              <div class="card border-primary mb-3 ">
-                <div class="card-header h5">
-                  <i class="fas fa-plus"></i> &nbsp;&nbsp;Add New Bus
-                </div>
-                <div class="card-body text-center">
-                  <p class="card-text">
-                    Click below button for registering new bus for the system.
-                  </p>
-                  <a href="/bus-reg" class="btn btn-primary m-2 ">
-                    Add Bus
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <hr></hr>
-          <div class="row">
-            <div class="col-lg-8 h2 mb-2">
-              Settings - Session
-            </div>
-          </div>
-          <br></br>
-          <div class="row">
-            <div class="col-lg-4">
-              <div class="card border-primary mb-3">
-                <div class="card-header h5">
-                  {" "}
-                  <i class="fas fa-list-ol"></i> &nbsp;&nbsp;Session List
-                </div>
-                <div class="card-body text-center">
-                  <p class="card-text">
-                    Click below button for Displaying the information list of
-                    Sessions
-                  </p>
-                  <a href="/" class="btn btn-primary m-2 disabled">
-                    Sessions List
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4">
-              <div class="card border-primary mb-3 ">
-                <div class="card-header h5">
-                  {" "}
-                  <i class="fas fa-plus"></i> &nbsp;&nbsp;Add Session
-                </div>
-                <div class="card-body text-center">
-                  <p class="card-text">
-                    Click below button for adding new session for the related
-                    bus.
-                  </p>
-                  <a href="/" class="btn btn-primary m-2 disabled">
-                    Add Bus
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+		  	<form>
+			
+				<div class="form-group">
+	
+					<div class="form-group">
+			   			<input type="text" pattern="[0-9]*" class="form-control" name="NIC" onChange={this.handleChange} value={this.state.NIC} placeholder="NIC" required="required"/>
+					</div>
+					<div class="row">
+						<div class="col"><input type="text" class="form-control" name="First_name" onChange={this.handleChange} value={this.state.First_name} placeholder="First Name" required="required"/></div>
+						<div class="col"><input type="text" class="form-control" name="Last_name" onChange={this.handleChange} value={this.state.Last_name} placeholder="Last Name" required="required"/></div>
+					</div>        	
+				</div>
+					<div class="form-group">
+						<input type="text" class="form-control" name="Email" onChange={this.handleChange} value={this.state.Email} placeholder="Email" required="required"/>
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" name="Password" onChange={this.handleChange} value={this.state.Password} placeholder="Password" required="required"/>
+					</div>
+					<div class="form-group">
+						<input type="text" pattern="[0-9]*" class="form-control" onChange={this.handleChange} value={this.state.Telephone} name="Telephone" placeholder="Telephone" required="required"/>
+					</div>        
+			
+					<div class="form-group">
+						<button type="submit" onClick={this.AddPass} class="btn btn-primary btn-lg">Register</button>
+					</div>
+			</form>
+	
+		  </div>
+		</div>
+	</div>
+	</div>
+	</div>
+	  );
+	  }
+  
 }
-
-export default Admin_Dash;
+export default Test_case ;

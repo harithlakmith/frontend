@@ -142,8 +142,8 @@ class Add_Route extends React.Component {
 
     return (
       <div>
-        <div class="container p-1">
-          <div class="box">
+        <div class="container mt-5 p-1">
+          <div class="mt-5">
             <h1>
               <u>Bus Registration Form</u>
             </h1>
@@ -152,10 +152,10 @@ class Add_Route extends React.Component {
             <br></br>
 
             <div class="row">
-              <div class="box-box1"></div>
-              <div class="box-bo">
+             
+              <div class="col-lg-6">
                 <div class="row">
-                  <div class="col-lg-5 ; h5 ">Route No </div>
+                  <div class="col-lg-4 ; h5 ">Route No </div>
                   <div class="col-lg-1 ; h5 ">: </div>
                   <div class="col-lg-5">
                     <input
@@ -172,7 +172,7 @@ class Add_Route extends React.Component {
 
                 <br></br>
                 <div class="row">
-                  <div class="col-lg-5 ; h5 ">Start At </div>
+                  <div class="col-lg-4 ; h5 ">Start At </div>
                   <div class="col-lg-1 ; h5 ">: </div>
                   <div class="col-lg-5">
                     <input
@@ -188,7 +188,7 @@ class Add_Route extends React.Component {
                 </div>
                 <br></br>
                 <div class="row">
-                  <div class="col-lg-5 ; h5 ">Full Time </div>
+                  <div class="col-lg-4 ; h5 ">Full Time </div>
                   <div class="col-lg-1 ; h5 ">: </div>
                   <div class="col-lg-5">
                     <input
@@ -205,7 +205,7 @@ class Add_Route extends React.Component {
                 </div>
                 <br></br>
                 <div class="row">
-                  <div class="col-lg-5 ; h5 ">Full price </div>
+                  <div class="col-lg-4 ; h5 ">Full price </div>
                   <div class="col-lg-1 ; h5 ">: </div>
                   <div class="col-lg-5">
                     <input
@@ -222,13 +222,13 @@ class Add_Route extends React.Component {
                 </div>
               </div>
               
-              <div class="box-bo">
+              <div class="col-lg-5">
                 <div class="row"></div>
                 <br></br>
                 <br></br>
                 <hr></hr>
                 <div class="row">
-                  <div class="col-lg-5 ; h5 ">Stop At </div>
+                  <div class="col-lg-4 ; h5 ">Stop At </div>
                   <div class="col-lg-1 ; h5 ">: </div>
                   <div class="col-lg-5">
                     <input
@@ -244,7 +244,7 @@ class Add_Route extends React.Component {
                 </div>
                 <br></br>
                 <div class="row">
-                  <div class="col-lg-5 ; h5 ">Full Distance </div>
+                  <div class="col-lg-4 ; h5 ">Full Distance </div>
                   <div class="col-lg-1 ; h5 ">: </div>
                   <div class="col-lg-5">
                     <input
@@ -321,21 +321,8 @@ class Add_Route extends React.Component {
             <p></p>
           )}
 
-         
-
-            <br></br>
-            <div class="row">
-              <div class="box-box1"></div>
-              <div class="box-bo1">
-               
-              </div>
-            </div>
-            <div class="hint-text">
-              Tiketz{" "}
-              <a href="#">
-                <i>Smart Travelling for Smart Lifestyle</i>
-              </a>
-            </div>
+       
+           
           </div>
         </div>
       </div>
