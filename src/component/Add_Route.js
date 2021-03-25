@@ -118,9 +118,9 @@ class Add_Route extends React.Component {
 
 
   render() {
-  /*  if (JSON.parse(localStorage.getItem('role'))!='Administrator'){
+  if (JSON.parse(localStorage.getItem('role'))!='Administrator'){
       return <Redirect to={'/sign-in'} />
-    }*/
+    }
 
     const { halts, flag } = this.state
     const haltList = halts.length ? (
@@ -321,7 +321,7 @@ class Add_Route extends React.Component {
             <p></p>
           )}
 
-       
+       <br/><br/><br/>
            
           </div>
         </div>

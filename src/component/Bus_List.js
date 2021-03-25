@@ -4,7 +4,7 @@ import axios from 'axios'
 import {  Redirect,withRouter} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Moment from 'moment';
-
+import authHeader from "./../services/auth-header";
 
 
 class Bus_List extends Component {
@@ -21,7 +21,7 @@ class Bus_List extends Component {
     //
     const value = new URLSearchParams(this.props.location.search)
     
-    axios.get('http://localhost:5000/Search/SearchTicket?date='+value.get('date')+'&from_='+value.get('from')+'&to_='+value.get('to'))
+    axios.get('http://localhost:5000/Search/SearchTicket?date='+value.get('date')+'&from_='+value.get('from')+'&to_='+value.get('to'),{ headers: authHeader() })
          .then(res => {
                         this.setState({
                                         buses: res.data,

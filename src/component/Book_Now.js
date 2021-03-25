@@ -208,24 +208,25 @@ render(){
             <div class="card-body">
               <div class="row">
                 <div class="col-md-3">
-                  <table>
-                    <tr>From: {this.state.fromHolt}</tr>
-                    <tr>To : {this.state.toHolt}</tr>
-                  </table>
+                 
+                    <p class="h5"><i class="fas fa-location-arrow"></i>&nbsp;&nbsp;From: {this.state.fromHolt}</p>
+                    <p class="h5 mb-5"><i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;To : {this.state.toHolt}</p>
+                    <br/><br/>
+                    <p class="text-center fixed-bottom text-muted">Powered by&nbsp;&nbsp; <i class="h3 fab fa-cc-stripe"></i></p>
                 </div>
                 <div class="col-md-4">
                   <table>
-                    <tr>Arriving time: {this.state.ArrivedTime}</tr>
-                    <br></br>
-                    <tr>
-                      
+                    <tr class="h5"><i class="fas fa-clock"></i>&nbsp;&nbsp;Arriving time: {this.state.ArrivedTime}</tr>
+                    <br></br><br></br>
+                    <tr class="h5 ">
+                    TICKET PRICE PER PASSENGER<br/><b class="h2"> Rs {this.state.ticketPrice}.00</b>
                     </tr>
                   </table>
                 </div>
                 <div class="col-md-5">
                   <table>
                     
-                    <tr>TICKET PRICE= Rs {this.state.ticketPrice}.00</tr>
+                    <tr></tr>
                     <tr>Full tickets = <input type="number" min="0" class="form-control" name="fullTicket" placeholder="" value={this.state.fullTicket} onChange={this.handleChange} required="required"/></tr>
                     <tr>Half tickets = <input type="number" min="0" class="form-control" name="halfTicket" placeholder="" value={this.state.halfTicket} onChange={this.handleChange} /></tr>
                     <tr>
@@ -238,8 +239,10 @@ render(){
                         type="submit" onClick={this.AddTicket}
                         className="btn btn-primary btn-lg btn-block"
                         >
-                         <span>&nbsp;&nbsp;Pay</span>
+                         <span><i class="fas fa-lock"></i>&nbsp;&nbsp;Pay</span>
                         </button>
+                        <br/>
+                        
                       </div>
                     </tr>
                   </table>

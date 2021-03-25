@@ -3,7 +3,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 //import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import axios from "axios";
-//import authHeader from "./../services/auth-header";
+import {Redirect, withRouter} from 'react-router-dom';
+import authHeader from "./../services/auth-header";
 
 class Bus_Reg extends React.Component {
   constructor(props) {
@@ -38,13 +39,16 @@ class Bus_Reg extends React.Component {
         Email: this.state.email,
         Password: this.state.password,
         ConfirmPassword: this.state.password,
-      })
+      },{ headers: authHeader() })
       .then((json) => {
         console.log(json.data);
       });
   };
 
   render() {
+    if (JSON.parse(localStorage.getItem("role")) != "Administrator") {
+      return <Redirect to={"/sign-in"} />;
+    }
     return (
       <div class=" container p-5 mt-5 ">
         <div class="card bg-light  p-3 mt-5">

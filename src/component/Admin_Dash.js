@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import {Redirect, withRouter} from 'react-router-dom';
 
 
 class Admin_Dash extends Component {
   render() {
-    /*if (JSON.parse(localStorage.getItem("role")) != "Administrator") {
+    if (JSON.parse(localStorage.getItem("role")) != "Administrator") {
       return <Redirect to={"/sign-in"} />;
-    }*/
+    }
     return (
       <div class="container p-1">
         <div class="mt-5">

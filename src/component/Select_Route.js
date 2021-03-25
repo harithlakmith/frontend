@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { Component } from 'react'
 import axios from "axios";
-import { withRouter} from "react-router-dom";
+import { Redirect,withRouter} from "react-router-dom";
 import authHeader from "./../services/auth-header";
 
 class Select_Route extends Component {
@@ -56,6 +56,10 @@ class Select_Route extends Component {
   
 
   render() {
+    if (JSON.parse(localStorage.getItem('role'))!='BusController'){
+      return <Redirect to={'/sign-in'} />
+    }
+
     const { routes, busNo } = this.state;
     const routeList = routes.length ? (
       routes.map((route) => {

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Redirect, withRouter} from 'react-router-dom';
 import AuthService from "./../services/auth.service";
@@ -74,9 +75,6 @@ class SignIn extends Component{
     }
 
   /* ---*/
- 
- 
-
 
 render(){
     
@@ -94,24 +92,35 @@ return (
           </h1>
              
           <br></br>
+          <br></br>  
   
        <div class="row">
           <div class="col-lg-7 px-5">
              
-            <div class="form-group">
+
+          <div class="row">
+          <div class="col-lg-1"><i class="fas fa-envelope-open fa-lg"></i></div>
+          <div class="col-lg-11">
+            <div class="form-group  ">
              <input type="text" class="form-control" name="username" 
                  onChange={this.onChangeUsername}
                  value={this.state.username} placeholder="Email" required="required"/>
             </div>
-
-
-            <div class="form-group">
-             <input type="password" class="form-control" name="password"
+            </div>
+            </div>
+            <div class="row">
+          <div class="col-lg-1"><i class="fas fa-user-lock fa-lg"></i></div>
+          <div class="col-lg-11">
+            <div class="form-group  ">
+            <input type="password" class="form-control" name="password"
                 value={this.state.password}
                 onChange={this.onChangePassword}
                 placeholder="Password" required="required"/>
-            </div>   
+            </div>
+            </div>
+            </div> 
          
+          <br></br>
           
            <div class="form-group text-center">
               <button type="submit"
@@ -137,7 +146,7 @@ return (
           </div>
 
           <div class="col-lg-5 px-4">
-            <img src="images/login.jpeg" alt="login" class="ml-5"/>
+          <img src="images/login.jpeg" alt="login" class="ml-5"/>
           </div>
                    
         </div>
