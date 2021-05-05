@@ -30,7 +30,7 @@ import axios from 'axios';
 		AddPass = () => {
 		  //event.preventDefault();
 	
-		  axios.post('http://localhost:5000/api/Accounts/PassengerRegister', {
+		  axios.post(window.$API_SERVER +'api/Accounts/PassengerRegister', {
 			//PID: parseInt(this.state.NIC),
 			NIC : this.state.NIC,
 			FirstName: this.state.First_name,

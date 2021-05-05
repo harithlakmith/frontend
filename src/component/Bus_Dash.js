@@ -31,7 +31,7 @@ componentDidMount(){
   var Bus = JSON.parse(localStorage.getItem('userInfo'));
   var BusNo = Bus.BusNo;
   
-    axios.get('http://localhost:5000/BusInfo/'+ BusNo,{ headers: authHeader() })
+    axios.get(window.$API_SERVER +'BusInfo/'+ BusNo,{ headers: authHeader() })
       .then(res => {
         
         this.setState({
@@ -46,7 +46,7 @@ componentDidMount(){
         });
       });
 
-      axios.get('http://localhost:5000/Session/BusNo/'+ BusNo,{ headers: authHeader() })
+      axios.get(window.$API_SERVER +'Session/BusNo/'+ BusNo,{ headers: authHeader() })
       .then(res => {
         
         this.setState({

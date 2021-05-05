@@ -8,7 +8,7 @@ import axios from 'axios'
         towns: []
       } 
     componentDidMount(){
-        axios.get('http://localhost:5000/RouteInfo/townlist')
+        axios.get(window.$API_SERVER +'RouteInfo/townlist')
           .then(res => {
             console.log(res);
             this.setState({

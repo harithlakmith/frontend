@@ -29,7 +29,7 @@ class Bus_Reg extends React.Component {
 
   BusReg = () => {
     axios
-      .post("http://localhost:5000/api/Accounts/BusControllerRegister", {
+      .post(window.$API_SERVER +"api/Accounts/BusControllerRegister", {
         BusNo: this.state.busNo,
         DriverName: this.state.dName,
         DriverNo: parseInt(this.state.dNo),

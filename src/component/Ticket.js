@@ -63,7 +63,7 @@ class Ticket extends Component {
                 From:ticket.fromHolt
               }
 
-            axios.post("http://localhost:5000/Payment/smsapi", obj)
+            axios.post(window.$API_SERVER +"Payment/smsapi", obj)
                   .then(res=>{
                     this.setState({
                       msgStatus: res.data,

@@ -10,7 +10,7 @@ class Show_Bus extends Component {
     buses: []
   }
 componentDidMount(){
-    axios.get('http://localhost:5000/BusInfo',{ headers: authHeader() })
+    axios.get(window.$API_SERVER +'BusInfo',{ headers: authHeader() })
       .then(res => {
         
         this.setState({

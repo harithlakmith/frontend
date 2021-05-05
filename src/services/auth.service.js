@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-const API_URL = "http://localhost:5000/api/Accounts/";
+const API_URL = "https://ticketbookingapi.azurewebsites.net/api/Accounts/";
 
 class AuthService {
   

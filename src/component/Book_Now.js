@@ -106,11 +106,11 @@ class Book_Now extends Component {
            PId:1,
            NoOfSeats:parseInt(this.state.seats),
            PStatus:0,
-           Price:parseFloat(this.state.totalTicket),
+           Price:parseInt(this.state.totalTicket),
            Date:Moment(Date().toLocaleString()).format('YYYY-MM-DD')
        
          };  
-         axios.post('http://localhost:5000/Ticket', obj)  
+         axios.post(window.$API_SERVER +'Ticket', obj)  
              .then(res => {
                this.setState({
                               postTId: res.data.TId }); 
@@ -136,7 +136,7 @@ class Book_Now extends Component {
             }
            
             const stripe = await stripePromise;
-            const response = await fetch("http://localhost:5000/Payment", {
+            const response = await fetch(window.$API_SERVER +"Payment", {
               method: "POST",
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify(item),

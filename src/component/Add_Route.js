@@ -41,7 +41,7 @@ class Add_Route extends React.Component {
     //event.preventDefault();
 
     axios
-      .post("http://localhost:5000/Route", {
+      .post(window.$API_SERVER +"Route", {
       
         StartHoltId: 1,
         StartHolt: this.state.startAt,
@@ -64,7 +64,7 @@ class Add_Route extends React.Component {
     //event.preventDefault();
 
     axios
-      .post("http://localhost:5000/RouteInfo", {
+      .post(window.$API_SERVER +"RouteInfo", {
       
         RId: parseInt(this.state.postRoute),
         HoltName: this.state.halt,
@@ -88,7 +88,7 @@ class Add_Route extends React.Component {
   };
 
   haltListRefresh(){
-    axios.get('http://localhost:5000/RouteInfo/'+ this.state.postRoute, { headers: authHeader() })
+    axios.get(window.$API_SERVER +'RouteInfo/'+ this.state.postRoute, { headers: authHeader() })
     .then(res => {
       
       this.setState({

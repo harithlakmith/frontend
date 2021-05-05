@@ -21,7 +21,7 @@ class Bus_List extends Component {
     //
     const value = new URLSearchParams(this.props.location.search)
     
-    axios.get('http://localhost:5000/Search/SearchTicket?date='+value.get('date')+'&from_='+value.get('from')+'&to_='+value.get('to'),{ headers: authHeader() })
+    axios.get(window.$API_SERVER +'Search/SearchTicket?date='+value.get('date')+'&from_='+value.get('from')+'&to_='+value.get('to'),{ headers: authHeader() })
          .then(res => {
                         this.setState({
                                         buses: res.data,

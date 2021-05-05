@@ -32,7 +32,7 @@ class Select_Route extends Component {
     var s= value.get('s');
 
     axios
-      .post("http://localhost:5000/Session", {
+      .post(window.$API_SERVER +"Session", {
         BusNo: this.state.busNo,
         RId: parseInt(this.state.route),
         Date: this.state.date,
@@ -45,7 +45,7 @@ class Select_Route extends Component {
   };
 
   componentDidMount() {
-    axios.get("http://localhost:5000/Route",{ headers: authHeader() }).then((res) => {
+    axios.get(window.$API_SERVER +"Route",{ headers: authHeader() }).then((res) => {
       console.log(res);
       this.setState({
         routes: res.data,

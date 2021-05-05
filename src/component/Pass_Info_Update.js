@@ -31,7 +31,7 @@ componentDidMount() {
   this.setState({
     nic:Pass.NIC,
   })
-  axios.get('http://localhost:5000/Passenger/'+ PEmail,{ headers: authHeader() })  
+  axios.get(window.$API_SERVER +'Passenger/'+ PEmail,{ headers: authHeader() })  
       .then(res => {  
           this.setState({ 
 
@@ -66,7 +66,7 @@ UpdatePassenger(e) {
   this.setState({
           Test:obj,
   });
-  axios.post('http://localhost:5000/api/Accounts/PassUpdate', obj, { headers: authHeader() })  
+  axios.post(window.$API_SERVER +'api/Accounts/PassUpdate', obj, { headers: authHeader() })  
       .then(res => console.log(res.data));  
 
 } 

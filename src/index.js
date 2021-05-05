@@ -5,6 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 //import Add_Route from './component/add_route/Add_Route';
 
+window.$API_SERVER = "https://ticketbookingapi.azurewebsites.net/";
+
 ReactDOM.render(
   <React.StrictMode>
     <App />

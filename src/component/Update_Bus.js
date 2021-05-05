@@ -4,6 +4,7 @@ import axios from "axios";
 import {Redirect} from 'react-router-dom';
 import authHeader from "./../services/auth-header";
 
+
 class Update_Bus extends React.Component {
 
   constructor(props) {  
@@ -36,7 +37,7 @@ componentDidMount() {
   var Bus = JSON.parse(localStorage.getItem("userInfo"));
   var BusNum = Bus.BusNo;
   axios
-    .get("http://localhost:5000/BusInfo/" + BusNum, { headers: authHeader() })
+    .get(window.$API_SERVER +"BusInfo/" + BusNum, { headers: authHeader() })
     .then((response) => {
       this.setState({
         BusInfo:response.data,
@@ -65,7 +66,7 @@ UpdatePassword(e) {
     ConfirmPassword: this.state.ConfirmPassword,
   };
   axios
-    .post("http://localhost:5000/api/Accounts/PasswordUpdate", obj, {
+    .post(window.$API_SERVER +"api/Accounts/PasswordUpdate", obj, {
       headers: authHeader(),
     })
     .then((res) => {
@@ -96,7 +97,7 @@ UpdateInfo(e) {
     MaxSeats: parseInt(this.state.Seats),
   };
   axios
-    .post("http://localhost:5000/api/Accounts/BusInfoUpdate", obj, {
+    .post(window.$API_SERVER +"api/Accounts/BusInfoUpdate", obj, {
       headers: authHeader(),
     })
     .then((res) => {
