@@ -110,7 +110,7 @@ class Book_Now extends Component {
            Date:Moment(Date().toLocaleString()).format('YYYY-MM-DD')
        
          };  
-         axios.post(window.$API_SERVER +'Ticket', obj)  
+         axios.post(window.$API_SERVER +'api/Ticket', obj)  
              .then(res => {
                this.setState({
                               postTId: res.data.TId }); 
