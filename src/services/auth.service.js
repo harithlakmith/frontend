@@ -1,13 +1,13 @@
 import axios from "axios";
 
 
-const API_URL = "https://ticketbookingapi.azurewebsites.net/api/Accounts/";
+const API_URL = window.$API_SERVER + 'Accounts/';
 
 class AuthService {
   
   login(aEmail, aPassword) {
     return axios
-      .post(API_URL + "Login", {
+      .post(window.$API_SERVER + "Accounts/Login", {
         Email:aEmail,
         Password:aPassword
       })

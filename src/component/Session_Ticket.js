@@ -28,7 +28,7 @@ import { withRouter} from "react-router-dom";
 componentDidMount(){
     const value = new URLSearchParams(this.props.location.search)
     var sid = value.get('sid');
-    axios.get(window.$API_SERVER +"api/Ticket/session/"+sid)
+    axios.get(window.$API_SERVER +"Ticket/session/"+sid)
         .then(res=>{
             this.setState({
                 Ticket:res.data,

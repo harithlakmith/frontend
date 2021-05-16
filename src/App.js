@@ -30,6 +30,8 @@ import Show_Bus from './component/Show_Bus';
 //import checkout from './component/checkout';
 import Ticket from './component/Ticket';
 import Session_Ticket from './component/Session_Ticket';
+import Route_Info from './component/Route_Info';
+import Show_Route from './component/Show_Route';
 
 
 class App extends Component {
@@ -210,6 +212,13 @@ render(){
           <Session_Ticket />
           </Route>
           
+          <Route path="/route-info" >
+          <Route_Info />
+          </Route>
+
+          <Route path="/show-route" >
+          <Show_Route />
+          </Route>
 
 
         </Switch>
