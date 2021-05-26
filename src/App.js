@@ -30,6 +30,7 @@ import Show_Bus from './component/Show_Bus';
 //import checkout from './component/checkout';
 import Ticket from './component/Ticket';
 import Session_Ticket from './component/Session_Ticket';
+//import Test_case1 from './component/Test_case/Test_case1';
 
 
 class App extends Component {
@@ -149,6 +150,7 @@ render(){
           <Route path="/test">
           <Test_case />
           </Route>
+          
 
           <Route path="/bus-list" component={Bus_List}>
           <Bus_List />

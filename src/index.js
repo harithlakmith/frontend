@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 //import Add_Route from './component/add_route/Add_Route';
 
 window.$API_SERVER = "https://ticketbookingapi.azurewebsites.net/api/";
+//window.$API_SERVER = "http://localhost:5000/"
 
 ReactDOM.render(
   <React.StrictMode>

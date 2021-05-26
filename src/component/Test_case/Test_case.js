@@ -1,162 +1,174 @@
-import React, {Component} from 'react';
-import axios from 'axios';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import {Redirect, withRouter} from 'react-router-dom';
-import AuthService from "../../services/auth.service";
 
-class SignIn extends Component{
+import React, { Component } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import axios from "axios";
+import {Redirect, withRouter} from "react-router-dom";
+import authHeader from "../../services/auth-header";
+import Moment from "moment";
+
+ class Test_case extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-          username: "",
-          password: "",
-          loading: false,
-          message: ""
-        };
-        this.handleLogin = this.handleLogin.bind(this);
-        this.onChangeUsername = this.onChangeUsername.bind(this);
-        this.onChangePassword = this.onChangePassword.bind(this);
-      }
-
-      onChangeUsername(e) {
-        this.setState({
-          username: e.target.value
-        });
-      }
-    
-      onChangePassword(e) {
-        this.setState({
-          password: e.target.value
-        });
-      }
-    
-      handleLogin(e) {
-            e.preventDefault();
+          Ticket: [],
+          TId:'',    
+          SId:'',
+          From:'',
+          To:'',
+          FromHalt:'',
+          ToHalt:'',
+          Seats:'',
+          PStatus:'',
+          Date:'',
+          Price:'',
+          pid: '',
         
-            this.setState({
-              message: "",
-              loading: true
-            });
           
-       // this.form.validateAll();
-
-            AuthService.login(this.state.username, this.state.password).then(
-              () => {
-
-                  const role=JSON.parse(localStorage.getItem('role'))
-                  if(role=='Passenger'){
-                    this.props.history.push("/home")
-                  }else if(role=='Administrator'){
-                    this.props.history.push("/admin-dash")
-                  }else if(role=='BusController'){
-                    this.props.history.push("/bus-dashboard")
-                  };
-                //  this.props.history.push("/home")
-                window.location.reload();
-              },
-              error => {
-                const resMessage =
-                  (error.response &&
-                    error.response.data &&
-                    error.response.data.message) ||
-                  error.message ||
-                  error.toString();
-
-                this.setState({
-                  loading: false,
-                  message: resMessage
-                });
-              }
-            );
-              
-
-        
-    }
-
-  /* ---*/
-
-render(){
+        }
     
- if (localStorage.getItem('user')){
-    return <Redirect to={'/home'} />
+      }
+
+componentDidMount(){
+  var Pass = JSON.parse(localStorage.getItem('userInfo'));
+  var PEmail = Pass.Email; 
+  this.setState({
+    nic:Pass.NIC,
+    mail:Pass.Email
+  })
+ 
+  axios.get(window.$API_SERVER +'Passenger/'+ PEmail,{ headers: authHeader() })  
+      .then(res => {  
+        this.setState({
+          pid: res.data[0].PId
+          
+        });
+        this.getTicket();
+      })  
 }
-    
-return (
-  <form onSubmit={this.handleLogin}>
-    
-    <div class="container pt-3 px-5 mt-5">
-      <div class="mt-5">
-          <h1>
-             <u>Login</u>
-          </h1>
-             
-          <br></br>
-          <br></br>  
+
+getTicket(){
   
-       <div class="row">
-          <div class="col-lg-7 px-5">
-             
+    var id = this.state.pid
+    axios.get(window.$API_SERVER +"Ticket" /*+id*/,{ headers: authHeader() })
+        .then(res=>{
+            this.setState({
+                Ticket:res.data
+                
+              
+            });
+        })
+}
+    render() {
 
-          <div class="row">
-          <div class="col-lg-1"><i class="fas fa-envelope-open fa-lg"></i></div>
-          <div class="col-lg-11">
-            <div class="form-group  ">
-             <input type="text" class="form-control" name="username" 
-                 onChange={this.onChangeUsername}
-                 value={this.state.username} placeholder="Email" required="required"/>
-            </div>
-            </div>
-            </div>
-            <div class="row">
-          <div class="col-lg-1"><i class="fas fa-user-lock fa-lg"></i></div>
-          <div class="col-lg-11">
-            <div class="form-group  ">
-            <input type="password" class="form-control" name="password"
-                value={this.state.password}
-                onChange={this.onChangePassword}
-                placeholder="Password" required="required"/>
-            </div>
-            </div>
-            </div> 
-         
-          <br></br>
-          
-           <div class="form-group text-center">
-              <button type="submit"
-                class="btn btn-primary btn-lg"
-                disabled={this.state.loading}
-              >
-                {this.state.loading && (
-                  <span class="spinner-border spinner-border-sm"></span>
-                )}
-                <span>Login</span>
-              </button>
-           </div>
+        var NIC = this.state.nic;
+        var email = this.state.mail;
+        const { Ticket } = this.state
+        const ticlist = Ticket.length?(
+            Ticket.map(tick =>{
+                const dte = new Date(tick.Date);
+                const date = Moment(dte.toLocaleString()).format('YYYY-MM-DD');
+                const today = Moment(Date().toLocaleString()).format('YYYY-MM-DD');
+                let cls = "";
+                let sts = "";
+                
+                if (today > date){
+                    sts = "Expired";
+                    cls = "text-danger";
+                    
+                }
+                else {
+                    sts = "Available";
+                    cls = "text-success";
+                    
+                }
 
-            {this.state.message && (
-              <div className="form-group">
-                <div className="alert alert-danger" role="alert">
-                  {this.state.message}
+                const psts = tick.PStatus;
+                let Psts = "";
+                let alt = "";
+                if (psts == 1){
+                    Psts = "Paid";
+                    alt = "alert alert-info";
+                }
+                else{
+                    Psts = "Not Paid";
+                    alt = "alert alert-warning";
+                }
+              
+                return( 
+                    <tr>
+                       <td class ="">{tick.TId}</td> 
+                       <td class ="">{tick.FromHalt}</td>
+                       <td class ="">{tick.ToHalt}</td>
+                       <td class ={alt} role="alert">{Psts}</td>
+                       <td class ="">{tick.NoOfSeats}</td>
+                       <td class ="">{date}</td>
+                       <td class ="">{tick.Price}</td>
+                       <td class ={cls}>{sts}</td>
+                    </tr>
+                       )
+            })):(
+                <div className="center">Not Tickets available</div>
+            )
+  
+        return (  
+            <div class="container p-1">
+                <br></br>
+                <br></br>
+            <div class="mt-5">
+                <h1>
+                    <u>Ticket List</u>
+                </h1>
+                <br></br>
+                <div class="form-group ">
+                  <div class="row ">
+                    <div class="col text-left">
+                      <label>NIC : </label>
+                      {NIC}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            )}
-           
-  
-          </div>
-
-          <div class="col-lg-5 px-4">
-          <img src="images/login.jpeg" alt="login" class="ml-5"/>
-          </div>
+                <div class="form-group ">
+                  <div class="row ">
+                    <div class="col text-left">
+                      <label>Email : </label>
+                      {email}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                <div class="col-lg-9">
+                    <div class="text-center">
+                    <table class="table table-hover  table-bordered text-center">
+                        <thead>
+                            <tr class="bg-info">
+                                <th scope="col-lg-4">Ticket Id</th>
+                                <th scope="col-lg-4">From</th>
+                                <th scope="col-lg-4">To</th>
+                                <th scope="col-lg-4">Payment Status</th>
+                                <th scope="col-lg-4">No of Seats</th>
+                                <th scope="col-lg-4">Date</th>
+                                <th scope="col-lg-4">Price</th>
+                                <th scope="col-lg-4">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {ticlist}
+                        </tbody>
+                    </table>
+                </div>
+                
+                </div>
+                <div class="col-lg-3">
+                  
+                      <img class= "img-fluid" src="images/tickets.png" alt="ticket" />
                    
+                </div>
+                </div>
+            </div>
         </div>
-  
-      </div>
-  
-    </div>
-  </form>   
-    );
-  }
-  }
-  
-  export default withRouter(SignIn);
+        
+         );
+    }
+}
+export default withRouter(Test_case);
