@@ -30,6 +30,7 @@ import Show_Bus from './component/Show_Bus';
 //import checkout from './component/checkout';
 import Ticket from './component/Ticket';
 import Session_Ticket from './component/Session_Ticket';
+import Ticket_List from './component/Ticket_List';
 //import Test_case1 from './component/Test_case/Test_case1';
 
 
@@ -210,6 +211,10 @@ render(){
 
           <Route path="/ticket-session" >
           <Session_Ticket />
+          </Route>
+
+          <Route path="/ticket-list" >
+          <Ticket_List />
           </Route>
           
 

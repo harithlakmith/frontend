@@ -3,10 +3,10 @@ import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import {Redirect, withRouter} from "react-router-dom";
-import authHeader from "../../services/auth-header";
+import authHeader from "./../services/auth-header";
 import Moment from "moment";
 
- class Test_case extends Component {
+ class Ticket_List extends Component {
 
     constructor(props) {
         super(props);
@@ -50,7 +50,7 @@ componentDidMount(){
 getTicket(){
   
     var id = this.state.pid
-    axios.get(window.$API_SERVER +"Ticket/1" /*+id*/,{ headers: authHeader() })
+    axios.get(window.$API_SERVER +"Ticket/" +id,{ headers: authHeader() })
         .then(res=>{
             this.setState({
                 Ticket:res.data
@@ -71,18 +71,16 @@ getTicket(){
                 const today = Moment(Date().toLocaleString()).format('YYYY-MM-DD');
                 
                 let sts = "";
-                let alt = "";
+               
                 if (today > date){
                     sts = <span class="badge bg-danger">Expired</span>;
-                    //cls = "text-danger";
-                    //alt = "alert alert-danger";
+                   
                     
                 }
                 else {
-                    //sts = "Available";
+                    
                     sts = <span class="badge bg-success">Availble</span>
-                    //cls = "text-success";
-                    //alt = "alert alert-success";
+                   
                     
                 }
 
@@ -175,4 +173,4 @@ getTicket(){
          );
     }
 }
-export default withRouter(Test_case);
+export default withRouter(Ticket_List);
