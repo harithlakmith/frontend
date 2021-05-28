@@ -212,7 +212,7 @@ render(){
               </div>
             </div>
             <div class="card-body">
-              <div class="row pt-3 px-5">
+              <div class="row pt-3 px-1 px-lg-5">
               <div class="col-12 col-lg-8  ">
                 <div class="row">
                     <div class="col-12 col-lg-5 align-items-center">
