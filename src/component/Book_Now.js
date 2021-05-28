@@ -5,6 +5,7 @@ import axios from "axios";
 import { Redirect, withRouter} from "react-router-dom";
 import Moment from "moment";
 import { loadStripe } from "@stripe/stripe-js";
+import { Spinner } from 'react-bootstrap';
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
 const stripePromise = loadStripe("pk_test_51IWE6DDsAHRSZHe7VvLFM1XO1lHiqtFZ9fFv6pYiilf4x3qSBTPyQnFckUVhvH8ONt5tP9m41KCcnPt5kqvjDwR700t1eBL4ld");
@@ -35,6 +36,7 @@ class Book_Now extends Component {
     loading: false,
     ticketInfo:[],
     userInfo:[],
+    loading:false
 
   };
   this.handleChange = this.handleChange.bind(this);
@@ -92,10 +94,14 @@ class Book_Now extends Component {
        
        
   }
-    
+ 
       AddTicket(e) {  
         // debugger;  
          e.preventDefault(); 
+
+         this.setState({
+           loading : true
+         })
 
          const obj = {  
            SId:parseInt(this.state.sid),  
@@ -182,7 +188,7 @@ render(){
   if (JSON.parse(localStorage.getItem('role'))!='Passenger'){
     return <Redirect to={'/sign-in'} />
   }
-
+  const {loading }= this.state;
      
   return (
     <div class="container p-1">
@@ -207,41 +213,41 @@ render(){
             </div>
             <div class="card-body">
               <div class="row pt-3 px-5">
-              <div class="col-md-8  ">
-              <div class="row">
-                <div class="col-md-5 align-items-center">
-                    <div class="card">
-                      <img class="card-img-top" src="images/mappin.jpg" alt="Card image cap"/>
-                      <div class="card-body">
-                        <h5 class="card-title">From: {this.state.fromHolt}</h5>
-                        <h5 class="card-title">To : {this.state.toHolt}</h5>
-                        <p class="card-text"><small class="text-muted">Towns you entered</small></p>
-                      </div>
-                    </div>
-                   
-                    
-                </div>
-
-                <div class="col-md-7">
-                  
-                  <div class="h5 text-center h-25"><i class="fas fa-clock"></i>&nbsp;&nbsp;Arriving time: {this.state.ArrivedTime}</div>
-                  
-                  <div class=" text-center h-25 ">
-                        <div class="h5 align-bottom">
-                      TICKET PRICE PER PASSENGER<br/><b class="h2 "> Rs {this.state.ticketPrice}.00</b>
-                      </div>
+              <div class="col-12 col-lg-8  ">
+                <div class="row">
+                    <div class="col-12 col-lg-5 align-items-center">
+                        <div class="card">
+                          <img class="card-img-top" src="images/mappin.jpg" alt="Card image cap"/>
+                          <div class="card-body">
+                            <h5 class="card-title">From: {this.state.fromHolt}</h5>
+                            <h5 class="card-title">To : {this.state.toHolt}</h5>
+                            <p class="card-text"><small class="text-muted">Towns you entered</small></p>
+                          </div>
+                        </div>
                       
+                        
+                    </div>
+
+                    <div class="col-12 col-lg-7">
+                      
+                      <div class="h5 text-center h-25"><i class="fas fa-clock"></i>&nbsp;&nbsp;Arriving time: {this.state.ArrivedTime}</div>
+                      
+                      <div class=" text-center h-25 ">
+                            <div class="h5 align-bottom">
+                          TICKET PRICE PER PASSENGER<br/><b class="h2 "> Rs {this.state.ticketPrice}.00</b>
+                          </div>
+                          
+                      </div>
+                      <div class=" text-center h-25 d-none d-lg-block ">
+                        <img src="images/stripe.png" class="img-fluid p-5 " alt="Responsive image"></img>
+                      </div>
+                        
+                    </div>
+
                   </div>
-                  <div class=" text-center h-25 ">
-                  <img src="images/stripe.png" class="img-fluid p-5 " alt="Responsive image"></img>
-                  </div>
-                     
                 </div>
 
-                </div>
-                </div>
-
-                <div class="col-md-4">
+                <div class="col-12 col-lg-4">
                 
                    <div class="h-50"> <p class="font-weight-bold">No of Tickets</p>
                     <div class="input-group mb-2">
@@ -262,15 +268,25 @@ render(){
                     
                       <div class="form-group">
                         
-                        <button
-                        type="submit" onClick={this.AddTicket}
-                        className="btn btn-primary btn-lg btn-block"
-                        >
-                         <span><i class="fas fa-lock"></i>&nbsp;&nbsp;Pay</span>
-                        </button>
+                        <button type="submit" onClick={this.AddTicket}
+                        className="btn btn-primary btn-lg btn-block" >
+                         <span>{loading ?(
+                           <Spinner animation="border" role="status" size="sm" >
+                           <span className="sr-only">Loading...</span>
+                         </Spinner>
+                         ):(<i class="fas fa-lock"></i>)}&nbsp;&nbsp;Pay&nbsp;&nbsp;</span>
+
+                         
+                            
+                          </button>
                         <br/>
                         
                       </div>
+
+                      
+                    </div>
+                    <div class=" text-center h-25 d-block d-lg-none ">
+                        <img src="images/stripe.png" class="img-fluid p-5 " alt="Responsive image"></img>
                       </div>
                 </div>
               </div>
@@ -279,7 +295,7 @@ render(){
         
         </form>
 
- 
+        
         
       </div>
     </div>
