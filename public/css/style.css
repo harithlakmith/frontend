@@ -57,7 +57,9 @@ p {
   line-height: 1.8;
   font-size: 15px;
 }
-
+.headgd{
+  background-image: linear-gradient( to right, #110eec, #9140e2);
+}
 /*******************
     2.Helper
 *******************/
