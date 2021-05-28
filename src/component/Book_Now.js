@@ -110,7 +110,7 @@ class Book_Now extends Component {
            Date:Moment(Date().toLocaleString()).format('YYYY-MM-DD')
        
          };  
-         axios.post(window.$API_SERVER +'api/Ticket', obj)  
+         axios.post(window.$API_SERVER +'Ticket', obj)  
              .then(res => {
                this.setState({
                               postTId: res.data.TId }); 
@@ -193,46 +193,73 @@ render(){
         </h1>
         <br></br>
         <form>
-        <div class="card">
-          <div class="card text-dark bg-light mb-3">
-            <div class="card-header">
-              <div class="row">
-                <div class="col-md-6">
-                  <h3>{this.state.routeNo}&nbsp;&nbsp;{this.state.routeStartHolt} - {this.state.routeStopHolt}</h3>
+       
+          <div class="card border border-primary rounded mb-3">
+            <div class="card-header p-3 headgd rounded">
+              <div class="row ">
+                <div class="col-md-6 ">
+                  <h3 class="text-light">{this.state.routeNo}&nbsp;&nbsp;{this.state.routeStartHolt} - {this.state.routeStopHolt}</h3>
                 </div>
-                <div class="col-md-6">
-                  <h3>{this.state.sesDate}</h3>
+                <div class="col-md-6  ">
+                  <h3 class="text-light">{this.state.sesDate}</h3>
                 </div>
               </div>
             </div>
             <div class="card-body">
+              <div class="row pt-3 px-5">
+              <div class="col-md-8  ">
               <div class="row">
-                <div class="col-md-3">
-                 
-                    <p class="h5"><i class="fas fa-location-arrow"></i>&nbsp;&nbsp;From: {this.state.fromHolt}</p>
-                    <p class="h5 mb-5"><i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;To : {this.state.toHolt}</p>
-                    <br/><br/>
-                    <p class="text-center fixed-bottom text-muted">Powered by&nbsp;&nbsp; <i class="h3 fab fa-cc-stripe"></i></p>
-                </div>
-                <div class="col-md-4">
-                  <table>
-                    <tr class="h5"><i class="fas fa-clock"></i>&nbsp;&nbsp;Arriving time: {this.state.ArrivedTime}</tr>
-                    <br></br><br></br>
-                    <tr class="h5 ">
-                    TICKET PRICE PER PASSENGER<br/><b class="h2"> Rs {this.state.ticketPrice}.00</b>
-                    </tr>
-                  </table>
-                </div>
-                <div class="col-md-5">
-                  <table>
+                <div class="col-md-5 align-items-center">
+                    <div class="card">
+                      <img class="card-img-top" src="images/mappin.jpg" alt="Card image cap"/>
+                      <div class="card-body">
+                        <h5 class="card-title">From: {this.state.fromHolt}</h5>
+                        <h5 class="card-title">To : {this.state.toHolt}</h5>
+                        <p class="card-text"><small class="text-muted">Towns you entered</small></p>
+                      </div>
+                    </div>
+                   
                     
-                    <tr></tr>
-                    <tr>Full tickets = <input type="number" min="0" class="form-control" name="fullTicket" placeholder="" value={this.state.fullTicket} onChange={this.handleChange} required="required"/></tr>
-                    <tr>Half tickets = <input type="number" min="0" class="form-control" name="halfTicket" placeholder="" value={this.state.halfTicket} onChange={this.handleChange} /></tr>
-                    <tr>
+                </div>
+
+                <div class="col-md-7">
+                  
+                  <div class="h5 text-center h-25"><i class="fas fa-clock"></i>&nbsp;&nbsp;Arriving time: {this.state.ArrivedTime}</div>
+                  
+                  <div class=" text-center h-25 ">
+                        <div class="h5 align-bottom">
+                      TICKET PRICE PER PASSENGER<br/><b class="h2 "> Rs {this.state.ticketPrice}.00</b>
+                      </div>
+                      
+                  </div>
+                  <div class=" text-center h-25 ">
+                  <img src="images/stripe.png" class="img-fluid p-5 " alt="Responsive image"></img>
+                  </div>
+                     
+                </div>
+
+                </div>
+                </div>
+
+                <div class="col-md-4">
+                
+                   <div class="h-50"> <p class="font-weight-bold">No of Tickets</p>
+                    <div class="input-group mb-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">Full</div>
+                      </div>
+                      <input type="number" min="0" class="form-control" name="fullTicket" placeholder="" value={this.state.fullTicket} onChange={this.handleChange} required="required"/>
+                    </div>
+                    <div class="input-group mb-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">Half</div>
+                      </div>
+                      <input type="number" min="0" class="form-control" name="halfTicket" placeholder="" value={this.state.halfTicket} onChange={this.handleChange} />
+                    </div>
+                    </div>  
+                   <div class="h-25">
                       <h3>TOTAL PRICE = Rs {this.state.totalTicket}</h3>
-                    </tr>
-                    <tr>
+                    
                       <div class="form-group">
                         
                         <button
@@ -244,14 +271,16 @@ render(){
                         <br/>
                         
                       </div>
-                    </tr>
-                  </table>
+                      </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        
         </form>
+
+
+        
       </div>
     </div>
   );}
