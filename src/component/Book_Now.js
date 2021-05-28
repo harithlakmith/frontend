@@ -204,10 +204,11 @@ render(){
             <div class="card-header p-3 headgd rounded">
               <div class="row ">
                 <div class="col-md-6 ">
-                  <h3 class="text-light">{this.state.routeNo}&nbsp;&nbsp;{this.state.routeStartHolt} - {this.state.routeStopHolt}</h3>
+                  <h3 class="text-light">#{this.state.routeNo}&nbsp;&nbsp;{this.state.routeStartHolt} - {this.state.routeStopHolt}</h3>
+                  <p class="card-text"><span class="text-light">&nbsp;<i class="fas fa-bus-alt"></i>&nbsp;&nbsp;Bus registraion no <b>{this.state.busNo}</b></span></p>
                 </div>
                 <div class="col-md-6  ">
-                  <h3 class="text-light">{this.state.sesDate}</h3>
+                  <h3 class="text-light"><i class="fas fa-calendar-day"></i>&nbsp;&nbsp;{this.state.sesDate}</h3>
                 </div>
               </div>
             </div>
