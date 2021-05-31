@@ -143,12 +143,12 @@ import axios from 'axios'
                         <div class="home-img mt-5 mt-lg-0 subscribe">
                         <form action="/bus-list" method="get" class="">
                             <div class="AutoCompleteText">
-                                <input value= {text} onChange= {this.onTextChanged} type="text" placeholder="From"/>
+                                <input name="from" id="from" value= {text} onChange= {this.onTextChanged} type="text" placeholder="From"/>
                                 {this.renderSuggestions()}
                             </div>
                             <br></br>
                             <div class="AutoCompleteText">
-                                <input value= {text1} onChange= {this.onTextChanged1} type="text" placeholder="To"/>
+                                <input  name= "to" id="to" value= {text1} onChange= {this.onTextChanged1} type="text" placeholder="To"/>
                                 {this.renderSuggestions1()}
                             </div>
                             <br></br>
