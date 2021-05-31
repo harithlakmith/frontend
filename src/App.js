@@ -81,11 +81,14 @@ class App extends Component {
 render(){
   const { currentUser, showModeratorBoard, showAdminBoard, jwttoken, role, userInfo } = this.state;
   var up = '';
+  var MyTic='';
   
   if(role =="BusController"){
         up=<a class="dropdown-item" href="/update-bus">Update profile</a>;
+        MyTic ='';
   }else if(role=="Passenger"){
         up=<a class="dropdown-item" href="/update-passenger">Update profile</a>;
+        MyTic=<a class="nav-link text-success" href="/ticket-list" >My Tickets</a>;
   }
 
   return (
@@ -107,7 +110,7 @@ render(){
            {jwttoken ? (
             <div className="navbar-nav ml-auto">
               <li className="nav-item">
-  
+              {MyTic}
               </li>
 
               <li class="nav-item dropdown">
