@@ -5,7 +5,7 @@ import axios from "axios";
 import { Redirect, withRouter} from "react-router-dom";
 import Moment from "moment";
 import { loadStripe } from "@stripe/stripe-js";
-import { Spinner } from 'react-bootstrap';
+import { Spinner, Toast } from 'react-bootstrap';
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
 const stripePromise = loadStripe("pk_test_51IWE6DDsAHRSZHe7VvLFM1XO1lHiqtFZ9fFv6pYiilf4x3qSBTPyQnFckUVhvH8ONt5tP9m41KCcnPt5kqvjDwR700t1eBL4ld");
@@ -32,11 +32,17 @@ class Book_Now extends Component {
     totalTicket:0.00,
     seats:'',
     sid:0,
+    freeSeats:0,
     postTId: '',
     loading: false,
     ticketInfo:[],
     userInfo:[],
-    loading:false
+    loading:false,
+    MaxSeats:0,
+    MaxSeats2:0,
+    limitEx: false,
+    payDis:false,
+    showA:true
 
   };
   this.handleChange = this.handleChange.bind(this);
@@ -47,20 +53,52 @@ class Book_Now extends Component {
     var tp = parseInt(this.state.ticketPrice);
     var ft = parseInt(this.state.fullTicket);
     var ht = parseInt(this.state.halfTicket);
+  
+
+    var AvSeat = parseInt(this.state.freeSeats);
+    var fts = parseInt(this.state.fullTicket);
+    var hts = parseInt(this.state.halfTicket);
+
     
+    if((AvSeat-fts-hts)<0){
+       var t = true;
+    }else{
+      var t = false;
+    }
+
     this.setState({
       totalTicket:tp*ft + (tp/2)*ht,
-      seats:ft +ht
+      seats:ft +ht,
+      MaxSeats:AvSeat-hts,
+      MaxSeats2:AvSeat-fts,
+      limitEx:t,
+      payDis:t
     });
 
    
+  }
+  
+  MaxSeat(){
+
+    var AvSeat = parseInt(this.state.freeSeats);
+    var fts = parseInt(this.state.fullTicket);
+    var hts = parseInt(this.state.halfTicket);
+
+    this.setState({
+      MaxSeats:AvSeat-hts,
+      MaxSeats2:AvSeat-fts,
+    });
+
   }
 
   handleChange = (e) => {
      
       this.setState(
-        {[e.target.name]:e.target.value,
+        {
+          [e.target.name]:e.target.value,
+         
         });
+       
       
   }
 
@@ -69,7 +107,7 @@ class Book_Now extends Component {
       () => this.ticketTot(),
       1000
     ); 
-
+    
     //const value = queryString.parse(this.props.location.search);
     const value = new URLSearchParams(this.props.location.search)
     this.setState({
@@ -83,7 +121,8 @@ class Book_Now extends Component {
       routeNo:value.get('routeno'),
       duration:value.get('duration'),
       sid:value.get('sid'),
-      busNo:value.get('busNo')
+      busNo:value.get('busNo'),
+      freeSeats:value.get('freeSeats')
      
       });
 
@@ -91,7 +130,16 @@ class Book_Now extends Component {
           userInfo : JSON.parse(localStorage.getItem('userInfo'))
       });
 
-       
+      var AvSeat = parseInt(value.get('freeSeats'));
+      var fts = parseInt(this.state.fullTicket);
+      var hts = parseInt(this.state.halfTicket);
+      var x = AvSeat-hts-fts;
+      this.setState({
+        
+        MaxSeats:AvSeat-hts,
+        MaxSeats2:AvSeat-fts,
+      });
+
        
   }
  
@@ -126,7 +174,7 @@ class Book_Now extends Component {
                               ); 
               
           
-       }  
+      }  
 
        paymentOpen = async (event) => {
 
@@ -181,8 +229,13 @@ class Book_Now extends Component {
             }
 
 
-       }
-       
+        }
+
+        toggleShowA(){
+            this.setState({
+              showA:false
+            });
+        }
 
 render(){
   if (JSON.parse(localStorage.getItem('role'))!='Passenger'){
@@ -250,27 +303,31 @@ render(){
 
                 <div class="col-12 col-lg-4">
                 
-                   <div class="h-50"> <p class="font-weight-bold">No of Tickets</p>
+                   <div class="h-50"> <p class="font-weight-bold">No of Tickets&nbsp;&nbsp; <span class="alert alert-success">Available Only&nbsp;{this.state.freeSeats}&nbsp;seats</span></p>
                     <div class="input-group mb-2">
                       <div class="input-group-prepend">
                         <div class="input-group-text">Full</div>
                       </div>
-                      <input type="number" min="0" class="form-control" name="fullTicket" placeholder="" value={this.state.fullTicket} onChange={this.handleChange} required="required"/>
+                      <input type="number" min="0" max={this.state.MaxSeats} class="form-control" name="fullTicket" placeholder="" value={this.state.fullTicket} onChange={this.handleChange} required="required"/>
                     </div>
                     <div class="input-group mb-2">
                       <div class="input-group-prepend">
                         <div class="input-group-text">Half</div>
                       </div>
-                      <input type="number" min="0" class="form-control" name="halfTicket" placeholder="" value={this.state.halfTicket} onChange={this.handleChange} />
+                      <input type="number" min="0" max={this.state.MaxSeats2} class="form-control" name="halfTicket" placeholder="" value={this.state.halfTicket} onChange={this.handleChange} />
                     </div>
-                    </div>  
+                    
+                     </div>  
                    <div class="h-25">
-                      <h3>TOTAL PRICE = Rs {this.state.totalTicket}</h3>
+                   {this.state.limitEx &&(<div class="alert alert-danger"><i class="fas fa-exclamation-circle"></i>
+                   &nbsp;&nbsp;Available seat limit excceded</div>
+                   )}
+                      <h3>TOTAL = Rs {this.state.totalTicket}</h3>
                     
                       <div class="form-group">
                         
                         <button type="submit" onClick={this.AddTicket}
-                        className="btn btn-primary btn-lg btn-block" >
+                        className="btn btn-primary btn-lg btn-block" disabled={this.state.limitEx}>
                          <span>{loading ?(
                            <Spinner animation="border" role="status" size="sm" >
                            <span className="sr-only">Loading...</span>
@@ -299,6 +356,11 @@ render(){
         
         
       </div>
+
+
+
+
+
     </div>
   );}
 }

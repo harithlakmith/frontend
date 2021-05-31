@@ -57,8 +57,9 @@ class Bus_List extends Component {
                             +'&duration='+bus.Duration
                             +'&sid='+bus.SId
                             +'&busNo='+bus.BusNo
+                            +'&freeSeats='+bus.FreeSeats
 
-            return (
+            return ( 
               <div class="card  bg-light mb-3">
               <div class="card-header">
                 <div class="row">
