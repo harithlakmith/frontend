@@ -1,178 +1,178 @@
-
-import React, { Component } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import axios from "axios";
-import {Redirect, withRouter} from "react-router-dom";
-import authHeader from "../../services/auth-header";
-import Moment from "moment";
+import React, { Component } from 'react'
+import {Redirect, withRouter} from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios'
 
  class Test_case extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-          Ticket: [],
-          TId:'',    
-          SId:'',
-          From:'',
-          To:'',
-          FromHalt:'',
-          ToHalt:'',
-          Seats:'',
-          PStatus:'',
-          Date:'',
-          Price:'',
-          pid: '',
+     
+    constructor (props){
+      super(props);
+      
+     
+      this.state = {
         
+        suggestions: [],
+        suggestions1: [],
+        text: '',
+        text1: '',
+        items:[],
+      }
+    }
+      
+    componentDidMount(){
+      axios.get(window.$API_SERVER +'RouteInfo/townlist')
+      .then(res => {
+        console.log(res);
+        this.setState({
+          items: res.data
+        });
+      }).catch(e => console.error(e))
+        
+
           
-        }
-    
       }
 
-componentDidMount(){
-  var Pass = JSON.parse(localStorage.getItem('userInfo'));
-  var PEmail = Pass.Email; 
-  this.setState({
-    nic:Pass.NIC,
-    mail:Pass.Email
-  })
- 
-  axios.get(window.$API_SERVER +'Passenger/'+ PEmail,{ headers: authHeader() })  
-      .then(res => {  
-        this.setState({
-          pid: res.data[0].PId
-          
-        });
-        this.getTicket();
-      })  
-}
+   
 
-getTicket(){
+    onTextChanged = (e) =>{
+      const value = e.target.value;
+      let suggestions = [];
+      if (value.length > 0){
+        const regex = new RegExp(`^${value}`,'i');
+        suggestions = this.state.items.sort().filter(v => regex.test(v));
+      }
+      this.setState( () => ({suggestions, text:value}));
+
+    }
+
+    suggestionSelected (value) {
+        this.setState(() => ({
+          text: value,
+          suggestions: [],
+        }))
+      }
+
+    renderSuggestions (){
+     
+      const {suggestions} = this.state;
+      if (suggestions.length == 0){
+          return null;
+        }
+      return(
+        <ul>
+            {suggestions.map((item) => <li onClick={() => this.suggestionSelected(item)}>{item}</li>)}
+        </ul>
+
+      );
   
-    var id = this.state.pid
-    axios.get(window.$API_SERVER +"Ticket/1" /*+id*/,{ headers: authHeader() })
-        .then(res=>{
-            this.setState({
-                Ticket:res.data
-                
-              
-            });
-        })
-}
+    }
+
+    onTextChanged1 = (e) =>{
+      const value = e.target.value;
+      let suggestions1 = [];
+      if (value.length > 0){
+        const regex = new RegExp(`^${value}`,'i');
+        suggestions1 = this.state.items.sort().filter(v => regex.test(v));
+      }
+      this.setState( () => ({suggestions1, text1:value}));
+
+    }
+
+    suggestionSelected1 (value) {
+        this.setState(() => ({
+          text1: value,
+          suggestions1: [],
+        }))
+      }
+
+    renderSuggestions1 (){
+     
+      const {suggestions1} = this.state;
+      if (suggestions1.length == 0){
+          return null;
+        }
+      return(
+        <ul>
+            {suggestions1.map((item) => <li onClick={() => this.suggestionSelected1(item)}>{item}</li>)}
+        </ul>
+
+      );
+  
+    }
+
+    
+
     render() {
 
-        var NIC = this.state.nic;
-        var email = this.state.mail;
-        const { Ticket } = this.state
-        const ticlist = Ticket.length?(
-            Ticket.map(tick =>{
-                const dte = new Date(tick.Date);
-                const date = Moment(dte.toLocaleString()).format('YYYY-MM-DD');
-                const today = Moment(Date().toLocaleString()).format('YYYY-MM-DD');
-                
-                let sts = "";
-                let alt = "";
-                if (today > date){
-                    sts = <span class="badge bg-danger">Expired</span>;
-                    //cls = "text-danger";
-                    //alt = "alert alert-danger";
-                    
-                }
-                else {
-                    //sts = "Available";
-                    sts = <span class="badge bg-success">Availble</span>
-                    //cls = "text-success";
-                    //alt = "alert alert-success";
-                    
-                }
+        if (JSON.parse(localStorage.getItem('role'))=='BusController'){
+            return <Redirect to={'/bus-dashboard'} />
+        }else if (JSON.parse(localStorage.getItem('role'))=='Administrator'){
+            return <Redirect to={'/admin-dashboard'} />
+        }
 
-                const psts = tick.PStatus;
-                let Psts = "";
-                let icon = "";
-                if (psts == 1){
-                    Psts = "Paid";
-                    icon = "fas fa-check-circle"
-                   
-                }
-                else{
-                    Psts = "Not Paid";
-                    icon = "fas fa-exclamation-circle"
-                }
-              
-                return( 
-                    <tr>
-                       <td class ="">{tick.TId}</td> 
-                       <td class ="">{tick.FromHalt}</td>
-                       <td class ="">{tick.ToHalt}</td>
-                       <td class =""><i class={icon}></i> {Psts}</td>
-                       <td class ="">{tick.NoOfSeats}</td>
-                       <td class ="">{date}</td>
-                       <td class ="">{tick.Price}</td>
-                       <td class ="">{sts}</td>
-                    </tr>
-                       )
-            })):(
-                <div className="center">Not Tickets available</div>
-            )
-  
-        return (  
-            <div class="container p-1">
-                <br></br>
-                <br></br>
-            <div class="mt-5">
-                <h1>
-                    <u>Ticket List</u>  <i class="far fa-list-alt"></i>
-                </h1>
-                <br></br>
-                <div class="form-group ">
-                  <div class="row ">
-                    <div class="col text-left">
-                    <i class="far fa-id-badge"></i> <label>NIC : </label>
-                      {NIC}
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group ">
-                  <div class="row ">
-                    <div class="col text-left">
-                    <i class="far fa-envelope-open"></i> <label>Email : </label>
-                      {email}
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                <div class="col-12 col-lg-9 col-sm-12">
-                    <div class="text-center">
-                    <table class="table table-hover table-striped  table-bordered text-left">
-                        <thead class="table-dark">
-                            <tr class="">
-                                <th scope="col-lg-4">Ticket Id</th>
-                                <th scope="col-lg-4">From</th>
-                                <th scope="col-lg-4">To</th>
-                                <th scope="col-lg-4">Payment Status</th>
-                                <th scope="col-lg-4">No of Seats</th>
-                                <th scope="col-lg-4">Date</th>
-                                <th scope="col-lg-4">Price</th>
-                                <th scope="col-lg-4"><i class="fas fa-ticket-alt"></i> Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {ticlist}
-                        </tbody>
-                    </table>
-                </div>
-                
-                </div>
-                <div class="col-lg-3 col-sm-12">
-                  
-                      <img class= "img-fluid" src="images/tickets.png" alt="ticket" />
-                   
-                </div>
-                </div>
-            </div>
-        </div>
+
+        const {text,text1} = this.state;
         
-         );
+        
+    
+
+        return (
+        <div>
+            <section class="hero-section videobg" id="home">
+            
+            <div class="container ">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 ">
+                        <div class="hero-wrapper mb-4 bg-white p-5 welcomebox">
+                            <p class="font-16 text-uppercase"></p>
+                            <h1 class="hero-title mt-4 mb-4">Quickly Reserve Your<br/>Ticket with <span class="text-primary">Ticketz</span></h1>
+
+                            <p>During the covid-19 pandemic situation, travelling by public transport
+                                 is very difficult. Because numbers of passengers are limited according 
+                                 to the government policies. So this site will allow passengers to book their 
+                                 bus ticket via online.</p>
+                                 
+                            <div class="mt-4">
+                                
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <div class="col-lg-6 col-sm-8 pt-4 px-5">
+                        <div class="home-img mt-5 mt-lg-0 subscribe">
+                        <form action="/bus-list" method="get" class="">
+                            <div class="AutoCompleteText">
+                                <input value= {text} onChange= {this.onTextChanged} type="text" placeholder="From"/>
+                                {this.renderSuggestions()}
+                            </div>
+                            <br></br>
+                            <div class="AutoCompleteText">
+                                <input value= {text1} onChange= {this.onTextChanged1} type="text" placeholder="To"/>
+                                {this.renderSuggestions1()}
+                            </div>
+                            <br></br>
+                            <div class="form-group">
+                                <input name="date" type="date" class="form-control" id="inputCheckOut" placeholder="Date ..."/>
+                            </div>
+                            <div class="form-group tm-form-element tm-form-element-2">
+                                    <button type="submit" class="btn btn-primary ">Check Availability</button>  
+                            </div>
+                        </form>
+                            <img src="images/home-im.png" alt="" class="img-fluid mx-auto d-block"/>
+                        </div>
+                    </div>
+                </div>
+              
+            </div>
+         
+        </section>
+  
+    </div>  
+
+        )
     }
 }
+
+
 export default withRouter(Test_case);

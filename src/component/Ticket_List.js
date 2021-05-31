@@ -143,7 +143,7 @@ getTicket(){
                     <div class="text-center">
                     <table class="table table-hover table-striped  table-bordered text-left">
                         <thead class="table-dark">
-                            <tr class="">
+                            <tr class="headgd">
                                 <th scope="col-lg-4">Ticket Id</th>
                                 <th scope="col-lg-4">From</th>
                                 <th scope="col-lg-4">To</th>
