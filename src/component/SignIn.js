@@ -83,9 +83,10 @@ render(){
 }
     
 return (
-  <form onSubmit={this.handleLogin}>
+
+  <form onSubmit={this.handleLogin} class= "form-signin">
     
-    <div class="container pt-3 px-5 mt-5">
+    <div class="container-fuild pt-3 px-lg-5 px-5 mt-lg-5 mt-2">
       <div class="mt-5">
           <h1>
              <u>Login</u>
@@ -95,30 +96,22 @@ return (
           <br></br>  
   
        <div class="row">
-          <div class="col-lg-7 px-5">
-             
-
-          <div class="row">
-          <div class="col-lg-1"><i class="fas fa-envelope-open fa-lg"></i></div>
-          <div class="col-lg-11">
-            <div class="form-group  ">
+          <div class="col-12 col-lg-8 px-4 col-sm-12">
+          
+          <div class="input-group mb-3 px-2">
+          <span class="input-group-text" id="basic-addon1"><i class="fas fa-envelope-open fa-lg"></i></span>
              <input type="text" class="form-control" name="username" 
                  onChange={this.onChangeUsername}
                  value={this.state.username} placeholder="Email" required="required"/>
             </div>
-            </div>
-            </div>
-            <div class="row">
-          <div class="col-lg-1"><i class="fas fa-user-lock fa-lg"></i></div>
-          <div class="col-lg-11">
-            <div class="form-group  ">
+
+            <div class="input-group mb-3 px-2">
+          <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-lock fa-lg"></i></span>
             <input type="password" class="form-control" name="password"
                 value={this.state.password}
                 onChange={this.onChangePassword}
                 placeholder="Password" required="required"/>
             </div>
-            </div>
-            </div> 
          
           <br></br>
           
@@ -145,7 +138,9 @@ return (
   
           </div>
 
-          <div class="col-lg-5 px-4">
+          
+          <div class="col-12 col-lg-4 px-4 col-sm-12">
+            
           <img src="images/login.jpeg" alt="login" class="ml-5"/>
           </div>
                    
@@ -154,7 +149,12 @@ return (
       </div>
   
     </div>
-  </form>   
+
+    
+  </form>
+
+
+
     );
   }
   }
