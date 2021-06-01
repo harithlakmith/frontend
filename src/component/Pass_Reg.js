@@ -66,20 +66,22 @@ import axios from 'axios';
 	render() {
 	  return (
 	
-	<div class="container p-1">
-		  <div class="box">
-			<h1>
+		<div class="row justify-content-center">
+		<div class="col-10 col-lg-6 mt-5 ">
+		   <div  class=" mt-5 p-3 ">
+			  <div class="">
+			<h1 class="p-3 text-center card-title">
 			  <u>Passenger Registration Form</u>
 			</h1>
 	
-		<div className="Pass_Reg_Form">
+		<div class="Pass_Reg_Form">
 		  <form>
 			
-			<p></p>
-			<hr/>
-			<div class="form-group">
+			<div class="form-group ">
 	
-			  <div class="form-group">
+			  
+			<div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1"><i class="far fa-id-card"></i></span>
 			    <input 
           type="text" 
           class="form-control" 
@@ -89,8 +91,9 @@ import axios from 'axios';
           placeholder="NIC" 
           required="required"></input>
 			  </div>
+
 				<div class="row">
-					<div class="col">
+					<div class="col-12 col-lg-6 col-sm-12 ">
             <input 
             type="text" 
             class="form-control" 
@@ -100,7 +103,7 @@ import axios from 'axios';
             placeholder="First Name" 
             required="required"></input>
           </div>
-					<div class="col">
+					<div class="col-12 col-lg-6 col-sm-12">
             <input 
             type="text" 
             class="form-control" 
@@ -112,7 +115,8 @@ import axios from 'axios';
           </div>
 				</div>        	
 			</div>
-			<div class="form-group">
+			<div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1"><i class="fas fa-envelope-open fa-lg"></i></span>
 				<input 
         type="text" 
         class="form-control" 
@@ -122,7 +126,10 @@ import axios from 'axios';
         placeholder="Email" 
         required="required"></input>
 			</div>
-			<div class="form-group">
+			
+			
+			<div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-lock fa-lg"></i></span>
 				<input 
         type="password" 
         class="form-control" 
@@ -131,9 +138,15 @@ import axios from 'axios';
         value={this.state.Password} 
         placeholder="Password" 
         required="required"></input>
+		
+			<div id="passwordHelpBlock" class="form-text text-black-50">
+		Your password must contain  simple letters and numbers, and must not contain spaces, special characters, or emoji.
+	  </div>
+	  
 			</div>
 			
-			<div class="form-group">
+			<div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1"><i class="fas fa-phone"></i></span>
 				<input 
         type="text" 
         pattern="[0-9]*" 
@@ -155,18 +168,20 @@ import axios from 'axios';
             )}
 			
 			</div>
+
+			
 		<div class="form-group">
 				<button 
-        type="submit" 
-        onClick={this.AddPass} 
-        class="btn btn-primary btn-lg">
+        type="submit" onClick={this.AddPass} class="btn btn-primary btn-lg " >
           Register
         </button>
 			</div>
+			</div>
+		</div>
+		</div>
+		</div>
+		</div>
 		
-		</div>
-		</div>
-		</div>
 	  );
 	  }
    

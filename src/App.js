@@ -36,6 +36,7 @@ import Ticket_List from './component/Ticket_List';
 
 import Route_Info from './component/Route_Info';
 import Show_Route from './component/Show_Route';
+import Footer from "./component/Footer";
 
 
 
@@ -241,6 +242,8 @@ render(){
 
         </Switch>
       </BrowserRouter>
+
+      <Footer />  
 
          
     </div>
