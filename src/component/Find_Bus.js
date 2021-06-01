@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import {Redirect, withRouter} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios'
+import DayPicker from 'react-day-picker';
+import 'react-day-picker/lib/style.css';
 
  class Find_Bus extends Component {
      
     constructor (props){
       super(props);
-      
+    
      
       this.state = {
         
@@ -16,6 +18,7 @@ import axios from 'axios'
         text: '',
         text1: '',
         items:[],
+        date:new Date()
       }
     }
       
@@ -27,12 +30,8 @@ import axios from 'axios'
           items: res.data
         });
       }).catch(e => console.error(e))
-        
-
-          
+             
       }
-
-   
 
     onTextChanged = (e) =>{
       const value = e.target.value;
@@ -100,7 +99,13 @@ import axios from 'axios'
   
     }
 
-    
+   
+    handleDate=(e)=>{
+      this.setState({date:e.target.value});
+      if(this.state.date<new Date()){
+         ;
+      }
+  }
 
     render() {
 
@@ -113,8 +118,6 @@ import axios from 'axios'
 
         const {text,text1} = this.state;
         
-        
-    
 
         return (
         <div>
@@ -153,7 +156,8 @@ import axios from 'axios'
                             </div>
                             <br></br>
                             <div class="form-group">
-                                <input name="date" type="date" class="form-control" id="inputCheckOut" placeholder="Date ..."/>
+                                <input name="date" type="date" class="form-control" id="inputCheckOut" placeholder="Date ..." min="onChange={(e)=>{this.handleDate(e);}}"/>
+                                
                             </div>
                             <div class="form-group tm-form-element tm-form-element-2">
                                     <button type="submit" class="btn btn-primary ">Check Availability</button>  
