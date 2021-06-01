@@ -60,6 +60,9 @@ p {
 .headgd{
   background-image: linear-gradient( to right, #110eec, #9140e2);
 }
+.rgcv{
+  color:linear-gradient( to right, #110eec, #9140e2) ;
+}
 
 .AutoCompleteText{
   width: 100%;
