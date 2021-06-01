@@ -1,20 +1,19 @@
 import React from "react";
-//import "./Footer.css";
 
-class Test_case extends React.Component {
+
+class Footer extends React.Component {
   render(){
   return (
     
     <div className="main-footer">
-      <br></br>
-      <br></br>
+     
       
       <div className="container">
         <div className="row col-12">
         <div class="row">
         <p>Get connected with us on social networks: <i class="fab fa-facebook-f"></i> &nbsp;   <i class="fab fa-twitter"></i> &nbsp; <i class="fab fa-google"></i> &nbsp;  <i class="fab fa-instagram"></i> &nbsp;  <i class="fab fa-linkedin"></i> &nbsp;  <i class="fab fa-github"></i> </p>
         </div>
-        <hr></hr>
+        
         </div>
         <br></br>
         <div className="row">
@@ -80,4 +79,4 @@ class Test_case extends React.Component {
 }
 
 }
-export default Test_case;
+export default Footer;

@@ -42,7 +42,7 @@ class Ticket extends Component {
               });
 
           if(value.get('success')=="true"){
-               this.sendsms();
+              // this.sendsms();
           }   
       }
 

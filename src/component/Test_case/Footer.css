@@ -1,0 +1,12 @@
+.main-footer {
+    color: white;
+    background-image: linear-gradient( to right, #100cfa, #9140e2);
+    padding-top: 3em;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+  }
+.main-footerbottem{
+  background-image: linear-gradient( to right, #0e0ae2, #7627c5);
+  padding-top: 1em;
+}  
