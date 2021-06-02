@@ -1,162 +1,325 @@
-import React, {Component} from 'react';
-import axios from 'axios';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import React from "react";
+import axios from "axios";
 import {Redirect, withRouter} from 'react-router-dom';
-import AuthService from "../../services/auth.service";
+import authHeader from "../../services/auth-header";
 
-class SignIn extends Component{
+class Test_case extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      RNum: "",
+      startAt: "",
+      startHoltId: 0,
+      stopAt: "",
+      stopHoltId: 0,
+      fullTime: 0,
+      fullPrice: 0,
+      fullDistance: 0,
+      postRoute:0,
+      halt:'',
+      haltId:'',
+      price:'',
+      time:'',
+      dist:'',
+      nextHaltId:0,
+      halts:[],
 
-    constructor(props) {
-        super(props);
-        this.state = {
-          username: "",
-          password: "",
-          loading: false,
-          message: ""
-        };
-        this.handleLogin = this.handleLogin.bind(this);
-        this.onChangeUsername = this.onChangeUsername.bind(this);
-        this.onChangePassword = this.onChangePassword.bind(this);
-      }
+      ht:[],
+      hh:[],
+      //flag:false,
+      loading: false,
+      message: ''
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.UpdateRoute = this.UpdateRoute.bind(this);
+  }
 
-      onChangeUsername(e) {
-        this.setState({
-          username: e.target.value
-        });
-      }
+  handleChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  hChange(ind){
+   // this.setState({ halts : e.target.value });
+  };
+
+  UpdateRoute = () => {
+    //event.preventDefault();
+
+    axios
+      .post(window.$API_SERVER +"Route/RouteUpdate", {
+      
+        Duration: parseInt(this.state.fullTime),
+        Distance: parseInt(this.state.fullDistance),
+        RNum: this.state.RNum,
+      }, { headers: authHeader() })
+      .then(res => {
+        if (res.data ){
+          this.setState({
+            message: 'Update Succeed'
+    })
+        }
+      });this.haltListRefresh();
+      
+
+     
+  };
+
+  UpdateRouteInfo = () => {
+    //event.preventDefault();
+
+    axios
+      .post(window.$API_SERVER+"RouteInfo/RouteInfoUpdate", {
+      
+        RId: parseInt(this.state.postRoute),
+        HoltName: this.state.halt,
+        Price: parseInt(this.state.price),
+        Time: parseFloat(this.state.time),
+        Distance: parseInt(this.state.dist),
+       
+      }, { headers: authHeader() })
+      .then(res => {
+        if (res.data == 201){
+          this.setState({
+            message: 'Update Succeed'
+    })
+        }
+      });
+     
+  };
+
+  haltListRefresh(){
+    axios.get(window.$API_SERVER +'RouteInfo/1' /*+ this.state.postRoute*/, { headers: authHeader() })
+    .then(res => {
+      
+      this.setState({
+        halts: res.data,
+        //halt : res.data.data.HoltName,
+
+        //flag:true
+      });
+    },error => {
+      const resMessage =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      this.setState({
+        loading: false,
+        message: resMessage,
+        //flag:false
+      });
+    })
+
+  };
+
+  getRoute() {
     
-      onChangePassword(e) {
+    axios
+      .get(window.$API_SERVER +"Route/1" , { headers: authHeader() })
+      .then((response) => {
         this.setState({
-          password: e.target.value
-        });
-      }
-    
-      handleLogin(e) {
-            e.preventDefault();
-        
-            this.setState({
-              message: "",
-              loading: true
-            });
+
+          RNum: response.data.RNum,
+          fullDistance: response.data.Distance,
+          fullTime: response.data.Duration,
           
-       // this.form.validateAll();
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  } 
 
-            AuthService.login(this.state.username, this.state.password).then(
-              () => {
+  componentDidMount(){
+    this.getRoute();
+    this.haltListRefresh();
+  }
 
-                  const role=JSON.parse(localStorage.getItem('role'))
-                  if(role=='Passenger'){
-                    this.props.history.push("/home")
-                  }else if(role=='Administrator'){
-                    this.props.history.push("/admin-dash")
-                  }else if(role=='BusController'){
-                    this.props.history.push("/bus-dashboard")
-                  };
-                //  this.props.history.push("/home")
-                window.location.reload();
-              },
-              error => {
-                const resMessage =
-                  (error.response &&
-                    error.response.data &&
-                    error.response.data.message) ||
-                  error.message ||
-                  error.toString();
 
-                this.setState({
-                  loading: false,
-                  message: resMessage
-                });
-              }
-            );
-              
-
+  render() {
+ /* if (JSON.parse(localStorage.getItem('role'))!='Administrator'){
+      return <Redirect to={'/sign-in'} />
+    }*/
+    var i = 0;
+    const { halts, flag } = this.state
+    const haltList = halts.length ? (
+      halts.map(halt => {
+        this.state.halts[i].HoltName = halt.HoltName;
+        //this.state.halt = halt.HoltName;
+        //halt = this.state.halt.HoltName;
+        /*this.state.price = halt.Price;
+        this.state.time = halt.Time;
+        this.state.dist = halt.Distance;*/
         
-    }
+        return (
+            
+          <tr>
+            <td><input class="form-control" name="halt" type="text" onChange={this.handleChange} value={this.state.halts[i].HoltName}></input></td>
+            <td><input class="form-control" name="price" type="text" onChange={this.handleChange} /*value={this.state.price}*/ ></input></td>
+            <td><input class="form-control" name="time" type="text" onChange={this.handleChange} /*value={this.state.time}*/></input></td>
+            <td><input class="form-control" name="dist" type="text" onChange={this.handleChange}/* value={this.state.dist*}*/></input></td>
+            <td><button type="submit" onClick={this.UpdateRouteInfo} class="btn btn-primary btn-sm" >
+                Update
+            </button></td>
+          </tr>
+        )
+      },i++)
+    ) : (
+      <div className="center">No Halts available</div>
+    );
 
-  /* ---*/
+    return (
+      <div>
+        <div class="container mt-5 p-1">
+          <div class="mt-5">
+            <h1>
+              <u>Routes Update Form</u>
+            </h1>
+            <h5>Please fill in this form to update routes!</h5>
+            <br></br>
+            <br></br>
 
-render(){
-    
- if (localStorage.getItem('user')){
-    return <Redirect to={'/home'} />
-}
-    
-return (
-  <form onSubmit={this.handleLogin}>
-    
-    <div class="container pt-3 px-5 mt-5">
-      <div class="mt-5">
-          <h1>
-             <u>Login</u>
-          </h1>
-             
-          <br></br>
-          <br></br>  
-  
-       <div class="row">
-          <div class="col-lg-7 px-5">
-             
-
-          <div class="row">
-          <div class="col-lg-1"><i class="fas fa-envelope-open fa-lg"></i></div>
-          <div class="col-lg-11">
-            <div class="form-group  ">
-             <input type="text" class="form-control" name="username" 
-                 onChange={this.onChangeUsername}
-                 value={this.state.username} placeholder="Email" required="required"/>
-            </div>
-            </div>
-            </div>
             <div class="row">
-          <div class="col-lg-1"><i class="fas fa-user-lock fa-lg"></i></div>
-          <div class="col-lg-11">
-            <div class="form-group  ">
-            <input type="password" class="form-control" name="password"
-                value={this.state.password}
-                onChange={this.onChangePassword}
-                placeholder="Password" required="required"/>
-            </div>
-            </div>
-            </div> 
-         
-          <br></br>
-          
-           <div class="form-group text-center">
-              <button type="submit"
-                class="btn btn-primary btn-lg"
-                disabled={this.state.loading}
-              >
-                {this.state.loading && (
-                  <span class="spinner-border spinner-border-sm"></span>
-                )}
-                <span>Login</span>
-              </button>
-           </div>
+             
+              <div class="col-lg-6">
+                <div class="row">
+                  <div class="col-lg-4 ; h5 ">Route No </div>
+                  <div class="col-lg-1 ; h5 ">: </div>
+                  <div class="col-lg-5">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="RNum"
+                      onChange={this.handleChange}
+                      value={this.state.RNum}
+                      required="required"
+                    />
+                  </div>
+                </div>
 
-            {this.state.message && (
-              <div className="form-group">
-                <div className="alert alert-danger" role="alert">
-                  {this.state.message}
+                <br></br>
+                
+                <br></br>
+                <div class="row">
+                  <div class="col-lg-4 ; h5 ">Full Time </div>
+                  <div class="col-lg-1 ; h5 ">: </div>
+                  <div class="col-lg-5">
+                    <input
+                      type="text"
+                      pattern="[0-9]*"
+                      class="form-control"
+                      name="fullTime"
+                    
+                      onChange={this.handleChange}
+                      value={this.state.fullTime}
+                      required="required"
+                    />
+                  </div>
+                </div>
+                <br></br>
+                <div class="row">
+                  <div class="col-lg-4 ; h5 ">Full price </div>
+                  <div class="col-lg-1 ; h5 ">: </div>
+                  <div class="col-lg-5">
+                    <input
+                      type="text"
+                      pattern="[0-9]*"
+                      class="form-control"
+                      name="fullPrice"
+                      
+                      onChange={this.handleChange}
+                      value={this.state.fullPrice}
+                      required="required"
+                    />
+                  </div>
                 </div>
               </div>
-            )}
-           
-  
-          </div>
+              
+              <div class="col-lg-5">
+                <div class="row"></div>
+                <br></br>
+                <br></br>
+               
+                <br></br>
+                <div class="row">
+                  <div class="col-lg-4 ; h5 ">Full Distance </div>
+                  <div class="col-lg-1 ; h5 ">: </div>
+                  <div class="col-lg-5">
+                    <input
+                      type="text"
+                      pattern="[0-9]*"
+                      class="form-control"
+                      name="fullDistance"
+                     
+                      onChange={this.handleChange}
+                      value={this.state.fullDistance}
+                      required="required"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br></br>
 
-          <div class="col-lg-5 px-4">
-          <img src="images/login.jpeg" alt="login" class="ml-5"/>
+            <div class="col-6">
+              <div class="form-group">
+                  <button
+                    type="submit"
+                    onClick={this.UpdateRoute}
+                    class="btn btn-primary btn-lg" >
+                    Update route
+                  </button>
+                </div></div>
+
+            <hr />
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col"></div>
+              </div>
+              <div class="row">
+                <div class="col"></div>
+              </div>
+              <div class="row">
+                <div class="col"></div>
+              </div>
+            </div>
+
+         
+             <div class="row">
+             <div class="col-lg-12">
+             <table class="table table-hover">
+               <thead>
+                 <tr>
+                   <th scope="col">Halt</th>
+                   <th scope="col">Price</th>
+                   <th scope="col">Time</th>
+                   <th scope="col">Distance</th>
+                   <th scope="col">Action</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 {haltList}
+                 
+               </tbody>
+             </table>
+ 
+             </div>
+           </div>
+ 
+          
+
+       <br/><br/><br/>
+           
           </div>
-                   
         </div>
-  
       </div>
-  
-    </div>
-  </form>   
     );
   }
-  }
-  
-  export default withRouter(SignIn);
+}
+
+export default Test_case;
