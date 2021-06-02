@@ -2,22 +2,110 @@ import React, { Component } from 'react'
 import {Redirect, withRouter} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios'
+import DayPicker from 'react-day-picker';
+import 'react-day-picker/lib/style.css';
 
  class Find_Bus extends Component {
-    state = {
-        towns: []
-      } 
-    componentDidMount(){
-        axios.get(window.$API_SERVER +'RouteInfo/townlist')
-          .then(res => {
-            console.log(res);
-            this.setState({
-              towns: res.data
-            });
-          }).catch(e => console.error(e))
-      }
+     
+    constructor (props){
+      super(props);
     
+     
+      this.state = {
+        
+        suggestions: [],
+        suggestions1: [],
+        text: '',
+        text1: '',
+        items:[],
+        date:new Date()
+      }
+    }
       
+    componentDidMount(){
+      axios.get(window.$API_SERVER +'RouteInfo/townlist')
+      .then(res => {
+        console.log(res);
+        this.setState({
+          items: res.data
+        });
+      }).catch(e => console.error(e))
+             
+      }
+
+    onTextChanged = (e) =>{
+      const value = e.target.value;
+      let suggestions = [];
+      if (value.length > 0){
+        const regex = new RegExp(`^${value}`,'i');
+        suggestions = this.state.items.sort().filter(v => regex.test(v));
+      }
+      this.setState( () => ({suggestions, text:value}));
+
+    }
+
+    suggestionSelected (value) {
+        this.setState(() => ({
+          text: value,
+          suggestions: [],
+        }))
+      }
+
+    renderSuggestions (){
+     
+      const {suggestions} = this.state;
+      if (suggestions.length == 0){
+          return null;
+        }
+      return(
+        <ul>
+            {suggestions.map((item) => <li onClick={() => this.suggestionSelected(item)}>{item}</li>)}
+        </ul>
+
+      );
+  
+    }
+
+    onTextChanged1 = (e) =>{
+      const value = e.target.value;
+      let suggestions1 = [];
+      if (value.length > 0){
+        const regex = new RegExp(`^${value}`,'i');
+        suggestions1 = this.state.items.sort().filter(v => regex.test(v));
+      }
+      this.setState( () => ({suggestions1, text1:value}));
+
+    }
+
+    suggestionSelected1 (value) {
+        this.setState(() => ({
+          text1: value,
+          suggestions1: [],
+        }))
+      }
+
+    renderSuggestions1 (){
+     
+      const {suggestions1} = this.state;
+      if (suggestions1.length == 0){
+          return null;
+        }
+      return(
+        <ul>
+            {suggestions1.map((item) => <li onClick={() => this.suggestionSelected1(item)}>{item}</li>)}
+        </ul>
+
+      );
+  
+    }
+
+   
+    handleDate=(e)=>{
+      this.setState({date:e.target.value});
+      if(this.state.date<new Date()){
+         ;
+      }
+  }
 
     render() {
 
@@ -28,17 +116,8 @@ import axios from 'axios'
         }
 
 
-
-        const { towns } = this.state
-        const townList = towns.length ? (
-          towns.map(town => {
-            return (
-                <option value={town.HoltName}>{town.HoltName}</option>
-            )
-          })
-        ) : (
-          <div className="center">No Towns available</div>
-        );
+        const {text,text1} = this.state;
+        
 
         return (
         <div>
@@ -66,20 +145,19 @@ import axios from 'axios'
                     <div class="col-lg-6 col-sm-8 pt-4 px-5">
                         <div class="home-img mt-5 mt-lg-0 subscribe">
                         <form action="/bus-list" method="get" class="">
-                            <div class="form-group">
-                                <select name="from" class="form-control " id="from">
-                                        <option value="">From ...</option>
-                                        {townList}
-                                </select>
+                            <div class="AutoCompleteText">
+                                <input name="from" id="from" value= {text} onChange= {this.onTextChanged} type="text" placeholder="From"/>
+                                {this.renderSuggestions()}
                             </div>
-                            <div class="form-group">
-                                    <select name="to" class="form-control" id="to">
-                                        <option value="">To ...</option>
-                                        {townList}
-                                    </select>
+                            <br></br>
+                            <div class="AutoCompleteText">
+                                <input  name= "to" id="to" value= {text1} onChange= {this.onTextChanged1} type="text" placeholder="To"/>
+                                {this.renderSuggestions1()}
                             </div>
+                            <br></br>
                             <div class="form-group">
-                                <input name="date" type="date" class="form-control" id="inputCheckOut" placeholder="Date ..."/>
+                                <input name="date" type="date" class="form-control" id="inputCheckOut" placeholder="Date ..." min="onChange={(e)=>{this.handleDate(e);}}"/>
+                                
                             </div>
                             <div class="form-group tm-form-element tm-form-element-2">
                                     <button type="submit" class="btn btn-primary ">Check Availability</button>  

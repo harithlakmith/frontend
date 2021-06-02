@@ -3,8 +3,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React ,{Component}from "react";
 import axios from "axios";
 import {withRouter} from "react-router-dom";
-import Pdf from "react-to-pdf";
-const ref = React.createRef();
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 class Ticket extends Component {
 
@@ -42,7 +42,11 @@ class Ticket extends Component {
               });
 
           if(value.get('success')=="true"){
-               this.sendsms();
+
+             //  this.sendsms();
+
+           
+
           }   
       }
 
@@ -84,7 +88,31 @@ class Ticket extends Component {
       }
     
      
+      generatePDF(){
+        html2canvas(document.getElementById('capture')).then(function(canvas){
+         var imgdata = canvas.toDataURL('image/png')
+        var doc = new jsPDF('p','px','a4')
 
+        //const imgWidth = 160 * pageWidth / 793;
+        //const imgHeight = 60 * pageWidth / 793;
+
+        var pageWidth = doc.internal.pageSize.getWidth();
+        var pageHeight = doc.internal.pageSize.getHeight();
+
+        var widthRatio = pageWidth/canvas.width;
+        var heightRatio = pageHeight/canvas.height;
+        var ratio = widthRatio > heightRatio ? heightRatio : widthRatio;
+
+        var canvasWidth = canvas.width*ratio;
+        var canvasHeight = canvas.height*ratio;
+        
+        var marginX = (pageWidth-canvasWidth)/2;
+        var marginY = (pageHeight-canvasHeight)/2;
+
+        doc.addImage(imgdata,'PNG', marginX,marginY, canvasWidth, canvasHeight)
+        doc.save("Ticket.pdf")
+        }) 
+   }
         
        
 
@@ -154,18 +182,20 @@ render(){
 
               <div class="row align-items-end text-center">
                 <div class="col-lg">
-                    <Pdf targetRef={ref} filename={pdfname}  x={.5} y={.5} scale={1}>
-                      {({ toPdf }) => <button class="btn btn-lg btn-info mt-5" onClick={toPdf}>Download Ticket&nbsp;&nbsp;<i class="fas fa-download"></i></button>}
-                    </Pdf>
+                <button onClick={this.generatePDF} >Download Ticket</button>
                 </div>
               </div>
 
             </div> 
           </div>
-          <div ref={ref} style={{width: 10500, height: 10500}}   class="col-lg-4 p-3">
+
+        
+          <div class="col-lg-4 p-3">
               <div class=" pt-0  mt-3">
    
                   <div  class="card border-primary py-4 ">
+
+                  <div id = "capture" className="Order-sum" >
                       <h1 class="card-title  text-center mt-4">
                         <u>Your Ticket #{ticket.tid}</u>
                       </h1>
@@ -187,14 +217,16 @@ render(){
                                 Payment is Succesful!
                               </div>
                              
-                      </div>
+                              </div>
+                     
 
-              
+                              </div>
                  
                   </div>
-                 
+                
                 
               </div>
+              
           </div>  
         </div>
         

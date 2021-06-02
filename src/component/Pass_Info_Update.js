@@ -78,10 +78,10 @@ UpdatePassenger(e) {
 
   return (
 
-    <div class="row justify-content-md-center">
-      <div class="col-lg-6 mt-5 ">
+    <div class="row justify-content-center">
+      <div class="col-10 col-lg-6 mt-5 ">
          <div  class=" mt-5 p-3 ">
-            <div class="card bg-light text-dark mt-1">
+            <div class="">
               <h1 class="p-3 text-center card-title">
                 <u>Passenger Information Update</u>
               </h1 >
@@ -99,7 +99,7 @@ UpdatePassenger(e) {
 
                 <div class="form-group">
                   <div class="row">
-                    <div class="col">
+                    <div class="col-12 col-lg-6 col-sm-12">
                       <input
                         type="text"
                         class="form-control"
@@ -110,7 +110,7 @@ UpdatePassenger(e) {
                         required="required"
                       />
                     </div>
-                    <div class="col">
+                    <div class="col-12 col-lg-6 col-sm-12">
                       <input
                         type="text"
                         class="form-control"
