@@ -60,6 +60,9 @@ p {
 .headgd{
   background-image: linear-gradient( to right, #110eec, #9140e2);
 }
+.rgcv{
+  color:linear-gradient( to right, #110eec, #9140e2) ;
+}
 
 .AutoCompleteText{
   width: 100%;
@@ -782,19 +785,20 @@ p {
 
 .navbar-custom .navbar-btn {
   margin-left: 10px;
-  color: #34D1BF;
-  background: rgba(52, 209, 191, 0.2);
+  color: #ffffff;
+  /*background: rgba(52, 209, 191, 0.2);*/
+  background:#2f55d4;
   border-color: transparent;
   -webkit-box-shadow: none;
           box-shadow: none;
 }
 
 .navbar-custom .navbar-btn:hover {
-  color: #ffffff;
+  color: #2f55d4;
   -webkit-box-shadow: 0px 16px 31px -16px #34D1BF;
           box-shadow: 0px 16px 31px -16px #34D1BF;
-  background: #2cc4b3;
-  border-color: #2cc4b3;
+  background: #ffffff;
+  border-color: #2f55d4;
 }
 
 .navbar-toggler {
