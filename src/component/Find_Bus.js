@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import {Redirect, withRouter} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios'
-import DayPicker from 'react-day-picker';
-import 'react-day-picker/lib/style.css';
+import Moment from "moment";
 
  class Find_Bus extends Component {
      
@@ -18,7 +17,7 @@ import 'react-day-picker/lib/style.css';
         text: '',
         text1: '',
         items:[],
-        date:new Date()
+       
       }
     }
       
@@ -99,23 +98,17 @@ import 'react-day-picker/lib/style.css';
   
     }
 
-   
-    handleDate=(e)=>{
-      this.setState({date:e.target.value});
-      if(this.state.date<new Date()){
-         ;
-      }
-  }
 
     render() {
 
+     
         if (JSON.parse(localStorage.getItem('role'))=='BusController'){
             return <Redirect to={'/bus-dashboard'} />
         }else if (JSON.parse(localStorage.getItem('role'))=='Administrator'){
             return <Redirect to={'/admin-dashboard'} />
         }
 
-
+        const today = Moment(Date().toLocaleString()).format('YYYY-MM-DD');
         const {text,text1} = this.state;
         
 
@@ -156,7 +149,7 @@ import 'react-day-picker/lib/style.css';
                             </div>
                             <br></br>
                             <div class="form-group">
-                                <input name="date" type="date" class="form-control" id="inputCheckOut" placeholder="Date ..." min="onChange={(e)=>{this.handleDate(e);}}"/>
+                                <input name="date" type="date" class="form-control" id="inputCheckOut" placeholder="Date ..." min="today"/>
                                 
                             </div>
                             <div class="form-group tm-form-element tm-form-element-2">
