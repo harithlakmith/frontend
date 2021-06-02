@@ -36,6 +36,7 @@ import Ticket_List from './component/Ticket_List';
 
 import Route_Info from './component/Route_Info';
 import Show_Route from './component/Show_Route';
+import Footer from "./component/Footer";
 
 
 
@@ -81,17 +82,21 @@ class App extends Component {
 render(){
   const { currentUser, showModeratorBoard, showAdminBoard, jwttoken, role, userInfo } = this.state;
   var up = '';
+  var MyTic='';
   
   if(role =="BusController"){
         up=<a class="dropdown-item" href="/update-bus">Update profile</a>;
+        MyTic ='';
   }else if(role=="Passenger"){
         up=<a class="dropdown-item" href="/update-passenger">Update profile</a>;
+        MyTic=<a class="nav-link text-success" href="/ticket-list" >My Tickets</a>;
   }
 
   return (
   
     <div>
-         <nav class="navbar navbar-expand-lg fixed-top navbar-custom sticky sticky-dark bg-white">
+
+         <nav class="navbar navbar-expand-lg fixed-top  navbar-custom sticky sticky-dark bg-white">
             <div class="container">
              
                 <a class="logo text-uppercase" href="/home">
@@ -99,15 +104,16 @@ render(){
                 </a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="mdi mdi-menu"></i>
+                <i class="fas fa-caret-square-down"></i>
                 </button>
+               
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                    
                   
            {jwttoken ? (
-            <div className="navbar-nav ml-auto">
-              <li className="nav-item">
-  
+            <div class="navbar-nav ml-auto">
+              <li class="nav-item">
+              {MyTic}
               </li>
 
               <li class="nav-item dropdown">
@@ -123,17 +129,20 @@ render(){
 
             </div>
           ) : (
-            <div className="navbar-nav ml-auto">
-              <li className="nav-item">
-                 <a href="/sign-in" class="btn btn-success btn-rounded navbar-btn">Log In</a>
-                
+            <div class="navbar-nav  ml-auto">
+              <a href="/sign-in" >
+              <li class="my-1 nav-item">
+                 <a href="/sign-in" class=" btn btn-success btn-rounded navbar-btn">Log In&nbsp;<i class="fas fa-sign-in-alt"></i></a>
+                <span class="d-lg-none d-xl-none float-right"><small class="text-muted">For <b>Registered</b> passengers</small>&nbsp;&nbsp;</span>
               </li>
+              </a>
 
-              <li className="nav-item">
-                  <a href="/passenger-signup" class="btn btn-success btn-rounded navbar-btn">Register</a>
-                  
+              <a href="/passenger-signup" >
+              <li class="my-1 nav-item">
+                  <a href="/passenger-signup" class=" btn btn-success btn-rounded navbar-btn">Register&nbsp;<i class="fas fa-user-plus"></i></a>
+                  <span class="d-lg-none d-xl-none float-right"><small class="text-muted">For <b>New</b> passengers</small>&nbsp;&nbsp;</span>
               </li>
-
+              </a>
              
             </div>
           )}
@@ -233,6 +242,8 @@ render(){
 
         </Switch>
       </BrowserRouter>
+
+      <Footer />  
 
          
     </div>
