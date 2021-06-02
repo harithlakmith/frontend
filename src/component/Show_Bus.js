@@ -58,9 +58,9 @@ componentDidMount(){
           <div class="row">
           
             <div class="col-lg">
-              <table class="table table-hover table-info table-bordered">
+              <table class="table table-hover table-bordered">
                 <thead>
-                  <tr class="bg-info">
+                  <tr class="headgd text-white">
                     <th scope="col-lg-3">Bus No</th>
                     <th scope="col-lg-3">Driver Name</th>
                     <th scope="col-lg-3">Driver No</th>
@@ -76,11 +76,8 @@ componentDidMount(){
                 </tbody>
               </table>
             </div>
-            <div class="box-bo4"></div>
            
           </div>
-
-          <hr />
          
         </div>
       </div>

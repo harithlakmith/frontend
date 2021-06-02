@@ -28,9 +28,7 @@ import { withRouter} from "react-router-dom";
 componentDidMount(){
     const value = new URLSearchParams(this.props.location.search)
     var sid = value.get('sid');
-
     axios.get(window.$API_SERVER +"Ticket/session/"+sid)
-
         .then(res=>{
             this.setState({
                 Ticket:res.data,
@@ -69,9 +67,9 @@ componentDidMount(){
                 <br></br>
                 <div class="row">
                     <div class="text-center">
-                    <table class="table table-hover table-info table-bordered text-center">
+                    <table class="table table-striped table-hover table-bordered text-center">
                         <thead>
-                            <tr class="bg-info">
+                            <tr class="headgd text-white">
                                 <th scope="col-lg-4">Ticket Id</th>
                                 <th scope="col-lg-4">Session Id</th>
                                 <th scope="col-lg-4">From</th>

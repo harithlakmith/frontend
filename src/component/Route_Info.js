@@ -1,3 +1,4 @@
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { Component } from "react";
 import axios from "axios";
@@ -56,9 +57,9 @@ render(){
           <br></br>
           <div class="row">
             <div class="col-lg">
-              <table class="table table-hover table-info table-bordered">
+              <table class="table table-striped table-hover table-bordered">
                 <thead>
-                  <tr class="bg-info">
+                  <tr class="headgd text-white">
                     <th scope="col-lg-3">Holt Id</th>
                     <th scope="col-lg-3">Holt Name</th>
                     <th scope="col-lg-3">Full Time</th>
@@ -83,3 +84,5 @@ render(){
 }
 
 export default withRouter(Route_Info);
+
+

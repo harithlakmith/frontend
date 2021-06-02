@@ -85,20 +85,22 @@ render(){
 return (
 
   <form onSubmit={this.handleLogin} class= "form-signin">
-    
-    <div class="container-fuild pt-3 px-lg-5 px-5 mt-lg-5 mt-2">
-      <div class="mt-5">
-          <h1>
-             <u>Login</u>
-          </h1>
-             
-          <br></br>
-          <br></br>  
+    <div class="row justify-content-center">
+      <div class="col-10"> 
+
+<div class="container-fuild  pt-3 px-lg-5 px-5 mt-lg-5 mt-2 ">
+     
+      <div class="card-body w-50  ">
+    <h1 class="card-title card-header p-3 headgd rounded text-white">Login</h1>
+     
+    <div class="card " >
+  <img src="images/login new.jpeg" class="card-img-top" alt="login"></img>
+ <br></br>
   
-       <div class="row">
-          <div class="col-12 col-lg-8 px-4 col-sm-12">
+       <div class="row justify-content-center">
+          <div class="col-12 col-lg-10 px-4 col-sm-12 ">
           
-          <div class="input-group mb-3 px-2">
+          <div class="input-group mb-3 px-2 ">
           <span class="input-group-text" id="basic-addon1"><i class="fas fa-envelope-open fa-lg"></i></span>
              <input type="text" class="form-control" name="username" 
                  onChange={this.onChangeUsername}
@@ -138,18 +140,16 @@ return (
   
           </div>
 
-          
-          <div class="col-12 col-lg-4 px-4 col-sm-12">
-            
-          <img src="images/login.jpeg" alt="login" class="ml-5"/>
-          </div>
+         
                    
         </div>
-  
-      </div>
+  </div>
+</div>
+
   
     </div>
-
+    </div>
+</div>
     
   </form>
 

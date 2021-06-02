@@ -40,7 +40,7 @@ class Admin_Dash extends Component {
                     Click below button for displaying the infomation list of bus
                     Routes.
                   </p>
-                  <a href="/" class="btn btn-primary m-2 disabled">
+                  <a href="/show-route" class="btn btn-primary m-2 ">
                     Show Route
                   </a>
                 </div>
@@ -73,7 +73,7 @@ class Admin_Dash extends Component {
                     Click below button for updating the information of registerd
                     routes.
                   </p>
-                  <a href="/" class="btn btn-primary m-2 disabled">
+                  <a href="/" class="btn btn-primary m-2 ">
                     Edit Route
                   </a>
                 </div>
@@ -159,7 +159,7 @@ class Admin_Dash extends Component {
                     bus.
                   </p>
                   <a href="/" class="btn btn-primary m-2 disabled">
-                    Add Bus
+                    Add session
                   </a>
                 </div>
               </div>
