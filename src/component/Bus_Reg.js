@@ -60,7 +60,7 @@ class Bus_Reg extends React.Component {
             <br></br>
             <div class="card-deck ">
               <div class="card bg-light   ">
-                <div class="card-header h5">
+                <div class="card-header ">
                   <i class="fas fa-bus-alt"></i> &nbsp;&nbsp;Bus Details
                 </div>
 
