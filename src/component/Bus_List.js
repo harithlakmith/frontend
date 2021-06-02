@@ -52,6 +52,8 @@ class Bus_List extends Component {
                             +'&routeno='+bus.RNum
                             +'&fromholt='+bus.FromHolt
                             +'&toholt='+bus.ToHolt
+                            +'&fromholtId='+bus.FromHoltId
+                            +'&toholtId='+bus.ToHoltId
                             +'&ticketprice='+bus.TicketPrice
                             +'&arrivedtime='+Moment(bus.ArrivedTime).format('hh:mm A')
                             +'&duration='+bus.Duration
