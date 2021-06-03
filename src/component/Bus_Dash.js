@@ -1,6 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { Component } from "react";
-//import "./bus_dash.css";
 import Moment from "moment";
 import {Redirect, withRouter} from 'react-router-dom';
 
@@ -108,13 +107,18 @@ componentDidMount(){
 
 
     return (
-      <div class="card bg-light p-3 mt-5">
-        <div class="card-body mt-5 ">
-          <h1 class="card-title ">
-            <u>Bus Dashboard</u>
-          </h1>
+      <div class="card bg-light p-3 mt-3">
+        
+          	<div class="card" >
+    <div class="card-body">
+      
+      
+        <div class="mt-5 p-5">
+          <h2 class="card-title card-header px-3 headgd  text-light">
+            Bus Dashboard
+          </h2>
           <br></br>
-          <hr />
+          
 
           <div class="card-deck">
             <div class="card bg-light text-dark p-5">
@@ -179,10 +183,20 @@ componentDidMount(){
                 </h3>
                 <hr />
                 {seslist}
+
+                
+              <a href={'/session-list'} class="btn btn-primary btn-lg center">
+                    More
+                  </a>
               </div>
+
             </div>
+
+            
+   
           </div>
-          <hr />
+          </div>
+      </div>
         </div>
       </div>
     );

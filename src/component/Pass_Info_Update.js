@@ -78,13 +78,16 @@ UpdatePassenger(e) {
 
   return (
 
+    
+		<div class="card" >
+    <div class="card-body">
     <div class="row justify-content-center">
       <div class="col-10 col-lg-6 mt-5 ">
          <div  class=" mt-5 p-3 ">
             <div class="">
-              <h1 class="p-3 text-center card-title">
-                <u>Passenger Information Update</u>
-              </h1 >
+              <h2 class="card-title card-header px-3 headgd text-center text-light ">
+                Passenger Information Update
+              </h2 >
               <form class="text-center px-4">
                 <p class="text-dark">Please fill in this form to create an account!</p>
 
@@ -159,7 +162,8 @@ UpdatePassenger(e) {
 
       </div>
     </div>
-
+    </div>
+    </div>
 
     
   );

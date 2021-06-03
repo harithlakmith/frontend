@@ -47,12 +47,14 @@ componentDidMount(){
 
   return (
     <div>
-      <div class="container p-1">
-      <br></br><br></br>
-        <div class="mt-5">
-          <h1>
-            <u>Buses Information List</u>
-          </h1>
+      	<div class="card" >
+    <div class="card-body">
+      
+      
+        <div class="mt-5 p-5">
+          <h2 class="card-title card-header px-3 headgd  text-light">
+            Buses Information List
+          </h2>
 
           <br></br>
           <div class="row">
@@ -80,6 +82,7 @@ componentDidMount(){
           </div>
          
         </div>
+      </div>
       </div>
     </div>
   );}

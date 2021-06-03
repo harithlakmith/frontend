@@ -50,13 +50,17 @@ render(){
   );
 
   return (
-    <div>
-      <div class="container p-1">
-      <br></br><br></br>
-        <div class="mt-5">
-          <h1>
-            <u>Route Information </u>
-          </h1>
+    <div class="">
+      
+        
+		<div class="card" >
+    <div class="card-body">
+      
+      
+        <div class="mt-5 p-5">
+          <h2 class="card-title card-header px-3 headgd  text-light">
+            Route Information 
+          </h2>
           <br></br>
           <div class="row">
             <div class="col-lg">
@@ -68,7 +72,7 @@ render(){
                     <th scope="col-lg-3">Full Time</th>
                     <th scope="col-lg-3">Full Distance</th>
                     <th scope="col-lg-3">Price</th> 
-                    <th scope="col-lg-3"></th> 
+                    <th scope="col-lg-3 "></th> 
                   </tr>
                 </thead>
                 <tbody>
@@ -78,9 +82,10 @@ render(){
             </div>
             
           </div>
-          
-        </div>
+          </div>
       </div>
+        </div>
+  
     </div>
   );
 }

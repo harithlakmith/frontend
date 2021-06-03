@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import { withRouter} from "react-router-dom";
+import Moment from "moment";
 
  class Session_Ticket extends Component {
 
@@ -37,10 +38,12 @@ componentDidMount(){
         })
 }
     render() {
+
         const { Ticket } = this.state;
     
         const ticlist = Ticket.length ? (
             Ticket.map(ses=>{
+                
                 return( 
                     <tr>
                        <td class ="">{ses.TId}</td> 
@@ -50,7 +53,7 @@ componentDidMount(){
                        <td class ="">{ses.PId}</td>
                        <td class ="">{ses.NoOfSeats}</td>
                        
-                       <td class ="">{ses.Date}</td>
+                       <td class ="">{Moment(ses.Date).format('YYYY-MM-DD')}</td>
                        <td class ="">{ses.Price}</td>
                        </tr>
                        );
@@ -59,15 +62,19 @@ componentDidMount(){
             )
   
         return (  
-            <div class="container p-1">
             <div class="">
-                <h1>
-                    <u>Ticket Information</u>
-                </h1>
+            	<div class="card" >
+                <div class="card-body">
+      
+      
+        <div class="mt-5 p-5">
+          <h2 class="card-title card-header px-3 headgd  text-light">
+                Ticket Information
+                </h2>
                 <br></br>
                 <div class="row">
-                    <div class="text-center">
-                    <table class="table table-striped table-hover table-bordered text-center">
+                    <div class="col">
+                    <table class="table table-striped table-hover table-bordered">
                         <thead>
                             <tr class="headgd text-white">
                                 <th scope="col-lg-4">Ticket Id</th>
@@ -87,6 +94,8 @@ componentDidMount(){
                     </table>
                     </div>
                 </div>
+            </div>
+            </div>
             </div>
         </div>
         
