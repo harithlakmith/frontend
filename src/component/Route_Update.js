@@ -3,9 +3,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import axios from "axios";
 import {Redirect, withRouter} from 'react-router-dom';
-import authHeader from "../../services/auth-header";
+import authHeader from "./../services/auth-header";
 
-class Test_case extends React.Component {
+class Route_Update extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -48,9 +48,9 @@ class Test_case extends React.Component {
   
   componentDidMount(){
 
-    //var value = new URLSearchParams(this.props.location.search);
-    //var RId = value.get('RId');
-    var RId = 1;
+    var value = new URLSearchParams(this.props.location.search);
+    var RId = value.get('RId');
+    //var RId = 1;
 
     axios
       .get(window.$API_SERVER +"Route/" +RId , { headers: authHeader() })
@@ -176,4 +176,4 @@ class Test_case extends React.Component {
   }
 }
 
-export default withRouter (Test_case);
+export default withRouter (Route_Update);

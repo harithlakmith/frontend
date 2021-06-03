@@ -1,4 +1,3 @@
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import React ,{Component}from "react";
 import axios from "axios";
@@ -160,7 +159,7 @@ class Book_Now extends Component {
            From:parseInt(this.fromHoltId),  
            FromHalt:this.state.fromHolt,  
            To: parseInt(this.toHoltId),  
-           ToHalt :this.state.toHolt,
+           ToHalt :this.state.toHolt, 
            PId:1,
            NoOfSeats:parseInt(this.state.seats),
            PStatus:0,
@@ -217,7 +216,9 @@ class Book_Now extends Component {
                 paymentIntent:session.payment_id,
                 tid:parseInt(this.state.postTId),
                 seats:this.state.seats,
-                busNo:this.state.busNo  };
+                busNo:this.state.busNo 
+               };
+               
                 localStorage.removeItem('ticket');
                 localStorage.setItem("ticket", JSON.stringify(ticketarray));
 

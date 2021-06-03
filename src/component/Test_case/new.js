@@ -136,23 +136,23 @@ class Test_case extends React.Component {
       return <Redirect to={'/sign-in'} />
     }
 
-    const { halts} = this.state
+    /*const { halts} = this.state
     const haltList = halts.length ? (
       halts.map(halt => {
        // this.state.nextHaltId = halt.HoltId;
-        //this.state.halt = halt.HoltName;
+        this.state.halt = halt.HoltName;
         //halt = this.state.halt.HoltName;
-        /*this.state.price = halt.Price;
+        this.state.price = halt.Price;
         this.state.time = halt.Time;
-        this.state.dist = halt.Distance;*/
+        this.state.dist = halt.Distance;
         
         return (
             
           <tr>
-            <td><input class="form-control" name="halt" type="text" onChange={this.handleChange} /*value={this.state.halt}*/ ></input></td>
-            <td><input class="form-control" name="price" type="text" onChange={this.handleChange} /*value={this.state.price}*/ ></input></td>
-            <td><input class="form-control" name="time" type="text" onChange={this.handleChange} /*value={this.state.time}*/></input></td>
-            <td><input class="form-control" name="dist" type="text" onChange={this.handleChange}/* value={this.state.dist*}*/></input></td>
+            <td><input class="form-control" name="halt" type="text" onChange={this.handleChange} value={this.state.halt} ></input></td>
+            <td><input class="form-control" name="price" type="text" onChange={this.handleChange} value={this.state.price} ></input></td>
+            <td><input class="form-control" name="time" type="text" onChange={this.handleChange} value={this.state.time}></input></td>
+            <td><input class="form-control" name="dist" type="text" onChange={this.handleChange} value={this.state.dist}></input></td>
             <td><button type="submit" onClick={this.UpdateRouteInfo} class="btn btn-primary btn-sm" >
                 Update
             </button></td>
@@ -161,7 +161,7 @@ class Test_case extends React.Component {
       })
     ) : (
       <div className="center">No Halts available</div>
-    );
+    );*/
 
     return (
       <div>
@@ -294,7 +294,15 @@ class Test_case extends React.Component {
                  </tr>
                </thead>
                <tbody>
-                 {haltList}
+                <tr>
+                  <td><input class="form-control" name="halt" type="text" onChange={this.handleChange} value={this.state.halt} ></input></td>
+                  <td><input class="form-control" name="price" type="text" onChange={this.handleChange} value={this.state.price} ></input></td>
+                  <td><input class="form-control" name="time" type="text" onChange={this.handleChange} value={this.state.time}></input></td>
+                  <td><input class="form-control" name="dist" type="text" onChange={this.handleChange} value={this.state.dist}></input></td>
+                  <td><button type="submit" onClick={this.UpdateRouteInfo} class="btn btn-primary btn-sm" >
+                      Update
+                      </button></td>
+              </tr>
                  
                </tbody>
              </table>
