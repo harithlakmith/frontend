@@ -167,7 +167,79 @@ import Moment from "moment";
             </div>
          
         </section>
+
+        <section class="py-6">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-6 mx-auto text-center pb-4">
+                <h4 class="text-gradient text-primary">Social Analytics</h4>
+                <h2>Turn your idea into a startup</h2>
+                <p class="lead">We’re constantly trying to express ourselves and actualize our dreams. If you have the opportunity to play </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-4 col-md-6">
+                <div class="p-3 text-center">
+                  <div class="icon icon-shape bg-gradient-primary shadow mx-auto">
+                    <i class="ni ni-single-02"></i>
+                  </div>
+                  <h5 class="mt-4">Check our team</h5>
+                  <p>We get insulted by others, lose trust for those others. We get back here to follow my dreams</p>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6">
+                <div class="p-3 text-center">
+                  <div class="icon icon-shape bg-gradient-info shadow mx-auto">
+                    <i class="ni ni-email-83"></i>
+                  </div>
+                  <h5 class="mt-4">Support 24/7</h5>
+                  <p>We get insulted by others, lose trust for those others. We get back here to follow my dreams</p>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 mx-md-auto">
+                <div class="p-3 text-center">
+                  <div class="icon icon-shape bg-gradient-warning shadow mx-auto">
+                    <i class="ni ni-atom"></i>
+                  </div>
+                  <h5 class="mt-4">Unlimited revisions</h5>
+                  <p>We get insulted by others, lose trust for those others. We get back here to follow my dreams</p>
+                </div>
+              </div>
+            </div>
+            <hr></hr>
+          </div>
+          
+        </section>
+
+
+        <section class="">
+  <div class="container py-5">
   
+    <div class="row align-items-center">
+      <div class="col-md-6 mb-md-0 mb-4">
+        <h3 class="text-gradient rgcv text-primary mb-0">Medium Length Headline</h3>
+        <h3>Very nice subtitle</h3>
+        <p class="lead mb-md-5 mb-4">
+          Change the color to match your brand or vision, add your logo, choose the perfect thumbnail, remove the playbar, add controls and more.
+        </p>
+        <p><span class="me-2">&#9679;</span> Showcase and embed your work with</p>
+        <p><span class="me-2">&#9679;</span> Publish across social channels in a click</p>
+        <p><span class="me-2">&#9679;</span> Sell your videos worldwide</p>
+        <p><span class="me-2">&#9679;</span> Make more profit</p>
+      </div>
+      <div class="col-md-6">
+        <div class="blur-shadow-image text-center">
+          <img src="../../assets/img/curved-images/curved5.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg max-height-600"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
     </div>  
 
         )
