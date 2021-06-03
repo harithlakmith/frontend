@@ -41,6 +41,10 @@ render(){
                     Route Info
                   </a>
           </td>
+          <td>  <a href={'/route-update?RId='+route.RId} class="btn btn-primary btn-sm center">
+                    Edit
+                  </a>
+          </td>
           </tr>
       )
     })
@@ -68,6 +72,7 @@ render(){
                     <th scope="col-lg-3">Stop At</th>
                     <th scope="col-lg-3">Full Distance</th>
                     <th scope="col-lg-3">Full Time</th> 
+                    <th scope="col-lg-3"></th> 
                     <th scope="col-lg-3"></th> 
                   </tr>
                 </thead>
