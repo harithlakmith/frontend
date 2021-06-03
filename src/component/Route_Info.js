@@ -38,7 +38,10 @@ render(){
           <td>{route.Time}</td>
           <td>{route.Distance}</td>
           <td>{route.Price}</td>
-    
+          <td>  <a href={'/route-info-update?RId='+route.RId+'&HoltId='+route.HoltId+'&HoltName='+route.HoltName+'&Time='+route.Time+'&Distance='+route.Distance+'&Price='+route.Price+' '} class="btn btn-primary btn-s">
+                    Edit
+                  </a>
+          </td>
           </tr>
       )
     })
@@ -65,7 +68,7 @@ render(){
                     <th scope="col-lg-3">Full Time</th>
                     <th scope="col-lg-3">Full Distance</th>
                     <th scope="col-lg-3">Price</th> 
-                   
+                    <th scope="col-lg-3"></th> 
                   </tr>
                 </thead>
                 <tbody>

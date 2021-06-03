@@ -85,29 +85,31 @@ render(){
 return (
 
   <form onSubmit={this.handleLogin} class= "form-signin">
-    <div class="row justify-content-center">
-      <div class="col-10"> 
-
+    <div class="row justify-content-center"><div class="col-6">  
+    <div class="card bg-dark ">
+  <img src="images/background.jpeg" class="card-img " alt="background"></img>
+  <div class="card-img-overlay">
+    
 <div class="container-fuild  pt-3 px-lg-5 px-5 mt-lg-5 mt-2 ">
      
-      <div class="card-body w-50  ">
-    <h1 class="card-title card-header p-3 headgd rounded text-white">Login</h1>
+      <div class="card-body w-75  ">
+    
      
     <div class="card " >
-  <img src="images/login new.jpeg" class="card-img-top" alt="login"></img>
+    <h1 class="card-title card-header p-3 ">Login</h1>
  <br></br>
   
        <div class="row justify-content-center">
-          <div class="col-12 col-lg-10 px-4 col-sm-12 ">
-          
-          <div class="input-group mb-3 px-2 ">
+          <div class="col-md-4 col-md-offset-7 ">
+          <div class="panel panel-default">
+          <div class="input-group mb-3 px-2 col-sm-9">
           <span class="input-group-text" id="basic-addon1"><i class="fas fa-envelope-open fa-lg"></i></span>
              <input type="text" class="form-control" name="username" 
                  onChange={this.onChangeUsername}
                  value={this.state.username} placeholder="Email" required="required"/>
             </div>
 
-            <div class="input-group mb-3 px-2">
+            <div class="input-group mb-3 px-2 col-sm-9">
           <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-lock fa-lg"></i></span>
             <input type="password" class="form-control" name="password"
                 value={this.state.password}
@@ -137,7 +139,7 @@ return (
               </div>
             )}
            
-  
+           </div>
           </div>
 
          
@@ -148,9 +150,12 @@ return (
 
   
     </div>
-    </div>
+ 
 </div>
-    
+</div>  
+</div>
+</div>  
+
   </form>
 
 
