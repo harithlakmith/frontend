@@ -32,7 +32,7 @@ class Footer extends React.Component {
           <div className="row">
           <div className="col-lg-8">
           <div className="row">
-          <div className="col-lg-3 col-sm-12" align="center">
+          <div className="col-lg-3 mt-3 col-sm-12" align="center">
             
             <img src="logo.png" class="img-fluid"  alt="Responsive image"></img>
           </div>
