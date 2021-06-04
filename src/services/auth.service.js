@@ -40,7 +40,7 @@ class AuthService {
     localStorage.removeItem('role');
     localStorage.removeItem('userInfo');
     localStorage.removeItem('token');
-    
+    localStorage.removeItem('ticket');
   }
 
   getuserfromtoken(){

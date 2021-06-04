@@ -44,9 +44,9 @@ componentDidMount() {
       .then(res => {  
           this.setState({
 
-            Fname: res.data.FirstName,
-            Lname: res.data.LastName,  
-            telephone: res.data.Tp,  
+            Fname: res.data[0].FirstName,
+            Lname: res.data[0].LastName,  
+            telephone: res.data[0].Tp,  
             email: PEmail,  
             //password : res.data.Password  
         });  
@@ -75,7 +75,7 @@ UpdatePassenger(e) {
   this.setState({
           Test:obj,
   });
-  axios.post(window.$API_SERVER +'api/Accounts/PassUpdate', obj, { headers: authHeader() })  
+  axios.post(window.$API_SERVER +'Accounts/PassUpdate', obj, { headers: authHeader() })  
       .then(res => console.log(res.data));  
 
 }

@@ -228,16 +228,7 @@ import Moment from "moment";
             </div>
           </div>
           <div class="col-md-5 mt-lg-0 mt-4 mb-md-0 mb-4 px-5">
-            <h3 class="text-gradient rgcv text-primary mb-0">How To Reserve A Ticket</h3>
-            <h4>Video Tutorial</h4>
-            <p class=" mb-md-4 mb-4 bold">
-              If you are not familiar with online ticket reservation and payment systems, this video tutorial will help you to reserve your ticket
-            </p>
-            <p><span class="me-2">&#9679;</span> Choose your destinations and date</p>
-            <p><span class="me-2">&#9679;</span> Choose correct Bus and Route</p>
-            <p><span class="me-2">&#9679;</span> Select number of seats</p>
-            <p><span class="me-2">&#9679;</span> Make Payment&nbsp;&nbsp;<small class="text-muted"> Powered by Stripe</small></p>
-            <p><span class="me-2">&#9679;</span> Download your Ticket</p>
+            
           </div>
         </div>
       </div>
