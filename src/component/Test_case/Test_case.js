@@ -111,8 +111,6 @@ import axios from 'axios'
         }
 
 
-        const {text,text1} = this.state;
-        
         
     
 
