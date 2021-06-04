@@ -38,6 +38,8 @@ import Ticket_List from './component/Ticket_List';
 import Route_Info from './component/Route_Info';
 import Show_Route from './component/Show_Route';
 import Footer from "./component/Footer";
+import Route_Update from "./component/Route_Update";
+import RouteInfo_Update from "./component/RouteInfo_Update";
 
 
 
@@ -218,6 +220,14 @@ render(){
 
           <Route path="/show-buses" component={Show_Bus} >
           <Show_Bus />
+          </Route>
+
+          <Route path="/update-routes" component={Route_Update} >
+          <Route_Update />
+          </Route>
+
+          <Route path="/update-routeinfo">
+          <RouteInfo_Update />
           </Route>
 
           <Route path="/ticket" >

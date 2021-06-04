@@ -93,8 +93,8 @@ class Ticket extends Component {
          var imgdata = canvas.toDataURL('image/png')
         var doc = new jsPDF('p','px','a4')
 
-        //const imgWidth = 160 * pageWidth / 793;
-        //const imgHeight = 60 * pageWidth / 793;
+        //const imgWidth = 160 ;
+        //const imgHeight = 60 ;
 
         var pageWidth = doc.internal.pageSize.getWidth();
         var pageHeight = doc.internal.pageSize.getHeight();
