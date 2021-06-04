@@ -1,180 +1,176 @@
-
 import React, { Component } from 'react'
-import {Redirect, withRouter} from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import axios from 'axios'
+import "bootstrap/dist/css/bootstrap.min.css";
+import axios from "axios";
+import authHeader from "../../services/auth-header";
 
- class Test_case extends Component {
-     
-    constructor (props){
-      super(props);
-      
-     
-      this.state = {
-        
-        suggestions: [],
-        suggestions1: [],
-        text: '',
-        text1: '',
-        items:[],
-      }
-    }
-      
-    componentDidMount(){
-      axios.get(window.$API_SERVER +'RouteInfo/townlist')
-      .then(res => {
-        console.log(res);
-        this.setState({
-          items: res.data
-        });
-      }).catch(e => console.error(e))
-        
+class Test_case extends Component {
 
-          
-      }
-
+  constructor(props) {  
+    super(props)  
+     this.state = {  
+        nic:'',
+        name: '',  
+        email: '',  
+        Fname:'',
+        Lname:'',
+        password: '' ,
+        telephone:'',
+        Test:[]
+    };
    
+    this.handleChange = this.handleChange.bind(this);  
+    this.UpdatePassenger = this.UpdatePassenger.bind(this);  
 
-    onTextChanged = (e) =>{
-      const value = e.target.value;
-      let suggestions = [];
-      if (value.length > 0){
-        const regex = new RegExp(`^${value}`,'i');
-        suggestions = this.state.items.sort().filter(v => regex.test(v));
-      }
-      this.setState( () => ({suggestions, text:value}));
+}  
 
-    }
+handleChange = (e) => {
+  this.setState({
+    [e.target.name]:e.target.value}
+    );
+}
 
-    suggestionSelected (value) {
-        this.setState(() => ({
-          text: value,
-          suggestions: [],
-        }))
-      }
+componentDidMount() {
+  var Pass = JSON.parse(localStorage.getItem('userInfo'));
+  var PEmail = Pass.Email;
+  this.setState({
+    nic:Pass.NIC,
+  })
+  axios.get(window.$API_SERVER +'Passenger/'+ PEmail,{ headers: authHeader() })  
+      .then(res => {  
+          this.setState({
 
-    renderSuggestions (){
-     
-      const {suggestions} = this.state;
-      if (suggestions.length == 0){
-          return null;
-        }
-      return(
-        <ul>
-            {suggestions.map((item) => <li onClick={() => this.suggestionSelected(item)}>{item}</li>)}
-        </ul>
+            Fname: res.data.FirstName,
+            Lname: res.data.LastName,  
+            telephone: res.data.Tp,  
+            email: PEmail,  
+            //password : res.data.Password  
+        });  
 
-      );
-  
-    }
+      })  
+      .catch(function (error) {  
+          console.log(error);  
+      })  
+}
 
-    onTextChanged1 = (e) =>{
-      const value = e.target.value;
-      let suggestions1 = [];
-      if (value.length > 0){
-        const regex = new RegExp(`^${value}`,'i');
-        suggestions1 = this.state.items.sort().filter(v => regex.test(v));
-      }
-      this.setState( () => ({suggestions1, text1:value}));
+UpdatePassenger(e) {
+ 
+  var Pass = JSON.parse(localStorage.getItem('userInfo'));
+  var PEmail = Pass.Email;
+   
+  e.preventDefault();  
+  const obj = {    
+    FirstName: this.state.Fname,
+    LastName: this.state.Lname,  
+    Tp: parseInt(this.state.telephone),  
+    //Email: this.state.email,
+    Email: PEmail,  
+    Password: this.state.password ,
+    //Verified:1
+  };  
+  this.setState({
+          Test:obj,
+  });
+  axios.post(window.$API_SERVER +'api/Accounts/PassUpdate', obj, { headers: authHeader() })  
+      .then(res => console.log(res.data));  
 
-    }
-
-    suggestionSelected1 (value) {
-        this.setState(() => ({
-          text1: value,
-          suggestions1: [],
-        }))
-      }
-
-    renderSuggestions1 (){
-     
-      const {suggestions1} = this.state;
-      if (suggestions1.length == 0){
-          return null;
-        }
-      return(
-        <ul>
-            {suggestions1.map((item) => <li onClick={() => this.suggestionSelected1(item)}>{item}</li>)}
-        </ul>
-
-      );
-  
-    }
-
-    
-
-    render() {
-
-        if (JSON.parse(localStorage.getItem('role'))=='BusController'){
-            return <Redirect to={'/bus-dashboard'} />
-        }else if (JSON.parse(localStorage.getItem('role'))=='Administrator'){
-            return <Redirect to={'/admin-dashboard'} />
-        }
-
-
-        const {text,text1} = this.state;
-        
-        
-    
-
-        return (
-        <div>
-            <section class="hero-section videobg" id="home">
-            
-            <div class="container ">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6 ">
-                        <div class="hero-wrapper mb-4 bg-white p-5 welcomebox">
-                            <p class="font-16 text-uppercase"></p>
-                            <h1 class="hero-title mt-4 mb-4">Quickly Reserve Your<br/>Ticket with <span class="text-primary">Ticketz</span></h1>
-
-                            <p>During the covid-19 pandemic situation, travelling by public transport
-                                 is very difficult. Because numbers of passengers are limited according 
-                                 to the government policies. So this site will allow passengers to book their 
-                                 bus ticket via online.</p>
-                                 
-                            <div class="mt-4">
-                                
-                            </div>
-                        </div>
-                        
-                    </div>
-
-                    <div class="col-lg-6 col-sm-8 pt-4 px-5">
-                        <div class="home-img mt-5 mt-lg-0 subscribe">
-                        <form action="/bus-list" method="get" class="">
-                            <div class="AutoCompleteText">
-                                <input value= {text} onChange= {this.onTextChanged} type="text" placeholder="From"/>
-                                {this.renderSuggestions()}
-                            </div>
-                            <br></br>
-                            <div class="AutoCompleteText">
-                                <input value= {text1} onChange= {this.onTextChanged1} type="text" placeholder="To"/>
-                                {this.renderSuggestions1()}
-                            </div>
-                            <br></br>
-                            <div class="form-group">
-                                <input name="date" type="date" class="form-control" id="inputCheckOut" placeholder="Date ..."/>
-                            </div>
-                            <div class="form-group tm-form-element tm-form-element-2">
-                                    <button type="submit" class="btn btn-primary ">Check Availability</button>  
-                            </div>
-                        </form>
-                            <img src="images/home-im.png" alt="" class="img-fluid mx-auto d-block"/>
-                        </div>
-                    </div>
-                </div>
-              
-            </div>
-         
-        </section>
-  
-    </div>  
-
-        )
-    }
 }
 
 
-export default withRouter(Test_case);
 
+  render() {
+ var NIC = this.state.nic;
+
+  return (
+
+   
+<div class="card" >
+    <div class="card-body">
+    <div class="row justify-content-center">
+      <div class="col-10 col-lg-6 mt-5 ">
+         <div  class=" mt-5 p-3 ">
+            <div class="">
+              <h2 class="card-title card-header px-3 headgd text-center text-light ">
+                Passenger Information Update
+              </h2 >
+              <form class="text-center px-4">
+                <p class="text-dark">Please fill in this form to create an account!</p>
+
+                <div class="form-group ">
+                  <div class="row ">
+                    <div class="col text-left">
+                      <label>NIC : </label>
+                      {NIC}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-12 col-lg-6 col-sm-12">
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="Fname"
+                        value={this.state.Fname}
+                        onChange={this.handleChange}
+                        placeholder="First Name"
+                        required="required"
+                      />
+                    </div>
+                    <div class="col-12 col-lg-6 col-sm-12">
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="Lname"
+                        value={this.state.Lname}
+                        onChange={this.handleChange}
+                        placeholder="Last Name"
+                        required="required"
+                      />
+                    </div>
+                  </div>
+                </div>
+               
+                <div class="form-group">
+                  <input
+                    type="password"
+                    class="form-control"
+                    name="password"
+                    value={this.state.password}
+                    onChange={this.handleChange}
+                    placeholder="Password"
+                    required="required"
+                  />
+                </div>
+                <div class="form-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="telephone"
+                    value={this.state.telephone}
+                    onChange={this.handleChange}
+                    placeholder="Telephone"
+                    required="required"
+                  />
+                </div>
+                <div class="form-group"></div>
+                <div class="form-group">
+                <button type="submit" onClick={this.UpdatePassenger} class="btn btn-primary btn-lg">
+                        Update
+                      </button>
+                </div>
+              </form>
+           
+            </div>
+          </div>
+
+      </div>
+    </div>
+    </div>
+    </div>
+
+   
+  );
+}
+}
+export default Test_case;
