@@ -12,6 +12,7 @@ import AuthService from "./services/auth.service";
 import Add_Route from './component/Add_Route';
 import Find_Bus from './component/Find_Bus';
 import Test_case from './component/Test_case/Test_case';
+import Session_Tic from './component/Test_case/Session_Tic';
 import Bus_List from './component/Bus_List';
 import Book_Now from './component/Book_Now';
 import Admin_Dash from './component/Admin_Dash';
@@ -163,6 +164,7 @@ render(){
           <Route path="/home">
             <Find_Bus />
           </Route>
+         
 
           <Route path="/test">
           <Test_case />
@@ -247,6 +249,12 @@ render(){
 
           <Route path="/show-route" >
           <Show_Route />
+          </Route>
+
+          
+
+          <Route path="/test2" >
+          <Session_Tic />
           </Route>
 
 
