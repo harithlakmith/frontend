@@ -1,180 +1,237 @@
 
-import React, { Component } from 'react'
+import "bootstrap/dist/css/bootstrap.min.css";
+import React, { Component } from "react";
+import Moment from "moment";
+
 import {Redirect, withRouter} from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import axios from 'axios'
 
- class Test_case extends Component {
-     
-    constructor (props){
-      super(props);
-      
-     
-      this.state = {
-        
-        suggestions: [],
-        suggestions1: [],
-        text: '',
-        text1: '',
-        items:[],
-      }
+import axios from "axios";
+import authHeader from "../../services/auth-header";
+
+class Test_case extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      busInfo: [],
+      BusNo:'',    
+      CondName:'',
+      CondNo:'',
+      DriverName:'',
+      DriverNo:'',
+      Email:'',
+      MaxSeats:'',
+      MySession:[],
+      Ticket:[],
     }
-      
-    componentDidMount(){
-      axios.get(window.$API_SERVER +'RouteInfo/townlist')
+
+  }
+
+componentDidMount(){
+
+  var Bus = JSON.parse(localStorage.getItem('userInfo'));
+  var BusNo = Bus.BusNo;
+  
+    axios.get(window.$API_SERVER +'BusInfo/'+ BusNo,{ headers: authHeader() })
       .then(res => {
-        console.log(res);
+        
         this.setState({
-          items: res.data
+          BusNo:res.data.BusNo,
+          busInfo: res.data,
+          CondName:res.data.CondName,
+          CondNo:res.data.CondNo,
+          DriverName:res.data.DriverName,
+          DriverNo:res.data.CondNo,
+          Email:res.data.Email,
+          MaxSeats:res.data.MaxSeats
         });
-      }).catch(e => console.error(e))
-        
+      });
 
+      axios.get(window.$API_SERVER +'Session/BusNo/'+ BusNo,{ headers: authHeader() })
+      .then(res => {
+        
+        this.setState({
+          MySession:res.data
+        });
+      });
+
+     
+  }
+
+  /*Booked=(sid)=>{
+    var book = 0;
+    axios.get("http://localhost:5000/Ticket/session/"+sid)
+    .then(res=>{
+        this.setState({
+            Ticket:res.data,
           
-      }
+        });
+    })
 
-   
+    this.state.Ticket.length?(
+      this.state.Ticket.map(Tick=>{
+        book = book + parseInt(Tick.NoOfSeats);
+      })
+    ):(
+        book = ''
+    );
 
-    onTextChanged = (e) =>{
-      const value = e.target.value;
-      let suggestions = [];
-      if (value.length > 0){
-        const regex = new RegExp(`^${value}`,'i');
-        suggestions = this.state.items.sort().filter(v => regex.test(v));
-      }
-      this.setState( () => ({suggestions, text:value}));
+    return book;
+  }*/
 
+  render() {
+   if (JSON.parse(localStorage.getItem('role'))!='BusController'){
+      return <Redirect to={'/sign-in'} />
     }
 
-    suggestionSelected (value) {
-        this.setState(() => ({
-          text: value,
-          suggestions: [],
-        }))
-      }
+    const { BusNo,CondName,CondNo,DriverName,DriverNo,Email,MaxSeats,MySession } = this.state;
 
-    renderSuggestions (){
-     
-      const {suggestions} = this.state;
-      if (suggestions.length == 0){
-          return null;
-        }
-      return(
-        <ul>
-            {suggestions.map((item) => <li onClick={() => this.suggestionSelected(item)}>{item}</li>)}
-        </ul>
+    var s = '/select-route?s='+MaxSeats;
 
-      );
-  
-    }
+    const seslist = MySession.length ? (
+      MySession.map(ses=> {    
+        const dte = new Date(ses.Date);
+        const date = Moment(dte.toLocaleString()).format('YYYY-MM-DD');
+        const today = Moment(Date().toLocaleString()).format('YYYY-MM-DD');
 
-    onTextChanged1 = (e) =>{
-      const value = e.target.value;
-      let suggestions1 = [];
-      if (value.length > 0){
-        const regex = new RegExp(`^${value}`,'i');
-        suggestions1 = this.state.items.sort().filter(v => regex.test(v));
-      }
-      this.setState( () => ({suggestions1, text1:value}));
-
-    }
-
-    suggestionSelected1 (value) {
-        this.setState(() => ({
-          text1: value,
-          suggestions1: [],
-        }))
-      }
-
-    renderSuggestions1 (){
-     
-      const {suggestions1} = this.state;
-      if (suggestions1.length == 0){
-          return null;
-        }
-      return(
-        <ul>
-            {suggestions1.map((item) => <li onClick={() => this.suggestionSelected1(item)}>{item}</li>)}
-        </ul>
-
-      );
-  
-    }
-
-    
-
-    render() {
-
-        if (JSON.parse(localStorage.getItem('role'))=='BusController'){
-            return <Redirect to={'/bus-dashboard'} />
-        }else if (JSON.parse(localStorage.getItem('role'))=='Administrator'){
-            return <Redirect to={'/admin-dashboard'} />
-        }
-
-
-        const {text,text1} = this.state;
+        let session = "";
+               
+                if (today > date){
+                    session = <div class="card bg-light text-dark ">
+                    <div class="card-body ">
+                      {ses.RNum}
+                      </div>
+                      </div>
+                   
+                    
+                }
+                else {
+                    
+                    session = <span class="badge bg-success">No session availble at today</span>
+                   
+                    
+                }
         
+        var t = "/ticket-session?sid="+ ses.SId;
+                            return(   <div class="card alert-info text-info p-3 m-3">
+                                        <h3 class="">{ses.RNum}&nbsp;&nbsp;{ses.Start} - {ses.Stop}</h3>
+                                          <div class="row">
+                                            <div class="col-lg-7">
+                                              <h5>On: {Moment(ses.Date).format('YYYY-MM-DD')}</h5>
+                                              <h5>At: {Moment(ses.StartTime).format('LT')}</h5>
+                                            </div>
+                                            <div class="col-lg-4 text-right">
+                                              <a href={t} class="btn btn-info">Tickets</a>
+                                            </div>
+                                          </div>
+                                      </div>);
+                          })
+      ):(
+              <p>No Data</p>
+      )
+
+
+    return (
+      <div class="card bg-light p-3 mt-3">
         
-    
+          	<div class="card" >
+    <div class="card-body">
+      
+      
+        <div class="mt-5 p-5">
+          <h2 class="card-title card-header px-3 headgd  text-light">
+            Bus Dashboard
+          </h2>
+          <br></br>
+          
 
-        return (
-        <div>
-            <section class="hero-section videobg" id="home">
-            
-            <div class="container ">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6 ">
-                        <div class="hero-wrapper mb-4 bg-white p-5 welcomebox">
-                            <p class="font-16 text-uppercase"></p>
-                            <h1 class="hero-title mt-4 mb-4">Quickly Reserve Your<br/>Ticket with <span class="text-primary">Ticketz</span></h1>
-
-                            <p>During the covid-19 pandemic situation, travelling by public transport
-                                 is very difficult. Because numbers of passengers are limited according 
-                                 to the government policies. So this site will allow passengers to book their 
-                                 bus ticket via online.</p>
-                                 
-                            <div class="mt-4">
-                                
-                            </div>
-                        </div>
-                        
+          <div class="card-deck">
+            <div class="card bg-light text-dark p-5">
+              <div class="card-body ">
+                
+                  <div class="form-group row">
+                    <div class="col-lg-4 ; h5 ">
+                      <label>Mybus</label>
+                    </div>
+                    <div class="col-lg-5; h5">{BusNo}</div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-lg-4 ; h5 ">
+                      <label>Email</label>
                     </div>
 
-                    <div class="col-lg-6 col-sm-8 pt-4 px-5">
-                        <div class="home-img mt-5 mt-lg-0 subscribe">
-                        <form action="/bus-list" method="get" class="">
-                            <div class="AutoCompleteText">
-                                <input value= {text} onChange= {this.onTextChanged} type="text" placeholder="From"/>
-                                {this.renderSuggestions()}
-                            </div>
-                            <br></br>
-                            <div class="AutoCompleteText">
-                                <input value= {text1} onChange= {this.onTextChanged1} type="text" placeholder="To"/>
-                                {this.renderSuggestions1()}
-                            </div>
-                            <br></br>
-                            <div class="form-group">
-                                <input name="date" type="date" class="form-control" id="inputCheckOut" placeholder="Date ..."/>
-                            </div>
-                            <div class="form-group tm-form-element tm-form-element-2">
-                                    <button type="submit" class="btn btn-primary ">Check Availability</button>  
-                            </div>
-                        </form>
-                            <img src="images/home-im.png" alt="" class="img-fluid mx-auto d-block"/>
-                        </div>
+                    <div class="col-lg-5; h5">{Email}</div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-lg-4 ; h5 ">
+                      <label>Seats</label>
                     </div>
-                </div>
-              
+                    <div class="col-lg-5; h5">{MaxSeats}</div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-lg-4 ; h5 ">
+                      <label>Driver Number</label>
+                    </div>
+                    <div class="col-lg-5; h5">{DriverNo}</div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-lg-4 ; h5 ">
+                      <label>Driver Name</label>
+                    </div>
+                    <div class="col-lg-5; h5">{DriverName}</div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-lg-4 ; h5 ">
+                      <label>Conducter Number</label>
+                    </div>
+
+                    <div class="col-lg-5; h5">{CondNo}</div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-lg-4 ; h5 ">
+                      <label>Conducter Name</label>
+                    </div>
+                    <div class="col-lg-5; h5">{CondName}</div>
+                  </div>
+                
+                <br></br>
+                <a href={s} class="btn btn-primary btn-lg">
+                  Add Session
+                </a>
+              </div>
             </div>
-         
-        </section>
-  
-    </div>  
+            <div class="card bg-light text-dark">
+              <div class="card-body">
+                <h3 class="card-title">
+                  <u>My Sessions </u>
+                </h3>
+                <hr />
+                <div class="card bg-light text-dark ">
+    <div class="card-body ">
+      
+      {this.state.session}
+      </div>
+      </div>
 
-        )
-    }
+                
+              <a href={'/session-list'} class="btn btn-primary btn-lg center">
+                    More
+                  </a>
+              </div>
+
+            </div>
+
+            
+   
+          </div>
+          </div>
+      </div>
+        </div>
+      </div>
+    );
+  }
 }
-
 
 export default withRouter(Test_case);
 
