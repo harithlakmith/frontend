@@ -9,16 +9,18 @@ class Footer extends React.Component {
      
       
       <div className="container">
-        <div className="row col-12">
+        <div className="row ">
+        <div class="col-12">
         <div class="row">
-        <p>Get connected with us on social networks: <i class="fab fa-facebook-f"></i> &nbsp;   <i class="fab fa-twitter"></i> &nbsp; <i class="fab fa-google"></i> &nbsp;  <i class="fab fa-instagram"></i> &nbsp;  <i class="fab fa-linkedin"></i> &nbsp;  <i class="fab fa-github"></i> </p>
-        </div>
+          
+        <p>Technologies used for implementations:  <a href="https://reactjs.org/" class="me-4 text-reset"><i class="fab fa-react"></i></a> &nbsp;<a href="https://getbootstrap.com/" class="me-4 text-reset"><i class="fab fa-bootstrap"></i></a>  &nbsp;<a href="https://www.microsoft.com/en-us/sql-server/sql-server-2019" class="me-4 text-reset"><i class="fas fa-database"></i></a>   &nbsp; <a href="https://stripe.com/" class="me-4 text-reset"><i class="fab fa-stripe-s"></i></a>  &nbsp; <a href="https://dotnet.microsoft.com/download/dotnet/3.1" class="me-4 text-reset"><i class="fab fa-microsoft"></i></a>  &nbsp; <a href="https://github.com/harithlakmith/frontend.git" class="me-4 text-reset"><i class="fab fa-github"></i></a>   &nbsp; <a href="https://azure.microsoft.com/en-us/" class="me-4 text-reset"><i class="cib-azure-devops"></i></a> &nbsp; <i class="cib-dot-net"></i> </p>
+        </div></div>
         
         </div>
         <br></br>
         <div className="row">
         
-          <div className="col-lg-8">
+          <div className="col-lg-8 col-sm-12">
             <div className="row">
           <div className="col-lg-8">
           <p class="text-justify">During the covid-19 pandemic situation, travelling by public transport
@@ -30,9 +32,9 @@ class Footer extends React.Component {
           
           </div>
           <div className="row">
-          <div className="col-lg-8">
+          <div className="col-lg-8 col-sm-12">
           <div className="row">
-          <div className="col-lg-3 mt-3 col-sm-12" align="center">
+          <div className="col-lg-3 col-sm-12" align="center">
             
             <img src="logo.png" class="img-fluid"  alt="Responsive image"></img>
           </div>
@@ -47,7 +49,7 @@ class Footer extends React.Component {
           </div>
           </div>
           
-          <div className="col-lg-4">
+          <div className="col-lg-4 col-sm-12">
             <h4 class="text-light">CONTACT US</h4>
             <ui className="list-unstyled">
               <br></br>
@@ -74,7 +76,8 @@ class Footer extends React.Component {
           </p>
         </div>
         </div>
-    </div>
+        </div>
+    
   );
 }
 
