@@ -173,7 +173,7 @@ class Book_Now extends Component {
              .then(res => {
                this.setState({
                               postTId: res.data.TId }); 
-                            //  this.paymentOpen(e);
+                              this.paymentOpen(e);
                   }).catch(
                               e => console.error(e) 
                               ); 
