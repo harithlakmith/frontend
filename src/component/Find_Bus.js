@@ -4,7 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios'
 import Moment from "moment";
 
-
  class Find_Bus extends Component {
      
     constructor (props){
