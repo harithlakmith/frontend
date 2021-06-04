@@ -4,12 +4,13 @@ import axios from "axios";
 import { Redirect, withRouter } from "react-router-dom";
 import authHeader from "./../services/auth-header";
 
-class Select_Route extends Component {
+class Add_Session extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      busNo: JSON.parse(localStorage.getItem("userInfo")).BusNo,
+      busNo: 0,
+      busNos: [],
       route: 0,
       date: undefined,
       time: undefined,
@@ -54,15 +55,20 @@ class Select_Route extends Component {
           routes: res.data,
         });
       });
+
+    axios
+      .get(window.$API_SERVER + "BusInfo", { headers: authHeader() })
+      .then((res) => {
+        //console.log(res);
+        this.setState({
+          busNos: res.data,
+        });
+      });
   }
-
   render() {
-    if (JSON.parse(localStorage.getItem("role")) != "BusController") {
-      return <Redirect to={"/sign-in"} />;
-    }
-    var d = "/bus-dashboard";
+    var d = "/admin-dashboard";
 
-    const { routes, busNo } = this.state;
+    const { routes, busNo, busNos } = this.state;
     const routeList = routes.length ? (
       routes.map((route) => {
         return (
@@ -75,6 +81,13 @@ class Select_Route extends Component {
       <div className="center">No Routes available</div>
     );
 
+    const busnoList = busNos.length ? (
+      busNos.map((busNo) => {
+        return <option value={busNo.BusNo}>{busNo.BusNo}</option>;
+      })
+    ) : (
+      <div className="center">No Busses available</div>
+    );
     return (
       <div>
         <div class="container mt-5 p-1">
@@ -89,11 +102,23 @@ class Select_Route extends Component {
 
             <div class="row">
               <div class="col-lg-6">
-                <div class="form-inline ">
+                <div class="form-inline  " action="" method="get">
                   <div class="col-lg-4 ; h5 ">My Bus </div>
                   <div class="col-lg-1 ; h5 ">: </div>
                   <div class="col-lg-5">
-                    <input type="text" value={busNo} disabled="true"></input>
+                    <div class="dropdown">
+                      <select
+                        type="text"
+                        pattern="[0-9]*"
+                        name="route"
+                        onChange={this.handleChange}
+                        value={this.state.busNo}
+                        required="required"
+                      >
+                        <option value="">Select Bus</option>
+                        {busnoList}
+                      </select>
+                    </div>
                   </div>
                 </div>
 
@@ -169,4 +194,4 @@ class Select_Route extends Component {
     );
   }
 }
-export default withRouter(Select_Route);
+export default withRouter(Add_Session);

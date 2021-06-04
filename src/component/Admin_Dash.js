@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {Redirect, withRouter} from 'react-router-dom';
-
+import { Redirect, withRouter } from "react-router-dom";
 
 class Admin_Dash extends Component {
   render() {
@@ -16,17 +15,15 @@ class Admin_Dash extends Component {
           <br></br>
           <div class="row">
             <div class="col-lg-6 h1  mb-4 ">
-              <u><i class="fas fa-user-cog"></i>&nbsp;Admin Dashboard</u>
-              
-              
+              <u>
+                <i class="fas fa-user-cog"></i>&nbsp;Admin Dashboard
+              </u>
             </div>
           </div>
           <br></br>
 
           <div class="row">
-            <div class="col-lg-8 h2 mb-4 ">
-              Settings - Routes&nbsp;&nbsp;
-            </div>
+            <div class="col-lg-8 h2 mb-4 ">Settings - Routes&nbsp;&nbsp;</div>
           </div>
 
           <div class="row">
@@ -82,9 +79,7 @@ class Admin_Dash extends Component {
           </div>
           <hr></hr>
           <div class="row">
-            <div class="col-lg-8 h2 mb-4">
-              Settings - Buses&nbsp;
-            </div>
+            <div class="col-lg-8 h2 mb-4">Settings - Buses&nbsp;</div>
           </div>
 
           <div class="row">
@@ -123,9 +118,7 @@ class Admin_Dash extends Component {
           </div>
           <hr></hr>
           <div class="row">
-            <div class="col-lg-8 h2 mb-2">
-              Settings - Session
-            </div>
+            <div class="col-lg-8 h2 mb-2">Settings - Session</div>
           </div>
           <br></br>
           <div class="row">
@@ -140,7 +133,7 @@ class Admin_Dash extends Component {
                     Click below button for Displaying the information list of
                     Sessions
                   </p>
-                  <a href="/" class="btn btn-primary m-2 disabled">
+                  <a href="/session-list" class="btn btn-primary m-2 ">
                     Sessions List
                   </a>
                 </div>
@@ -158,8 +151,8 @@ class Admin_Dash extends Component {
                     Click below button for adding new session for the related
                     bus.
                   </p>
-                  <a href="/" class="btn btn-primary m-2 disabled">
-                    Add Bus
+                  <a href="/add-session" class="btn btn-primary m-2">
+                    Add Session
                   </a>
                 </div>
               </div>
