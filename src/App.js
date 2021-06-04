@@ -36,6 +36,7 @@ import Ticket_List from './component/Ticket_List';
 
 import Route_Info from './component/Route_Info';
 
+import Route_Update from './component/Route_Update';
 import Show_Route from './component/Show_Route';
 import Footer from "./component/Footer";
 
@@ -163,7 +164,7 @@ render(){
             <Find_Bus />
           </Route>
 
-          <Route path="/test">
+          <Route path="/test-case"component={Test_case}>
           <Test_case />
           </Route>
           
@@ -240,6 +241,10 @@ render(){
           <Route_Info />
           </Route>
 
+ 
+          <Route path="/route-update" >
+          <Route_Update />
+          </Route>
 
           <Route path="/show-route" >
           <Show_Route />

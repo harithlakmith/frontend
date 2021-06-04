@@ -27,6 +27,14 @@ componentDidMount(){
 render(){
   const { routes } = this.state
 
+  
+  const {text,text1} = this.state;
+
+  var React = require('react');
+var QRCode = require('qrcode.react');
+
+
+
   const routeList = routes.length ? (
     routes.map(route => {
       return(
@@ -61,6 +69,9 @@ render(){
         <div class="mt-5 p-5">
           <h2 class="card-title card-header px-3 headgd  text-light">
             Routes Information List
+            <br></br>
+            
+<QRCode value="https://github.com/harithlakmith/frontend/" />
           </h2>
           <br></br>
           <div class="row">
