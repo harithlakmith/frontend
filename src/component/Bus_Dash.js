@@ -87,7 +87,32 @@ componentDidMount(){
     var s = '/select-route?s='+MaxSeats;
 
     const seslist = MySession.length ? (
-      MySession.map(ses=> {      var t = "/ticket-session?sid="+ ses.SId;
+      MySession.map(ses=> { 
+        console.clear();   
+        const dte = new Date(ses.Date);
+        const date = Moment(dte.toLocaleString()).format('YYYY-MM-DD');
+        const today = Moment(Date().toLocaleString()).format('YYYY-MM-DD');
+
+        let session = "";
+               
+                if (+today == +date){
+                    session = <div class="card bg-light text-dark ">
+                    <div class="card-body ">
+                      
+                      {this.state.seslist}
+                      </div>
+                      </div>
+                   
+                    
+                }
+                else {
+                    
+                    session = <span class="badge bg-success">No session availble at today</span>
+                   
+                    
+                }
+        
+        var t = "/ticket-session?sid="+ ses.SId;
                             return(   <div class="card alert-info text-info p-3 m-3">
                                         <h3 class="">{ses.RNum}&nbsp;&nbsp;{ses.Start} - {ses.Stop}</h3>
                                           <div class="row">
@@ -182,12 +207,20 @@ componentDidMount(){
                   <u>My Sessions </u>
                 </h3>
                 <hr />
-                {seslist}
+                <div class="card bg-light text-dark ">
+    <div class="card-body ">
+      
+      {this.state.session}
+      </div>
 
-                
-              <a href={'/session-list'} class="btn btn-primary btn-lg center">
+      
+      </div>
+      <br></br>
+
+      <a href={'/session-list'} class="btn btn-primary btn-lg center">
                     More
-                  </a>
+                  </a>    
+           
               </div>
 
             </div>

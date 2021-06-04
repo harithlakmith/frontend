@@ -35,7 +35,7 @@ import Ticket_List from './component/Ticket_List';
 //import Test_case1 from './component/Test_case/Test_case1';
 
 import Route_Info from './component/Route_Info';
-import Route_Info_Update from './component/Route_Info_Update';
+
 import Show_Route from './component/Show_Route';
 import Footer from "./component/Footer";
 
@@ -240,9 +240,6 @@ render(){
           <Route_Info />
           </Route>
 
-          <Route path="/route-info-update" >
-          <Route_Info_Update />
-          </Route>
 
           <Route path="/show-route" >
           <Show_Route />

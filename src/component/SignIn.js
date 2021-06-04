@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Redirect, withRouter} from 'react-router-dom';
 import AuthService from "./../services/auth.service";
 
-class Test_case extends Component{
+class Signin extends Component{
 
     constructor(props) {
         super(props);
@@ -174,4 +174,4 @@ return (
   }
   }
   
-  export default withRouter(Test_case);
+  export default withRouter( Signin);

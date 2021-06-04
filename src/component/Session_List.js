@@ -94,7 +94,7 @@ class Session_List extends Component {
                                                      <div class="col-lg-7">
                                                        <h5>On: {Moment(ses.Date).format('YYYY-MM-DD')}</h5>
                                                        <h5>At: {Moment(ses.StartTime).format('LT')}</h5>
-                                                       <h5>Session: {session}</h5>
+                                                       <h4>Session: {session}</h4>
                                                      </div>
                                                      <div class="col-lg-4 text-right">
                                                        <a href={t} class="btn btn-info">Tickets</a>
