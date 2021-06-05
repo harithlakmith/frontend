@@ -156,15 +156,16 @@ class Book_Now extends Component {
 
          const obj = {  
            SId:parseInt(this.state.sid),  
-           From:parseInt(this.fromHoltId),  
+           From:this.state.fromHoltId,  
            FromHalt:this.state.fromHolt,  
-           To: parseInt(this.toHoltId),  
+           To: this.state.toHoltId,  
            ToHalt :this.state.toHolt, 
            PId:1,
            NoOfSeats:parseInt(this.state.seats),
            PStatus:0,
            Price:parseInt(this.state.totalTicket),
-           Date:Moment(Date().toLocaleString()).format('YYYY-MM-DD')
+           Date:Moment(Date().toLocaleString()).format(),
+           UserId:this.state.userInfo.Id.toLocaleString()
        
          };  
          axios.post(window.$API_SERVER +'Ticket', obj)  
@@ -177,7 +178,7 @@ class Book_Now extends Component {
                               ); 
               
           
-      }  
+         }  
 
        paymentOpen = async (event) => {
 
@@ -253,7 +254,7 @@ render(){
       <br></br>
       <div class="box">
         <h1>
-          <u>TICKETS RESERVATION SOLUTION</u>
+         
         </h1>
         <br></br>
         <form>
