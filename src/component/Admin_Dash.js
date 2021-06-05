@@ -8,13 +8,13 @@ class Admin_Dash extends Component {
       return <Redirect to={"/sign-in"} />;
     }
     return (
-      <div class="container p-1">
-        <div class="mt-5">
+      <div class="container p-5  mb-4">
+        <div class="mt-3 ">
           <br></br>
           <br></br>
           <br></br>
           <div class="row">
-            <div class="col-lg-6 h1  mb-4 ">
+            <div class="col-lg-6 h1  mb-4 text-dark ">
               <u>
                 <i class="fas fa-user-cog"></i>&nbsp;Admin Dashboard
               </u>
@@ -23,7 +23,9 @@ class Admin_Dash extends Component {
           <br></br>
 
           <div class="row">
-            <div class="col-lg-8 h2 mb-4 ">Settings - Routes&nbsp;&nbsp;</div>
+            <div class="col-lg-8 h2 mb-4 text-dark ">
+              Settings - Routes&nbsp;&nbsp;
+            </div>
           </div>
 
           <div class="row">
@@ -79,7 +81,7 @@ class Admin_Dash extends Component {
           </div>
           <hr></hr>
           <div class="row">
-            <div class="col-lg-8 h2 mb-4">Settings - Buses&nbsp;</div>
+            <div class="col-lg-8 h2 mb-4 text-dark">Settings - Buses&nbsp;</div>
           </div>
 
           <div class="row">
@@ -118,7 +120,7 @@ class Admin_Dash extends Component {
           </div>
           <hr></hr>
           <div class="row">
-            <div class="col-lg-8 h2 mb-2">Settings - Session</div>
+            <div class="col-lg-8 h2 mb-2 text-dark">Settings - Session</div>
           </div>
           <br></br>
           <div class="row">

@@ -127,8 +127,7 @@ class Update_Bus extends React.Component {
           </h1>
           <br></br>
           <div class="card-deck ">
-            <div class="card bg-light text-dark p-3  ">
-              <br></br>
+            <div class="card bg-light text-dark p-3 border-dark  ">
               <div class="card-body mt-3 ">
                 <form>
                   <div class="form-inline">
@@ -191,7 +190,7 @@ class Update_Bus extends React.Component {
                 </form>
               </div>
             </div>
-            <div class="card bg-light text-dark w-50 p-3 ">
+            <div class="card bg-light text-dark w-50 p-3 border-dark ">
               <div class="card-body ">
                 <div class="form-inline">
                   <p class="col-lg-4 col-form-label; h5">Number of Seats</p>

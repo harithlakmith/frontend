@@ -32,7 +32,7 @@ import Session_Ticket from "./component/Session_Ticket";
 import Add_Session from "./component/Add_Session";
 import Ticket_List from "./component/Ticket_List";
 import Session_List from "./component/Session_List";
-import Testing from "./component/Testing";
+
 //import Test_case1 from './component/Test_case/Test_case1';
 
 import Route_Info from "./component/Route_Info";
@@ -273,10 +273,6 @@ class App extends Component {
 
             <Route path="/session-list" component={Session_List}>
               <Session_List />
-            </Route>
-
-            <Route path="/testing" component={Testing}>
-              <Testing />
             </Route>
 
             <Route path="/ticket">

@@ -147,19 +147,19 @@ class Add_Route extends React.Component {
     return (
       <div>
         <div class=" container  p-5 mt-5 ">
-          <div class="card headgd   p-3 mt-5">
+          <div class="card    p-3 mt-5">
             <div class="card-body   ">
-              <h1 class="card-title text-light ">
+              <h1 class="card-title text-dark ">
                 <u>Add New Route</u>
               </h1>
-              <h5 class=" text-light ">
+              <h5 class=" text-dark ">
                 Please fill in this form to create bus routes!
               </h5>
               <br></br>
               <br></br>
 
               <div class="card-deck ">
-                <div class="card bg-light   ">
+                <div class="card bg-light border-dark   ">
                   <div class="card-body mt-2 ">
                     <form>
                       <div class="form-inline ">
@@ -244,7 +244,7 @@ class Add_Route extends React.Component {
                   </div>
                 </div>
 
-                <div class="card bg-light text-dark w-50 border-light ">
+                <div class="card bg-light text-dark w-50 border-dark ">
                   <br></br>
                   <br></br>
 
@@ -306,7 +306,7 @@ class Add_Route extends React.Component {
               </div>
 
               {flag ? (
-                <div class="card bg-light   ">
+                <div class="card bg-light border-dark   ">
                   <div class="row">
                     <div class="col-lg-12">
                       <table class="table table-hover">

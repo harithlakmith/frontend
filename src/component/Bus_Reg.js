@@ -55,15 +55,15 @@ class Bus_Reg extends React.Component {
     }
     return (
       <div class=" container  p-5 mt-5 ">
-        <div class="card headgd   p-3 mt-5">
+        <div class="card   p-3 mt-5">
           <div class="card-body   ">
-            <h1 class="card-title text-light ">
+            <h1 class="card-title text-dark ">
               <u>Bus Registration Form</u>&nbsp;&nbsp;{" "}
               <i class="fas fa-bus"></i>
             </h1>
             <br></br>
             <div class="card-deck ">
-              <div class="card bg-light   ">
+              <div class="card bg-light border-dark   ">
                 <div class="card-header h5">
                   <i class="fas fa-bus-alt"></i> &nbsp;&nbsp;Bus Details
                 </div>
@@ -148,7 +148,7 @@ class Bus_Reg extends React.Component {
                 </div>
               </div>
 
-              <div class="card bg-light text-dark w-50 border-light ">
+              <div class="card bg-light text-dark w-50 border-dark ">
                 <div class="card bg-light text-dark  ">
                   <div class="card-header h5">
                     <i class="fas fa-user"></i> &nbsp;&nbsp;Driver
