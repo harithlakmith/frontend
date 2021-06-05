@@ -135,7 +135,7 @@ class Bus_List extends Component {
 
     return (
       <div class=" container p-5  ">
-        <div class="card  mt-5">
+        <div class="card border headgd border-primary rounded mb-3 mt-5">
           <div class="card-body ">
             <div class="row justify-content-center">
               <div class="col-lg-12">

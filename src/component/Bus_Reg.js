@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 //import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import axios from "axios";
-import {Redirect, withRouter} from 'react-router-dom';
+import { Redirect, withRouter } from "react-router-dom";
 import authHeader from "./../services/auth-header";
 
 class Bus_Reg extends React.Component {
@@ -29,17 +29,21 @@ class Bus_Reg extends React.Component {
 
   BusReg = () => {
     axios
-      .post(window.$API_SERVER +"api/Accounts/BusControllerRegister", {
-        BusNo: this.state.busNo,
-        DriverName: this.state.dName,
-        DriverNo: parseInt(this.state.dNo),
-        CondName: this.state.cName,
-        CondNo: parseInt(this.state.cNo),
-        MaxSeats: parseInt(this.state.seatNo),
-        Email: this.state.email,
-        Password: this.state.password,
-        ConfirmPassword: this.state.password,
-      },{ headers: authHeader() })
+      .post(
+        window.$API_SERVER + "api/Accounts/BusControllerRegister",
+        {
+          BusNo: this.state.busNo,
+          DriverName: this.state.dName,
+          DriverNo: parseInt(this.state.dNo),
+          CondName: this.state.cName,
+          CondNo: parseInt(this.state.cNo),
+          MaxSeats: parseInt(this.state.seatNo),
+          Email: this.state.email,
+          Password: this.state.password,
+          ConfirmPassword: this.state.password,
+        },
+        { headers: authHeader() }
+      )
       .then((json) => {
         console.log(json.data);
       });
@@ -50,10 +54,10 @@ class Bus_Reg extends React.Component {
       return <Redirect to={"/sign-in"} />;
     }
     return (
-      <div class=" container p-5 mt-5 ">
-        <div class="card bg-light  p-3 mt-5">
+      <div class=" container  p-5 mt-5 ">
+        <div class="card headgd   p-3 mt-5">
           <div class="card-body   ">
-            <h1 class="card-title ">
+            <h1 class="card-title text-light ">
               <u>Bus Registration Form</u>&nbsp;&nbsp;{" "}
               <i class="fas fa-bus"></i>
             </h1>
