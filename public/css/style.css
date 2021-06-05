@@ -59,6 +59,22 @@ File: Main scss file
   background-image: url('../images/gf.gif');
   
 }
+
+.wave-img0{
+  background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+  background-image: url('../bg-3.png');
+  
+}
+.wave-img1{
+  background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+  background-image: url('../bg-2.png');
+  
+}
+
 .welcomebox{
   
   background-color:rgba(214,214,214,0.5) ;
