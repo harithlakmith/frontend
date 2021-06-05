@@ -58,7 +58,7 @@ componentDidMount(){
                        </tr>
                        );
             })):(
-                <div className="center">No tickets availabe</div>
+                <div class="center col-12 col-lg-12">No tickets availabe</div>
             )
   
         return (  
@@ -73,19 +73,19 @@ componentDidMount(){
                 </h2>
                 <br></br>
                 <div class="row">
-                    <div class="col">
+                    <div class="col-12">
                     <table class="table table-striped table-hover table-bordered">
                         <thead>
                             <tr class="headgd text-white">
-                                <th scope="col-lg-4">Ticket Id</th>
-                                <th scope="col-lg-4">Session Id</th>
-                                <th scope="col-lg-4">From</th>
-                                <th scope="col-lg-4">To</th>
-                                <th scope="col-lg-4">Passenger Id</th>
-                                <th scope="col-lg-4">No of Seats</th>
+                                <th scope="col-lg-4 col-4 col-sm-4">Ticket Id</th>
+                                <th scope="col-lg-4 col-4 col-sm-4">Session Id</th>
+                                <th scope="col-lg-4 col-4 col-sm-4">From</th>
+                                <th scope="col-lg-4 col-4 col-sm-4">To</th>
+                                <th scope="col-lg-4 col-4 col-sm-4">Passenger Id</th>
+                                <th scope="col-lg-4 col-4 col-sm-4">No of Seats</th>
                                
-                                <th scope="col-lg-4">Date</th>
-                                <th scope="col-lg-4">Price</th>
+                                <th scope="col-lg-4 col-4 col-sm-4">Date</th>
+                                <th scope="col-lg-4 col-4 col-sm-4">Price</th>
                             </tr>
                         </thead>
                         <tbody>

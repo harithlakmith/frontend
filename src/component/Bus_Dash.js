@@ -112,49 +112,49 @@ componentDidMount(){
                 <div class="card-body ">
               
                     <div class="form-group row">
-                      <div class="col-lg-4  ">
+                      <div class="col-lg-4 col-6 ">
                         <label>Mybus</label>
                       </div>
-                      <div class="col-lg-5">{BusNo}</div>
+                      <div class="col-lg-5 col-6">{BusNo}</div>
                     </div>
                     <div class="form-group row">
-                      <div class="col-lg-4  ">
+                      <div class="col-lg-4 col-6 ">
                         <label>Email</label>
                       </div>
   
-                      <div class="col-lg-5">{Email}</div>
+                      <div class="col-lg-5 col-6">{Email}</div>
                     </div>
                     <div class="form-group row">
-                      <div class="col-lg-4 ">
+                      <div class="col-lg-4 col-6">
                         <label>Seats</label>
                       </div>
-                      <div class="col-lg-5">{MaxSeats}</div>
+                      <div class="col-lg-5 col-6">{MaxSeats}</div>
                     </div>
   
                     <div class="form-group row">
-                      <div class="col-lg-4 ">
+                      <div class="col-lg-4 col-6">
                         <label>Driver Number</label>
                       </div>
-                      <div class="col-lg-5">{DriverNo}</div>
+                      <div class="col-lg-5 col-6">{DriverNo}</div>
                     </div>
                     <div class="form-group row">
-                      <div class="col-lg-4  ">
+                      <div class="col-lg-4 col-6 ">
                         <label>Driver Name</label>
                       </div>
-                      <div class="col-lg-5">{DriverName}</div>
+                      <div class="col-lg-5 col-6">{DriverName}</div>
                     </div>
                     <div class="form-group row">
-                      <div class="col-lg-4  ">
+                      <div class="col-lg-4 col-6 ">
                         <label>Conducter Number</label>
                       </div>
   
-                      <div class="col-lg-5">{CondNo}</div>
+                      <div class="col-lg-5 col-6">{CondNo}</div>
                     </div>
                     <div class="form-group row">
-                      <div class="col-lg-4  ">
+                      <div class="col-lg-4 col-6  ">
                         <label>Conducter Name</label>
                       </div>
-                      <div class="col-lg-5">{CondName}</div>
+                      <div class="col-lg-5 col-6">{CondName}</div>
                     </div>
                   
                   <br></br>
