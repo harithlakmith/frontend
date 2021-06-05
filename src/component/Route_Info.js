@@ -1,3 +1,4 @@
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { Component } from "react";
 import axios from "axios";
@@ -37,7 +38,10 @@ render(){
           <td>{route.Time}</td>
           <td>{route.Distance}</td>
           <td>{route.Price}</td>
-    
+          <td>  <a href={'/route-info-update?RId='+route.RId+'&HoltId='+route.HoltId+'&HoltName='+route.HoltName+'&Time='+route.Time+'&Distance='+route.Distance+'&Price='+route.Price+' '} class="btn btn-primary btn-s">
+                    Edit
+                  </a>
+          </td>
           </tr>
       )
     })
@@ -46,25 +50,29 @@ render(){
   );
 
   return (
-    <div>
-      <div class="container p-1">
-      <br></br><br></br>
-        <div class="mt-5">
-          <h1>
-            <u>Route Information </u>
-          </h1>
+    <div class="">
+      
+        
+		<div class="card" >
+    <div class="card-body">
+      
+      
+        <div class="mt-5 p-5">
+          <h2 class="card-title card-header px-3 headgd  text-light">
+            Route Information 
+          </h2>
           <br></br>
           <div class="row">
             <div class="col-lg">
-              <table class="table table-hover table-info table-bordered">
+              <table class="table table-striped table-hover table-bordered">
                 <thead>
-                  <tr class="bg-info">
+                  <tr class="headgd text-white">
                     <th scope="col-lg-3">Holt Id</th>
                     <th scope="col-lg-3">Holt Name</th>
                     <th scope="col-lg-3">Full Time</th>
                     <th scope="col-lg-3">Full Distance</th>
                     <th scope="col-lg-3">Price</th> 
-                   
+                    <th scope="col-lg-3 "></th> 
                   </tr>
                 </thead>
                 <tbody>
@@ -74,12 +82,15 @@ render(){
             </div>
             
           </div>
-          
-        </div>
+          </div>
       </div>
+        </div>
+  
     </div>
   );
 }
 }
 
 export default withRouter(Route_Info);
+
+

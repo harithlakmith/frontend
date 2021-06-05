@@ -66,14 +66,16 @@ import axios from 'axios';
 	render() {
 	  return (
 	
+		<div class="card" >
+  <div class="card-body">
 		<div class="row justify-content-center">
 		<div class="col-10 col-lg-6 mt-5 ">
 		   <div  class=" mt-5 p-3 ">
 			  <div class="">
-			<h1 class="p-3 text-center card-title">
-			  <u>Passenger Registration Form</u>
-			</h1>
-	
+			<h2 class="card-title card-header px-3 headgd text-center text-light ">
+			  Passenger Registration Form
+			</h2>
+	<br></br>
 		<div class="Pass_Reg_Form">
 		  <form>
 			
@@ -181,7 +183,8 @@ import axios from 'axios';
 		</div>
 		</div>
 		</div>
-		
+		</div>
+		</div>
 	  );
 	  }
    

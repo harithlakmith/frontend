@@ -31,11 +31,13 @@ import Show_Bus from './component/Show_Bus';
 //import checkout from './component/checkout';
 import Ticket from './component/Ticket';
 import Session_Ticket from './component/Session_Ticket';
-
+import Session_List from './component/Session_List';
 import Ticket_List from './component/Ticket_List';
 //import Test_case1 from './component/Test_case/Test_case1';
 
 import Route_Info from './component/Route_Info';
+
+import Route_Update from './component/Route_Update';
 import Show_Route from './component/Show_Route';
 import Footer from "./component/Footer";
 import Route_Update from "./component/Route_Update";
@@ -166,7 +168,7 @@ render(){
           </Route>
          
 
-          <Route path="/test">
+          <Route path="/test-case"component={Test_case}>
           <Test_case />
           </Route>
           
@@ -193,6 +195,10 @@ render(){
 
           <Route path="/session-pass" component={Session_Pass}>
           <Session_Pass />
+          </Route>
+
+          <Route path="/session-list" component={Session_List}>
+          <Session_List />
           </Route>
 
           <Route path="/update-bus" component={Update_Bus}>
@@ -245,6 +251,11 @@ render(){
           
           <Route path="/route-info" >
           <Route_Info />
+          </Route>
+
+ 
+          <Route path="/route-update" >
+          <Route_Update />
           </Route>
 
           <Route path="/show-route" >

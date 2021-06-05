@@ -50,7 +50,7 @@ class Route_Update extends React.Component {
 
     var value = new URLSearchParams(this.props.location.search);
     var RId = value.get('RId');
-    //var RId = 1;
+
 
     axios
       .get(window.$API_SERVER +"Route/" +RId , { headers: authHeader() })
@@ -176,4 +176,6 @@ class Route_Update extends React.Component {
   }
 }
 
+
 export default withRouter (Route_Update);
+
