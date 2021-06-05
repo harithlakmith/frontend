@@ -1,3 +1,4 @@
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import axios from "axios";
@@ -49,6 +50,7 @@ class Route_Update extends React.Component {
 
     var value = new URLSearchParams(this.props.location.search);
     var RId = value.get('RId');
+
 
     axios
       .get(window.$API_SERVER +"Route/" +RId , { headers: authHeader() })
@@ -174,4 +176,6 @@ class Route_Update extends React.Component {
   }
 }
 
+
 export default withRouter (Route_Update);
+
