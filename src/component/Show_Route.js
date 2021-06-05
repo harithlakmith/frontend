@@ -1,3 +1,4 @@
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { Component } from "react";
 import axios from "axios";
@@ -26,6 +27,14 @@ componentDidMount(){
 render(){
   const { routes } = this.state
 
+  
+  const {text,text1} = this.state;
+
+  var React = require('react');
+var QRCode = require('qrcode.react');
+
+
+
   const routeList = routes.length ? (
     routes.map(route => {
       return(
@@ -40,6 +49,10 @@ render(){
                     Route Info
                   </a>
           </td>
+          <td>  <a href={'/route-update?RId='+route.RId} class="btn btn-primary btn-sm center">
+                    Edit
+                  </a>
+          </td>
           </tr>
       )
     })
@@ -49,24 +62,30 @@ render(){
 
   return (
     <div>
-      <div class="container p-1">
-      <br></br><br></br>
-        <div class="mt-5">
-          <h1>
-            <u>Routes Information List</u>
-          </h1>
+     		<div class="card" >
+    <div class="card-body">
+      
+      
+        <div class="mt-5 p-5">
+          <h2 class="card-title card-header px-3 headgd  text-light">
+            Routes Information List
+            <br></br>
+            
+<QRCode value="https://github.com/harithlakmith/frontend/" />
+          </h2>
           <br></br>
           <div class="row">
             <div class="col-lg">
-              <table class="table table-hover table-info table-bordered">
+              <table class="table table-striped table-hover table-bordered">
                 <thead>
-                  <tr class="bg-info">
+                  <tr class="headgd text-white">
                   <th scope="col-lg-3">Route Id</th>
                     <th scope="col-lg-3">Route No</th>
                     <th scope="col-lg-3">Start At</th>
                     <th scope="col-lg-3">Stop At</th>
                     <th scope="col-lg-3">Full Distance</th>
                     <th scope="col-lg-3">Full Time</th> 
+                    <th scope="col-lg-3"></th> 
                     <th scope="col-lg-3"></th> 
                   </tr>
                 </thead>
@@ -80,9 +99,13 @@ render(){
           
         </div>
       </div>
+      
+    </div>
     </div>
   );
 }
 }
 
 export default withRouter(Show_Route);
+
+

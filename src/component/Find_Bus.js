@@ -109,6 +109,9 @@ import Moment from "moment";
         }
 
         const today = Moment(Date().toLocaleString()).format('YYYY-MM-DD');
+        
+      
+       
         const {text,text1} = this.state;
         
 
@@ -149,7 +152,7 @@ import Moment from "moment";
                             </div>
                             <br></br>
                             <div class="form-group">
-                                <input name="date" type="date" class="form-control" id="inputCheckOut" placeholder="Date ..." min="today"/>
+                                <input name="date" type="date" class="form-control" id="inputCheckOut" placeholder="Date ..." min={today} />
                                 
                             </div>
                             <div class="form-group tm-form-element tm-form-element-2">
