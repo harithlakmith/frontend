@@ -12,7 +12,7 @@ class Test_case extends React.Component {
     this.state = {
       RNum: "",
       startAt: "",
-      startHoltId: 0,
+      startHoltId: 0, 
       stopAt: "",
       stopHoltId: 0,
       fullTime: 0,

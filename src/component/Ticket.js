@@ -21,6 +21,8 @@ class Ticket extends Component {
         success:undefined,
         msgStatus:[],
         sms:'', 
+        sending:true,
+        isPaylater:false
       };
         this.handleChange = this.handleChange.bind(this);
         this.sendsms = this.sendsms.bind(this);
@@ -39,6 +41,7 @@ class Ticket extends Component {
                 success : value.get('success'),
                 ticket: JSON.parse(localStorage.getItem('ticket')),
                 userInfo:JSON.parse(localStorage.getItem('userInfo')),
+                isPaylater:value.get('isPaylater')
               });
 
           if(value.get('success')=="true"){

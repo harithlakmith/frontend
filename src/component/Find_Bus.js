@@ -293,7 +293,7 @@ import Moment from "moment";
 </section>
 
 
-<section class="">
+<section class="wave-img">
       <div class="container py-5">
       
         <div class="row align-items-center">

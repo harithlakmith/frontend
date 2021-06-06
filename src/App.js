@@ -43,6 +43,8 @@ import Footer from "./component/Footer";
 //import Route_Update from "./component/Route_Update";
 import RouteInfo_Update from "./component/RouteInfo_Update";
 import taskList from './component/Test_case/taskList';
+import QR_Reader from './component/QR_Reader';
+import Manual_Pay from './component/Manual_Pay';
 
 
 
@@ -168,7 +170,15 @@ render(){
           <Route path="/home">
             <Find_Bus />
           </Route>
-         
+          
+    
+          <Route path="/qr-reader">
+            <QR_Reader />
+          </Route>
+
+          <Route path="/manual-pay">
+            <Manual_Pay />
+          </Route>
 
           <Route path="/test-case"component={Test_case}>
           <Test_case />
@@ -239,7 +249,7 @@ render(){
           <RouteInfo_Update />
           </Route>
 
-          <Route path="/ticket" >
+          <Route path="/ticket" component={Ticket}>
           <Ticket />
           </Route>
 
