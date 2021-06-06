@@ -137,9 +137,13 @@ axios.get(window.$API_SERVER +"SearchTicket/" +id,{ headers: authHeader() })
             icon = <MDBIcon far icon="check-circle" />
            
         }
-        else{
+        else if(psts ==0){
             Psts = "Not Paid";
             icon = <MDBIcon icon="exclamation-circle" />
+        }
+        else{
+            Psts = "Pay Later";
+            icon = <MDBIcon icon="genderless" />
         }
          return {
            TicketNo: tick.TId,
@@ -193,7 +197,7 @@ axios.get(window.$API_SERVER +"SearchTicket/" +id,{ headers: authHeader() })
                 <div class="row">
                   <div class="col-lg-12 col-sm-12">
                   
-                  <MDBDataTableV5 responsive hover striped bordered entriesOptions={[5, 10, 15]} entries={10} info={false} data={data} pagingTop searchTop searchBottom={false} />
+                  <MDBDataTableV5 responsive hover striped bordered entriesOptions={[5, 10, 15]} entries={10} data={data} pagingTop searchTop searchBottom={false} />
  
                   </div>
                 </div>
