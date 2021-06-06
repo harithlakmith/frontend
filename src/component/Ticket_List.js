@@ -31,26 +31,14 @@ import Moment from "moment";
 
 componentDidMount(){
   var Pass = JSON.parse(localStorage.getItem('userInfo'));
-  var PEmail = Pass.Email; 
+  //var PEmail = Pass.Email; 
+  var id = Pass.Id
   this.setState({
     nic:Pass.NIC,
     mail:Pass.Email
   })
  
-  axios.get(window.$API_SERVER +'Passenger/'+ PEmail,{ headers: authHeader() })  
-      .then(res => {  
-        this.setState({
-          pid: res.data[0].PId
-          
-        });
-        this.getTicket();
-      })  
-}
-
-getTicket(){
-  
-    var id = this.state.pid
-    axios.get(window.$API_SERVER +"Ticket/" +id,{ headers: authHeader() })
+  axios.get(window.$API_SERVER +"Ticket/" +id,{ headers: authHeader() })
         .then(res=>{
             this.setState({
                 Ticket:res.data
@@ -59,6 +47,8 @@ getTicket(){
             });
         })
 }
+
+
     render() {
 
         var NIC = this.state.nic;
@@ -117,58 +107,58 @@ getTicket(){
             <div class="container p-1">
                 <br></br>
                 <br></br>
-            <div class="mt-5">
-                <h1>
-                    <u>Ticket List</u>  <i class="far fa-list-alt"></i>
-                </h1>
-                <br></br>
-                <div class="form-group ">
-                  <div class="row ">
-                    <div class="col text-left">
-                    <i class="far fa-id-badge"></i> <label>NIC : </label>
-                      {NIC}
+                <div class="mt-5">
+                    <h1>
+                        <u>Ticket List</u>  <i class="far fa-list-alt"></i>
+                    </h1>
+                    <br></br>
+                    <div class="form-group ">
+                        <div class="row ">
+                            <div class="col text-left">
+                                <i class="far fa-id-badge"></i> <label>NIC : </label>
+                                {NIC}
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                </div>
-                <div class="form-group ">
-                  <div class="row ">
-                    <div class="col text-left">
-                    <i class="far fa-envelope-open"></i> <label>Email : </label>
-                      {email}
+                    <div class="form-group ">
+                        <div class="row ">
+                            <div class="col text-left">
+                                <i class="far fa-envelope-open"></i> <label>Email : </label>
+                                {email}
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                </div>
-                <div class="row">
-                <div class="col-12 col-lg-9 col-sm-12">
-                    <div class="text-center">
-                    <table class="table table-hover table-striped  table-bordered text-left">
-                        <thead class="table-dark">
-                            <tr class="headgd">
-                                <th scope="col-lg-4">Ticket Id</th>
-                                <th scope="col-lg-4">From</th>
-                                <th scope="col-lg-4">To</th>
-                                <th scope="col-lg-4">Payment Status</th>
-                                <th scope="col-lg-4">No of Seats</th>
-                                <th scope="col-lg-4">Date</th>
-                                <th scope="col-lg-4">Price</th>
-                                <th scope="col-lg-4"><i class="fas fa-ticket-alt"></i> Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {ticlist}
-                        </tbody>
-                    </table>
-                </div>
-                
-                </div>
-                <div class="col-lg-3 col-sm-12">
-                  
-                      <img class= "img-fluid" src="images/tickets.png" alt="ticket" />
+                    <div class="row">
+                        <div class="col-12 col-lg-9 col-sm-12 col-md-12">
                    
-                </div>
+                            <table class="table table-hover table-striped  table-bordered text-left">
+                                <thead class="table-dark">
+                                    <tr class="headgd">
+                                        <th scope="col-lg-1 col-sm-1">Ticket Id</th>
+                                        <th scope="col-lg-1 col-sm-2">From</th>
+                                        <th scope="col-lg-1 col-sm-2">To</th>
+                                        <th scope="col-lg-1 col-sm-2">Payment Status</th>
+                                        <th scope="col-lg-1 col-sm-1">No of Seats</th>
+                                        <th scope="col-lg-2 col-sm-2">Date</th>
+                                        <th scope="col-lg-1 col-sm-1">Price</th>
+                                        <th scope="col-lg-1 col-sm-1"><i class="fas fa-ticket-alt"></i> Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {ticlist}
+                                </tbody>
+                            </table>
+             
+                
+                        </div>
+                        <div class="col-lg-3 col-sm-6 col-md-6">
+                  
+                            <img class= "img-fluid" src="images/tickets.png" alt="ticket" />
+                   
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
         
          );
     }
