@@ -32,7 +32,8 @@ import Session_Ticket from "./component/Session_Ticket";
 import Add_Session from "./component/Add_Session";
 import Ticket_List from "./component/Ticket_List";
 import Session_List from "./component/Session_List";
-
+import QR_Reader from "./component/QR_Reader";
+import Manual_Pay from "./component/Manual_Pay";
 //import Test_case1 from './component/Test_case/Test_case1';
 
 import Route_Info from "./component/Route_Info";
@@ -273,6 +274,14 @@ class App extends Component {
 
             <Route path="/session-list" component={Session_List}>
               <Session_List />
+            </Route>
+
+            <Route path="/qr-reader" component={QR_Reader}>
+              <QR_Reader />
+            </Route>
+
+            <Route path="/manual-pay" component={Manual_Pay}>
+              <Manual_Pay />
             </Route>
 
             <Route path="/ticket">

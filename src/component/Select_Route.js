@@ -77,10 +77,10 @@ class Select_Route extends Component {
 
     return (
       <div>
-        <div class="container mt-5 p-1">
-          <div class="mt-5">
+        <div class="container p-3 mt-5">
+          <div class="card   p-4 mt-5">
             <h1 class="card-title text-dark">
-              <u>Add Session</u>
+              <i class="fas fa-bus"></i>&nbsp;&nbsp;<u>Add Session</u>
             </h1>
 
             <h5>Please fill in this form to reserve your sessions!</h5>

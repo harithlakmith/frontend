@@ -8,16 +8,14 @@ class Admin_Dash extends Component {
       return <Redirect to={"/sign-in"} />;
     }
     return (
-      <div class="container p-5  mb-4">
+      <div class="container p-3 mt-3  mb-4">
         <div class="mt-3 ">
           <br></br>
           <br></br>
           <br></br>
           <div class="row">
             <div class="col-lg-6 h1  mb-4 text-dark ">
-              <u>
-                <i class="fas fa-user-cog"></i>&nbsp;Admin Dashboard
-              </u>
+              <i class="fas fa-user-cog"></i>&nbsp;&nbsp;<u>Admin Dashboard</u>
             </div>
           </div>
           <br></br>

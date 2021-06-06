@@ -54,12 +54,11 @@ class Bus_Reg extends React.Component {
       return <Redirect to={"/sign-in"} />;
     }
     return (
-      <div class=" container  p-5 mt-5 ">
-        <div class="card   p-3 mt-5">
+      <div class=" container  p-3 mt-5 ">
+        <div class="card   p-1 mt-5">
           <div class="card-body   ">
             <h1 class="card-title text-dark ">
-              <u>Bus Registration Form</u>&nbsp;&nbsp;{" "}
-              <i class="fas fa-bus"></i>
+              <i class="fas fa-bus"></i>&nbsp;&nbsp;<u>Bus Registration Form</u>{" "}
             </h1>
             <br></br>
             <div class="card-deck ">
@@ -134,18 +133,18 @@ class Bus_Reg extends React.Component {
                       />
                     </div>
                   </div>
+                  <br></br>
+                  <br></br>
+                  <div class="form-inline p-3">
+                    <button
+                      type="button"
+                      onClick={this.BusReg}
+                      class="btn btn-primary btn-lg"
+                    >
+                      REGISTER
+                    </button>
+                  </div>
                 </form>
-                <br></br>
-                <br></br>
-                <div class="col-lg-4 text-dark">
-                  <button
-                    type="button"
-                    onClick={this.BusReg}
-                    class="btn btn-primary btn-lg"
-                  >
-                    REGISTER
-                  </button>
-                </div>
               </div>
 
               <div class="card bg-light text-dark w-50 border-dark ">

@@ -120,80 +120,90 @@ class Bus_Dash extends Component {
     );
 
     return (
-      <div class="card bg-light p-3 mt-5">
-        <div class="card-body mt-5 ">
-          <h1 class="card-title ">
-            <u>Bus Dashboard</u>
-          </h1>
-          <br></br>
-          <hr />
+      <div class=" container p-5  mt-5 ">
+        <div class="card bg-light  mt-1">
+          <div class="card-body mt-1 ">
+            <h1 class="card-title ">
+              <i class="fas fa-bus"></i>&nbsp;&nbsp;<u>Bus Dashboard</u>
+            </h1>
+            <br></br>
+            <hr />
 
-          <div class="card-deck">
-            <div class="card bg-light text-dark p-5">
-              <div class="card-body ">
-                <div class="form-group row">
-                  <div class="col-lg-4 ; h5 ">
-                    <label>Mybus</label>
+            <div class="card-deck">
+              <div class="card bg-light w-40 text-dark border-dark p-2">
+                <div class="card-body ">
+                  <div class="form-group row">
+                    <div class="col-lg-4 ; h5 ">
+                      <label>Mybus</label>
+                    </div>
+                    <div class="col-lg-5; h5">{BusNo}</div>
                   </div>
-                  <div class="col-lg-5; h5">{BusNo}</div>
-                </div>
-                <div class="form-group row">
-                  <div class="col-lg-4 ; h5 ">
-                    <label>Email</label>
-                  </div>
+                  <div class="form-group row">
+                    <div class="col-lg-4 ; h5 ">
+                      <label>Email</label>
+                    </div>
 
-                  <div class="col-lg-5; h5">{Email}</div>
-                </div>
-                <div class="form-group row">
-                  <div class="col-lg-4 ; h5 ">
-                    <label>Seats</label>
+                    <div class="col-lg-5; h5">{Email}</div>
                   </div>
-                  <div class="col-lg-5; h5">{MaxSeats}</div>
-                </div>
-
-                <div class="form-group row">
-                  <div class="col-lg-4 ; h5 ">
-                    <label>Driver Number</label>
-                  </div>
-                  <div class="col-lg-5; h5">{DriverNo}</div>
-                </div>
-                <div class="form-group row">
-                  <div class="col-lg-4 ; h5 ">
-                    <label>Driver Name</label>
-                  </div>
-                  <div class="col-lg-5; h5">{DriverName}</div>
-                </div>
-                <div class="form-group row">
-                  <div class="col-lg-4 ; h5 ">
-                    <label>Conducter Number</label>
+                  <div class="form-group row">
+                    <div class="col-lg-4 ; h5 ">
+                      <label>Seats</label>
+                    </div>
+                    <div class="col-lg-5; h5">{MaxSeats}</div>
                   </div>
 
-                  <div class="col-lg-5; h5">{CondNo}</div>
-                </div>
-                <div class="form-group row">
-                  <div class="col-lg-4 ; h5 ">
-                    <label>Conducter Name</label>
+                  <div class="form-group row">
+                    <div class="col-lg-4 ; h5 ">
+                      <label>Driver Number</label>
+                    </div>
+                    <div class="col-lg-5; h5">{DriverNo}</div>
                   </div>
-                  <div class="col-lg-5; h5">{CondName}</div>
-                </div>
+                  <div class="form-group row">
+                    <div class="col-lg-4 ; h5 ">
+                      <label>Driver Name</label>
+                    </div>
+                    <div class="col-lg-5; h5">{DriverName}</div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-lg-4 ; h5 ">
+                      <label>Conducter Number</label>
+                    </div>
 
-                <br></br>
-                <a href={s} class="btn btn-primary btn-lg">
-                  Add Session
-                </a>
+                    <div class="col-lg-5; h5">{CondNo}</div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-lg-4 ; h5 ">
+                      <label>Conducter Name</label>
+                    </div>
+                    <div class="col-lg-5; h5">{CondName}</div>
+                  </div>
+
+                  <br></br>
+                  <div class="form-group row">
+                    <div class="col-lg-2">&nbsp;</div>
+                    <a href={s} class="btn btn-primary btn-lg">
+                      Add Session
+                    </a>
+
+                    <div class="col-lg-2"></div>
+                    <a href="/qr-reader" class="btn btn-primary btn-lg">
+                      Scan
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="card bg-light text-dark w-60  border-dark ">
+                <div class="card-body">
+                  <h3 class="card-title">
+                    <u>My Sessions </u>
+                  </h3>
+                  <hr />
+                  {seslist}
+                </div>
               </div>
             </div>
-            <div class="card bg-light text-dark">
-              <div class="card-body">
-                <h3 class="card-title">
-                  <u>My Sessions </u>
-                </h3>
-                <hr />
-                {seslist}
-              </div>
-            </div>
+            <hr />
           </div>
-          <hr />
         </div>
       </div>
     );
