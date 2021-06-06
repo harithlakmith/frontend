@@ -57,7 +57,7 @@ class Bus_Reg extends React.Component {
       <div class=" container  p-3 mt-5 ">
         <div class="card   p-1 mt-5">
           <div class="card-body   ">
-            <h1 class="card-title text-dark ">
+            <h1 class="card-title p-3 text-light text-center headgd ">
               <i class="fas fa-bus"></i>&nbsp;&nbsp;<u>Bus Registration Form</u>{" "}
             </h1>
             <br></br>
