@@ -42,6 +42,8 @@ import Show_Route from './component/Show_Route';
 import Footer from "./component/Footer";
 //import Route_Update from "./component/Route_Update";
 import RouteInfo_Update from "./component/RouteInfo_Update";
+import taskList from './component/Test_case/taskList';
+
 
 
 
@@ -262,7 +264,9 @@ render(){
           <Show_Route />
           </Route>
 
-          
+          <Route path="/test3" >
+          <taskList />
+          </Route>
 
           <Route path="/test2" >
           <Session_Tic />

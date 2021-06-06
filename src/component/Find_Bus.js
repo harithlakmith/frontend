@@ -301,8 +301,9 @@ import Moment from "moment";
             <h3 class="text-gradient rgcv text-primary mb-0">Mobile </h3>
             <h3>Very nice subtitle</h3>
             <p class="lead mb-md-5 mb-4">
-              Change the color to match your brand or vision, add your logo, choose the perfect thumbnail, remove the playbar, add controls and more.
-            </p>
+              Don't worry about operating system of your device. Ticketz Support for most familier web browsers.
+              
+                </p>
 
 
 
