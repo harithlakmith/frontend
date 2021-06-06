@@ -30,9 +30,9 @@ render(){
   
   const {text,text1} = this.state;
 
-  var React = require('react');
-var QRCode = require('qrcode.react');
-
+  //var React = require('react');
+//var QRCode = require('qrcode.react');
+//<QRCode value="https://github.com/harithlakmith/frontend/" />
 
 
   const routeList = routes.length ? (
@@ -71,7 +71,7 @@ var QRCode = require('qrcode.react');
             Routes Information List
             <br></br>
             
-<QRCode value="https://github.com/harithlakmith/frontend/" />
+
           </h2>
           <br></br>
           <div class="row">
