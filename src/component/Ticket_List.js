@@ -193,7 +193,7 @@ axios.get(window.$API_SERVER +"SearchTicket/" +id,{ headers: authHeader() })
                 <div class="row">
                   <div class="col-lg-12 col-sm-12">
                   
-                  <MDBDataTableV5 responsive hover striped bordered entriesOptions={[5, 10, 15]} entries={10} info={false} data={data} />
+                  <MDBDataTableV5 responsive hover striped bordered entriesOptions={[5, 10, 15]} entries={10} info={false} data={data} pagingTop searchTop searchBottom={false} />
  
                   </div>
                 </div>
