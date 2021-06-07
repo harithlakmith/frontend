@@ -6,7 +6,7 @@ import {withRouter} from "react-router-dom";
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import authHeader from "../../services/auth-header";
-import { Spinner, Toast } from 'react-bootstrap';
+import {Spinner, Toast } from 'react-bootstrap';
 
 
 class Test_case extends Component {
@@ -25,7 +25,8 @@ class Test_case extends Component {
         msgStatus:[],
         sms:'', 
         sending:true,
-        isPaylater:false
+        isPaylater:false,
+        TickId:''
       };
         this.handleChange = this.handleChange.bind(this);
         this.sendsms = this.sendsms.bind(this);
@@ -41,11 +42,14 @@ class Test_case extends Component {
       componentDidMount() {
           //const value = queryString.parse(this.props.location.search);
           const value = new URLSearchParams(this.props.location.search)
+          var tid = value.get('tid');
+          
           this.setState({
                 success : value.get('success'),
                 ticket: JSON.parse(localStorage.getItem('ticket')),
                 userInfo:JSON.parse(localStorage.getItem('userInfo')),
-                isPaylater:value.get('isPaylater')
+                isPaylater:value.get('isPaylater'),
+                TickId:tid
               });
 
 
@@ -112,31 +116,7 @@ class Test_case extends Component {
       }
     
      
-      generatePDF(){
-        html2canvas(document.getElementById('capture')).then(function(canvas){
-         var imgdata = canvas.toDataURL('image/png')
-        var doc = new jsPDF('p','px','a4')
-
-        //const imgWidth = 160 ;
-        //const imgHeight = 60 ;
-
-        var pageWidth = doc.internal.pageSize.getWidth();
-        var pageHeight = doc.internal.pageSize.getHeight();
-
-        var widthRatio = pageWidth/canvas.width;
-        var heightRatio = pageHeight/canvas.height;
-        var ratio = widthRatio > heightRatio ? heightRatio : widthRatio;
-
-        var canvasWidth = canvas.width*ratio;
-        var canvasHeight = canvas.height*ratio;
-        
-        var marginX = (pageWidth-canvasWidth)/2;
-        var marginY = (pageHeight-canvasHeight)/2;
-
-        doc.addImage(imgdata,'PNG', 0,0)
-        doc.save("Ticket.pdf")
-        }) 
-   }
+     
 
    printDocument=(e)=> {
     const {success,ticket,userInfo,sms} = this.state;
@@ -144,14 +124,36 @@ class Test_case extends Component {
     const t = this.state.success;
     const doc = new jsPDF();
     let QRimage = document.getElementById('qr');
-    let pay = document.getElementById('pay');
     
-    let y = -60;
+    
+    let y = 10;
 
+doc.rect(5, 5, 200, 50); // up box
+doc.addImage("logo2.png", "PNG", 20, 10, 100, 35);
+
+//doc.setLineWidth(0.8);
+//doc.setDrawColor("#f7ad26");
+//doc.setFillColor("#f9cf81");
+//doc.roundedRect(160, 10, 40, 20, 3 , 3, "S");
+doc.setFontSize(11);
+doc.setFont("courier","bold");
+doc.setTextColor("#000000");
+doc.text("Payment Method:",130, 20,null, null, "left");
+doc.setTextColor("#40d11a");
+doc.text("Online(stripe)",167, 20,null, null, "left");
+doc.setTextColor("#000000");
+doc.text("Payment Status:",130, 25,null, null, "left");
+doc.setTextColor("#40d11a");
+doc.text("Paid",167, 25,null, null, "left");
+
+ 
+doc.setLineWidth(0.5);
+doc.setDrawColor("#000000");
+doc.rect(5, 60, 200, 230); // down box
 doc.setFont("helvetica", "bold");
 doc.setTextColor("#2d0dde");
 doc.setFontSize(28);
-doc.text("Ticketz #" + ticket.tid, 105, y+80, null, null, "center");
+doc.text("-------Ticket #" + ticket.tid + "-------", 105, 80, null, null, "center");
 doc.setTextColor("#000000");
 doc.setFontSize(14);
 doc.setFont("times", "normal");
@@ -165,15 +167,17 @@ doc.setFont("times", "bold");
 doc.text("From - " + ticket.fromHolt, 105, y+130, null, null, "center");
 doc.text("To - " + ticket.toHolt, 105, y+137, null, null, "center");
 doc.setFont("times", "normal");
-doc.setTextColor("#40d11a");
+doc.setTextColor("#2d0dde");
 doc.setFontSize(20);
 doc.text("Bus Reach to " + ticket.fromHolt, 105, y+150, null, null, "center");
 doc.text("@ " + ticket.ArrivedTime, 105, y+160, null, null, "center");
 doc.setTextColor("#40d11a");
 doc.setFontSize(27);
-doc.text("Price : Rs " + ticket.ticketPrice, 105, y+170, null, null, "center");
+doc.setFont("helvetica", "bold");
+doc.text("Price : Rs " + ticket.ticketPrice, 105, y+175, null, null, "center");
+doc.setFont("times", "normal");
 doc.setTextColor("#000000");
-doc.addImage(QRimage, 'png', 80, y+185,null, null, "center");
+doc.addImage(QRimage, 'png', 85, y+185,null, null, "center");
 doc.setTextColor("#40d11a");
 doc.setFontSize(14);
 doc.text("Payment is successfull ! ", 105, y+240, null, null, "center");
@@ -181,10 +185,17 @@ doc.setTextColor("#000000");
 doc.setFontSize(12);
 doc.setLineDash([2.5]);
 doc.line(40, y+250, 180, y+250);
-doc.text("P-id :" + ticket.paymentIntent, 60, y+260, null, null, "left");
-doc.text("C-id :" + userInfo.Id, 60, y+270, null, null, "left");
-doc.text("S-id :" + ticket.sid, 60, y+280, null, null, "left");
-doc.addImage(pay, 'png', 80, y+290,null, null, "center");
+doc.setFillColor("#f7ad26");
+doc.setTextColor("#f7ad26");
+doc.text("P-id : " + ticket.paymentIntent, 70, y+260, null, null, "left");
+doc.text("C-id : " + userInfo.Id, 70, y+266, null, null, "left");
+doc.text("S-id : #" + ticket.sid, 70, y+272, null, null, "left");
+doc.setLineWidth(0.5);
+doc.setLineDash([0]);
+doc.setDrawColor("#f7ad26");
+doc.setFillColor("#f9cf81");
+doc.roundedRect(60, y+255, 100, 20, 3 , 3, "S");
+
 doc.save( "s.pdf");
   }
         
@@ -198,6 +209,7 @@ render(){
 
   var React = require('react');
   var QRCode = require('qrcode.react');
+  const qrvalue = this.state.TickId;
 
 
   var smsshow = "";
@@ -270,7 +282,7 @@ render(){
               <div class="row align-items-end text-center">
                 <div class="col-lg">
                 <button onClick={this.printDocument} >Download Ticket</button>
-                <button onClick={this.generatePDF} >gene</button>
+                
                 </div>
               </div>
 
@@ -301,10 +313,10 @@ render(){
                                   C-Id&nbsp;: {userInfo.Id}<br/>
                                   S-Id&nbsp;: #{ticket.sid}
                               </div>
-                              <Div id="pay" class="alert alert-success h6" role="alert">
+                              <div id="pay" class="alert alert-success h6" role="alert">
                                 Payment is Succesful!
-                              </Div>
-                              <QRCode id="qr" value='hi,hello world' />
+                              </div>
+                              <QRCode id="qr" value={qrvalue} />
                               </div>
                      
 

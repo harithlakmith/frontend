@@ -155,8 +155,10 @@ class Book_Now extends Component {
 
      this.setState({
        loading2 : true,
-       payLaterRedirect:true
+       
      })
+
+ 
 
      const obj = {  
        SId:parseInt(this.state.sid),  
@@ -166,7 +168,7 @@ class Book_Now extends Component {
        ToHalt :this.state.toHolt, 
        PId:1,
        NoOfSeats:parseInt(this.state.seats),
-       PStatus:0,
+       PStatus:2,
        Price:parseInt(this.state.totalTicket),
        Date:Moment(Date().toLocaleString()).format(),
        UserId:this.state.userInfo.Id.toLocaleString()
@@ -174,16 +176,54 @@ class Book_Now extends Component {
      };  
      axios.post(window.$API_SERVER +'Ticket', obj)  
          .then(res => {
+
+
+         
+
+            var pr = parseFloat(this.state.totalTicket) * 100;
+            const ticketarray = {
+              routeStartHolt:this.state.routeStartHolt,
+              routeStopHolt:this.state.routeStopHolt,
+              fromHolt:this.state.fromHolt,
+              toHolt:this.state.toHolt,
+              sesDate:this.state.sesDate,
+              ticketPrice:parseInt(pr)/100,
+              ArrivedTime:this.state.ArrivedTime,
+              routeNo:this.state.routeNo,
+              duration:this.state.duration,
+              sid:this.state.sid,
+              paymentStatus:0,
+              paymentIntent:'',
+              tid:parseInt(res.data.TId),
+              seats:this.state.seats,
+              busNo:this.state.busNo 
+             };
+             
+              localStorage.removeItem('ticket');
+              localStorage.setItem("ticket", JSON.stringify(ticketarray));
+           
+
+
+
+
+           
            this.setState({
-                          ReTId: res.data.TId }); 
-                          
+            postTId: res.data.TId ,
+            payLaterRedirect:true}); 
+                    // this.AddPayment(e); 
+                         
               }).catch(
                           e => console.error(e) 
                           ); 
-          
+
+                         
+            
     // this.props.history.push('/ticket');
+
    
-     }  
+  }  
+
+    
 
    
      
@@ -216,7 +256,7 @@ class Book_Now extends Component {
              .then(res => {
                this.setState({
                               postTId: res.data.TId }); 
-                             // this.paymentOpen(e);
+                            // this.paymentOpen(e);
                   }).catch(
                               e => console.error(e) 
                               ); 
@@ -293,11 +333,11 @@ render(){
   }
   const {loading, loading2 , ReTId}= this.state;
   var no = ReTId;
-  const path ='/ticket?isPaylater=true&success=true&TId='+this.state.ReTId;
+  const path ="/ticket?isPaylater=true&success=true&TId="+this.state.ReTId+" ";
      // this.props.history.push('/ticket?success=true&tid=1');
      if(this.state.payLaterRedirect){
-     return <Redirect to={path} />;
-    }
+     return <Redirect to={'/ticket?isPaylater=true&success=true&TId='+ this.state.postTId} />;}
+    
 
 
      
@@ -396,6 +436,17 @@ render(){
                           </button>
 
                           
+                          <button type="submit" onClick={this.PayLater}
+                        className="btn btn-success btn-lg btn-block" disabled={this.state.limitEx}>
+                         <span>{loading2 ?(
+                           <Spinner animation="border" role="status" size="sm" >
+                           <span className="sr-only">Loading...</span>
+                         </Spinner>
+                         ):(<i class="fas fa-history"></i>)}&nbsp;&nbsp;Pay later&nbsp;&nbsp;</span>
+                            
+                          </button>
+
+                          
 
                         <br/>
                       
@@ -413,15 +464,7 @@ render(){
         
         </form>
        
-        <button type="submit" onClick={this.PayLater}
-                        className="btn btn-success btn-lg btn-block" disabled={this.state.limitEx}>
-                         <span>{loading2 ?(
-                           <Spinner animation="border" role="status" size="sm" >
-                           <span className="sr-only">Loading...</span>
-                         </Spinner>
-                         ):(<i class="fas fa-lock"></i>)}&nbsp;&nbsp;Pay later&nbsp;&nbsp;</span>
-                            
-                          </button>
+        
         
       </div>
 
