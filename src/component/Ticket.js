@@ -117,7 +117,7 @@ class Ticket extends Component {
         var marginX = (pageWidth-canvasWidth)/2;
         var marginY = (pageHeight-canvasHeight)/2;
 
-       doc.addImage(imgdata,'PNG', marginX,marginY, canvasWidth, canvasHeight)
+       doc.addImage(imgdata,'PNG', 0,0, canvasWidth, canvasHeight)
         doc.save("Ticket.pdf")
         })
    }
