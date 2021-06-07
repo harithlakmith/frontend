@@ -66,7 +66,7 @@ UpdatePassword(e) {
     ConfirmPassword: this.state.ConfirmPassword,
   };
   axios
-    .post(window.$API_SERVER +"api/Accounts/PasswordUpdate", obj, {
+    .post(window.$API_SERVER +"Accounts/PasswordUpdate", obj, {
       headers: authHeader(),
     })
     .then((res) => {
@@ -97,7 +97,7 @@ UpdateInfo(e) {
     MaxSeats: parseInt(this.state.Seats),
   };
   axios
-    .post(window.$API_SERVER +"api/Accounts/BusInfoUpdate", obj, {
+    .post(window.$API_SERVER +"Accounts/BusInfoUpdate", obj, {
       headers: authHeader(),
     })
     .then((res) => {
