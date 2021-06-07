@@ -23,7 +23,9 @@ class Manual_Pay extends Component {
       Price: 0,
       Date: "",
       UserId: "",
+      nextPage: false,
     };
+    this.PaymentStatus = this.PaymentStatus.bind(this);
   }
 
   componentDidMount() {
@@ -65,25 +67,32 @@ class Manual_Pay extends Component {
       });
   }
 
-  Update = () => {
+  PaymentStatus = () => {
     axios
       .post(
-        window.$API_SERVER + "/Ticket/update/ ",
+        window.$API_SERVER + "Ticket/PaymentUpdate",
         {
           TId: this.state.TId,
+          PStatus: 1,
         },
         { headers: authHeader() }
       )
-      .then((res) => {
-        this.setState({
-          //postRoute: res.data.RId,
-        });
+      .then((json) => {
+        console.log(json.data);
       });
+
+    this.setState({
+      nextPage: true,
+    });
   };
 
   render() {
     if (JSON.parse(localStorage.getItem("role")) != "BusController") {
       return <Redirect to={"/sign-in"} />;
+    }
+
+    if (this.state.nextPage == true) {
+      return <Redirect to={"/bus-dashboard"} />;
     }
 
     const {
@@ -101,96 +110,69 @@ class Manual_Pay extends Component {
       Date,
       UserId,
     } = this.state;
-
+    var s = "/bus-dashboard";
     return (
-      <div class="container p-1">
+      <div class="container p-3 mt-5">
         <br></br>
-        <div class="box">
-          <h1>
-            <u>TICKETS RESERVATION SOLUTION</u>
-          </h1>
-          <br></br>
-          <form>
-            <div class="card  border  border-light-4 rounded mb-2">
-              <div class="card-header p-3 headgd rounded">
-                <div class="row ">
-                  <div class="col-md-6 ">
-                    <h3 class="text-light">
-                      &nbsp;&nbsp; {FromHalt} - {ToHalt}
-                    </h3>
-                    <p class="card-text">
-                      <span class="text-light">
-                        &nbsp;<i class="fas fa-bus-alt"></i>&nbsp;&nbsp;Bus
-                        Session No <b>{SId}</b>
-                      </span>
-                    </p>
-                  </div>
-                  <div class="col-md-6  ">
-                    <h3 class="text-light">
-                      <i class="fas fa-calendar-day"></i>&nbsp;&nbsp;{" "}
-                      {Moment(Date).format("YYYY-MM-DD")}
-                    </h3>
-                  </div>
+
+        <br></br>
+        <form>
+          <div class="card  border  border-dark-4 rounded mb-2">
+            <div class="card-header p-3 headgd rounded">
+              <div class="col-lg">
+                <h1 class="text-light text-center">
+                  {FromHalt} &nbsp; To &nbsp; {ToHalt}
+                </h1>
+              </div>
+            </div>
+            <div class="card-deck p-3 mt-3">
+              <div class="card bg-light border-dark p-3  ">
+                <div class=" text-left h-50  ">
+                  <h3>
+                    Date &nbsp; :&nbsp; {Moment(Date).format("YYYY-MM-DD")}
+                  </h3>
+                </div>
+                <br></br>
+                <br></br>
+                <div class=" text-left h-50  ">
+                  <h3>Ticket ID &nbsp;:&nbsp; {TId}</h3>
                 </div>
               </div>
-              <div class="card-body">
-                <div class="row pt-3 px-1 px-lg-5">
-                  <div class="col-12 col-lg-8  ">
-                    <div class="row">
-                      <div class="col-12 col-lg-5 align-items-center">
-                        <div class="card">
-                          <img
-                            class="card-img-top"
-                            src="images/mappin.jpg"
-                            alt="Card image cap"
-                          />
-                          <div class="card-body">
-                            <h5 class="card-title ">From: {FromHalt}</h5>
-                            <h5 class="card-title ">To : {ToHalt}</h5>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-12 col-lg-7">
-                        <div class="h-50">
-                          {" "}
-                          <div class="h3 text-left h-25 ">Payment Status</div>
-                          <div class="h2 text-left h-25 ">{PStatus}</div>
-                        </div>
-                        <div class="h-25">
-                          <h3>Ticket ID : {TId} </h3>
-                          <hr></hr>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+              <div class="card bg-light border-dark p-3  ">
+                <div class=" text-left h-50 ">
+                  <h3>Session &nbsp; :&nbsp; {SId}</h3>
+                </div>
+                <br></br>
+                <br></br>
+                <div class="text-left h-50">
+                  <h3>Payment Status &nbsp; :&nbsp; {PStatus}</h3>
+                </div>
+              </div>
 
-                  <div class="col-12 col-lg-4">
-                    <div class="h-50">
-                      {" "}
-                      <div class="h3 text-left h-25 ">Number of Tickets</div>
-                      <div class="h2 text-left h-25 ">{NoOfSeats}</div>
-                    </div>
-                    <div class="h-25">
-                      <h3>TOTAL = Rs {Price}</h3>
-                      <hr></hr>
-
-                      <div class="form-group">
-                        <button
-                          type="submit"
-                          onClick={this.Update}
-                          className="btn btn-primary btn-lg btn-block"
-                        >
-                          Pay
-                        </button>
-                        <br />
-                      </div>
-                    </div>
-                  </div>
+              <div class="card bg-light border-dark p-3  ">
+                <div class=" text-left h-50 ">
+                  <h3>Number of Tickets &nbsp; :&nbsp; {NoOfSeats} </h3>
+                </div>
+                <br></br>
+                <br></br>
+                <div class="h-50">
+                  <h3>TOTAL = Rs {Price}</h3>
                 </div>
               </div>
             </div>
-          </form>
-        </div>
+            <hr></hr>
+            <div class="form-group w-25 mt-3  ml-4">
+              <button
+                type="submit"
+                onClick={this.PaymentStatus}
+                className="btn btn-primary btn-lg btn-block"
+              >
+                Pay
+              </button>
+              <br />
+            </div>
+          </div>
+        </form>
       </div>
     );
   }

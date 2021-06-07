@@ -50,16 +50,23 @@ class QR_Reader extends Component {
           </div>
           <div class="card bg-light text-dark text-center w-50 border-dark ">
             <br></br>
-            <p class="card-text text-dark h1">Please Scan</p>
             <br></br>
-            <p class="card-text text-dark h1">QR Code</p>
             <br></br>
-            <p class="card-text text-dark h1">Inside Your</p>
             <br></br>
-            <p class="card-text text-dark h1">Ticket</p>
+            <p class="card-text text-dark h1">Please Scan QR</p>
+            <br></br>
+            <p class="card-text text-dark h1">Code Inside Your</p>
+            <br></br>
+
+            <p class="card-text text-dark h1">Ticket Or</p>
+            <br></br>
+            <br></br>
+
+            <br></br>
             <hr></hr>
+
             <div class="form-inline">
-              <p class="col-lg-5 col-form-label; h5"> Enter Ticket ID </p>
+              <p class="col-lg-4 col-form-label; h5"> Enter Ticket ID </p>
               <p class=" h5">:</p>
               <div class="col-lg-6">
                 <input
@@ -73,13 +80,11 @@ class QR_Reader extends Component {
                   required="required"
                 />
               </div>
-            </div>
-
-            <br></br>
-            <div class=" text-dark">
-              <a href={f} class="btn btn-primary m-2 ">
-                Go
-              </a>
+              <div class=" text-dark">
+                <a href={f} class="btn btn-primary m-2 ">
+                  Go
+                </a>
+              </div>
             </div>
           </div>
         </div>
