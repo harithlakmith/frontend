@@ -17,7 +17,6 @@ import Moment from "moment";
           To:'',
           FromHalt:'',
           ToHalt:'',
-          PId:'',
           Seats:'',
           PStatus:'',
           Date:'',
@@ -60,9 +59,7 @@ componentDidMount(){
                   <div class="row">
 
                   <div class="col-md-3">
-                      <p>
-                        PId: &nbsp;{ses.PId}
-                      </p>
+                      
                       <p>SId: &nbsp;{ses.SId}</p>
                     </div>
 

@@ -46,21 +46,21 @@ render(){
         },
 
         {
-          label: 'Full Time',
+          label: 'Full Time(Hours)',
           field: 'FullTime',
           
           width: 100
           },
 
         {
-        label: 'Full Distance',
+        label: 'Full Distance (km)',
         field: 'FullDistance',
         
         width: 100
         },
        
         {
-        label: 'Price',
+        label: 'Price(Rs)',
         field: 'Price',
           
         width: 100

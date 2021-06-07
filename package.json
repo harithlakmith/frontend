@@ -33,6 +33,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "react-to-pdf": "0.0.14",
+    "react-to-print": "^2.12.6",
     "react-validation": "^3.0.7",
     "validator": "^13.5.2",
     "web-vitals": "^0.2.4"
