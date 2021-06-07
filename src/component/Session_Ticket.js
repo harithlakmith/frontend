@@ -17,7 +17,6 @@ import Moment from "moment";
           To:'',
           FromHalt:'',
           ToHalt:'',
-          PId:'',
           Seats:'',
           PStatus:'',
           Date:'',
@@ -43,22 +42,48 @@ componentDidMount(){
     
         const ticlist = Ticket.length ? (
             Ticket.map(ses=>{
-                
+
                 return( 
-                    <tr>
-                       <td class ="">{ses.TId}</td> 
-                       <td class ="">{ses.SId}</td>
-                       <td class ="">{ses.FromHalt}</td>
-                       <td class ="">{ses.ToHalt}</td>
-                       <td class ="">{ses.PId}</td>
-                       <td class ="">{ses.NoOfSeats}</td>
-                       
-                       <td class ="">{Moment(ses.Date).format('YYYY-MM-DD')}</td>
-                       <td class ="">{ses.Price}</td>
-                       </tr>
+                    <div class="card">
+                <div class="card-header headgd text-light">
+                  <div class="row">
+                    <div class="col-md-6 align-left">
+                      <h3 class="text-light" >
+                        Ticket Number : {ses.TId}
+                      </h3>
+                    </div>
+                    
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+
+                  <div class="col-md-3">
+                      
+                      <p>SId: &nbsp;{ses.SId}</p>
+                    </div>
+
+                    <div class="col-md-3">
+                      <p>
+                        From: &nbsp;{ses.FromHalt}
+                      </p>
+                      <p>To: &nbsp;{ses.ToHalt}</p>
+                    </div>
+                    <div class="col-md-3">
+                      <p>No: of Seats :&nbsp;{ses.NoOfSeats} </p>
+                      <p>Date :&nbsp;{Moment(ses.Date).format('YYYY-MM-DD')}</p>
+                    </div>
+                    <div class="col-md-3">
+                      <p>Price:&nbsp;Rs{ses.Price}  /=</p>
+                    </div>
+  
+                    
+                  </div>
+                </div>
+              </div>
                        );
             })):(
-                <div className="center">No tickets availabe</div>
+                <div class="center col-12 col-lg-12">No tickets availabe</div>
             )
   
         return (  
@@ -73,25 +98,12 @@ componentDidMount(){
                 </h2>
                 <br></br>
                 <div class="row">
-                    <div class="col">
-                    <table class="table table-striped table-hover table-bordered">
-                        <thead>
-                            <tr class="headgd text-white">
-                                <th scope="col-lg-4">Ticket Id</th>
-                                <th scope="col-lg-4">Session Id</th>
-                                <th scope="col-lg-4">From</th>
-                                <th scope="col-lg-4">To</th>
-                                <th scope="col-lg-4">Passenger Id</th>
-                                <th scope="col-lg-4">No of Seats</th>
-                               
-                                <th scope="col-lg-4">Date</th>
-                                <th scope="col-lg-4">Price</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                    <div class="col-lg-12 col-sm-12">
+                    
+                        
                             {ticlist}
-                        </tbody>
-                    </table>
+                       
+                  
                     </div>
                 </div>
             </div>

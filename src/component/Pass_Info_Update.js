@@ -172,7 +172,7 @@ UpdatePassenger() {
                    required="required"
                  />
                </div>
-               <div class="form-group"></div>
+              
                <div class="form-group">
                <button type="submit" onClick={this.UpdatePassenger} class="btn btn-primary btn-s">
                        UPDATE
@@ -181,70 +181,77 @@ UpdatePassenger() {
              </form>
           </div>
         </div>
-        <div class="card bg-light text-dark w-50 p-3 ">
-          <div class="card-body ">
-           
-            <form>
-    <div class="form-inline">
-      <p class="col-lg-4 col-form-label"> Old Password </p>
-      <p class=" h5">:</p>
-      <div class="col-lg-6">
-        <input
-          class="form"
-          type="password"
-          name="OPassword"
-          value={this.state.OPassword}
-          onChange={this.handleChange}
-          placeholder="type your old password"
-          required="required"
-        />
-      </div>
-    </div>
-    <br></br>
-    <div class="form-inline">
-      <p class="col-lg-4 col-form-label"> New Password </p>
-      <p class=" h5">:</p>
-      <div class="col-lg-6">
-        <input
-          class="form"
-          type="password"
-          name="NPassword"
-          value={this.state.NPassword}
-          onChange={this.handleChange}
-          placeholder="type your new password"
-          required="required"
-        />
-      </div>
-    </div>
-    <br></br>
-    <div class="form-inline">
-      <p class="col-lg-4 col-form-label">
-     
-        Confirm Password
-      </p>
-      <p class=" h5">:</p>
-      <div class="col-lg-6">
-        <input
-          class="form"
-          type="password"
-          name="CPassword"
-          value={this.state.CPassword}
-          onChange={this.handleChange}
-          placeholder="renter your new password"
-          required="required"
-        />
-      </div>
-    </div>
-    <hr></hr>
-    <div class=" text-dark">
-      <button
-        type="button"
-        onClick={this.UpdatePassword}
-        class="btn btn-primary btn-s">
-        UPDATE PASSWORD
-      </button>
-    </div>
-  </form>
+        
+
+        <div class="card bg-light text-dark p-3  ">
+          <br></br>
+          <div class="card-body mt-3 ">
+          <form class=" px-4">
+
+<div class="form-group ">
+     <div class="row ">
+<p class="col-lg-4 col-12  col-sm-12"> Old Password </p>
+
+<div class=" col-lg-6 col-12 col-sm-12">
+<input
+class="form "
+type="password"
+name="OPassword"
+value={this.state.OPassword}
+onChange={this.handleChange}
+placeholder="type your old password"
+required="required"
+/>
+</div>
+</div>
+</div>
+
+<div class="form-group ">
+     <div class="row ">
+<p class="col-lg-4 col-12  col-sm-12"> New Password </p>
+
+<div class="col-lg-6 col-12 col-sm-12">
+<input
+class="form"
+type="password"
+name="NPassword"
+value={this.state.NPassword}
+onChange={this.handleChange}
+placeholder="type your new password"
+required="required"
+/>
+</div>
+</div>
+</div>
+
+
+<div class="form-group ">
+     <div class="row ">
+<p class="col-lg-4 col-12  col-sm-12">
+Confirm Password
+</p>
+
+<div class="col-lg-6 col-12 col-sm-12">
+<input
+class="form "
+type="password"
+name="CPassword"
+value={this.state.CPassword}
+onChange={this.handleChange}
+placeholder="renter your new password"
+required="required" />
+</div>
+</div>
+</div>
+
+
+<div class="form-group">
+<button type="button" onClick={this.UpdatePassword} class="btn btn-primary btn-s">
+UPDATE PASSWORD
+</button>
+</div>
+
+</form>
           </div>
         </div>
       </div>
