@@ -17,6 +17,7 @@ class Add_Session extends Component {
       routes: [],
       Seats: 0,
       test: undefined,
+      nextPage: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -25,25 +26,6 @@ class Add_Session extends Component {
 
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
-  };
-
-  SelectRoute = () => {
-    var value = new URLSearchParams(this.props.location.search);
-    var s = value.get("s");
-
-    axios
-      .post(
-        window.$API_SERVER + "Session",
-        {
-          BusNo: this.state.busNo,
-          RId: parseInt(this.state.route),
-          Date: this.state.date,
-          StartTime: this.state.date + "T" + this.state.time + ":00",
-          Seats: parseInt(s),
-        },
-        { headers: authHeader() }
-      )
-      .then((json) => {});
   };
 
   componentDidMount() {
@@ -65,8 +47,39 @@ class Add_Session extends Component {
         });
       });
   }
+
+  SelectRoute = () => {
+    var value = new URLSearchParams(this.props.location.search);
+    var s = value.get("s");
+
+    axios
+      .post(
+        window.$API_SERVER + "Session",
+        {
+          BusNo: this.state.busNo,
+          RId: parseInt(this.state.route),
+          Date: this.state.date,
+          StartTime: this.state.date + "T" + this.state.time + ":00",
+          Seats: parseInt(s),
+        },
+        { headers: authHeader() }
+      )
+      .then((json) => {
+        console.log(json.data);
+      });
+
+    this.setState({
+      nextPage: true,
+    });
+  };
   render() {
-    var d = "/admin-dashboard";
+    if (JSON.parse(localStorage.getItem("role")) != "Administrator") {
+      return <Redirect to={"/sign-in"} />;
+    }
+
+    if (this.state.nextPage == true) {
+      return <Redirect to={"/admin-dashboard"} />;
+    }
 
     const { routes, busNo, busNos } = this.state;
     const routeList = routes.length ? (
@@ -107,14 +120,13 @@ class Add_Session extends Component {
             <div class="row">
               <div class="col-lg-6">
                 <div class="form-inline  " action="" method="get">
-                  <div class="col-lg-4 ; h5 ">My Bus </div>
+                  <div class="col-lg-4 ; h5 ">Bus No. </div>
                   <div class="col-lg-1 ; h5 ">: </div>
                   <div class="col-lg-5">
                     <div class="dropdown">
                       <select
                         type="text"
-                        pattern="[0-9]*"
-                        name="route"
+                        name="busNo"
                         onChange={this.handleChange}
                         value={this.state.busNo}
                         required="required"
@@ -182,14 +194,13 @@ class Add_Session extends Component {
             <br></br>
             <div class="col-6">
               <div class="form-group">
-                <a
+                <button
                   type="button"
                   onClick={this.SelectRoute}
                   class="btn btn-primary btn-lg"
-                  href={d}
                 >
                   RESERVE THIS SESSION
-                </a>
+                </button>
               </div>
             </div>
           </div>

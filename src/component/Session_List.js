@@ -22,6 +22,9 @@ class Session_List extends Component {
   }
 
   render() {
+    if (JSON.parse(localStorage.getItem("role")) != "Administrator") {
+      return <Redirect to={"/sign-in"} />;
+    }
     const { sessions } = this.state;
     const sessionList = sessions.length ? (
       sessions.map((session) => {
