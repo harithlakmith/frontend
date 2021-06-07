@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Redirect, withRouter } from "react-router-dom";
 import authHeader from "./../services/auth-header";
+import Moment from "moment";
 
 class Session_List extends Component {
   state = {
@@ -33,7 +34,8 @@ class Session_List extends Component {
             <td>{session.SId}</td>
             <td>{session.BusNo}</td>
             <td>{session.RId}</td>
-            <td>{session.StartTime}</td>
+            <td>{Moment(session.StartTime).format("YYYY-MM-DD")}</td>
+            <td>{Moment(session.StartTime).format("hh:mm A")}</td>
             <td>{session.Seats}</td>
           </tr>
         );
@@ -60,6 +62,7 @@ class Session_List extends Component {
                       <th scope="col-lg-3">Session Id</th>
                       <th scope="col-lg-3">Bus Number</th>
                       <th scope="col-lg-3">Route</th>
+                      <th scope="col-lg-3">Date</th>
                       <th scope="col-lg-3">Start Time</th>
                       <th scope="col-lg-3">Seats</th>
                     </tr>
