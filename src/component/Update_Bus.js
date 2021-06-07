@@ -54,11 +54,11 @@ componentDidMount() {
 } 
 
 
-UpdatePassword(e) {
+UpdatePassword() {
   var Bus = JSON.parse(localStorage.getItem("userInfo"));
   var BusNum = Bus.BusNo;
-  debugger;
-  e.preventDefault();
+  //debugger;
+  //e.preventDefault();
   const obj = {
     BusNo: BusNum,
     OldPassword: this.state.OldPassword,
