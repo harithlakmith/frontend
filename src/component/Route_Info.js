@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Redirect,withRouter} from "react-router-dom";
 import authHeader from "./../services/auth-header";
+import { MDBDataTableV5, MDBIcon, MDBBtn, MDBTable, MDBTableBody, MDBTableHead  } from 'mdbreact';
 
 class Route_Info extends Component {
     
@@ -28,26 +29,73 @@ componentDidMount(){
 
 render(){
   const { routes } = this.state
-  const routeList = routes.length ? (
-    routes.map(route => {
-      return(
-          <tr>
-         
-          <td>{route.HoltId}</td>
-          <td>{route.HoltName}</td>
-          <td>{route.Time}</td>
-          <td>{route.Distance}</td>
-          <td>{route.Price}</td>
-          <td>  <a href={'/route-info-update?RId='+route.RId+'&HoltId='+route.HoltId+'&HoltName='+route.HoltName+'&Time='+route.Time+'&Distance='+route.Distance+'&Price='+route.Price+' '} class="btn btn-primary btn-s">
-                    Edit
-                  </a>
-          </td>
-          </tr>
-      )
-    })
-  ) : (
-    <div class="center">No Route Information available</div>
-  );
+
+  const data ={
+    columns:[
+      {
+        label: 'Holt Id',
+        field: 'HId',
+        
+        width: 100
+        },
+        {
+        label: 'Holt Name',
+        field: 'HName',
+      
+        width: 100
+        },
+
+        {
+          label: 'Full Time(Hours)',
+          field: 'FullTime',
+          
+          width: 100
+          },
+
+        {
+        label: 'Full Distance (km)',
+        field: 'FullDistance',
+        
+        width: 100
+        },
+       
+        {
+        label: 'Price(Rs)',
+        field: 'Price',
+          
+        width: 100
+        },
+        {
+        label: '',
+        field: 'Button',
+        sort: 'asc',
+      
+        width: 100
+        }
+    ],
+    rows:routes.map(route => {
+        return{
+          HId:route.HoltId,
+          HName:route.HoltName,
+          FullTime:route.Time,
+          FullDistance:route.Distance,
+          Price:route.Price,
+      
+        'Button':  <MDBBtn
+        href={'/update-routeinfo?RId='+route.RId+'&HoltId='+route.HoltId+'&HoltName='+route.HoltName+'&Time='+route.Time+'&Distance='+route.Distance+'&Price='+route.Price+' '}
+       
+        color="primary"
+      >
+        Edit
+      </MDBBtn>,
+          
+        }
+  
+  
+        
+      })
+        
+    }
 
   return (
     <div class="">
@@ -64,21 +112,7 @@ render(){
           <br></br>
           <div class="row">
             <div class="col-lg">
-              <table class="table table-striped table-hover table-bordered">
-                <thead>
-                  <tr class="headgd text-white">
-                    <th scope="col-lg-3">Holt Id</th>
-                    <th scope="col-lg-3">Holt Name</th>
-                    <th scope="col-lg-3">Full Time</th>
-                    <th scope="col-lg-3">Full Distance</th>
-                    <th scope="col-lg-3">Price</th> 
-                    <th scope="col-lg-3 "></th> 
-                  </tr>
-                </thead>
-                <tbody>
-                  {routeList}
-                </tbody>
-              </table>
+            <MDBDataTableV5 responsive hover striped bordered entriesOptions={[5, 10, 15]} entries={10} info={false} data={data} />
             </div>
             
           </div>
