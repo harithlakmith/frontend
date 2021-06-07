@@ -64,6 +64,23 @@ class Manual_Pay extends Component {
         });
       });
   }
+
+  Update = () => {
+    axios
+      .post(
+        window.$API_SERVER + "/Ticket/update/ ",
+        {
+          TId: this.state.TId,
+        },
+        { headers: authHeader() }
+      )
+      .then((res) => {
+        this.setState({
+          //postRoute: res.data.RId,
+        });
+      });
+  };
+
   render() {
     if (JSON.parse(localStorage.getItem("role")) != "BusController") {
       return <Redirect to={"/sign-in"} />;
@@ -160,6 +177,7 @@ class Manual_Pay extends Component {
                       <div class="form-group">
                         <button
                           type="submit"
+                          onClick={this.Update}
                           className="btn btn-primary btn-lg btn-block"
                         >
                           Pay
