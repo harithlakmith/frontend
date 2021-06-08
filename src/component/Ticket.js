@@ -6,6 +6,8 @@ import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import authHeader from "./../services/auth-header";
 import {Spinner, Toast } from 'react-bootstrap';
+import Moment from "moment";
+import moment from "moment";
 
 
 class Ticket extends Component {
@@ -54,25 +56,33 @@ class Ticket extends Component {
 
             const ticket = JSON.parse(localStorage.getItem('ticket'));
 
-          if(value.get('success')=="true"){
+          if((value.get('success')=="false")){
+           
+              fetch(window.$API_SERVER + 'Ticket/' + ticket.tid, { //delete ticket
+                  method: 'DELETE',
+                  headers: authHeader()
+                })
+                
+                .then(res => console.log(res))
+                .catch(err=> console.log(err))
+  
+          }else if((value.get('success')=="true")&&(value.get('isPaylater')==false)){
 
              //  this.sendsms();
-             axios.post(window.$API_SERVER + "Ticket/PaymentUpdate",{TId: this.state.TId,PStatus: 1}, { headers: authHeader() })//paid
-             .then((json) => {
-               console.log(json.data);
-             });
+                axios.post(window.$API_SERVER + "Ticket/PaymentUpdate",{TId: this.state.TId,PStatus: 1}, { headers: authHeader() })//paid
+                .then((json) => {
+                  console.log(json.data);
+                });
 
-          }else  if(value.get('success')=="false"){
-           
-            fetch(window.$API_SERVER + 'Ticket/' + ticket.tid, { //delete ticket
-                method: 'DELETE',
-                headers: authHeader()
-              })
-              
-              .then(res => console.log(res))
-              .catch(err=> console.log(err))
+          }else if((value.get('success')=="true")&&(value.get('isPaylater')==true)){
 
-          }  
+                //  this.sendsms();
+                axios.post(window.$API_SERVER + "Ticket/PaymentUpdate",{TId: this.state.TId,PStatus: 2}, { headers: authHeader() })//paid
+                .then((json) => {
+                  console.log(json.data);
+                });
+
+         }
       }
 
     
@@ -118,8 +128,8 @@ class Ticket extends Component {
      
 
    printDocument=(e)=> {
-    const {success,ticket,userInfo,sms} = this.state;
-
+    const {isPaylater, success,ticket,userInfo,sms} = this.state;
+    const today = Moment(Date().toLocaleString()).format('YYYY-MM-DD');
     const t = this.state.success;
     const doc = new jsPDF();
     let QRimage = document.getElementById('qr');
@@ -127,6 +137,8 @@ class Ticket extends Component {
     
     let y = 10;
 
+
+doc.setLineWidth(0.5);
 doc.rect(5, 5, 200, 50); // up box
 doc.addImage("logo2.png", "PNG", 20, 10, 100, 35);
 
@@ -138,13 +150,25 @@ doc.setFontSize(11);
 doc.setFont("courier","bold");
 doc.setTextColor("#000000");
 doc.text("Payment Method:",130, 20,null, null, "left");
-doc.setTextColor("#40d11a");
-doc.text("Online(stripe)",167, 20,null, null, "left");
-doc.setTextColor("#000000");
 doc.text("Payment Status:",130, 25,null, null, "left");
-doc.setTextColor("#40d11a");
-doc.text("Paid",167, 25,null, null, "left");
+doc.text("Printed Date  :",130, 30,null, null, "left");
+doc.text(today,167, 30,null, null, "left");
 
+var pIntent='';
+if(isPaylater){
+  doc.setTextColor("#f79a26");
+  doc.text("PayLater(cash)",167, 20,null, null, "left");
+  doc.setTextColor("#e80303");
+  doc.text("Not paid",167, 25,null, null, "left");
+
+      pIntent = "--< no pay-id in paylater mode >--";
+}else{
+  doc.setTextColor("#40d11a");
+  doc.text("Online(stripe)",167, 20,null, null, "left");
+  doc.text("Paid",167, 25,null, null, "left");
+
+       pIntent = ticket.paymentIntent;
+}
 
 doc.setLineWidth(0.5);
 doc.setDrawColor("#000000");
@@ -177,23 +201,25 @@ doc.text("Price : Rs " + ticket.ticketPrice, 105, y+175, null, null, "center");
 doc.setFont("times", "normal");
 doc.setTextColor("#000000");
 doc.addImage(QRimage, 'png', 85, y+185,null, null, "center");
-doc.setTextColor("#40d11a");
-doc.setFontSize(14);
-doc.text("Payment is successfull ! ", 105, y+240, null, null, "center");
+doc.setTextColor("#9f9d9d");
+doc.setFontSize(11);
+doc.text("* This QR code valid only for PayLater passengers. They should provide this QR",45, y+235)
+doc.text(" to the conductor when paying",47, y+240)
 doc.setTextColor("#000000");
 doc.setFontSize(12);
 doc.setLineDash([2.5]);
-doc.line(40, y+250, 180, y+250);
+doc.line(40, y+245, 180, y+245);
 doc.setFillColor("#f7ad26");
 doc.setTextColor("#f7ad26");
-doc.text("P-id : " + ticket.paymentIntent, 70, y+260, null, null, "left");
-doc.text("C-id : " + userInfo.Id, 70, y+266, null, null, "left");
-doc.text("S-id : #" + ticket.sid, 70, y+272, null, null, "left");
+doc.setFont("courier","normal");
+doc.text("P-id : " + pIntent, 55, y+255, null, null, "left");
+doc.text("C-id : " + userInfo.Id, 55, y+261, null, null, "left");
+doc.text("S-id : #" + ticket.sid, 55, y+267, null, null, "left");
 doc.setLineWidth(0.5);
 doc.setLineDash([0]);
 doc.setDrawColor("#f7ad26");
 doc.setFillColor("#f9cf81");
-doc.roundedRect(60, y+255, 100, 20, 3 , 3, "S");
+doc.roundedRect(45, y+250, 130, 20, 3 , 3, "S");
 
 doc.save( "Ticketz.pdf");
   }
