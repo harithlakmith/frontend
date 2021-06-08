@@ -7,13 +7,14 @@ import html2canvas from 'html2canvas';
 import authHeader from "./../services/auth-header";
 import {Spinner, Toast } from 'react-bootstrap';
 import Moment from "moment";
-import moment from "moment";
+
 
 
 class Ticket extends Component {
 
   constructor(props) {
     super(props);
+    
       this.state = {
         fullTicket:1,
         halfTicket:0,
@@ -27,7 +28,7 @@ class Ticket extends Component {
         sms:'', 
         sending:true,
         isPaylater:false,
-        TickId:''
+        TickId:JSON.parse(localStorage.getItem('ticket')).tid
       };
         this.handleChange = this.handleChange.bind(this);
         this.sendsms = this.sendsms.bind(this);
@@ -90,7 +91,12 @@ class Ticket extends Component {
       sendsms(){
        const userInfo = JSON.parse(localStorage.getItem('userInfo'));
        const ticket = JSON.parse(localStorage.getItem('ticket'));
-        
+       var p = " " ;
+        if(!this.state.isPaylater){
+          p="(Online Pay)";
+        }else{
+          p="(PayLater)";
+        }
               const obj = {
                 TId:parseInt(ticket.tid),
                 Road:ticket.fromHolt+" to "+ticket.toHolt,
@@ -101,7 +107,8 @@ class Ticket extends Component {
                 Telephone:'94'+ userInfo.Tp,
                 BusNo:ticket.busNo,
                 ReachTime:ticket.ArrivedTime,
-                From:ticket.fromHolt
+                From:ticket.fromHolt,
+                PayMethod:p
               }
 
             axios.post(window.$API_SERVER +"Payment/smsapi", obj)
@@ -306,7 +313,7 @@ render(){
 
               <div class="row align-items-end text-center">
                 <div class="col-lg">
-                <button onClick={this.printDocument} >Download Ticket</button>
+                <button class="btn btn-success" onClick={this.printDocument} >Download Ticket</button>
                 
                 </div>
               </div>

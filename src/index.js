@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+//import '@fortawesome/fontawesome-free/css/all.min.css'; 
+//import 'bootstrap-css-only/css/bootstrap.min.css'; 
+//import 'mdbreact/dist/css/mdb.css';
 //import Add_Route from './component/add_route/Add_Route';
 
 window.$API_SERVER = "https://ticketbookingapi.azurewebsites.net/api/";

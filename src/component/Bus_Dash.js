@@ -1,64 +1,77 @@
-import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import axios from "axios";
-import {Redirect, withRouter} from "react-router-dom";
-import authHeader from "./../services/auth-header";
+import React, { Component } from "react";
+//import "./bus_dash.css";
 import Moment from "moment";
+import { Redirect, withRouter } from "react-router-dom";
 
- class Bus_Dash extends Component {
+import axios from "axios";
+import authHeader from "./../services/auth-header";
 
+class Bus_Dash extends Component {
   constructor(props) {
     super(props);
     this.state = {
       busInfo: [],
-      BusNo:'',    
-      CondName:'',
-      CondNo:'',
-      DriverName:'',
-      DriverNo:'',
-      Email:'',
-      MaxSeats:'',
-      MySession:[],
-      Ticket:[],
-    }
-
+      BusNo: "",
+      CondName: "",
+      CondNo: "",
+      DriverName: "",
+      DriverNo: "",
+      Email: "",
+      MaxSeats: "",
+      MySession: [],
+      Ticket: [],
+    };
   }
 
-componentDidMount(){
+  componentDidMount() {
+    var Bus = JSON.parse(localStorage.getItem("userInfo"));
+    var BusNo = Bus.BusNo;
 
-  var Bus = JSON.parse(localStorage.getItem('userInfo'));
-  var BusNo = Bus.BusNo;
-  
-    axios.get(window.$API_SERVER +'BusInfo/'+ BusNo,{ headers: authHeader() })
-      .then(res => {
-        
+    axios
+      .get(window.$API_SERVER + "BusInfo/" + BusNo, { headers: authHeader() })
+      .then((res) => {
         this.setState({
-          BusNo:res.data.BusNo,
+          BusNo: res.data.BusNo,
           busInfo: res.data,
-          CondName:res.data.CondName,
-          CondNo:res.data.CondNo,
-          DriverName:res.data.DriverName,
-          DriverNo:res.data.CondNo,
-          Email:res.data.Email,
-          MaxSeats:res.data.MaxSeats
+          CondName: res.data.CondName,
+          CondNo: res.data.CondNo,
+          DriverName: res.data.DriverName,
+          DriverNo: res.data.CondNo,
+          Email: res.data.Email,
+          MaxSeats: res.data.MaxSeats,
         });
       });
 
-      axios.get(window.$API_SERVER +'Session/BusNo/'+ BusNo,{ headers: authHeader() })
-      .then(res => {
-        
+    axios
+      .get(window.$API_SERVER + "Session/BusNo/" + BusNo, {
+        headers: authHeader(),
+      })
+      .then((res) => {
         this.setState({
-          MySession:res.data
+          MySession: res.data,
         });
       });
+  }
 
-}
-    render() {
-      if (JSON.parse(localStorage.getItem('role'))!='BusController'){
-        return <Redirect to={'/sign-in'} />
-      }
+  /*Booked=(sid)=>{
+    var book = 0;
+    axios.get("http://localhost:5000/Ticket/session/"+sid)
+    .then(res=>{
+        this.setState({
+            Ticket:res.data,
+          
+        });
+    })
 
-      const { BusNo,CondName,CondNo,DriverName,DriverNo,Email,MaxSeats,MySession } = this.state;
+    this.state.Ticket.length?(
+      this.state.Ticket.map(Tick=>{
+        book = book + parseInt(Tick.NoOfSeats);
+      })
+    ):(
+        book = ''
+    );
+
 
       var s = '/select-route?s='+MaxSeats;
   
@@ -103,12 +116,12 @@ componentDidMount(){
             <h2 class="card-title card-header px-3 headgd  text-light">
               Bus Dashboard
             </h2>
+
             <br></br>
-            
-  
+            <hr />
+
             <div class="card-deck">
-              <div class="card bg-light text-dark p-5">
-              <img src="images/bus.jpg" class="card-img-top" alt="BUS"></img>
+              <div class="card bg-light w-40 text-dark border-dark p-2">
                 <div class="card-body ">
               
                     <div class="form-group row">
@@ -156,46 +169,39 @@ componentDidMount(){
                       </div>
                       <div class="col-lg-5 col-6">{CondName}</div>
                     </div>
-                  
+                    <div class="col-lg-5; h5">{CondName}</div>
+                  </div>
+
                   <br></br>
-                  <a href={s} class="btn btn-primary btn-lg">
-                    Add Session
-                  </a>
+                  <div class="form-group row">
+                    <div class="col-lg-2">&nbsp;</div>
+                    <a href={s} class="btn btn-primary btn-lg">
+                      Add Session
+                    </a>
+
+                    <div class="col-lg-2"></div>
+                    <a href="/qr-reader" class="btn btn-primary btn-lg">
+                      Scan
+                    </a>
+                  </div>
                 </div>
               </div>
-              <div class="card bg-light text-dark">
+              <div class="card bg-light text-dark w-60  border-dark ">
                 <div class="card-body">
                   <h3 class="card-title">
                     <u>My Sessions </u>
                   </h3>
-                  
-                  <div class="card bg-light text-dark ">
-      
-        
-        {seslist}
-       
-  
-        
-        </div>
-        <br></br>
-  
-        <a href={'/session-list'} class="btn btn-primary btn-lg center">
-                      More
-                    </a>    
-             
+                  <hr />
+                  {seslist}
                 </div>
-  
               </div>
-  
-              
-     
             </div>
-            </div>
-        </div>
+            <hr />
           </div>
         </div>
-      );
-    }
+      
+    );
   }
-  
+}
+
 export default withRouter(Bus_Dash);
