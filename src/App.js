@@ -40,6 +40,8 @@ import Manual_Pay from "./component/Manual_Pay";
 import Route_Info from "./component/Route_Info";
 import Show_Route from "./component/Show_Route";
 import Footer from "./component/Footer";
+import Route_Update from "./component/Route_Update";
+import RouteInfo_Update from "./component/RouteInfo_Update";
 
 class App extends Component {
   constructor(props) {
@@ -128,7 +130,7 @@ class App extends Component {
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
-              <i class="fas fa-caret-square-down"></i>
+              <i class="fas fa-bars"></i>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -213,7 +215,15 @@ class App extends Component {
               <Find_Bus />
             </Route>
 
-            <Route path="/test">
+            <Route path="/qr-reader">
+              <QR_Reader />
+            </Route>
+
+            <Route path="/manual-pay">
+              <Manual_Pay />
+            </Route>
+
+            <Route path="/test-case" component={Test_case}>
               <Test_case />
             </Route>
 
@@ -239,6 +249,10 @@ class App extends Component {
 
             <Route path="/session-pass" component={Session_Pass}>
               <Session_Pass />
+            </Route>
+
+            <Route path="/session-list" component={Session_List}>
+              <Session_List />
             </Route>
 
             <Route path="/update-bus" component={Update_Bus}>
@@ -269,23 +283,15 @@ class App extends Component {
               <Show_Bus />
             </Route>
 
-            <Route path="/add-session" component={Add_Session}>
-              <Add_Session />
+            <Route path="/update-routes" component={Route_Update}>
+              <Route_Update />
             </Route>
 
-            <Route path="/admin-session-list" component={Admin_Session_List}>
-              <Admin_Session_List />
+            <Route path="/update-routeinfo">
+              <RouteInfo_Update />
             </Route>
 
-            <Route path="/qr-reader" component={QR_Reader}>
-              <QR_Reader />
-            </Route>
-
-            <Route path="/manual-pay" component={Manual_Pay}>
-              <Manual_Pay />
-            </Route>
-
-            <Route path="/ticket">
+            <Route path="/ticket" component={Ticket}>
               <Ticket />
             </Route>
 
@@ -301,8 +307,24 @@ class App extends Component {
               <Route_Info />
             </Route>
 
+            <Route path="/add-session">
+              <Add_Session />
+            </Route>
+
+            <Route path="/route-update">
+              <Route_Update />
+            </Route>
+
             <Route path="/show-route">
               <Show_Route />
+            </Route>
+
+            <Route path="/test3">
+              <taskList />
+            </Route>
+
+            <Route path="/test2">
+              <Session_Tic />
             </Route>
           </Switch>
         </BrowserRouter>
@@ -314,29 +336,3 @@ class App extends Component {
 }
 
 export default App;
-/*<header>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand" href="#"><img src="images/logo.png" alt="logo"/></a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-                        <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-                            <ul class="navbar-nav">
-
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#howitworks">How it works</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#services">Our Services </a>
-                                </li>
-                                <li><a href="booking.html" class="btn btn-info">Book a Cleaning</a></li>
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </header>*/

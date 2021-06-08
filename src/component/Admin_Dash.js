@@ -15,7 +15,6 @@ class Admin_Dash extends Component {
           </div>
 
           <br></br>
-
           <div class="row">
             <div class="col-lg-8 h2 mb-4 text-dark ">
               Settings - Routes&nbsp;&nbsp;
