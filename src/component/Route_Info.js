@@ -38,7 +38,7 @@ render(){
           <td>{route.Time}</td>
           <td>{route.Distance}</td>
           <td>{route.Price}</td>
-          <td>  <a href={'/route-info-update?RId='+route.RId+'&HoltId='+route.HoltId+'&HoltName='+route.HoltName+'&Time='+route.Time+'&Distance='+route.Distance+'&Price='+route.Price+' '} class="btn btn-primary btn-s">
+          <td>  <a href={'/update-routeinfo?RId='+route.RId+'&HoltId='+route.HoltId+'&HoltName='+route.HoltName+'&Time='+route.Time+'&Distance='+route.Distance+'&Price='+route.Price+' '} class="btn btn-primary btn-s">
                     Edit
                   </a>
           </td>

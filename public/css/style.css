@@ -121,6 +121,7 @@ p {
   border: 1px solid gray;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px 1px rgba(0, 0, 0, 0.18);
   border-radius: 7px;
+  
 }
 
 .AutoCompleteText input{
@@ -141,15 +142,20 @@ p {
   margin: 0;
   padding: 0;
   border-top: 1px solid gray;
+  overflow-y: scroll;
+  max-height: 100px;
+ 
 }
 
 .AutoCompleteText ul::before{
   content: "";
 }
 .AutoCompleteText li{
-  padding: 10px 5px;
+  padding: 5px 5px;
   cursor: pointer;
   background-color: white;
+  
+
 }
 
 .AutoCompleteText li:hover{
