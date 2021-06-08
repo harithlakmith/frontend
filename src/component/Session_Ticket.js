@@ -22,14 +22,15 @@ import { MDBDataTableV5, MDBIcon } from 'mdbreact';
           PStatus:'',
           Date:'',
           Price:'',
+          sum : 0,
         }
     
       }
 
 componentDidMount(){
     const value = new URLSearchParams(this.props.location.search)
-    var sid = value.get('sid');
-    //var sid = 38;
+    //var sid = value.get('sid');
+    var sid = 26;
     axios.get(window.$API_SERVER +"Ticket/session/"+sid)
         .then(res=>{
             this.setState({
@@ -89,6 +90,7 @@ componentDidMount(){
                 
             ],
             rows: Session.map(ses =>{
+                this.state.sum = this.state.sum + ses.Price;
              
               
                return {
@@ -121,6 +123,12 @@ componentDidMount(){
                 Ticket Information
                 </h2>
                 <br></br>
+                <div class= "row">
+                    <div class= "clo-12">
+                        <label>Total : </label>
+                            {this.state.sum}
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-lg-12 col-sm-12">
                     <MDBDataTableV5 
