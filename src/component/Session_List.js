@@ -1,139 +1,122 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { Component } from "react";
-import Moment from "moment";
-import {Redirect, withRouter} from 'react-router-dom';
-
 import axios from "axios";
+import { Redirect, withRouter } from "react-router-dom";
 import authHeader from "./../services/auth-header";
-
+import Moment from "moment";
+import {
+  MDBDataTableV5,
+  MDBIcon,
+  MDBBtn,
+  MDBTable,
+  MDBTableBody,
+  MDBTableHead,
+} from "mdbreact";
 
 class Session_List extends Component {
+  state = {
+    sessions: [],
+  };
+  componentDidMount() {
+    var value = new URLSearchParams(this.props.location.search);
+    //var SId = value.get("SId");
 
-    constructor(props) {
-        super(props);
-        this.state = {
-          busInfo: [],
-          BusNo:'',    
-          CondName:'',
-          CondNo:'',
-          DriverName:'',
-          DriverNo:'',
-          Email:'',
-          MaxSeats:'',
-          MySession:[],
-          Ticket:[],
-        }
-    
-      }
-
-    componentDidMount(){
-
-        var Bus = JSON.parse(localStorage.getItem('userInfo'));
-        var BusNo = Bus.BusNo;
-        
-        axios.get(window.$API_SERVER +'BusInfo/'+ BusNo,{ headers: authHeader() })
-        .then(res => {
-          
-          this.setState({
-            BusNo:res.data.BusNo,
-            busInfo: res.data,
-            CondName:res.data.CondName,
-            CondNo:res.data.CondNo,
-            DriverName:res.data.DriverName,
-            DriverNo:res.data.CondNo,
-            Email:res.data.Email,
-            MaxSeats:res.data.MaxSeats
-          });
+    axios
+      .get(window.$API_SERVER + "Session", { headers: authHeader() })
+      .then((res) => {
+        this.setState({
+          sessions: res.data,
         });
-          
-            axios.get(window.$API_SERVER +'Session/BusNo/'+ BusNo,{ headers: authHeader() })
-            .then(res => {
-              
-              this.setState({
-                MySession:res.data
-              });
-            });
-      
-           
-        }
-      
-        render() {
-            if (JSON.parse(localStorage.getItem('role'))!='BusController'){
-               return <Redirect to={'/sign-in'} />
-             }
-         
-             const { BusNo,CondName,CondNo,DriverName,DriverNo,Email,MaxSeats,MySession } = this.state;
-         
-             var s = '/select-route?s='+MaxSeats;
-         
-             const seslist = MySession.length ? (
-               MySession.map(ses=> { 
-                   
-                const dte = new Date(ses.Date);
-                const date = Moment(dte.toLocaleString()).format('YYYY-MM-DD');
-                const today = Moment(Date().toLocaleString()).format('YYYY-MM-DD');
-                
-                let session = "";
-               
-                if (today > date){
-                    session = <span class="badge bg-danger">Expired</span>;
-                   
-                    
-                }
-                else {
-                    
-                    session = <span class="badge bg-success">Availble</span>
-                   
-                    
-                }
-                
-                var t = "/ticket-session?sid="+ ses.SId;
-                                     return(   <div class="card alert-info text-info p-3 m-3">
-                                                 <h3 class="">{ses.RNum}&nbsp;&nbsp;{ses.Start} - {ses.Stop}</h3>
-                                                   <div class="row">
-                                                     <div class="col-lg-7">
-                                                       <h5>On: {Moment(ses.Date).format('YYYY-MM-DD')}</h5>
-                                                       <h5>At: {Moment(ses.StartTime).format('LT')}</h5>
-                                                       <h4>Session: {session}</h4>
-                                                     </div>
-                                                     <div class="col-lg-4 text-right">
-                                                       <a href={t} class="btn btn-info">Tickets</a>
-                                                     </div>
-                                                   </div>
-                                               </div>);
-                                   })
-               ):(
-                       <p>No Data</p>
-               )
-         
-         
+      });
+  }
+
+  render() {
+    if (JSON.parse(localStorage.getItem("role")) != "Administrator") {
+      return <Redirect to={"/sign-in"} />;
+    }
+    const { sessions } = this.state;
+
+    const data = {
+      columns: [
+        {
+          label: "Session Id",
+          field: "SId",
+
+          width: 100,
+        },
+        {
+          label: "Bus Number",
+          field: "Busno",
+
+          width: 100,
+        },
+        {
+          label: "Route",
+          field: "RId",
+
+          width: 100,
+        },
+        {
+          label: "Date",
+          field: "Date",
+
+          width: 100,
+        },
+        {
+          label: "Start Time",
+          field: "Starts",
+
+          width: 100,
+        },
+        {
+          label: "Seats",
+          field: "Seats",
+
+          width: 100,
+        },
+      ],
+      rows: sessions.map((session) => {
+        return {
+          SId: session.SId,
+          Busno: session.BusNo,
+          RId: session.RId,
+          Date: Moment(session.StartTime).format("YYYY-MM-DD"),
+          Starts: Moment(session.StartTime).format("hh:mm A"),
+          Seats: session.Seats,
+        };
+      }),
+    };
 
     return (
-<div>
-<div class="card bg-light p-3 mt-3">
-        
-        <div class="card" >
-<div class="card-body">
-
-
-  <div class="mt-5 p-5">
-    <h2 class="card-title card-header px-3 headgd  text-light">
-      Session List
-    </h2>
-    <div class="card bg-light text-dark ">
-    <div class="card-body ">
-      
-      {seslist}
-      </div>
-      </div>
-
-      </div>
-      </div>
-      </div>
-      </div>
+      <div>
+        <div class="card">
+          <div class="card-body">
+            <div class="mt-5 p-5">
+              <h2 class="card-title card-header px-3 headgd  text-light">
+                Session Information List
+                <br></br>
+              </h2>
+              <br></br>
+              <div class="row">
+                <div class="col-lg">
+                  <MDBDataTableV5
+                    responsive
+                    hover
+                    striped
+                    bordered
+                    entriesOptions={[5, 10, 15]}
+                    entries={10}
+                    info={false}
+                    data={data}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
-}
+  }
 }
 
 export default withRouter(Session_List);
