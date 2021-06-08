@@ -93,7 +93,7 @@ componentDidMount(){
               <p>No sessions availble at today</p>
       )
       return (
-  <div class="card bg-light px-5 mt-5">
+  <div class="card bg-light px-2 px-md-5 mt-2 mt-md-5">
          <div class="mt-5 pt-5 pb-2 ">
             <h2 class="card-title card-header px-3 headgd  text-light">
               Bus Dashboard
@@ -101,13 +101,27 @@ componentDidMount(){
             <br></br>
             
           </div>
-    <div class="row px-5">
+    <div class="row px-md-5">
 
       <div class="col-md-6 col-12">
         <div class="card">
-        <div class="card pt-2 bg-light text-dark ">
+            <div class=" pt-1 ">
+                <h2 class="card-title card-header px-3 ">
+                
+                    <a href="/qr-reader" class="btn btn-primary btn-lg">
+                    <i class="fas fa-history"></i>&nbsp;&nbsp;Scan for Pay Later
+                    </a>&nbsp;&nbsp;
+                    <a href={s} class="mt-2 btn btn-primary btn-lg">
+                    <i class="far fa-plus-square"></i>&nbsp;&nbsp;Add Session
+                  </a>
+                 
+                </h2>
+                <br></br>
+                
+              </div>
+        <div class=" pt-2  text-dark ">
               <div class="col-lg-12 col-12 col-sm-12">  
-              <img src="images/bus.jpg" class="card-img-top" alt="BUS"></img>
+              <img src="images/3.png" class="card-img-top" height="10%" alt="BUS"></img>
                 <div class="card-body ">
               
                 <div class="form-group row">
@@ -156,15 +170,10 @@ componentDidMount(){
                       <div class="col-lg-5 col-6">{CondName}</div>
                     </div>
                   
-                  <br></br>
-                  <div class="text-center">
-                  <a href={s} class=" btn btn-primary btn-lg">
-                    Add Session
-                  </a></div>
+                 
+                
                 </div>
 
-
-                
               </div>
 
               </div>
@@ -178,7 +187,7 @@ componentDidMount(){
                                       <b>My Sessions </b>
                                     </h3>
                                     
-                                    <div class="card bg-light text-dark ">
+                                    <div class=" bg-light text-dark ">
                         
                           
                           {seslist}
@@ -187,7 +196,7 @@ componentDidMount(){
                           <br></br>
                     
                           <a href={'/session-list'} class="btn btn-primary btn-lg center">
-                                        More
+                          <i class="fas fa-angle-double-right"></i>&nbsp;&nbsp;More Sessions ...
                                       </a>    
                               
                                   </div>
@@ -197,13 +206,7 @@ componentDidMount(){
 
     </div>
           
-      <div class="card" >
-      <div class="card-body">
-        
-        
-         
-        </div>
-          </div>
+      
         </div>
       );
     }
