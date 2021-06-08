@@ -16,6 +16,7 @@ class Select_Route extends Component {
       routes: [],
       Seats: 0,
       test: undefined,
+      nextPage: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -43,6 +44,9 @@ class Select_Route extends Component {
         { headers: authHeader() }
       )
       .then((json) => {});
+    this.setState({
+      nextPage: true,
+    });
   };
 
   componentDidMount() {
@@ -60,7 +64,9 @@ class Select_Route extends Component {
     if (JSON.parse(localStorage.getItem("role")) != "BusController") {
       return <Redirect to={"/sign-in"} />;
     }
-    var d = "/bus-dashboard";
+    if (this.state.nextPage == true) {
+      return <Redirect to={"/bus-dashboard"} />;
+    }
 
     const { routes, busNo } = this.state;
     const routeList = routes.length ? (
@@ -161,7 +167,6 @@ class Select_Route extends Component {
                   type="button"
                   onClick={this.SelectRoute}
                   class="btn btn-primary btn-lg"
-                  href={d}
                 >
                   RESERVE THIS SESSION
                 </a>

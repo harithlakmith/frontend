@@ -4,6 +4,7 @@ import axios from "axios";
 import { Redirect, withRouter } from "react-router-dom";
 import Moment from "moment";
 import authHeader from "./../services/auth-header";
+import html2canvas from "html2canvas";
 
 class Manual_Pay extends Component {
   constructor(props) {
@@ -110,6 +111,17 @@ class Manual_Pay extends Component {
       Date,
       UserId,
     } = this.state;
+
+    const psts = PStatus;
+    let Psts = "";
+    let icon = "";
+    if (psts == 1) {
+      Psts = "Paid";
+      icon = "fas fa-check-circle";
+    } else {
+      Psts = "Not Paid";
+      icon = "fas fa-exclamation-circle";
+    }
     var s = "/bus-dashboard";
     return (
       <div class="container p-3 mt-5">
@@ -135,7 +147,7 @@ class Manual_Pay extends Component {
                 <br></br>
                 <br></br>
                 <div class=" text-left h-50  ">
-                  <h3>Ticket ID &nbsp;:&nbsp; {TId}</h3>
+                  <h5>Ticket ID &nbsp;:&nbsp; {TId}</h5>
                 </div>
               </div>
               <div class="card bg-light border-dark p-3  ">
@@ -145,7 +157,9 @@ class Manual_Pay extends Component {
                 <br></br>
                 <br></br>
                 <div class="text-left h-50">
-                  <h3>Payment Status &nbsp; :&nbsp; {PStatus}</h3>
+                  <h5>
+                    Payment Status &nbsp; :&nbsp; <i class={icon}></i> {Psts}
+                  </h5>
                 </div>
               </div>
 

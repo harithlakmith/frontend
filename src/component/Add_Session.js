@@ -21,11 +21,33 @@ class Add_Session extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.SelectRoute = this.SelectRoute.bind(this);
+    this.SessionAdd = this.SessionAdd.bind(this);
   }
 
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
+  };
+
+  SessionAdd = () => {
+    var value = new URLSearchParams(this.props.location.search);
+    var s = value.get("s");
+
+    axios
+      .post(
+        window.$API_SERVER + "Session?s=54",
+        {
+          BusNo: this.state.busNo,
+          RId: parseInt(this.state.route),
+          Date: this.state.date,
+          StartTime: this.state.date + "T" + this.state.time + ":00",
+          Seats: parseInt(s),
+        },
+        { headers: authHeader() }
+      )
+      .then((json) => {});
+    this.setState({
+      nextPage: true,
+    });
   };
 
   componentDidMount() {
@@ -48,30 +70,6 @@ class Add_Session extends Component {
       });
   }
 
-  SelectRoute = () => {
-    var value = new URLSearchParams(this.props.location.search);
-    var s = value.get("s");
-
-    axios
-      .post(
-        window.$API_SERVER + "Session",
-        {
-          BusNo: this.state.busNo,
-          RId: parseInt(this.state.route),
-          Date: this.state.date,
-          StartTime: this.state.date + "T" + this.state.time + ":00",
-          Seats: parseInt(s),
-        },
-        { headers: authHeader() }
-      )
-      .then((json) => {
-        console.log(json.data);
-      });
-
-    this.setState({
-      nextPage: true,
-    });
-  };
   render() {
     if (JSON.parse(localStorage.getItem("role")) != "Administrator") {
       return <Redirect to={"/sign-in"} />;
@@ -196,7 +194,7 @@ class Add_Session extends Component {
               <div class="form-group">
                 <button
                   type="button"
-                  onClick={this.SelectRoute}
+                  onClick={this.SessionAdd}
                   class="btn btn-primary btn-lg"
                 >
                   RESERVE THIS SESSION

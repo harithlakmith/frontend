@@ -55,23 +55,6 @@ class Admin_Dash extends Component {
                 </div>
               </div>
             </div>
-
-            <div class="col-lg-4">
-              <div class="card border-primary mb-3 ">
-                <div class="card-header h5">
-                  <i class="fas fa-route"></i>&nbsp;&nbsp;Edit Routes
-                </div>
-                <div class="card-body text-center">
-                  <p class="card-text">
-                    Click below button for updating the information of registerd
-                    routes.
-                  </p>
-                  <a href="/" class="btn btn-primary m-2 disabled">
-                    Edit Route
-                  </a>
-                </div>
-              </div>
-            </div>
           </div>
           <hr></hr>
           <div class="row">
@@ -129,7 +112,7 @@ class Admin_Dash extends Component {
                     Click below button for Displaying the information list of
                     Sessions
                   </p>
-                  <a href="/session-list" class="btn btn-primary m-2 ">
+                  <a href="/admin-session-list" class="btn btn-primary m-2 ">
                     Sessions List
                   </a>
                 </div>
