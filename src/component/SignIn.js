@@ -84,8 +84,16 @@ render(){
     
 return (
 
-  <form onSubmit={this.handleLogin} class= "form-signin">
-    <div class="card bg-dark ">
+  <div>
+    <div class=" d-lg-none">
+
+  
+
+
+
+
+    </div>
+    <div class="card bg-dark d-none d-lg-block">
       <img src="images/background.jpeg" class="card-img img-fluid" alt="background"></img>
         <div class="card-img-overlay">
           
@@ -99,7 +107,7 @@ return (
             <div class="card  " >
                 <h2 class="card-title card-header px-3 headgd text-center text-light ">Ticketz Login</h2>
                   <br></br>
-              
+                  <form onSubmit={this.handleLogin} class= "form-signin">
                   <div class="row justify-content-center">
                       <div class="col-12 col-lg-10 px-4 col-sm-10 ">
                       
@@ -146,6 +154,7 @@ return (
                     
                               
                     </div>
+                    </form>
                 </div>
             
                     </div>
@@ -166,7 +175,7 @@ return (
       
       </div>
 </div>   
-  </form>
+</div>
 
 
 

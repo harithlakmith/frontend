@@ -45,6 +45,7 @@ import RouteInfo_Update from "./component/RouteInfo_Update";
 import taskList from './component/Test_case/taskList';
 import QR_Reader from './component/QR_Reader';
 import Manual_Pay from './component/Manual_Pay';
+import Add_Session from './component/Add_Session';
 
 
 
@@ -263,6 +264,10 @@ render(){
           
           <Route path="/route-info" >
           <Route_Info />
+          </Route>
+          
+          <Route path="/add-session">
+            <Add_Session/>
           </Route>
 
  
