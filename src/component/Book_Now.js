@@ -293,7 +293,7 @@ class Book_Now extends Component {
     if (this.state.payLaterRedirect) {
       return (
         <Redirect
-          to={"/ticket?isPaylater=true&success=true&TId=" + this.state.postTId}
+          to={"/ticket?isPaylater=true&success=true&tid=" + this.state.postTId}
         />
       );
     }

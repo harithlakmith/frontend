@@ -99,7 +99,7 @@ class Admin_Session_List extends Component {
               </h2>
               <br></br>
               <div class="row">
-                <div class="col-lg">
+                <div class="col-lg p-3">
                   <MDBDataTableV5
                     responsive
                     hover
