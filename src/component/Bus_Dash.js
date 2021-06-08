@@ -72,60 +72,51 @@ class Bus_Dash extends Component {
         book = ''
     );
 
-    return book;
-  }*/
 
-  render() {
-    if (JSON.parse(localStorage.getItem("role")) != "BusController") {
-      return <Redirect to={"/sign-in"} />;
-    }
+      var s = '/select-route?s='+MaxSeats;
+  
+      const seslist = MySession.length ? (
+        MySession.map(ses=> { 
+        console.clear();   
+        const dte = new Date(ses.Date);
+        const date = Moment(dte.toLocaleString()).format('YYYY-MM-DD');
+        const today = Moment(Date().toLocaleString()).format('YYYY-MM-DD');
+        var t = "/ticket-session?sid="+ ses.SId;
 
-    const {
-      BusNo,
-      CondName,
-      CondNo,
-      DriverName,
-      DriverNo,
-      Email,
-      MaxSeats,
-      MySession,
-    } = this.state;
+        let session ="";
+        if (today == date){
+          session = <div class="card alert-info text-info p-3 m-3">
+                      <h3 class="">{ses.RNum}&nbsp;&nbsp;{ses.Start} - {ses.Stop}</h3>
+                        <div class="row">
+                            <div class="col-lg-7">
+                              <h5>On: {Moment(ses.Date).format('YYYY-MM-DD')}</h5>
+                              <h5>At: {Moment(ses.StartTime).format('LT')}</h5>
+                            </div>
+                            <div class="col-lg-4 text-right">
+                              <a href={t} class="btn btn-info">Tickets</a>
+                            </div>
+                        </div>
+                      </div>;
+        }
+        return(   <div class="row">
+                      {session}
+                  </div>);
+                          })
+      ):(
+              <p>No sessions availble at today</p>
+      )
+      return (
+        <div class="card bg-light p-3 mt-3">
+          
+              <div class="card" >
+      <div class="card-body">
+        
+        
+          <div class="mt-5 p-5">
+            <h2 class="card-title card-header px-3 headgd  text-light">
+              Bus Dashboard
+            </h2>
 
-    var s = "/select-route?s=" + MaxSeats;
-
-    const seslist = MySession.length ? (
-      MySession.map((ses) => {
-        var t = "/ticket-session?sid=" + ses.SId;
-        return (
-          <div class="card alert-info text-info p-3 m-3">
-            <h3 class="">
-              {ses.RNum}&nbsp;&nbsp;{ses.Start} - {ses.Stop}
-            </h3>
-            <div class="row">
-              <div class="col-lg-7">
-                <h5>On: {Moment(ses.Date).format("YYYY-MM-DD")}</h5>
-                <h5>At: {Moment(ses.StartTime).format("LT")}</h5>
-              </div>
-              <div class="col-lg-4 text-right">
-                <a href={t} class="btn btn-info">
-                  Tickets
-                </a>
-              </div>
-            </div>
-          </div>
-        );
-      })
-    ) : (
-      <p>No Data</p>
-    );
-
-    return (
-      <div class=" container p-5  mt-5 ">
-        <div class="card bg-light  mt-1">
-          <div class="card-body mt-1 ">
-            <h1 class="card-title ">
-              <i class="fas fa-bus"></i>&nbsp;&nbsp;<u>Bus Dashboard</u>
-            </h1>
             <br></br>
             <hr />
 
