@@ -116,7 +116,7 @@ class Session_List extends Component {
 <div class="card-body">
 
 
-  <div class="mt-5 p-5">
+  <div class="mt-5 p-2">
     <h2 class="card-title card-header px-3 headgd  text-light">
       Session List
     </h2>
