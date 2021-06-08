@@ -29,18 +29,20 @@ class Add_Session extends Component {
   };
 
   SessionAdd = () => {
-    var value = new URLSearchParams(this.props.location.search);
-    var s = value.get("s");
+    var str = this.state.busNo;
+    var res = str.split("&");
+    var busNo = res[0];
+    var maxSeats = res[1];
 
     axios
       .post(
-        window.$API_SERVER + "Session?s=54",
+        window.$API_SERVER + "Session",
         {
-          BusNo: this.state.busNo,
+          BusNo: busNo,
           RId: parseInt(this.state.route),
           Date: this.state.date,
           StartTime: this.state.date + "T" + this.state.time + ":00",
-          Seats: parseInt(s),
+          Seats: parseInt(maxSeats),
         },
         { headers: authHeader() }
       )
@@ -89,15 +91,16 @@ class Add_Session extends Component {
         );
       })
     ) : (
-      <div className="center">No Routes available</div>
+      <div class="center">No Routes available</div>
     );
 
     const busnoList = busNos.length ? (
       busNos.map((busNo) => {
-        return <option value={busNo.BusNo}>{busNo.BusNo}</option>;
+        let val = busNo.BusNo + "&" + busNo.MaxSeats;
+        return <option value={val}>{busNo.BusNo}</option>;
       })
     ) : (
-      <div className="center">No Busses available</div>
+      <div class="center">No Busses available</div>
     );
     return (
       <div>
@@ -105,7 +108,7 @@ class Add_Session extends Component {
           <div class="card   p-4 mt-5">
             <div class="headgd p-2">
               <h1 class="card-title  text-light text-center ">
-                <i class="fas fa-bus"></i>&nbsp;&nbsp;<u>Add Session</u>
+                <i class="fas fa-bus"></i>&nbsp;&nbsp;Add Session
               </h1>
 
               <h5 class="text-light text-center ">
