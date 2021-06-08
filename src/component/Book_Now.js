@@ -207,7 +207,7 @@ class Book_Now extends Component {
            this.setState({
             postTId: res.data.TId ,
             payLaterRedirect:true}); 
-                    // this.AddPayment(e); 
+                    
                          
               }).catch(
                           e => console.error(e) 
@@ -253,7 +253,7 @@ class Book_Now extends Component {
              .then(res => {
                this.setState({
                               postTId: res.data.TId }); 
-                            // this.paymentOpen(e);
+                             this.paymentOpen(e);
                   }).catch(
                               e => console.error(e) 
                               ); 

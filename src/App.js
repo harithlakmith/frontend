@@ -113,7 +113,7 @@ render(){
                 </a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fas fa-caret-square-down"></i>
+                <i class="fas fa-bars"></i>
                 </button>
                
                 <div class="collapse navbar-collapse" id="navbarCollapse">
