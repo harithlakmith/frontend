@@ -173,14 +173,15 @@ import Moment from "moment";
       
 
 
-<section class="wave-img1">
+<section class="pt-md-3 wave-img1">
 
 
 
       <div class="container py-5 ">
-      <p class="h2 bold text-success uppercase"><strong><i class="fas fa-arrow-circle-down"></i>&nbsp;&nbsp;Knowledge Base</strong><small class="text-muted h6">&nbsp;&nbsp;&nbsp;&nbsp;<em>for newly connected passengers.</em></small></p> <hr />
+      <p class="h2 bold text-success uppercase"><strong><i class="fas fa-arrow-circle-down"></i>&nbsp;&nbsp;Knowledge Base</strong><small class="text-muted h6">&nbsp;&nbsp;&nbsp;&nbsp;<em>for newly connected passengers.</em></small></p> 
+      <hr />
       
-        <div class="row align-items-center ">
+        <div class="pt-md-5 row align-items-center ">
           
           <div class="col-md-6">
             <div class="blur-shadow-image text-center">
@@ -293,7 +294,7 @@ import Moment from "moment";
 </section>
 
 
-<section class="">
+<section class="wave-img">
       <div class="container py-5">
       
         <div class="row align-items-center">
@@ -301,8 +302,9 @@ import Moment from "moment";
             <h3 class="text-gradient rgcv text-primary mb-0">Mobile </h3>
             <h3>Very nice subtitle</h3>
             <p class="lead mb-md-5 mb-4">
-              Change the color to match your brand or vision, add your logo, choose the perfect thumbnail, remove the playbar, add controls and more.
-            </p>
+              Don't worry about operating system of your device. Ticketz Support for most familier web browsers.
+              
+                </p>
 
 
 

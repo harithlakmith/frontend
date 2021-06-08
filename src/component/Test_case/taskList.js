@@ -1,26 +1,55 @@
-import React from "react"
-const TaskList = (props) => {
+import React from "react";
+import ReactToPrint from "react-to-print";
+
+const thStyle = {
+  fontFamily: "Anton",
+  fontWeight: "normal",
+  fontStyle: "normal"
+};
+
+class ComponentToPrint extends React.Component {
+  render() {
     return (
-      props.taskList.map((val, idx) => {
-        let halt = `halt-${idx}`, price = `price-${idx}`, time = `time-${idx}`, dist = `dist-${idx}`
-        return (
-          <tr key={val.index}>
-            <td><input class="form-control" name="halt" type="text" data-id={idx} id={halt} onChange={this.handleChange} /*value={this.state.halt}*/ ></input></td>
-                <td><input class="form-control" name="price" type="text" data-id={idx} id={price} onChange={this.handleChange} /*value={this.state.price}*/ ></input></td>
-                <td><input class="form-control" name="time" type="text" data-id={idx} id={time} onChange={this.handleChange} /*value={this.state.time}*/></input></td>
-                <td><input class="form-control" name="dist" type="text" data-id={idx} id={dist} onChange={this.handleChange}/* value={this.state.dist*}*/></input></td>
-                <td><button type="submit" onClick={this.UpdateRouteInfo} class="btn btn-primary btn-sm" >
-                    Update
-                </button></td>
-            <td>
-              {
-              idx===0?<button onClick={()=>props.add()} type="button" className="btn btn-primary text-center"><i className="fa fa-plus-circle" aria-hidden="true"></i></button>
-              : <button className="btn btn-danger" onClick={(() => props.delete(val))} ><i className="fa fa-minus" aria-hidden="true"></i></button>
-              }
-            </td>
-          </tr >
-        )
-      })
-    )
+      <table>
+        <thead style={thStyle}>
+          <th>column 1</th>
+          <th>column 2</th>
+          <th>column 3</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>data 1</td>
+            <td>data 2</td>
+            <td>data 3</td>
+          </tr>
+          <tr>
+            <td>data 1</td>
+            <td>data 2</td>
+            <td>data 3</td>
+          </tr>
+          <tr>
+            <td>data 1</td>
+            <td>data 2</td>
+            <td>data 3</td>
+          </tr>
+        </tbody>
+      </table>
+    );
   }
-export default TaskList
+}
+
+class tasklist extends React.Component {
+  render() { 
+    return (
+      <div>
+        <ReactToPrint
+          trigger={() => <button>Print this out!</button>}
+          content={() => this.componentRef}
+        />
+        <ComponentToPrint ref={(el) => (this.componentRef = el)} />
+      </div>
+    );
+  }
+}
+
+export default tasklist;
