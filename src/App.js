@@ -42,6 +42,7 @@ import Show_Route from "./component/Show_Route";
 import Footer from "./component/Footer";
 import Route_Update from "./component/Route_Update";
 import RouteInfo_Update from "./component/RouteInfo_Update";
+import Session_List from "./component/Session_List";
 
 class App extends Component {
   constructor(props) {
@@ -251,7 +252,7 @@ class App extends Component {
               <Session_Pass />
             </Route>
 
-            <Route path="/session-list" component={Session_List}>
+           <Route path="/session-list" component={Session_List}>
               <Session_List />
             </Route>
 
