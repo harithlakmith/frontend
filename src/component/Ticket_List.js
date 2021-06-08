@@ -7,13 +7,19 @@ import authHeader from "./../services/auth-header";
 import Moment from "moment";
 import { MDBDataTableV5, MDBIcon } from 'mdbreact';
 
+
 class Ticket_List extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
       Ticket: [],
       TId:'',    
+
       dte1:'',
+
+      SId:'',
+
       From:'',
       To:'',
       FromHalt:'',
@@ -38,7 +44,9 @@ nic:Pass.NIC,
 mail:Pass.Email
 })
 
+
 axios.get(window.$API_SERVER +"SearchTicket/" +id,{ headers: authHeader() })
+
     .then(res=>{
         this.setState({
             Ticket:res.data
@@ -50,13 +58,11 @@ axios.get(window.$API_SERVER +"SearchTicket/" +id,{ headers: authHeader() })
 
 
 
-
-
-
   render() {
     var NIC = this.state.nic;
     var email = this.state.mail;
     const { Ticket } = this.state
+
     const data ={
       columns:[
         {
@@ -171,6 +177,7 @@ axios.get(window.$API_SERVER +"SearchTicket/" +id,{ headers: authHeader() })
               <div class= "card-header headgd ">
                 <h1 class="text-light">
                
+
                   <u>Ticket List</u>  <i class="far fa-list-alt"></i>
                 </h1>
             
@@ -192,6 +199,7 @@ axios.get(window.$API_SERVER +"SearchTicket/" +id,{ headers: authHeader() })
                     <i class="far fa-envelope-open"></i> <label>Email : </label>
                       {email}
                   </div>
+
                 </div>
                 <br></br>
                 <div class="row">
@@ -213,6 +221,7 @@ axios.get(window.$API_SERVER +"SearchTicket/" +id,{ headers: authHeader() })
  
                   </div>
                 </div>
+
               </div>
               </div>
  
@@ -229,4 +238,6 @@ axios.get(window.$API_SERVER +"SearchTicket/" +id,{ headers: authHeader() })
   }
 }
 
+
 export default withRouter (Ticket_List);
+

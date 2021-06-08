@@ -36,9 +36,9 @@ class Book_Now extends Component {
     freeSeats:0,
     postTId: '',
     loading: false,
+    loading2: false,
     ticketInfo:[],
     userInfo:[],
-    loading:false,
     MaxSeats:0,
     MaxSeats2:0,
     limitEx: false,
@@ -48,6 +48,7 @@ class Book_Now extends Component {
   };
   this.handleChange = this.handleChange.bind(this);
     this.AddTicket = this.AddTicket.bind(this);
+    this.PayLater = this.PayLater.bind(this);
 }
 
   ticketTot(){
@@ -145,6 +146,41 @@ class Book_Now extends Component {
 
        
   }
+
+  PayLater(e) {  
+    // debugger;  
+     e.preventDefault(); 
+
+     this.setState({
+       loading2 : true
+     })
+
+     const obj = {  
+       SId:parseInt(this.state.sid),  
+       From:this.state.fromHoltId,  
+       FromHalt:this.state.fromHolt,  
+       To: this.state.toHoltId,  
+       ToHalt :this.state.toHolt, 
+       PId:1,
+       NoOfSeats:parseInt(this.state.seats),
+       PStatus:0,
+       Price:parseInt(this.state.totalTicket),
+       Date:Moment(Date().toLocaleString()).format(),
+       UserId:this.state.userInfo.Id.toLocaleString()
+   
+     };  
+     axios.post(window.$API_SERVER +'Ticket', obj)  
+         .then(res => {
+           this.setState({
+                          postTId: res.data.TId }); 
+                          
+              }).catch(
+                          e => console.error(e) 
+                          ); 
+          
+    
+    return <Redirect to={"/ticket"} />;
+     }  
  
       AddTicket(e) {  
         // debugger;  
@@ -247,7 +283,7 @@ render(){
   if (JSON.parse(localStorage.getItem('role'))!='Passenger'){
     return <Redirect to={'/sign-in'} />
   }
-  const {loading }= this.state;
+  const {loading, loading2 }= this.state;
      
   return (
     <div class="container p-1">
@@ -256,6 +292,7 @@ render(){
         <h1>
          
         </h1>
+        <br></br>
         <br></br>
         <form>
        
@@ -340,11 +377,20 @@ render(){
                          </Spinner>
                          ):(<i class="fas fa-lock"></i>)}&nbsp;&nbsp;Pay&nbsp;&nbsp;</span>
 
-                         
+                          </button>
+
+                          <button type="submit" onClick={this.PayLater}
+                        className="btn btn-success btn-lg btn-block" disabled={this.state.limitEx}>
+                         <span>{loading2 ?(
+                           <Spinner animation="border" role="status" size="sm" >
+                           <span className="sr-only">Loading...</span>
+                         </Spinner>
+                         ):(<i class="fas fa-lock"></i>)}&nbsp;&nbsp;Pay later&nbsp;&nbsp;</span>
                             
                           </button>
+
                         <br/>
-                        
+                      
                       </div>
 
                       
