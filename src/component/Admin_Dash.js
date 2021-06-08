@@ -33,7 +33,7 @@ class Admin_Dash extends Component {
                     Click below button for displaying the infomation list of bus
                     Routes.
                   </p>
-                  <a href="/" class="btn btn-primary m-2 disabled">
+                  <a href="/show-route" class="btn btn-primary m-2 ">
                     Show Route
                   </a>
                 </div>

@@ -1,176 +1,243 @@
 
-import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import React from "react";
 import axios from "axios";
-import {Redirect, withRouter} from "react-router-dom";
+import {Redirect, withRouter} from 'react-router-dom';
 import authHeader from "./../services/auth-header";
 import Moment from "moment";
+import { MDBDataTableV5, MDBIcon } from 'mdbreact';
 
- class Ticket_List extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-          Ticket: [],
-          TId:'',    
-          SId:'',
-          From:'',
-          To:'',
-          FromHalt:'',
-          ToHalt:'',
-          Seats:'',
-          PStatus:'',
-          Date:'',
-          Price:'',
-          pid: '',
-        
-          
-        }
+class Ticket_List extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      Ticket: [],
+      TId:'',    
+
+      dte1:'',
+
+      SId:'',
+
+      From:'',
+      To:'',
+      FromHalt:'',
+      ToHalt:'',
+      Seats:'',
+      PStatus:'',
+      Date:'',
+      Price:'',
+      pid: '',
     
-      }
+      
+    }
+
+  }
 
 componentDidMount(){
-  var Pass = JSON.parse(localStorage.getItem('userInfo'));
-  var PEmail = Pass.Email; 
-  this.setState({
-    nic:Pass.NIC,
-    mail:Pass.Email
-  })
- 
-  axios.get(window.$API_SERVER +'Passenger/'+ PEmail,{ headers: authHeader() })  
-      .then(res => {  
+var Pass = JSON.parse(localStorage.getItem('userInfo'));
+//var PEmail = Pass.Email; 
+var id = Pass.Id
+this.setState({
+nic:Pass.NIC,
+mail:Pass.Email
+})
+
+
+axios.get(window.$API_SERVER +"SearchTicket/" +id,{ headers: authHeader() })
+
+    .then(res=>{
         this.setState({
-          pid: res.data[0].PId
+            Ticket:res.data
+            
           
         });
-        this.getTicket();
-      })  
+    })
 }
 
-getTicket(){
-  
-    var id = this.state.pid
-    axios.get(window.$API_SERVER +"Ticket/" +id,{ headers: authHeader() })
-        .then(res=>{
-            this.setState({
-                Ticket:res.data
-                
-              
-            });
-        })
-}
-    render() {
 
-        var NIC = this.state.nic;
-        var email = this.state.mail;
-        const { Ticket } = this.state
-        const ticlist = Ticket.length?(
-            Ticket.map(tick =>{
-                const dte = new Date(tick.Date);
-                const date = Moment(dte.toLocaleString()).format('YYYY-MM-DD');
-                const today = Moment(Date().toLocaleString()).format('YYYY-MM-DD');
-                
-                let sts = "";
+
+  render() {
+    var NIC = this.state.nic;
+    var email = this.state.mail;
+    const { Ticket } = this.state
+
+    const data ={
+      columns:[
+        {
+          label: 'Ticket Number',
+          field: 'TicketNo',
+          
+          width: 100
+          },
+          {
+          label: 'From',
+          field: 'From',
+        
+          width: 100
+          },
+          {
+          label: 'To',
+          field: 'To',
+          
+          width: 100
+          },
+          {
+          label: 'Number of Seats',
+          field: 'NoOfSeat',
+          
+          width: 100
+          },
+          {
+          label: 'Payment Status',
+          field: 'PaymentStatus',
+          
+          width: 100
+          },
+          {
+          label: 'Price',
+          field: 'Price',
+          
+          width: 100
+          },
+          {
+          label: 'Date',
+          field: 'date',
+            
+          width: 100
+          },
+          {
+          label: 'Status',
+          field: 'Status',
+        
+          width: 100
+          }
+      ],
+      rows: Ticket.map(tick =>{
+            
+        const dte = tick.Date;
+        const date = Moment(dte.toLocaleString()).format('YYYY-MM-DD');
+        const today = Moment(Date().toLocaleString()).format('YYYY-MM-DD');
+        
+        let sts = "";
+        if (today > date){
+            //sts = <span class="badge bg-danger">Expired</span>;
+            sts = "Expired";
+           
+            
+        }
+        else {
+            
+            //sts = <span class="badge bg-success">Availble</span>
+            sts ="Available";
+           
+            
+        }
+
+        const psts = tick.PStatus;
+        let Psts = "";
+        let icon = "";
+        if (psts == 1){
+            Psts = "Paid";
+            icon = <MDBIcon far icon="check-circle" />
+           
+        }
+        else if(psts ==0){
+            Psts = "Not Paid";
+            icon = <MDBIcon icon="exclamation-circle" />
+        }
+        else{
+            Psts = "Pay Later";
+            icon = <MDBIcon icon="genderless" />
+        }
+         return {
+           TicketNo: tick.TId,
+           From: tick.FromHalt,
+           To: tick.ToHalt,
+           NoOfSeat: tick.NoOfSeats,
+           PaymentStatus:[Psts,icon],
+           Price: tick.Price,
+           date: date,
+           //date: datetime.create(tick.date).format('m/d/y'),
+           Status:sts
+    }
+      })
+    
+      
+    }
+    
+    
+
+    return (
+      <div>
+        <div class="container mt-5 p-1">
+          <div class="mt-5">
+            <div class="card">
+              <div class= "card-header headgd ">
+                <h1 class="text-light">
                
-                if (today > date){
-                    sts = <span class="badge bg-danger">Expired</span>;
-                   
-                    
-                }
-                else {
-                    
-                    sts = <span class="badge bg-success">Availble</span>
-                   
-                    
-                }
 
-                const psts = tick.PStatus;
-                let Psts = "";
-                let icon = "";
-                if (psts == 1){
-                    Psts = "Paid";
-                    icon = "fas fa-check-circle"
-                   
-                }
-                else{
-                    Psts = "Not Paid";
-                    icon = "fas fa-exclamation-circle"
-                }
-              
-                return( 
-                    <tr>
-                       <td class ="">{tick.TId}</td> 
-                       <td class ="">{tick.FromHalt}</td>
-                       <td class ="">{tick.ToHalt}</td>
-                       <td class =""><i class={icon}></i> {Psts}</td>
-                       <td class ="">{tick.NoOfSeats}</td>
-                       <td class ="">{date}</td>
-                       <td class ="">{tick.Price}</td>
-                       <td class ="">{sts}</td>
-                    </tr>
-                       )
-            })):(
-                <div className="center">Not Tickets available</div>
-            )
-  
-        return (  
-            <div class="container p-1">
-                <br></br>
-                <br></br>
-            <div class="mt-5">
-                <h1>
-                    <u>Ticket List</u>  <i class="far fa-list-alt"></i>
+                  <u>Ticket List</u>  <i class="far fa-list-alt"></i>
                 </h1>
-                <br></br>
-                <div class="form-group ">
-                  <div class="row ">
-                    <div class="col text-left">
+            
+              </div>
+              <br></br>
+              <br></br>
+
+              <div class="class-body">
+              <div class="container">
+                <div class="row ">
+                  <div class="col text-left">
                     <i class="far fa-id-badge"></i> <label>NIC : </label>
                       {NIC}
-                    </div>
                   </div>
                 </div>
-                <div class="form-group ">
-                  <div class="row ">
-                    <div class="col text-left">
+                <br></br>
+                <div class="row ">
+                  <div class="col text-left">
                     <i class="far fa-envelope-open"></i> <label>Email : </label>
                       {email}
-                    </div>
+                  </div>
+
+                </div>
+                <br></br>
+                <div class="row">
+                  <div class="col-lg-12 col-sm-12">
+                  
+                  <MDBDataTableV5 
+                    responsive 
+                    hover s
+                    triped 
+                    bordered 
+                    entriesOptions={[5, 10, 15]} 
+                    entries={10} 
+                    data={data} 
+                    pagingTop 
+                    searchTop 
+                    scrollY maxHeight='300px' 
+                    searchBottom={false} 
+                  />
+ 
                   </div>
                 </div>
-                <div class="row">
-                <div class="col-12 col-lg-9 col-sm-12">
-                    <div class="text-center">
-                    <table class="table table-hover table-striped  table-bordered text-left">
-                        <thead class="table-dark">
-                            <tr class="headgd">
-                                <th scope="col-lg-4">Ticket Id</th>
-                                <th scope="col-lg-4">From</th>
-                                <th scope="col-lg-4">To</th>
-                                <th scope="col-lg-4">Payment Status</th>
-                                <th scope="col-lg-4">No of Seats</th>
-                                <th scope="col-lg-4">Date</th>
-                                <th scope="col-lg-4">Price</th>
-                                <th scope="col-lg-4"><i class="fas fa-ticket-alt"></i> Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {ticlist}
-                        </tbody>
-                    </table>
-                </div>
-                
-                </div>
-                <div class="col-lg-3 col-sm-12">
-                  
-                      <img class= "img-fluid" src="images/tickets.png" alt="ticket" />
-                   
-                </div>
-                </div>
+
+              </div>
+              </div>
+ 
+          
+                <p></p>
+          
+
+              <br/><br/>
             </div>
+          </div>
         </div>
-        
-         );
-    }
+      </div>
+    );
+  }
 }
-export default withRouter(Ticket_List);
+
+
+export default withRouter (Ticket_List);
+

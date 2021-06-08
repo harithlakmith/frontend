@@ -1,10 +1,14 @@
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import React ,{Component}from "react";
 import axios from "axios";
 import {withRouter} from "react-router-dom";
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import authHeader from "./../services/auth-header";
+import {Spinner, Toast } from 'react-bootstrap';
+import Moment from "moment";
+import moment from "moment";
+
 
 class Ticket extends Component {
 
@@ -21,9 +25,13 @@ class Ticket extends Component {
         success:undefined,
         msgStatus:[],
         sms:'', 
+        sending:true,
+        isPaylater:false,
+        TickId:''
       };
         this.handleChange = this.handleChange.bind(this);
         this.sendsms = this.sendsms.bind(this);
+       
 }
 
       handleChange = (e) => {  
@@ -35,20 +43,49 @@ class Ticket extends Component {
       componentDidMount() {
           //const value = queryString.parse(this.props.location.search);
           const value = new URLSearchParams(this.props.location.search)
+          var tid = value.get('tid');
+          
           this.setState({
                 success : value.get('success'),
                 ticket: JSON.parse(localStorage.getItem('ticket')),
                 userInfo:JSON.parse(localStorage.getItem('userInfo')),
+                isPaylater:value.get('isPaylater'),
+                TickId:tid
               });
 
-          if(value.get('success')=="true"){
+
+            const ticket = JSON.parse(localStorage.getItem('ticket'));
+
+          if((value.get('success')=="false")){
+           
+              fetch(window.$API_SERVER + 'Ticket/' + ticket.tid, { //delete ticket
+                  method: 'DELETE',
+                  headers: authHeader()
+                })
+                
+                .then(res => console.log(res))
+                .catch(err=> console.log(err))
+  
+          }else if((value.get('success')=="true")&&(value.get('isPaylater')==false)){
 
              //  this.sendsms();
+                axios.post(window.$API_SERVER + "Ticket/PaymentUpdate",{TId: this.state.TId,PStatus: 1}, { headers: authHeader() })//paid
+                .then((json) => {
+                  console.log(json.data);
+                });
 
-           
+          }else if((value.get('success')=="true")&&(value.get('isPaylater')==true)){
 
-          }   
+                //  this.sendsms();
+                axios.post(window.$API_SERVER + "Ticket/PaymentUpdate",{TId: this.state.TId,PStatus: 2}, { headers: authHeader() })//paid
+                .then((json) => {
+                  console.log(json.data);
+                });
+
+         }
       }
+
+    
 
       sendsms(){
        const userInfo = JSON.parse(localStorage.getItem('userInfo'));
@@ -88,31 +125,104 @@ class Ticket extends Component {
       }
     
      
-      generatePDF(){
-        html2canvas(document.getElementById('capture')).then(function(canvas){
-         var imgdata = canvas.toDataURL('image/png')
-        var doc = new jsPDF('p','px','a4')
+     
 
-        //const imgWidth = 160 ;
-        //const imgHeight = 60 ;
+   printDocument=(e)=> {
+    const {isPaylater, success,ticket,userInfo,sms} = this.state;
+    const today = Moment(Date().toLocaleString()).format('YYYY-MM-DD');
+    const t = this.state.success;
+    const doc = new jsPDF();
+    let QRimage = document.getElementById('qr');
+    
+    
+    let y = 10;
 
-        var pageWidth = doc.internal.pageSize.getWidth();
-        var pageHeight = doc.internal.pageSize.getHeight();
 
-        var widthRatio = pageWidth/canvas.width;
-        var heightRatio = pageHeight/canvas.height;
-        var ratio = widthRatio > heightRatio ? heightRatio : widthRatio;
+doc.setLineWidth(0.5);
+doc.rect(5, 5, 200, 50); // up box
+doc.addImage("logo2.png", "PNG", 20, 10, 100, 35);
 
-        var canvasWidth = canvas.width*ratio;
-        var canvasHeight = canvas.height*ratio;
-        
-        var marginX = (pageWidth-canvasWidth)/2;
-        var marginY = (pageHeight-canvasHeight)/2;
+//doc.setLineWidth(0.8);
+//doc.setDrawColor("#f7ad26");
+//doc.setFillColor("#f9cf81");
+//doc.roundedRect(160, 10, 40, 20, 3 , 3, "S");
+doc.setFontSize(11);
+doc.setFont("courier","bold");
+doc.setTextColor("#000000");
+doc.text("Payment Method:",130, 20,null, null, "left");
+doc.text("Payment Status:",130, 25,null, null, "left");
+doc.text("Printed Date  :",130, 30,null, null, "left");
+doc.text(today,167, 30,null, null, "left");
 
-        doc.addImage(imgdata,'PNG', marginX,marginY, canvasWidth, canvasHeight)
-        doc.save("Ticket.pdf")
-        }) 
-   }
+var pIntent='';
+if(isPaylater){
+  doc.setTextColor("#f79a26");
+  doc.text("PayLater(cash)",167, 20,null, null, "left");
+  doc.setTextColor("#e80303");
+  doc.text("Not paid",167, 25,null, null, "left");
+
+      pIntent = "--< no pay-id in paylater mode >--";
+}else{
+  doc.setTextColor("#40d11a");
+  doc.text("Online(stripe)",167, 20,null, null, "left");
+  doc.text("Paid",167, 25,null, null, "left");
+
+       pIntent = ticket.paymentIntent;
+}
+
+doc.setLineWidth(0.5);
+doc.setDrawColor("#000000");
+doc.rect(5, 60, 200, 230); // down box
+doc.setFont("helvetica", "bold");
+doc.setTextColor("#2d0dde");
+doc.setFontSize(28);
+doc.text("-------Ticket #" + ticket.tid + "-------", 105, 80, null, null, "center");
+doc.setTextColor("#000000");
+doc.setFontSize(14);
+doc.setFont("times", "normal");
+doc.text(ticket.sesDate, 105, y+90, null, null, "center");
+doc.setFontSize(18);
+doc.text(ticket.routeNo +" "+ ticket.routeStartHolt +" -  "+ ticket .routeStopHolt, 105, y+100, null, null, "center");
+doc.text("[ "+ ticket.busNo +" ]", 105, y+110, null, null, "center");
+doc.setFontSize(14);
+doc.text("No of Seats " + ticket.seats, 105, y+120, null, null, "center");
+doc.setFont("times", "bold");
+doc.text("From - " + ticket.fromHolt, 105, y+130, null, null, "center");
+doc.text("To - " + ticket.toHolt, 105, y+137, null, null, "center");
+doc.setFont("times", "normal");
+doc.setTextColor("#2d0dde");
+doc.setFontSize(20);
+doc.text("Bus Reach to " + ticket.fromHolt, 105, y+150, null, null, "center");
+doc.text("@ " + ticket.ArrivedTime, 105, y+160, null, null, "center");
+doc.setTextColor("#40d11a");
+doc.setFontSize(27);
+doc.setFont("helvetica", "bold");
+doc.text("Price : Rs " + ticket.ticketPrice, 105, y+175, null, null, "center");
+doc.setFont("times", "normal");
+doc.setTextColor("#000000");
+doc.addImage(QRimage, 'png', 85, y+185,null, null, "center");
+doc.setTextColor("#9f9d9d");
+doc.setFontSize(11);
+doc.text("* This QR code valid only for PayLater passengers. They should provide this QR",45, y+235)
+doc.text(" to the conductor when paying",47, y+240)
+doc.setTextColor("#000000");
+doc.setFontSize(12);
+doc.setLineDash([2.5]);
+doc.line(40, y+245, 180, y+245);
+doc.setFillColor("#f7ad26");
+doc.setTextColor("#f7ad26");
+doc.setFont("courier","normal");
+doc.text("P-id : " + pIntent, 55, y+255, null, null, "left");
+doc.text("C-id : " + userInfo.Id, 55, y+261, null, null, "left");
+doc.text("S-id : #" + ticket.sid, 55, y+267, null, null, "left");
+doc.setLineWidth(0.5);
+doc.setLineDash([0]);
+doc.setDrawColor("#f7ad26");
+doc.setFillColor("#f9cf81");
+doc.roundedRect(45, y+250, 130, 20, 3 , 3, "S");
+
+doc.save( "Ticketz.pdf");
+  }
         
        
 
@@ -120,6 +230,13 @@ render(){
 
   const {success,ticket,userInfo,sms} = this.state;
   const pdfname = 'Ticketz-#'+ ticket.tid+'_'+userInfo.Id+'.pdf';
+  const paylaterpath = '/ticket?isPaylater=true&success=true&TId='+ ticket.tid;
+
+  var React = require('react');
+  var QRCode = require('qrcode.react');
+  const qrvalue = this.state.TickId;
+
+
   var smsshow = "";
   if(sms=="ok"){
     smsshow = "ok"
@@ -135,9 +252,16 @@ render(){
           <div class="container">
               <div class="row">
                 <div class="col-lg">
-                  <div class="alert alert-success" role="alert">
-                  <i class="fas fa-check-circle"></i>&nbsp;&nbsp;Payment is Succesful!
-                  </div>
+                {this.state.isPaylater?(
+                        <div class="alert alert-success" role="alert">
+                        <i class="fas fa-check-circle"></i>&nbsp;&nbsp;Type : Pay Later (cash)
+                    </div>
+                ):(
+                    <div class="alert alert-success" role="alert">
+                    <i class="fas fa-check-circle"></i>&nbsp;&nbsp;Payment is Succesful!
+                </div>
+                )}
+
                 </div>
               </div>
 
@@ -182,7 +306,8 @@ render(){
 
               <div class="row align-items-end text-center">
                 <div class="col-lg">
-                <button onClick={this.generatePDF} >Download Ticket</button>
+                <button onClick={this.printDocument} >Download Ticket</button>
+                
                 </div>
               </div>
 
@@ -213,10 +338,10 @@ render(){
                                   C-Id&nbsp;: {userInfo.Id}<br/>
                                   S-Id&nbsp;: #{ticket.sid}
                               </div>
-                              <div class="alert alert-success h6" role="alert">
+                              <div id="pay" class="alert alert-success h6" role="alert">
                                 Payment is Succesful!
                               </div>
-                             
+                              <QRCode id="qr" value={qrvalue} />
                               </div>
                      
 
@@ -235,14 +360,16 @@ render(){
     
    );
   }else{
+
      return( <div>
       <br/> <br/> <br/> <br/><br/> <br/>
       <div class="container">
         <div class="row justify-content-md-center">
           <div class="col-lg-5 text-center">
                <div class="alert alert-danger h6" role="alert">
-                Payment is Unsuccesful!<br/>
+               Your Payment is Unsuccesful!<br/>
                 <a href="/home" class="m-4 btn btn-danger">Home Page</a>
+                
               </div>
 
           </div>

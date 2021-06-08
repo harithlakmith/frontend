@@ -2,8 +2,8 @@ import axios from "axios";
 
 
 
-const AAPI_URL = "https://ticketbookingapi.azurewebsites.net/api/Accounts/";
-//const API_URL = "http://localhost:5000/api/Accounts/";
+//const AAPI_URL = "https://ticketbookingapi.azurewebsites.net/api/Accounts/";
+// API_URL = "http://localhost:5000/api/Accounts/";
 const API_URL = window.$API_SERVER + 'Accounts/';
 
 
@@ -23,7 +23,7 @@ class AuthService {
          localStorage.setItem("role", JSON.stringify(response.data.role[0]));
          localStorage.setItem("userInfo", JSON.stringify(response.data.data));
          localStorage.setItem("token", JSON.stringify(response.data.token));
-         this.getuserfromtoken();
+         //this.getuserfromtoken();
 
          
         }
@@ -40,10 +40,10 @@ class AuthService {
     localStorage.removeItem('role');
     localStorage.removeItem('userInfo');
     localStorage.removeItem('token');
-    
+    localStorage.removeItem('ticket');
   }
 
-  getuserfromtoken(){
+  /*getuserfromtoken(){
     var Token = JSON.parse(localStorage.getItem('token'));
     if (Token){
       try{
@@ -63,7 +63,7 @@ class AuthService {
       email,
       password
     });
-  }
+  }*/
 
   getCurrentUser() {
     return JSON.parse(localStorage.getItem('user'));

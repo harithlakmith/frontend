@@ -109,6 +109,9 @@ import Moment from "moment";
         }
 
         const today = Moment(Date().toLocaleString()).format('YYYY-MM-DD');
+        
+      
+       
         const {text,text1} = this.state;
         
 
@@ -149,7 +152,7 @@ import Moment from "moment";
                             </div>
                             <br></br>
                             <div class="form-group">
-                                <input name="date" type="date" class="form-control" id="inputCheckOut" placeholder="Date ..." min="today"/>
+                                <input name="date" type="date" class="form-control" id="inputCheckOut" placeholder="Date ..." min={today} />
                                 
                             </div>
                             <div class="form-group tm-form-element tm-form-element-2">
@@ -162,77 +165,245 @@ import Moment from "moment";
                 </div>
               
             </div>
+            
          
         </section>
+        
 
-        <section class="py-6">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-6 mx-auto text-center pb-4">
-                <h4 class="text-gradient text-primary">Social Analytics</h4>
-                <h2>Turn your idea into a startup</h2>
-                <p class="lead">We’re constantly trying to express ourselves and actualize our dreams. If you have the opportunity to play </p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-4 col-md-6">
-                <div class="p-3 text-center">
-                  <div class="icon icon-shape bg-gradient-primary shadow mx-auto">
-                    <i class="ni ni-single-02"></i>
-                  </div>
-                  <h5 class="mt-4">Check our team</h5>
-                  <p>We get insulted by others, lose trust for those others. We get back here to follow my dreams</p>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6">
-                <div class="p-3 text-center">
-                  <div class="icon icon-shape bg-gradient-info shadow mx-auto">
-                    <i class="ni ni-email-83"></i>
-                  </div>
-                  <h5 class="mt-4">Support 24/7</h5>
-                  <p>We get insulted by others, lose trust for those others. We get back here to follow my dreams</p>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6 mx-md-auto">
-                <div class="p-3 text-center">
-                  <div class="icon icon-shape bg-gradient-warning shadow mx-auto">
-                    <i class="ni ni-atom"></i>
-                  </div>
-                  <h5 class="mt-4">Unlimited revisions</h5>
-                  <p>We get insulted by others, lose trust for those others. We get back here to follow my dreams</p>
-                </div>
-              </div>
-            </div>
-            <hr></hr>
-          </div>
+      
+
+
+<section class="wave-img1">
+
+
+
+      <div class="container py-5 ">
+      <p class="h2 bold text-success uppercase"><strong><i class="fas fa-arrow-circle-down"></i>&nbsp;&nbsp;Knowledge Base</strong><small class="text-muted h6">&nbsp;&nbsp;&nbsp;&nbsp;<em>for newly connected passengers.</em></small></p> <hr />
+      
+        <div class="row align-items-center ">
           
-        </section>
+          <div class="col-md-6">
+            <div class="blur-shadow-image text-center">
+            <div class="embed-responsive embed-responsive-16by9">
+              
+              
+              <video class="" autoplay loop controls muted poster="images/map2.jpg">
+                <source src="images/tempary.mp4" type="video/mp4" />
+              </video>
+             
+            
+            </div>
+            </div>
+          </div>
+          <div class="col-md-6 mt-lg-0 mt-4 mb-md-0 mb-4 px-5 ">
+            <h3 class="text-gradient rgcv text-primary mb-0">How To Reserve A Ticket</h3>
+            <h4>Video Tutorial</h4>
+            <p class=" mb-md-4 mb-4 bold">
+              If you are not familiar with online ticket reservation and payment systems, this video tutorial will help you to reserve your ticket
+            </p>
+                              
+                              <div id="carouselExampleCaptions" class="carousel slide border p-5 my-5" data-ride="carousel">
+                                <ol class="btn-primary carousel-indicators">
+                                  <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                                  <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                                  <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+                                  <li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
+                                  <li data-target="#carouselExampleCaptions" data-slide-to="4"></li>
+                                </ol>
+                                <div class="text-dark carousel-inner text-cente">
 
+                                  <div class="carousel-item active pl-5" data-interval="2000">
+                                      <div class="media ">
+                                        <img src="images/7.png" class="mr-3 " height="64" width="64"  alt="..."/>
+                                        <div class="media-body">
+                                          <h5 class="mt-0">01. First Step</h5>
+                                          Choose your destinations and date.
+                                        </div>
+                                      </div>
 
-        <section class="">
-  <div class="container py-5">
-  
-    <div class="row align-items-center">
-      <div class="col-md-6 mb-md-0 mb-4">
-        <h3 class="text-gradient rgcv text-primary mb-0">Medium Length Headline</h3>
-        <h3>Very nice subtitle</h3>
-        <p class="lead mb-md-5 mb-4">
-          Change the color to match your brand or vision, add your logo, choose the perfect thumbnail, remove the playbar, add controls and more.
-        </p>
-        <p><span class="me-2">&#9679;</span> Showcase and embed your work with</p>
-        <p><span class="me-2">&#9679;</span> Publish across social channels in a click</p>
-        <p><span class="me-2">&#9679;</span> Sell your videos worldwide</p>
-        <p><span class="me-2">&#9679;</span> Make more profit</p>
-      </div>
-      <div class="col-md-6">
-        <div class="blur-shadow-image text-center">
-          <img src="../../assets/img/curved-images/curved5.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg max-height-600"/>
+                                  
+                                  </div>
+
+                                  <div class="text-dark carousel-item pl-5 " data-interval="2000">
+                                  
+                                    
+
+                                      <div class="media ">
+                                        <img src="images/5.png" class="mr-3 " height="64" width="64"  alt="..."/>
+                                        <div class="media-body">
+                                          <h5 class="mt-0">02. Second Step</h5>
+                                          Choose correct Bus and Route.
+                                        </div>
+                                      </div>
+
+                                    
+                                  </div>
+
+                                  <div class="carousel-item pl-5" data-interval="2000">
+                                  
+                                      <div class="media ">
+                                        <img src="images/9.jpg" class="mr-3 " height="64" width="64"  alt="..."/>
+                                        <div class="media-body">
+                                          <h5 class="mt-0">03. Third Step</h5>
+                                          Select number of seats.
+                                        </div>
+                                      </div>
+
+                                
+                                  </div>
+
+                                  <div class="carousel-item  pl-5" data-interval="2000">
+                                  
+                                      <div class="media ">
+                                        <img src="images/8.png" class="mr-3 " height="60" width="60"  alt="..."/>
+                                        <div class="media-body">
+                                          <h5 class="mt-0">04. Forth Step</h5>
+                                          Make Payment&nbsp;<small class="text-muted"> Powered by Stripe</small>.
+                                        </div>
+                                      </div>
+
+                                  
+                                  </div>
+                                  <div class="carousel-item pl-5 " data-interval="2000">
+                                  
+
+                                      <div class="media ">
+                                        <img src="images/10.jpg" class="mr-3 " height="60" width="60"  alt="..."/>
+                                        <div class="media-body">
+                                          <h5 class="mt-0">05. Final Step</h5>
+                                          Download your Ticket.
+                                        </div>
+                                      </div>
+
+                                  </div>
+                                </div>
+                                <a class="carousel-control-prev btn-primar" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                                  <span class="carousel-control-prev-icon  " aria-hidden="true"></span>
+                                  <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next btn-primar" href="#carouselExampleCaptions" role="button" data-slide="next">
+                                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                  <span class="sr-only">Next</span>
+                                </a>
+                              </div>
+
+          </div>
         </div>
       </div>
-    </div>
-  </div>
 </section>
 
+
+<section class="">
+      <div class="container py-5">
+      
+        <div class="row align-items-center">
+          <div class="col-md-6 mb-md-0 mb-4">
+            <h3 class="text-gradient rgcv text-primary mb-0">Mobile </h3>
+            <h3>Very nice subtitle</h3>
+            <p class="lead mb-md-5 mb-4">
+              Change the color to match your brand or vision, add your logo, choose the perfect thumbnail, remove the playbar, add controls and more.
+            </p>
+
+
+
+
+<div id="carouselExampleCaptions" class="carousel slide border p-5 my-5" data-ride="carousel">
+  <ol class="btn-primary carousel-indicators">
+    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+    <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+    <li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
+    <li data-target="#carouselExampleCaptions" data-slide-to="4"></li>
+  </ol>
+  <div class="text-dark carousel-inner text-cente">
+
+    <div class="carousel-item active pl-5" data-interval="2000">
+        <div class="media ">
+          <img src="images/7.png" class="mr-3 " height="64" width="64"  alt="..."/>
+          <div class="media-body">
+            <h5 class="mt-0">01. First Step</h5>
+            Choose your destinations and date.
+          </div>
+        </div>
+
+     
+    </div>
+
+    <div class="text-dark carousel-item pl-5 " data-interval="2000">
+    
+      
+
+        <div class="media ">
+          <img src="images/5.png" class="mr-3 " height="64" width="64"  alt="..."/>
+          <div class="media-body">
+            <h5 class="mt-0">02. Second Step</h5>
+            Choose correct Bus and Route.
+          </div>
+        </div>
+
+      
+    </div>
+
+    <div class="carousel-item pl-5" data-interval="2000">
+    
+        <div class="media ">
+          <img src="images/9.jpg" class="mr-3 " height="64" width="64"  alt="..."/>
+          <div class="media-body">
+            <h5 class="mt-0">03. Third Step</h5>
+            Select number of seats.
+          </div>
+        </div>
+
+  
+    </div>
+
+    <div class="carousel-item  pl-5" data-interval="2000">
+    
+        <div class="media ">
+          <img src="images/8.png" class="mr-3 " height="60" width="60"  alt="..."/>
+          <div class="media-body">
+            <h5 class="mt-0">04. Forth Step</h5>
+            Make Payment&nbsp;<small class="text-muted"> Powered by Stripe</small>.
+          </div>
+        </div>
+
+    
+    </div>
+    <div class="carousel-item pl-5 " data-interval="2000">
+    
+
+        <div class="media ">
+          <img src="images/10.jpg" class="mr-3 " height="60" width="60"  alt="..."/>
+          <div class="media-body">
+            <h5 class="mt-0">05. Final Step</h5>
+            Download your Ticket.
+          </div>
+        </div>
+
+    </div>
+  </div>
+  <a class="carousel-control-prev btn-primar" href="#carouselExampleCaptions" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon  " aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next btn-primar" href="#carouselExampleCaptions" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+
+
+
+          </div>
+          <div class="col-md-6">
+            <div class="blur-shadow-image text-center">
+              <img src="images/phone.gi" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg max-height-600"/>
+            </div>
+          </div>
+        </div>
+      </div>
+</section>
 
 
 

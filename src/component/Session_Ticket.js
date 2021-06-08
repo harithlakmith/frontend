@@ -1,22 +1,23 @@
-
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import { withRouter} from "react-router-dom";
+import Moment from "moment";
+//import Moment from "moment";
+import { MDBDataTableV5, MDBIcon } from 'mdbreact';
 
  class Session_Ticket extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-          Ticket: [],
+          Session: [],
           TId:'',    
           SId:'',
           From:'',
           To:'',
           FromHalt:'',
           ToHalt:'',
-          PId:'',
           Seats:'',
           PStatus:'',
           Date:'',
@@ -28,67 +29,121 @@ import { withRouter} from "react-router-dom";
 componentDidMount(){
     const value = new URLSearchParams(this.props.location.search)
     var sid = value.get('sid');
-
+    //var sid = 38;
     axios.get(window.$API_SERVER +"Ticket/session/"+sid)
-
         .then(res=>{
             this.setState({
-                Ticket:res.data,
+                Session:res.data,
               
             });
         })
 }
     render() {
-        const { Ticket } = this.state;
+
+        const { Session } = this.state;
+        const Sdata ={
+            columns:[
+              {
+                label: 'Ticket Number',
+                field: 'TicketNo',
+                
+                width: 100
+                },
+                {
+                label: 'Session ID',
+                field: 'sid',
+                  
+                width: 100
+                },
+                {
+                label: 'From',
+                field: 'From',
+              
+                width: 150
+                },
+                {
+                label: 'To',
+                field: 'To',
+                
+                width: 100
+                },
+                {
+                label: 'Number of Seats',
+                field: 'NoOfSeat',
+                
+                width: 100
+                },
+                
+                {
+                label: 'Price',
+                field: 'Price',
+                
+                width: 100
+                },
+                {
+                label: 'Date',
+                field: 'date',
+                  
+                width: 100
+                }
+                
+            ],
+            rows: Session.map(ses =>{
+             
+              
+               return {
+                 TicketNo: ses.TId,
+                 sid : ses.SId,
+                 From: ses.FromHalt,
+                 To: ses.ToHalt,
+                 NoOfSeat: ses.NoOfSeats,
+                 Price: ses.Price,
+                 date :Moment(ses.Date.toLocaleString()).format('YYYY-MM-DD')
+                
+          }
+            })
+          
+            
+          }
     
-        const ticlist = Ticket.length ? (
-            Ticket.map(ses=>{
-                return( 
-                    <tr>
-                       <td class ="">{ses.TId}</td> 
-                       <td class ="">{ses.SId}</td>
-                       <td class ="">{ses.FromHalt}</td>
-                       <td class ="">{ses.ToHalt}</td>
-                       <td class ="">{ses.PId}</td>
-                       <td class ="">{ses.NoOfSeats}</td>
-                       
-                       <td class ="">{ses.Date}</td>
-                       <td class ="">{ses.Price}</td>
-                       </tr>
-                       );
-            })):(
-                <div className="center">No tickets availabe</div>
-            )
+        
+  
+                 
   
         return (  
-            <div class="container p-1">
             <div class="">
-                <h1>
-                    <u>Ticket Information</u>
-                </h1>
+            	<div class="card" >
+                <div class="card-body">
+      
+      
+        <div class="mt-5 p-5">
+          <h2 class="card-title card-header px-3 headgd  text-light">
+                Ticket Information
+                </h2>
                 <br></br>
                 <div class="row">
-                    <div class="text-center">
-                    <table class="table table-hover table-info table-bordered text-center">
-                        <thead>
-                            <tr class="bg-info">
-                                <th scope="col-lg-4">Ticket Id</th>
-                                <th scope="col-lg-4">Session Id</th>
-                                <th scope="col-lg-4">From</th>
-                                <th scope="col-lg-4">To</th>
-                                <th scope="col-lg-4">Passenger Id</th>
-                                <th scope="col-lg-4">No of Seats</th>
-                               
-                                <th scope="col-lg-4">Date</th>
-                                <th scope="col-lg-4">Price</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {ticlist}
-                        </tbody>
-                    </table>
+                    <div class="col-lg-12 col-sm-12">
+                    <MDBDataTableV5 
+                    responsive 
+                    hover 
+                    striped 
+                    bordered 
+                    entriesOptions={[5, 10, 15]} 
+                    entries={10} 
+                    data={Sdata} 
+                    searchTop 
+                    info ={false}
+                    scrollY maxHeight='300px' 
+                    searchBottom={false} 
+                  />
+                        
+                            
+                       
+                  
                     </div>
                 </div>
+            </div>
+            </div>
             </div>
         </div>
         

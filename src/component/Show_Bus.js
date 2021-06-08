@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React, { Component } from "react";
 import axios from "axios";
 import authHeader from "./../services/auth-header";
+import { MDBDataTableV5, MDBIcon, MDBBtn, MDBTable, MDBTableBody, MDBTableHead  } from 'mdbreact';
 
 class Show_Bus extends Component {
 
@@ -25,64 +26,95 @@ componentDidMount(){
   render(){
 
     const { buses } = this.state
-    const busList = buses.length ? (
-      buses.map(bus => {
-        return (
+    const data ={
+      columns:[
+        {
+          label: 'Bus No',
+          field: 'BusNo',
+          
+          width: 100
+          },
+          {
+          label: 'Driver Name',
+          field: 'DriverName',
+        
+          width: 100
+          },
+          {
+          label: 'Driver No',
+          field: 'DriverNo',
+          
+          width: 100
+          },
+          {
+          label: 'Conductor Name',
+          field: 'ConductorName',
+          
+          width: 100
+          },
+          {
+          label: 'Conductor No',
+          field: 'ConductorNo',
+          
+          width: 100
+          },
+          {
+          label: 'No Of Seats',
+          field: 'NoOfSeats',
+          
+          width: 100
+          },
+          {
+          label: 'Email',
+          field: 'Email',
+         
             
-            <tr>
-            <td>{bus.BusNo}</td>
-            <td>{bus.DriverName}</td>
-            <td>{bus.DriverNo}</td>
-            <td>{bus.CondName}</td>
-            <td>{bus.CondNo}</td>
-            <td>{bus.MaxSeats}</td>
-            <td>{bus.Email}</td>
-          </tr>
-        )
-      })
-    ) : (
-      <div className="center">No Buses available</div>
-    );
+          width: 100
+          },
+         
+      ],
+      rows:buses.map(bus => {
+          return{
+            BusNo:bus.BusNo,
+            DriverName:bus.DriverName,
+            DriverNo:bus.DriverNo,
+            ConductorName:bus.CondName,
+            ConductorNo:bus.CondNo,
+            NoOfSeats:bus.MaxSeats,
+            Email:bus.Email, 
+            
+          }
+    
+    
+          
+        })
+          
+      }
+   
 
 
   return (
     <div>
-      <div class="container p-1">
-      <br></br><br></br>
-        <div class="mt-5">
-          <h1>
-            <u>Buses Information List</u>
-          </h1>
+      	<div class="card" >
+    <div class="card-body">
+      
+      
+        <div class="mt-5 p-5">
+          <h2 class="card-title card-header px-3 headgd  text-light">
+            Buses Information List
+          </h2>
 
           <br></br>
           <div class="row">
           
             <div class="col-lg">
-              <table class="table table-hover table-info table-bordered">
-                <thead>
-                  <tr class="bg-info">
-                    <th scope="col-lg-3">Bus No</th>
-                    <th scope="col-lg-3">Driver Name</th>
-                    <th scope="col-lg-3">Driver No</th>
-                    <th scope="col-lg-3">Conductor Name</th>
-                    <th scope="col-lg-3">Conductor No</th>
-                    <th scope="col-lg-3">No of Seats</th>
-                    <th scope="col-lg-3">Email</th>
-                   
-                  </tr>
-                </thead>
-                <tbody>
-                 {busList}
-                </tbody>
-              </table>
+            <MDBDataTableV5 responsive hover striped bordered entriesOptions={[5, 10, 15]} entries={10} info={false} data={data} />
             </div>
-            <div class="box-bo4"></div>
            
           </div>
-
-          <hr />
          
         </div>
+      </div>
       </div>
     </div>
   );}

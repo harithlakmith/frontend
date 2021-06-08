@@ -33,19 +33,22 @@ class Book_Now extends Component {
       seats: "",
       sid: 0,
       freeSeats: 0,
+      ReTId: "",
       postTId: "",
       loading: false,
+      loading2: false,
       ticketInfo: [],
       userInfo: [],
-      loading: false,
       MaxSeats: 0,
       MaxSeats2: 0,
       limitEx: false,
       payDis: false,
       showA: true,
+      payLaterRedirect: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.AddTicket = this.AddTicket.bind(this);
+    this.PayLater = this.PayLater.bind(this);
   }
 
   ticketTot() {
@@ -126,6 +129,64 @@ class Book_Now extends Component {
     });
   }
 
+  PayLater(e) {
+    // debugger;
+    e.preventDefault();
+
+    this.setState({
+      loading2: true,
+    });
+
+    const obj = {
+      SId: parseInt(this.state.sid),
+      From: this.state.fromHoltId,
+      FromHalt: this.state.fromHolt,
+      To: this.state.toHoltId,
+      ToHalt: this.state.toHolt,
+      PId: 1,
+      NoOfSeats: parseInt(this.state.seats),
+      PStatus: 2,
+      Price: parseInt(this.state.totalTicket),
+      Date: Moment(Date().toLocaleString()).format(),
+      UserId: this.state.userInfo.Id.toLocaleString(),
+    };
+    axios
+      .post(window.$API_SERVER + "Ticket", obj)
+      .then((res) => {
+        var pr = parseFloat(this.state.totalTicket) * 100;
+        const ticketarray = {
+          routeStartHolt: this.state.routeStartHolt,
+          routeStopHolt: this.state.routeStopHolt,
+          fromHolt: this.state.fromHolt,
+          toHolt: this.state.toHolt,
+          sesDate: this.state.sesDate,
+          ticketPrice: parseInt(pr) / 100,
+          ArrivedTime: this.state.ArrivedTime,
+          routeNo: this.state.routeNo,
+          duration: this.state.duration,
+          sid: this.state.sid,
+          paymentStatus: 0,
+          paymentIntent: "",
+          tid: parseInt(res.data.TId),
+          seats: this.state.seats,
+          busNo: this.state.busNo,
+        };
+
+        localStorage.removeItem("ticket");
+        localStorage.setItem("ticket", JSON.stringify(ticketarray));
+
+        this.setState({
+          postTId: res.data.TId,
+          payLaterRedirect: true,
+        });
+      })
+      .catch((e) => console.error(e));
+
+    // this.props.history.push('/ticket');
+  }
+
+  //return <Redirect to={d}/>;
+
   AddTicket(e) {
     // debugger;
     e.preventDefault();
@@ -136,15 +197,16 @@ class Book_Now extends Component {
 
     const obj = {
       SId: parseInt(this.state.sid),
-      From: parseInt(this.fromHoltId),
+      From: this.state.fromHoltId,
       FromHalt: this.state.fromHolt,
-      To: parseInt(this.toHoltId),
+      To: this.state.toHoltId,
       ToHalt: this.state.toHolt,
       PId: 1,
       NoOfSeats: parseInt(this.state.seats),
       PStatus: 0,
       Price: parseInt(this.state.totalTicket),
-      Date: Moment(Date().toLocaleString()).format("YYYY-MM-DD"),
+      Date: Moment(Date().toLocaleString()).format(),
+      UserId: this.state.userInfo.Id.toLocaleString(),
     };
     axios
       .post(window.$API_SERVER + "Ticket", obj)
@@ -223,41 +285,55 @@ class Book_Now extends Component {
     if (JSON.parse(localStorage.getItem("role")) != "Passenger") {
       return <Redirect to={"/sign-in"} />;
     }
-    const { loading } = this.state;
+    const { loading, loading2, ReTId } = this.state;
+    var no = ReTId;
+    const path =
+      "/ticket?isPaylater=true&success=true&TId=" + this.state.ReTId + " ";
+    // this.props.history.push('/ticket?success=true&tid=1');
+    if (this.state.payLaterRedirect) {
+      return (
+        <Redirect
+          to={"/ticket?isPaylater=true&success=true&TId=" + this.state.postTId}
+        />
+      );
+    }
 
     return (
-      <div class="container p-1 mt-5">
+      <div class="container p-1">
         <br></br>
-        <div class=" col col-lg mt-5">
+        <div class="box">
+          <h1></h1>
+          <br></br>
+          <br></br>
           <form>
-            <div class="card  border  border-light-4 rounded mb-2">
+            <div class="card border border-primary rounded mb-3">
               <div class="card-header p-3 headgd rounded">
-                <div class="row col-12">
-                  <div class="col-md-6 col-sm-12">
+                <div class="row ">
+                  <div class="col-md-6 ">
                     <h3 class="text-light">
                       #{this.state.routeNo}&nbsp;&nbsp;
                       {this.state.routeStartHolt} - {this.state.routeStopHolt}
                     </h3>
+                    <p class="card-text">
+                      <span class="text-light">
+                        &nbsp;<i class="fas fa-bus-alt"></i>&nbsp;&nbsp;Bus
+                        registraion no <b>{this.state.busNo}</b>
+                      </span>
+                    </p>
                   </div>
-                  <div class="col-md-6 col-sm-12 ">
+                  <div class="col-md-6  ">
                     <h3 class="text-light">
                       <i class="fas fa-calendar-day"></i>&nbsp;&nbsp;
                       {this.state.sesDate}
                     </h3>
                   </div>
                 </div>
-                <div class="row col-12 col-md-6 col-sm-12">
-                  <p class="card-text text-light">
-                    &nbsp; &nbsp;<i class="fas fa-bus-alt"></i>&nbsp;&nbsp;Bus
-                    registraion no <b>{this.state.busNo}</b>
-                  </p>
-                </div>
               </div>
               <div class="card-body">
                 <div class="row pt-3 px-1 px-lg-5">
                   <div class="col-12 col-lg-8  ">
                     <div class="row">
-                      <div class="col-12 col-lg-5 col-sm-12 align-items-center">
+                      <div class="col-12 col-lg-5 align-items-center">
                         <div class="card">
                           <img
                             class="card-img-top"
@@ -265,14 +341,12 @@ class Book_Now extends Component {
                             alt="Card image cap"
                           />
                           <div class="card-body">
-                            <h5 class="card-title ">
+                            <h5 class="card-title">
                               From: {this.state.fromHolt}
                             </h5>
-                            <h5 class="card-title ">
-                              To : {this.state.toHolt}
-                            </h5>
+                            <h5 class="card-title">To : {this.state.toHolt}</h5>
                             <p class="card-text">
-                              <small class="text-muted ">
+                              <small class="text-muted">
                                 Towns you entered
                               </small>
                             </p>
@@ -281,12 +355,12 @@ class Book_Now extends Component {
                       </div>
 
                       <div class="col-12 col-lg-7">
-                        <div class="h5 text-center h-25 ">
+                        <div class="h5 text-center h-25">
                           <i class="fas fa-clock"></i>&nbsp;&nbsp;Arriving time:{" "}
                           {this.state.ArrivedTime}
                         </div>
 
-                        <div class=" text-center h-25  ">
+                        <div class=" text-center h-25 ">
                           <div class="h5 align-bottom">
                             TICKET PRICE PER PASSENGER
                             <br />
@@ -305,15 +379,14 @@ class Book_Now extends Component {
                   </div>
 
                   <div class="col-12 col-lg-4">
-                    <div class="">
+                    <div class="h-50">
                       {" "}
                       <p class="font-weight-bold">
-                        No of Tickets&nbsp;&nbsp; <br></br>
+                        No of Tickets&nbsp;&nbsp;{" "}
+                        <span class="alert alert-success">
+                          Available Only&nbsp;{this.state.freeSeats}&nbsp;seats
+                        </span>
                       </p>
-                      <div class="alert alert-success font-weight-bold  ">
-                        Available Only&nbsp;{this.state.freeSeats}
-                        &nbsp;seats
-                      </div>
                       <div class="input-group mb-2">
                         <div class="input-group-prepend">
                           <div class="input-group-text">Full</div>
@@ -346,7 +419,7 @@ class Book_Now extends Component {
                         />
                       </div>
                     </div>
-                    <div class="">
+                    <div class="h-25">
                       {this.state.limitEx && (
                         <div class="alert alert-danger">
                           <i class="fas fa-exclamation-circle"></i>
@@ -377,6 +450,29 @@ class Book_Now extends Component {
                             &nbsp;&nbsp;Pay&nbsp;&nbsp;
                           </span>
                         </button>
+
+                        <button
+                          type="submit"
+                          onClick={this.PayLater}
+                          className="btn btn-success btn-lg btn-block"
+                          disabled={this.state.limitEx}
+                        >
+                          <span>
+                            {loading2 ? (
+                              <Spinner
+                                animation="border"
+                                role="status"
+                                size="sm"
+                              >
+                                <span className="sr-only">Loading...</span>
+                              </Spinner>
+                            ) : (
+                              <i class="fas fa-history"></i>
+                            )}
+                            &nbsp;&nbsp;Pay later&nbsp;&nbsp;
+                          </span>
+                        </button>
+
                         <br />
                       </div>
                     </div>

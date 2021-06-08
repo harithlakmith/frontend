@@ -1,8 +1,10 @@
+
 import "bootstrap/dist/css/bootstrap.min.css";
-import React, { Component } from "react";
+import React, { Component,Fragment } from "react";
 import axios from "axios";
 import { Redirect,withRouter} from "react-router-dom";
 import authHeader from "./../services/auth-header";
+import { MDBDataTableV5, MDBIcon, MDBBtn, MDBTable, MDBTableBody, MDBTableHead  } from 'mdbreact';
 
 class Show_Route extends Component {
     
@@ -26,63 +28,127 @@ componentDidMount(){
 render(){
   const { routes } = this.state
 
-  const routeList = routes.length ? (
-    routes.map(route => {
-      return(
-          <tr>
-          <td>{route.RId}</td>    
-          <td>{route.RNum}</td>
-          <td>{route.StartHolt}</td>
-          <td>{route.StopHolt}</td>
-          <td>{route.Distance}</td>
-          <td>{route.Duration}</td>
-          <td>  <a href={'/route-info?RId='+route.RId} class="btn btn-primary btn-sm">
-                    Route Info
-                  </a>
-          </td>
-          </tr>
-      )
+  
+  const {text,text1} = this.state;
+
+const data ={
+  columns:[
+    {
+      label: 'Route Id',
+      field: 'RId',
+      
+      width: 100
+      },
+      {
+      label: 'Route No',
+      field: 'RNo',
+    
+      width: 100
+      },
+      {
+      label: 'Start At',
+      field: 'StartAt',
+      
+      width: 100
+      },
+      {
+      label: 'Stop At',
+      field: 'StopAt',
+      
+      width: 100
+      },
+      {
+      label: 'Full Distance(km)',
+      field: 'FullDistance',
+      
+      width: 100
+      },
+      {
+      label: 'Full Time(Hours)',
+      field: 'FullTime',
+      
+      width: 100
+      },
+      {
+      label: '',
+      field: 'Button1',
+      sort: 'asc',
+        
+      width: 100
+      },
+      {
+      label: '',
+      field: 'Button2',
+      sort: 'asc',
+    
+      width: 100
+      }
+  ],
+  rows:routes.map(route => {
+      return{
+        RId:route.RId,
+        RNo:route.RNum,
+        StartAt:route.StartHolt,
+        StopAt:route.StopHolt,
+        FullDistance:route.Distance,
+        FullTime:route.Duration,
+        'Button1':  <MDBBtn
+        href={'/route-info?RId='+route.RId}
+       
+        color="primary"
+      >
+        Route Info
+      </MDBBtn>,
+        'Button2':  <MDBBtn
+        href={'/route-update?RId='+route.RId}
+       
+        color="primary"
+      >
+        Edit
+      </MDBBtn>,
+        
+      }
+
+
+      
     })
-  ) : (
-    <div class="center">No Routes available</div>
-  );
+      
+  }
 
   return (
     <div>
-      <div class="container p-1">
-      <br></br><br></br>
-        <div class="mt-5">
-          <h1>
-            <u>Routes Information List</u>
-          </h1>
+     		<div class="card" >
+    <div class="card-body">
+      
+      
+        <div class="mt-5 p-5">
+          <h2 class="card-title card-header px-3 headgd  text-light">
+            Routes Information List
+            <br></br>
+            
+
+          </h2>
           <br></br>
           <div class="row">
             <div class="col-lg">
-              <table class="table table-hover table-info table-bordered">
-                <thead>
-                  <tr class="bg-info">
-                  <th scope="col-lg-3">Route Id</th>
-                    <th scope="col-lg-3">Route No</th>
-                    <th scope="col-lg-3">Start At</th>
-                    <th scope="col-lg-3">Stop At</th>
-                    <th scope="col-lg-3">Full Distance</th>
-                    <th scope="col-lg-3">Full Time</th> 
-                    <th scope="col-lg-3"></th> 
-                  </tr>
-                </thead>
-                <tbody>
-                  {routeList}
-                </tbody>
-              </table>
+            <MDBDataTableV5 responsive hover striped bordered entriesOptions={[5, 10, 15]} entries={10} info={false} data={data} />
+            
+   
+
+            
             </div>
             
           </div>
           
         </div>
       </div>
+      
+    </div>
     </div>
   );
 }
 }
 
 export default withRouter(Show_Route);
+
+
