@@ -146,239 +146,489 @@ class Add_Route extends React.Component {
 
     return (
       <div>
-        <div class=" container  p-3 mt-5 ">
-          <div class="card    p-1 mt-5">
-            <div class="card-body   ">
-              <div class="headgd p-2">
-                <h1 class="card-title text-light text-center   ">
-                  <i class="fas fa-route"></i>
-                  &nbsp;&nbsp;<u>Add New Route</u>
-                </h1>
-                <h5 class="  text-light text-center   ">
-                  Please fill in this form to create bus routes!
-                </h5>
-              </div>
-              <br></br>
-              <br></br>
+        <div class=" d-none d-lg-block">
+          <div class=" container  p-3 mt-5 ">
+            <div class="card    p-1 mt-5">
+              <div class="card-body   ">
+                <div class="headgd p-2">
+                  <h1 class="card-title text-light text-center   ">
+                    <i class="fas fa-route"></i>
+                    &nbsp;&nbsp;<u>Add New Route</u>
+                  </h1>
+                  <h5 class="  text-light text-center   ">
+                    Please fill in this form to create bus routes!
+                  </h5>
+                </div>
+                <br></br>
+                <br></br>
 
-              <div class="card-deck ">
-                <div class="card bg-light border-dark   ">
-                  <div class="card-body mt-2 ">
-                    <form>
-                      <div class="form-inline ">
-                        <p class="col-lg-4 col-form-label; h5 ">Route No </p>
-                        <p class=" h5 ">: </p>
-                        <p class="col-lg-6">
-                          <input
-                            type="text"
-                            class="form-control"
-                            name="RNum"
-                            placeholder="RouteNo"
-                            onChange={this.handleChange}
-                            value={this.state.RNum}
-                            required="required"
-                          />
-                        </p>
-                      </div>
+                <div class="card-deck ">
+                  <div class="card bg-light border-dark col-lg-6    ">
+                    <div class="card-body mt-2 ">
+                      <form>
+                        <div class="form-inline ">
+                          <p class="col-lg-4   col-form-label; h5 ">
+                            Route No&nbsp;:&nbsp;{" "}
+                          </p>
 
+                          <p class="col-lg-6 ">
+                            <input
+                              type="text"
+                              class="form-control"
+                              name="RNum"
+                              placeholder="RouteNo"
+                              onChange={this.handleChange}
+                              value={this.state.RNum}
+                              required="required"
+                            />
+                          </p>
+                        </div>
+
+                        <br></br>
+                        <div class="form-inline ">
+                          <p class="col-lg-4  col-form-label; h5 ">
+                            Start At&nbsp;:&nbsp;{" "}
+                          </p>
+
+                          <p class="col-lg-6">
+                            <input
+                              type="text"
+                              class="form-control"
+                              name="startAt"
+                              placeholder="Start At"
+                              onChange={this.handleChange}
+                              value={this.state.startAt}
+                              required="required"
+                            />
+                          </p>
+                        </div>
+                        <br></br>
+                        <div class="form-inline ">
+                          <p class="col-lg-4 col-form-label; h5 ">
+                            Full Time&nbsp;:&nbsp;{" "}
+                          </p>
+
+                          <p class="col-lg-6">
+                            <input
+                              type="text"
+                              pattern="[0-9]*"
+                              class="form-control"
+                              name="fullTime"
+                              placeholder="Full Time"
+                              onChange={this.handleChange}
+                              value={this.state.fullTime}
+                              required="required"
+                            />
+                          </p>
+                        </div>
+                        <br></br>
+                        <div class="form-inline ">
+                          <p class="col-lg-4  col-form-label; h5 ">
+                            Full price&nbsp;:&nbsp;{" "}
+                          </p>
+
+                          <p class="col-lg-6 ">
+                            <input
+                              type="text"
+                              pattern="[0-9]*"
+                              class="form-control"
+                              name="fullPrice"
+                              placeholder="Full Price"
+                              onChange={this.handleChange}
+                              value={this.state.fullPrice}
+                              required="required"
+                            />
+                          </p>
+                        </div>
+                      </form>
                       <br></br>
-                      <div class="form-inline ">
-                        <p class="col-lg-4 col-form-label; h5 ">Start At </p>
-                        <p class=" h5 ">: </p>
-                        <p class="col-lg-6">
-                          <input
-                            type="text"
-                            class="form-control"
-                            name="startAt"
-                            placeholder="Start At"
-                            onChange={this.handleChange}
-                            value={this.state.startAt}
-                            required="required"
-                          />
-                        </p>
-                      </div>
                       <br></br>
-                      <div class="form-inline ">
-                        <p class="col-lg-4 col-form-label; h5 ">Full Time </p>
-                        <p class="h5 ">: </p>
-                        <p class="col-lg-6">
-                          <input
-                            type="text"
-                            pattern="[0-9]*"
-                            class="form-control"
-                            name="fullTime"
-                            placeholder="Full Time"
-                            onChange={this.handleChange}
-                            value={this.state.fullTime}
-                            required="required"
-                          />
-                        </p>
+                      <div class="col-lg-6  text-dark">
+                        <button
+                          type="submit"
+                          onClick={this.AddRoute}
+                          class="btn btn-primary btn-lg"
+                          hidden={flag}
+                        >
+                          Register route
+                        </button>
                       </div>
-                      <br></br>
-                      <div class="form-inline ">
-                        <p class="col-lg-4 col-form-label; h5 ">Full price </p>
-                        <p class=" h5 ">: </p>
-                        <p class="col-lg-6">
-                          <input
-                            type="text"
-                            pattern="[0-9]*"
-                            class="form-control"
-                            name="fullPrice"
-                            placeholder="Full Price"
-                            onChange={this.handleChange}
-                            value={this.state.fullPrice}
-                            required="required"
-                          />
-                        </p>
-                      </div>
-                    </form>
+                    </div>
+                  </div>
+
+                  <div class="card bg-light text-dark w-50 border-dark col-lg-6 ">
                     <br></br>
                     <br></br>
-                    <div class="col-lg-6 text-dark">
-                      <button
-                        type="submit"
-                        onClick={this.AddRoute}
-                        class="btn btn-primary btn-lg"
-                        hidden={flag}
-                      >
-                        Register route
-                      </button>
+
+                    <hr></hr>
+                    <div class="card-body ">
+                      <form>
+                        <div class="form-inline ">
+                          <p class="col-lg-4  col-form-label; h5">
+                            Stop At&nbsp;:&nbsp;{" "}
+                          </p>
+
+                          <div class="col-lg-6">
+                            <input
+                              type="text"
+                              class="form-control"
+                              name="stopAt"
+                              placeholder="Stop At"
+                              onChange={this.handleChange}
+                              value={this.state.stopAt}
+                              required="required"
+                            />
+                          </div>
+                        </div>
+                        <br></br>
+                        <div class="form-inline ">
+                          <p class="col-lg-4  col-form-label; h5">
+                            Full Distance&nbsp;:&nbsp;{" "}
+                          </p>
+
+                          <div class="col-lg-6">
+                            <input
+                              type="text"
+                              pattern="[0-9]*"
+                              class="form-control"
+                              name="fullDistance"
+                              placeholder="Full Distance"
+                              onChange={this.handleChange}
+                              value={this.state.fullDistance}
+                              required="required"
+                            />
+                          </div>
+                        </div>
+                      </form>
                     </div>
                   </div>
                 </div>
+                <br></br>
 
-                <div class="card bg-light text-dark w-50 border-dark ">
-                  <br></br>
-                  <br></br>
+                <hr />
 
-                  <hr></hr>
-                  <div class="card-body ">
-                    <form>
-                      <div class="form-inline ">
-                        <p class="col-lg-4 col-form-label; h5">Stop At </p>
-                        <p class=" h5">:</p>
-                        <div class="col-lg-6">
-                          <input
-                            type="text"
-                            class="form-control"
-                            name="stopAt"
-                            placeholder="Stop At"
-                            onChange={this.handleChange}
-                            value={this.state.stopAt}
-                            required="required"
-                          />
-                        </div>
-                      </div>
-                      <br></br>
-                      <div class="form-inline ">
-                        <p class="col-lg-4 col-form-label; h5">
-                          Full Distance{" "}
-                        </p>
-                        <p class=" h5">:</p>
-                        <div class="col-lg-6">
-                          <input
-                            type="text"
-                            pattern="[0-9]*"
-                            class="form-control"
-                            name="fullDistance"
-                            placeholder="Full Distance"
-                            onChange={this.handleChange}
-                            value={this.state.fullDistance}
-                            required="required"
-                          />
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-              <br></br>
-
-              <hr />
-
-              <div class="form-group">
-                <div class="row">
-                  <div class="col"></div>
-                </div>
-                <div class="row">
-                  <div class="col"></div>
-                </div>
-                <div class="row">
-                  <div class="col"></div>
-                </div>
-              </div>
-
-              {flag ? (
-                <div class="card bg-light border-dark   ">
+                <div class="form-group">
                   <div class="row">
-                    <div class="col-lg-12">
-                      <table class="table table-hover">
-                        <thead>
-                          <tr>
-                            <th scope="col">Halt</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Time</th>
-                            <th scope="col">Distance</th>
-                            <th scope="col">Action</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {haltList}
-                          <tr>
-                            <td>
-                              <input
-                                class="form-control"
-                                name="halt"
-                                type="text"
-                                onChange={this.handleChange}
-                              ></input>
-                            </td>
-                            <td>
-                              <input
-                                class="form-control"
-                                name="price"
-                                type="text"
-                                onChange={this.handleChange}
-                              ></input>
-                            </td>
-                            <td>
-                              <input
-                                class="form-control"
-                                name="time"
-                                type="text"
-                                onChange={this.handleChange}
-                              ></input>
-                            </td>
-                            <td>
-                              <input
-                                class="form-control"
-                                name="dist"
-                                type="text"
-                                onChange={this.handleChange}
-                              ></input>
-                            </td>
-                            <td>
-                              <button
-                                type="submit"
-                                onClick={this.AddRouteRow}
-                                class="btn btn-primary btn-sm"
-                              >
-                                Add
-                              </button>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
+                    <div class="col"></div>
+                  </div>
+                  <div class="row">
+                    <div class="col"></div>
+                  </div>
+                  <div class="row">
+                    <div class="col"></div>
+                  </div>
+                </div>
+
+                {flag ? (
+                  <div class="card bg-light border-dark   ">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <table class="table table-hover">
+                          <thead>
+                            <tr>
+                              <th scope="col">Halt</th>
+                              <th scope="col">Price</th>
+                              <th scope="col">Time</th>
+                              <th scope="col">Distance</th>
+                              <th scope="col">Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {haltList}
+                            <tr>
+                              <td>
+                                <input
+                                  class="form-control"
+                                  name="halt"
+                                  type="text"
+                                  onChange={this.handleChange}
+                                ></input>
+                              </td>
+                              <td>
+                                <input
+                                  class="form-control"
+                                  name="price"
+                                  type="text"
+                                  onChange={this.handleChange}
+                                ></input>
+                              </td>
+                              <td>
+                                <input
+                                  class="form-control"
+                                  name="time"
+                                  type="text"
+                                  onChange={this.handleChange}
+                                ></input>
+                              </td>
+                              <td>
+                                <input
+                                  class="form-control"
+                                  name="dist"
+                                  type="text"
+                                  onChange={this.handleChange}
+                                ></input>
+                              </td>
+                              <td>
+                                <button
+                                  type="submit"
+                                  onClick={this.AddRouteRow}
+                                  class="btn btn-primary btn-sm"
+                                >
+                                  Add
+                                </button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <p></p>
+                )}
+
+                <br />
+                <br />
+                <br />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class=" d-lg-none">
+          <div class=" container  p-3 mt-5 ">
+            <div class="card    p-1 mt-5">
+              <div class="card-body   ">
+                <div class="headgd p-2">
+                  <h1 class="card-title text-light text-center   ">
+                    <i class="fas fa-route"></i>
+                    &nbsp;&nbsp;<u>Add New Route</u>
+                  </h1>
+                  <h5 class="  text-light text-center   ">
+                    Please fill in this form to create bus routes!
+                  </h5>
+                </div>
+                <br></br>
+                <br></br>
+
+                <div class="card-deck ">
+                  <div class="card bg-light border-dark col-md-12 col-sm-12   ">
+                    <div class="card-body mt-2 ">
+                      <form>
+                        <div class="form-inline ">
+                          <p class="col-md-4 col-sm-4  col-form-label; h5 ">
+                            Route No&nbsp;:&nbsp;{" "}
+                          </p>
+
+                          <p class="col-md-6 col-sm-6 ">
+                            <input
+                              type="text"
+                              class="form-control"
+                              name="RNum"
+                              placeholder="RouteNo"
+                              onChange={this.handleChange}
+                              value={this.state.RNum}
+                              required="required"
+                            />
+                          </p>
+                        </div>
+
+                        <br></br>
+                        <div class="form-inline ">
+                          <p class="col-md-4 col-sm-4  col-form-label; h5 ">
+                            Start At&nbsp;:&nbsp;{" "}
+                          </p>
+
+                          <p class="col-md-6 col-sm-6">
+                            <input
+                              type="text"
+                              class="form-control"
+                              name="startAt"
+                              placeholder="Start At"
+                              onChange={this.handleChange}
+                              value={this.state.startAt}
+                              required="required"
+                            />
+                          </p>
+                        </div>
+                        <br></br>
+                        <div class="form-inline ">
+                          <p class="col-md-4 col-sm-4 col-form-label; h5 ">
+                            Full Time&nbsp;:&nbsp;{" "}
+                          </p>
+
+                          <p class="col-md-6 col-sm-6">
+                            <input
+                              type="text"
+                              pattern="[0-9]*"
+                              class="form-control"
+                              name="fullTime"
+                              placeholder="Full Time"
+                              onChange={this.handleChange}
+                              value={this.state.fullTime}
+                              required="required"
+                            />
+                          </p>
+                        </div>
+                        <br></br>
+                        <div class="form-inline ">
+                          <p class="col-md-4 col-sm-4  col-form-label; h5 ">
+                            Full price&nbsp;:&nbsp;{" "}
+                          </p>
+
+                          <p class="col-md-6 col-sm-6 ">
+                            <input
+                              type="text"
+                              pattern="[0-9]*"
+                              class="form-control"
+                              name="fullPrice"
+                              placeholder="Full Price"
+                              onChange={this.handleChange}
+                              value={this.state.fullPrice}
+                              required="required"
+                            />
+                          </p>
+                        </div>
+                        <br></br>
+                        <div class="form-inline ">
+                          <p class="col-md-4 col-sm-4  col-form-label; h5">
+                            Stop At&nbsp;:&nbsp;{" "}
+                          </p>
+
+                          <p class="col-md-6 col-sm-6">
+                            <input
+                              type="text"
+                              class="form-control"
+                              name="stopAt"
+                              placeholder="Stop At"
+                              onChange={this.handleChange}
+                              value={this.state.stopAt}
+                              required="required"
+                            />
+                          </p>
+                        </div>
+                        <br></br>
+                        <div class="form-inline ">
+                          <p class="col-md-4 col-sm-4  col-form-label; h5">
+                            Full Distance&nbsp;:&nbsp;{" "}
+                          </p>
+
+                          <p class="col-md-6 col-sm-6">
+                            <input
+                              type="text"
+                              pattern="[0-9]*"
+                              class="form-control"
+                              name="fullDistance"
+                              placeholder="Full Distance"
+                              onChange={this.handleChange}
+                              value={this.state.fullDistance}
+                              required="required"
+                            />
+                          </p>
+                        </div>
+                      </form>
+                      <br></br>
+                      <br></br>
+                      <div class="col-md-6 col-sm-6  text-dark">
+                        <button
+                          type="submit"
+                          onClick={this.AddRoute}
+                          class="btn btn-primary btn-lg"
+                          hidden={flag}
+                        >
+                          Register route
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              ) : (
-                <p></p>
-              )}
+                <br></br>
 
-              <br />
-              <br />
-              <br />
+                <hr />
+
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col"></div>
+                  </div>
+                  <div class="row">
+                    <div class="col"></div>
+                  </div>
+                  <div class="row">
+                    <div class="col"></div>
+                  </div>
+                </div>
+
+                {flag ? (
+                  <div class="card bg-light border-dark   ">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <table class="table table-hover">
+                          <thead>
+                            <tr>
+                              <th scope="col">Halt</th>
+                              <th scope="col">Price</th>
+                              <th scope="col">Time</th>
+                              <th scope="col">Distance</th>
+                              <th scope="col">Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {haltList}
+                            <tr>
+                              <td>
+                                <input
+                                  class="form-control"
+                                  name="halt"
+                                  type="text"
+                                  onChange={this.handleChange}
+                                ></input>
+                              </td>
+                              <td>
+                                <input
+                                  class="form-control"
+                                  name="price"
+                                  type="text"
+                                  onChange={this.handleChange}
+                                ></input>
+                              </td>
+                              <td>
+                                <input
+                                  class="form-control"
+                                  name="time"
+                                  type="text"
+                                  onChange={this.handleChange}
+                                ></input>
+                              </td>
+                              <td>
+                                <input
+                                  class="form-control"
+                                  name="dist"
+                                  type="text"
+                                  onChange={this.handleChange}
+                                ></input>
+                              </td>
+                              <td>
+                                <button
+                                  type="submit"
+                                  onClick={this.AddRouteRow}
+                                  class="btn btn-primary btn-sm"
+                                >
+                                  Add
+                                </button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <p></p>
+                )}
+
+                <br />
+                <br />
+                <br />
+              </div>
             </div>
           </div>
         </div>

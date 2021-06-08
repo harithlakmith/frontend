@@ -226,42 +226,38 @@ class Book_Now extends Component {
     const { loading } = this.state;
 
     return (
-      <div class="container p-1">
+      <div class="container p-1 mt-5">
         <br></br>
-        <div class="box">
-          <h1>
-            <u>TICKETS RESERVATION SOLUTION</u>
-          </h1>
-          <br></br>
+        <div class=" col col-lg mt-5">
           <form>
             <div class="card  border  border-light-4 rounded mb-2">
               <div class="card-header p-3 headgd rounded">
-                <div class="row ">
-                  <div class="col-md-6 ">
+                <div class="row col-12">
+                  <div class="col-md-6 col-sm-12">
                     <h3 class="text-light">
                       #{this.state.routeNo}&nbsp;&nbsp;
                       {this.state.routeStartHolt} - {this.state.routeStopHolt}
                     </h3>
-                    <p class="card-text">
-                      <span class="text-light">
-                        &nbsp;<i class="fas fa-bus-alt"></i>&nbsp;&nbsp;Bus
-                        registraion no <b>{this.state.busNo}</b>
-                      </span>
-                    </p>
                   </div>
-                  <div class="col-md-6  ">
+                  <div class="col-md-6 col-sm-12 ">
                     <h3 class="text-light">
                       <i class="fas fa-calendar-day"></i>&nbsp;&nbsp;
                       {this.state.sesDate}
                     </h3>
                   </div>
                 </div>
+                <div class="row col-12 col-md-6 col-sm-12">
+                  <p class="card-text text-light">
+                    &nbsp; &nbsp;<i class="fas fa-bus-alt"></i>&nbsp;&nbsp;Bus
+                    registraion no <b>{this.state.busNo}</b>
+                  </p>
+                </div>
               </div>
               <div class="card-body">
                 <div class="row pt-3 px-1 px-lg-5">
                   <div class="col-12 col-lg-8  ">
                     <div class="row">
-                      <div class="col-12 col-lg-5 align-items-center">
+                      <div class="col-12 col-lg-5 col-sm-12 align-items-center">
                         <div class="card">
                           <img
                             class="card-img-top"
@@ -309,15 +305,15 @@ class Book_Now extends Component {
                   </div>
 
                   <div class="col-12 col-lg-4">
-                    <div class="h-50">
+                    <div class="">
                       {" "}
                       <p class="font-weight-bold">
-                        No of Tickets&nbsp;&nbsp;{" "}
-                        <span class="alert alert-success">
-                          Available Only&nbsp;{this.state.freeSeats}
-                          &nbsp;seats
-                        </span>
+                        No of Tickets&nbsp;&nbsp; <br></br>
                       </p>
+                      <div class="alert alert-success font-weight-bold  ">
+                        Available Only&nbsp;{this.state.freeSeats}
+                        &nbsp;seats
+                      </div>
                       <div class="input-group mb-2">
                         <div class="input-group-prepend">
                           <div class="input-group-text">Full</div>
@@ -350,7 +346,7 @@ class Book_Now extends Component {
                         />
                       </div>
                     </div>
-                    <div class="h-25">
+                    <div class="">
                       {this.state.limitEx && (
                         <div class="alert alert-danger">
                           <i class="fas fa-exclamation-circle"></i>

@@ -120,22 +120,218 @@ class Update_Bus extends React.Component {
     }
     const { BusInfo } = this.state;
     return (
-      <div class=" container p-3  mt-5 ">
-        <div class="card p-1 mt-5">
-          <div class="card-body  ">
-            <h1 class="card-title  p-3 text-light headgd text-center">
-              <i class="fas fa-bus"></i>&nbsp;&nbsp;
-              <u>Update Bus Information</u>
-            </h1>
-            <br></br>
-            <div class="card-deck ">
-              <div class="card bg-light text-dark p-3 border-dark  ">
-                <div class="card-body mt-3 ">
+      <div>
+        <div class=" d-none d-md-block">
+          <div class=" container p-3  mt-5 ">
+            <div class="card p-1 mt-5">
+              <div class="card-body  ">
+                <h1 class="card-title  p-3 text-light headgd text-center">
+                  <i class="fas fa-bus"></i>&nbsp;&nbsp;
+                  <u>Update Bus Information</u>
+                </h1>
+                <br></br>
+                <div class="card-deck ">
+                  <div class="card bg-light text-dark border-dark p-3 col-lg-6 col-mb-6  ">
+                    <div class="card-body mt-3">
+                      <form>
+                        <div class="form-inline ">
+                          <p class="col-lg-5 col-mb-4 col-form-label; h5">
+                            Old Password&nbsp;:&nbsp;{" "}
+                          </p>
+
+                          <div class="col-lg-6">
+                            <input
+                              class="form"
+                              type="password"
+                              name="OldPassword"
+                              value={this.state.OldPassword}
+                              onChange={this.handleChange}
+                              placeholder="type your old password"
+                              required="required"
+                            />
+                          </div>
+                        </div>
+                        <br></br>
+                        <div class="form-inline">
+                          <p class="col-lg-5 col-mb-4 col-form-label; h5">
+                            New Password&nbsp;:&nbsp;{" "}
+                          </p>
+
+                          <div class="col-lg-6">
+                            <input
+                              class="form"
+                              type="password"
+                              name="NewPassword"
+                              value={this.state.NewPassword}
+                              onChange={this.handleChange}
+                              placeholder="type your new password"
+                              required="required"
+                            />
+                          </div>
+                        </div>
+                        <br></br>
+                        <div class="form-inline">
+                          <p class="col-lg-5 col-mb-4 col-form-label; h5">
+                            Confirm Password&nbsp;:&nbsp;{" "}
+                          </p>
+
+                          <div class="col-lg-6">
+                            <input
+                              class="form"
+                              type="password"
+                              name="ConfirmPassword"
+                              value={this.state.ConfirmPassword}
+                              onChange={this.handleChange}
+                              placeholder="renter your new password"
+                              required="required"
+                            />
+                          </div>
+                        </div>
+                        <hr></hr>
+                        <div class="form-inline text-dark p-3">
+                          <button
+                            type="button"
+                            onClick={this.UpdatePassword}
+                            class="btn btn-primary btn-lg"
+                          >
+                            UPDATE PASSWORD
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+
+                  <div class="card bg-light text-dark w-50 border-dark col-lg-6 col-mb-6">
+                    <div class="card-body ">
+                      <div class="form-inline">
+                        <p class="col-lg-5 col-mb-4 col-form-label; h5">
+                          Number of Seats&nbsp;:&nbsp;
+                        </p>
+
+                        <div class="col-lg-6">
+                          <input
+                            type="text"
+                            name="Seats"
+                            value={this.state.Seats}
+                            onChange={this.handleChange}
+                            min="1"
+                            max="54"
+                            required="required"
+                          />
+                        </div>
+                      </div>
+                      <hr></hr>
+                      <form>
+                        <div class="form-inline ">
+                          <p class="row  h3">Driver</p>
+                        </div>
+                        <br></br>
+                        <div class="form-inline ">
+                          <p class="col-lg-5 col-mb-4 col-form-label; h5">
+                            Name&nbsp;:&nbsp;{" "}
+                          </p>
+
+                          <div class="col-lg-6">
+                            <input
+                              class="form"
+                              type="text"
+                              name="DriverName"
+                              value={this.state.DriverName}
+                              onChange={this.handleChange}
+                            />
+                          </div>
+                        </div>
+                        <br></br>
+                        <div class="form-inline ">
+                          <p class="col-lg-5 col-mb-4 col-form-label; h5">
+                            Register No.&nbsp;:&nbsp;
+                          </p>
+
+                          <div class="col-lg-6">
+                            <input
+                              class="form"
+                              type="text"
+                              name="DriverRegNo"
+                              value={this.state.DriverRegNo}
+                              onChange={this.handleChange}
+                            />
+                          </div>
+                        </div>
+                      </form>
+                      <hr></hr>
+                      <form>
+                        <div class="form-inline ">
+                          <p class="row  h3">Conductor</p>
+                        </div>
+                        <br></br>
+                        <div class="form-inline ">
+                          <p class="col-lg-5 col-mb-4 col-form-label; h5">
+                            Name&nbsp;:&nbsp;{" "}
+                          </p>
+
+                          <div class="col-lg-6">
+                            <input
+                              class="form"
+                              type="text"
+                              name="ConductorName"
+                              value={this.state.ConductorName}
+                              onChange={this.handleChange}
+                            />
+                          </div>
+                        </div>
+                        <br></br>
+                        <div class="form-inline ">
+                          <p class="col-lg-5 col-mb-4 col-form-label; h5">
+                            Register No.&nbsp;:&nbsp;
+                          </p>
+
+                          <div class="col-lg-6">
+                            <input
+                              class="form"
+                              type="text"
+                              name="ConductorRegNo"
+                              value={this.state.ConductorRegNo}
+                              onChange={this.handleChange}
+                            />
+                          </div>
+                        </div>
+                        <hr></hr>
+                        <div class=" text-dark">
+                          <button
+                            type="button"
+                            onClick={this.UpdateInfo}
+                            class="btn btn-primary btn-lg"
+                          >
+                            UPDATE
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class=" d-md-none">
+          <div class=" container p-3  mt-5 ">
+            <div class="card p-1 mt-5">
+              <div class="card-body  ">
+                <h1 class="card-title  p-3 text-light headgd text-center">
+                  <i class="fas fa-bus"></i>&nbsp;&nbsp;
+                  <u>Update Bus Information</u>
+                </h1>
+                <br></br>
+
+                <div class="card bg-light border-dark col-sm-12  ">
+                  <div class="card-body mt-2 "></div>
                   <form>
-                    <div class="form-inline">
-                      <p class="col-lg-4 col-form-label; h5"> Old Password </p>
-                      <p class=" h5">:</p>
-                      <div class="col-lg-6">
+                    <div class="form-inline ">
+                      <p class="col-sm-12 col-form-label; h5">
+                        Old Password&nbsp;:&nbsp;{" "}
+                      </p>
+
+                      <div class="col-sm-12">
                         <input
                           class="form"
                           type="password"
@@ -149,9 +345,11 @@ class Update_Bus extends React.Component {
                     </div>
                     <br></br>
                     <div class="form-inline">
-                      <p class="col-lg-4 col-form-label; h5"> New Password </p>
-                      <p class=" h5">:</p>
-                      <div class="col-lg-6">
+                      <p class="col-sm-12 col-form-label; h5">
+                        New Password&nbsp;:&nbsp;{" "}
+                      </p>
+
+                      <div class="col-sm-12">
                         <input
                           class="form"
                           type="password"
@@ -165,11 +363,11 @@ class Update_Bus extends React.Component {
                     </div>
                     <br></br>
                     <div class="form-inline">
-                      <p class="col-lg-4 col-form-label; h5">
-                        Confirm Password
+                      <p class="col-sm-12 col-form-label; h5">
+                        Confirm Password&nbsp;:&nbsp;{" "}
                       </p>
-                      <p class=" h5">:</p>
-                      <div class="col-lg-6">
+
+                      <div class="col-sm-12">
                         <input
                           class="form"
                           type="password"
@@ -182,7 +380,7 @@ class Update_Bus extends React.Component {
                       </div>
                     </div>
                     <hr></hr>
-                    <div class=" text-dark">
+                    <div class="form-inline text-dark p-3">
                       <button
                         type="button"
                         onClick={this.UpdatePassword}
@@ -193,102 +391,114 @@ class Update_Bus extends React.Component {
                     </div>
                   </form>
                 </div>
-              </div>
-              <div class="card bg-light text-dark w-50 p-3 border-dark ">
-                <div class="card-body ">
-                  <div class="form-inline">
-                    <p class="col-lg-4 col-form-label; h5">Number of Seats</p>
-                    <p class=" h5">:</p>
-                    <div class="col-lg-6">
-                      <input
-                        type="text"
-                        name="Seats"
-                        value={this.state.Seats}
-                        onChange={this.handleChange}
-                        min="1"
-                        max="54"
-                        required="required"
-                      />
-                    </div>
-                  </div>
-                  <hr></hr>
-                  <form>
-                    <div class="form-inline ">
-                      <p class="row  h3">Driver</p>
-                    </div>
+
+                <div class="card bg-light text-dark border-dark ">
+                  <div class="card-body ">
                     <br></br>
-                    <div class="form-inline ">
-                      <p class="col-lg-4 col-form-label; h5">Name </p>
-                      <p class=" h5">:</p>
-                      <div class="col-lg-6">
+                    <div class="form-inline">
+                      <p class="col-sm-12 col-form-label; h5">
+                        Number of Seats&nbsp;:&nbsp;
+                      </p>
+
+                      <div class="col-sm-12">
                         <input
-                          class="form"
                           type="text"
-                          name="DriverName"
-                          value={this.state.DriverName}
+                          name="Seats"
+                          value={this.state.Seats}
                           onChange={this.handleChange}
-                        />
-                      </div>
-                    </div>
-                    <br></br>
-                    <div class="form-inline ">
-                      <p class="col-lg-4 col-form-label; h5">Register No.</p>
-                      <p class=" h5">:</p>
-                      <div class="col-lg-6">
-                        <input
-                          class="form"
-                          type="text"
-                          name="DriverRegNo"
-                          value={this.state.DriverRegNo}
-                          onChange={this.handleChange}
-                        />
-                      </div>
-                    </div>
-                  </form>
-                  <hr></hr>
-                  <form>
-                    <div class="form-inline ">
-                      <p class="row  h3">Conductor</p>
-                    </div>
-                    <br></br>
-                    <div class="form-inline ">
-                      <p class="col-lg-4 col-form-label; h5">Name </p>
-                      <p class=" h5">:</p>
-                      <div class="col-lg-6">
-                        <input
-                          class="form"
-                          type="text"
-                          name="ConductorName"
-                          value={this.state.ConductorName}
-                          onChange={this.handleChange}
-                        />
-                      </div>
-                    </div>
-                    <br></br>
-                    <div class="form-inline ">
-                      <p class="col-lg-4 col-form-label; h5">Register No.</p>
-                      <p class=" h5">:</p>
-                      <div class="col-lg-6">
-                        <input
-                          class="form"
-                          type="text"
-                          name="ConductorRegNo"
-                          value={this.state.ConductorRegNo}
-                          onChange={this.handleChange}
+                          min="1"
+                          max="54"
+                          required="required"
                         />
                       </div>
                     </div>
                     <hr></hr>
-                    <div class=" text-dark">
-                      <button
-                        type="button"
-                        onClick={this.UpdateInfo}
-                        class="btn btn-primary btn-lg"
-                      >
-                        UPDATE
-                      </button>
-                    </div>
-                  </form>
+                    <form>
+                      <div class="form-inline ">
+                        <p class="row  h3">&nbsp;&nbsp;Driver</p>
+                      </div>
+                      <br></br>
+                      <div class="form-inline ">
+                        <p class="col-sm-12 col-form-label; h5">
+                          Name&nbsp;:&nbsp;{" "}
+                        </p>
+
+                        <div class="col-sm-12">
+                          <input
+                            class="form"
+                            type="text"
+                            name="DriverName"
+                            value={this.state.DriverName}
+                            onChange={this.handleChange}
+                          />
+                        </div>
+                      </div>
+                      <br></br>
+                      <div class="form-inline ">
+                        <p class="col-sm-12 col-form-label; h5">
+                          Register No.&nbsp;:&nbsp;
+                        </p>
+
+                        <div class="col-sm-12">
+                          <input
+                            class="form"
+                            type="text"
+                            name="DriverRegNo"
+                            value={this.state.DriverRegNo}
+                            onChange={this.handleChange}
+                          />
+                        </div>
+                      </div>
+                    </form>
+                    <hr></hr>
+                    <form>
+                      <div class="form-inline ">
+                        <p class="row  h3">&nbsp;&nbsp;Conductor</p>
+                      </div>
+                      <br></br>
+                      <div class="form-inline ">
+                        <p class="col-sm-12 col-form-label; h5">
+                          Name &nbsp;:&nbsp;
+                        </p>
+
+                        <div class="col-sm-12">
+                          <input
+                            class="form"
+                            type="text"
+                            name="ConductorName"
+                            value={this.state.ConductorName}
+                            onChange={this.handleChange}
+                          />
+                        </div>
+                      </div>
+                      <br></br>
+                      <div class="form-inline ">
+                        <p class="col-sm-12 col-form-label; h5">
+                          Register No.&nbsp;:&nbsp;
+                        </p>
+
+                        <div class="col-sm-12">
+                          <input
+                            class="form"
+                            type="text"
+                            name="ConductorRegNo"
+                            value={this.state.ConductorRegNo}
+                            onChange={this.handleChange}
+                          />
+                        </div>
+                      </div>
+                      <hr></hr>
+                      <div class=" text-dark">
+                        <button
+                          type="button"
+                          onClick={this.UpdateInfo}
+                          class="btn btn-primary btn-lg"
+                        >
+                          UPDATE
+                        </button>
+                      </div>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
