@@ -11,7 +11,7 @@ class Admin_Dash extends Component {
       <div class="container p-3 mt-3  mb-4">
         <div class="card   p-4 mt-5">
           <div class="col-lg-12 h1  p-3 text-light headgd text-center ">
-            <i class="fas fa-user-cog"></i>&nbsp;&nbsp;<u>Admin Dashboard</u>
+            <i class="fas fa-user-cog"></i>&nbsp;&nbsp;Admin Dashboard
           </div>
 
           <br></br>

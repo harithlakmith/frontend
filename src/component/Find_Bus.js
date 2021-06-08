@@ -188,8 +188,8 @@ import Moment from "moment";
             <div class="embed-responsive embed-responsive-16by9">
               
               
-              <video class="" autoplay loop controls muted poster="images/map2.jpg">
-                <source src="images/tempary.mp4" type="video/mp4" />
+              <video class="" autoplay loop controls muted poster="images/thum.png">
+                <source src="images/intro.mp4" type="video/mp4" />
               </video>
              
             

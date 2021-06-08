@@ -109,7 +109,7 @@ class Add_Session extends Component {
             <div class="card   p-4 mt-5">
               <div class="headgd p-2">
                 <h1 class="card-title  text-light text-center ">
-                  <i class="fas fa-bus"></i>&nbsp;&nbsp;<u>Add Session</u>
+                  <i class="fas fa-bus"></i>&nbsp;&nbsp;Add Session
                 </h1>
 
                 <h5 class="text-light text-center ">

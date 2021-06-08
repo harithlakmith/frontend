@@ -5,7 +5,7 @@ import {Redirect, withRouter} from "react-router-dom";
 import authHeader from "./../services/auth-header";
 import Moment from "moment";
 
- class Test_case extends Component {
+ class Bus_Dash extends Component {
 
   constructor(props) {
     super(props);
@@ -72,7 +72,7 @@ componentDidMount(){
 
         let session ="";
         if (today == date){
-          session = <div class="col-11 card alert-info text-info p-3 m-3">
+          session = <div class="col-12"><div class=" card alert-info text-info p-3 m-3">
                       <h3 class="">{ses.RNum}&nbsp;&nbsp;{ses.Start} - {ses.Stop}</h3>
                         <div class="row">
                             <div class="col-lg-7">
@@ -83,9 +83,9 @@ componentDidMount(){
                               <a href={t} class="btn btn-info">Tickets</a>
                             </div>
                         </div>
-                      </div>;
+                      </div></div>;
         }
-        return(   <div class="row content-justify-center">
+        return(   <div class="row ">
                       {session}
                   </div>);
                           })
@@ -182,14 +182,13 @@ componentDidMount(){
       </div>
       <div class="col-md-6 col-12">
               <div class="card bg-light text-dark">
-                                  <div class="card-body">
-                                    <h3 class="card-title">
-                                      <b>My Sessions </b>
-                                    </h3>
-                                    
-                                    <div class=" bg-light text-dark ">
+                      <div class="card-body">
+                        <h3 class="card-title">
+                          <b>My Sessions </b>
+                        </h3>
                         
-                          
+                        <div class=" bg-light text-dark ">
+ 
                           {seslist}
   
                           </div>
@@ -212,4 +211,4 @@ componentDidMount(){
     }
   }
   
-export default withRouter(Test_case);
+export default withRouter(Bus_Dash);

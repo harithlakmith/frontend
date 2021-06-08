@@ -88,7 +88,7 @@ class Session_List extends Component {
                 }
                 
                 var t = "/ticket-session?sid="+ ses.SId;
-                                     return(   <div class="card alert-info text-info p-3 m-3">
+                                     return(   <div class="col-12 col-md-6 col-lg-4"><div class="card alert-info text-info p-1 p-md-3 my-3 m-md-3">
                                                  <h3 class="">{ses.RNum}&nbsp;&nbsp;{ses.Start} - {ses.Stop}</h3>
                                                    <div class="row">
                                                      <div class="col-lg-7">
@@ -97,10 +97,10 @@ class Session_List extends Component {
                                                        <h4>Session: {session}</h4>
                                                      </div>
                                                      <div class="col-lg-4 text-right">
-                                                       <a href={t} class="btn btn-info">Tickets</a>
+                                                       <a href={t} class="mb-2 mr-2 btn btn-info">Tickets</a>
                                                      </div>
                                                    </div>
-                                               </div>);
+                                               </div></div>);
                                    })
                ):(
                        <p>No Data</p>
@@ -110,20 +110,23 @@ class Session_List extends Component {
 
     return (
 <div>
-<div class="card bg-light p-3 mt-3">
+<div class="card bg-light pt-3 px-0  mt-3">
         
         <div class="card" >
 <div class="card-body">
 
 
-  <div class="mt-5 p-2">
+  <div class="mt-5 p-1">
     <h2 class="card-title card-header px-3 headgd  text-light">
       Session List
     </h2>
     <div class="card bg-light text-dark ">
     <div class="card-body ">
-      
+      <div class="row">
       {seslist}
+      </div>
+      
+      
       </div>
       </div>
 
