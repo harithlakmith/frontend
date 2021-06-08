@@ -124,69 +124,71 @@ class Manual_Pay extends Component {
     }
     var s = "/bus-dashboard";
     return (
-      <div class="container p-3 mt-5">
-        <br></br>
+      <div>
+        <div class="container p-3 mt-5">
+          <br></br>
 
-        <br></br>
-        <form>
-          <div class="card  border  border-dark-4 rounded mb-2">
-            <div class="card-header p-3 headgd rounded">
-              <div class="col-lg">
-                <h1 class="text-light text-center">
-                  {FromHalt} &nbsp; To &nbsp; {ToHalt}
-                </h1>
-              </div>
-            </div>
-            <div class="card-deck p-3 mt-3">
-              <div class="card bg-light border-dark p-3  ">
-                <div class=" text-left h-50  ">
-                  <h3>
-                    Date &nbsp; :&nbsp; {Moment(Date).format("YYYY-MM-DD")}
-                  </h3>
-                </div>
-                <br></br>
-                <br></br>
-                <div class=" text-left h-50  ">
-                  <h5>Ticket ID &nbsp;:&nbsp; {TId}</h5>
+          <br></br>
+          <form>
+            <div class="card  border  border-dark-4 rounded mb-2">
+              <div class="card-header p-3 headgd rounded">
+                <div class="col-lg">
+                  <h1 class="text-light text-center">
+                    {FromHalt} &nbsp; To &nbsp; {ToHalt}
+                  </h1>
                 </div>
               </div>
-              <div class="card bg-light border-dark p-3  ">
-                <div class=" text-left h-50 ">
-                  <h3>Session &nbsp; :&nbsp; {SId}</h3>
+              <div class="card-deck p-3 mt-3">
+                <div class="card bg-light border-dark p-3  ">
+                  <div class=" text-left h-50  ">
+                    <h3>
+                      Date &nbsp; :&nbsp; {Moment(Date).format("YYYY-MM-DD")}
+                    </h3>
+                  </div>
+                  <br></br>
+                  <br></br>
+                  <div class=" text-left h-50  ">
+                    <h5>Ticket ID &nbsp;:&nbsp; {TId}</h5>
+                  </div>
                 </div>
-                <br></br>
-                <br></br>
-                <div class="text-left h-50">
-                  <h5>
-                    Payment Status &nbsp; :&nbsp; <i class={icon}></i> {Psts}
-                  </h5>
+                <div class="card bg-light border-dark p-3  ">
+                  <div class=" text-left h-50 ">
+                    <h3>Session &nbsp; :&nbsp; {SId}</h3>
+                  </div>
+                  <br></br>
+                  <br></br>
+                  <div class="text-left h-50">
+                    <h5>
+                      Payment Status &nbsp; :&nbsp; <i class={icon}></i> {Psts}
+                    </h5>
+                  </div>
                 </div>
-              </div>
 
-              <div class="card bg-light border-dark p-3  ">
-                <div class=" text-left h-50 ">
-                  <h3>Number of Tickets &nbsp; :&nbsp; {NoOfSeats} </h3>
-                </div>
-                <br></br>
-                <br></br>
-                <div class="h-50">
-                  <h3>TOTAL = Rs {Price}</h3>
+                <div class="card bg-light border-dark p-3  ">
+                  <div class=" text-left h-50 ">
+                    <h3>Number of Tickets &nbsp; :&nbsp; {NoOfSeats} </h3>
+                  </div>
+                  <br></br>
+                  <br></br>
+                  <div class="h-50">
+                    <h3>TOTAL = Rs {Price}</h3>
+                  </div>
                 </div>
               </div>
+              <hr></hr>
+              <div class="form-group w-25 mt-3  ml-4">
+                <button
+                  type="submit"
+                  onClick={this.PaymentStatus}
+                  className="btn btn-primary btn-lg btn-block"
+                >
+                  Pay
+                </button>
+                <br />
+              </div>
             </div>
-            <hr></hr>
-            <div class="form-group w-25 mt-3  ml-4">
-              <button
-                type="submit"
-                onClick={this.PaymentStatus}
-                className="btn btn-primary btn-lg btn-block"
-              >
-                Pay
-              </button>
-              <br />
-            </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     );
   }
