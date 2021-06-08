@@ -300,6 +300,10 @@ class App extends Component {
               <Session_Ticket />
             </Route>
 
+            <Route path="/admin-session-list">
+              <Admin_Session_List />
+            </Route>
+
             <Route path="/ticket-list">
               <Ticket_List />
             </Route>
