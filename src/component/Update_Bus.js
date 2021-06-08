@@ -127,7 +127,7 @@ class Update_Bus extends React.Component {
               <div class="card-body  ">
                 <h1 class="card-title  p-3 text-light headgd text-center">
                   <i class="fas fa-bus"></i>&nbsp;&nbsp;
-                  <u>Update Bus Information</u>
+                  Update Bus Information
                 </h1>
                 <br></br>
                 <div class="card-deck ">

@@ -1,4 +1,3 @@
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import axios from "axios";
@@ -16,7 +15,7 @@ class Ticket_List extends React.Component {
       Ticket: [],
       TId:'',    
 
-      dte1:'',
+      dte:'',
 
       SId:'',
 
@@ -69,7 +68,7 @@ axios.get(window.$API_SERVER +"SearchTicket/" +id,{ headers: authHeader() })
           label: 'Ticket Number',
           field: 'TicketNo',
           
-          width: 100
+          width: 80
           },
           {
           label: 'From',
@@ -93,7 +92,7 @@ axios.get(window.$API_SERVER +"SearchTicket/" +id,{ headers: authHeader() })
           label: 'Payment Status',
           field: 'PaymentStatus',
           
-          width: 100
+          width: 150
           },
           {
           label: 'Price',
@@ -139,17 +138,17 @@ axios.get(window.$API_SERVER +"SearchTicket/" +id,{ headers: authHeader() })
         let Psts = "";
         let icon = "";
         if (psts == 1){
-            Psts = " Paid  ";
-            icon = <MDBIcon far icon="check-circle" />
+            Psts = "Paid ";
+            icon = <MDBIcon className="green-text" far icon="check-circle" />
            
         }
-        else if(psts ==0){
-            Psts = " Not Paid ";
-            icon = <MDBIcon icon="exclamation-circle" />
+        else if(psts ==2){
+            Psts = "Paylater-Not Paid ";
+            icon = <MDBIcon className="red-text" icon="exclamation-circle"></MDBIcon>
         }
         else{
-            Psts = " Pay Later ";
-            icon = <MDBIcon icon="genderless" />
+            Psts = "Pay Later-Paid ";
+            icon = <MDBIcon className="green-text pr-3" far icon="check-square" />
         }
          return {
            TicketNo: tick.TId,
@@ -159,7 +158,7 @@ axios.get(window.$API_SERVER +"SearchTicket/" +id,{ headers: authHeader() })
            PaymentStatus:[Psts,icon],
            Price: tick.Price,
            date: date,
-           //date: datetime.create(tick.date).format('m/d/y'),
+           
            Status:sts
     }
       })
@@ -173,15 +172,16 @@ axios.get(window.$API_SERVER +"SearchTicket/" +id,{ headers: authHeader() })
       <div>
         <div class="container mt-5 p-1">
           <div class="mt-5">
-            <div class="card">
-              <div class= "card-header headgd ">
+          <div class= "card-header headgd ">
                 <h1 class="text-light">
                
 
-                  Ticket List  <i class="far fa-list-alt"></i>
+                <i class="far fa-list-alt"></i>&nbsp;&nbsp;Ticket List
                 </h1>
             
               </div>
+            <div class="card">
+             
               <br></br>
               <br></br>
 
@@ -240,4 +240,3 @@ axios.get(window.$API_SERVER +"SearchTicket/" +id,{ headers: authHeader() })
 
 
 export default withRouter (Ticket_List);
-

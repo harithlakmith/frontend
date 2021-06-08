@@ -153,7 +153,7 @@ class Add_Route extends React.Component {
                 <div class="headgd p-2">
                   <h1 class="card-title text-light text-center   ">
                     <i class="fas fa-route"></i>
-                    &nbsp;&nbsp;<u>Add New Route</u>
+                    &nbsp;&nbsp;Add New Route
                   </h1>
                   <h5 class="  text-light text-center   ">
                     Please fill in this form to create bus routes!

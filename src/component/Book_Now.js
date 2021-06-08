@@ -145,7 +145,7 @@ class Book_Now extends Component {
       ToHalt: this.state.toHolt,
       PId: 1,
       NoOfSeats: parseInt(this.state.seats),
-      PStatus: 2,
+      PStatus: 1,
       Price: parseInt(this.state.totalTicket),
       Date: Moment(Date().toLocaleString()).format(),
       UserId: this.state.userInfo.Id.toLocaleString(),
