@@ -90,7 +90,7 @@ componentDidMount(){
                   </div>);
                           })
       ):(
-              <p>No session availble at today</p>
+              <p>No sessions availble at today</p>
       )
       return (
         <div class="card bg-light p-3 mt-3">
