@@ -154,11 +154,8 @@ class Book_Now extends Component {
      e.preventDefault(); 
 
      this.setState({
-       loading2 : true,
-       
+       loading2 : true
      })
-
- 
 
      const obj = {  
        SId:parseInt(this.state.sid),  

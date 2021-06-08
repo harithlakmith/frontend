@@ -12,8 +12,8 @@ class Footer extends React.Component {
           <div className="row ">
             <div class="col-12">
               <div class="row">
-                <div className="col-12">
-                 <p>Technologies used for implementations:  <a href="https://reactjs.org/" class="me-4 text-reset"><i class="fab fa-react"></i></a> &nbsp;<a href="https://getbootstrap.com/" class="me-4 text-reset"><i class="fab fa-bootstrap"></i></a>  &nbsp;<a href="https://www.microsoft.com/en-us/sql-server/sql-server-2019" class="me-4 text-reset"><i class="fas fa-database"></i></a>   &nbsp; <a href="https://stripe.com/" class="me-4 text-reset"><i class="fab fa-stripe-s"></i></a>  &nbsp; <a href="https://dotnet.microsoft.com/download/dotnet/3.1" class="me-4 text-reset"><i class="fab fa-microsoft"></i></a>  &nbsp; <a href="https://github.com/harithlakmith/frontend.git" class="me-4 text-reset"><i class="fab fa-github"></i></a>   &nbsp; <a href="https://azure.microsoft.com/en-us/" class="me-4 text-reset"><i class="cib-azure-devops"></i></a> &nbsp; <i class="cib-dot-net"></i> </p>
+                <div className="col-11">
+                 <p>Technologies used for implementations:&nbsp;  <a href="https://reactjs.org/" class="me-4 text-reset"><i class="fab fa-react"></i></a> &nbsp;<a href="https://getbootstrap.com/" class="me-4 text-reset"><i class="fab fa-bootstrap"></i></a>  &nbsp;<a href="https://www.microsoft.com/en-us/sql-server/sql-server-2019" class="me-4 text-reset"><i class="fas fa-database"></i></a>   &nbsp; <a href="https://stripe.com/" class="me-4 text-reset"><i class="fab fa-stripe-s"></i></a>  &nbsp; <a href="https://dotnet.microsoft.com/download/dotnet/3.1" class="me-4 text-reset"><i class="fab fa-microsoft"></i></a>  &nbsp; <a href="https://github.com/harithlakmith/frontend.git" class="me-4 text-reset"><i class="fab fa-github"></i></a>   &nbsp; <a href="https://azure.microsoft.com/en-us/" class="me-4 text-reset"><i class="cib-azure-devops"></i></a> &nbsp; <i class="cib-dot-net"></i> </p>
                 </div>
               </div>
             </div>
