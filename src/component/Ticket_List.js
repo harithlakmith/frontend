@@ -139,16 +139,16 @@ axios.get(window.$API_SERVER +"SearchTicket/" +id,{ headers: authHeader() })
         let Psts = "";
         let icon = "";
         if (psts == 1){
-            Psts = "Paid";
+            Psts = " Paid  ";
             icon = <MDBIcon far icon="check-circle" />
            
         }
         else if(psts ==0){
-            Psts = "Not Paid";
+            Psts = " Not Paid ";
             icon = <MDBIcon icon="exclamation-circle" />
         }
         else{
-            Psts = "Pay Later";
+            Psts = " Pay Later ";
             icon = <MDBIcon icon="genderless" />
         }
          return {
@@ -178,7 +178,7 @@ axios.get(window.$API_SERVER +"SearchTicket/" +id,{ headers: authHeader() })
                 <h1 class="text-light">
                
 
-                  <u>Ticket List</u>  <i class="far fa-list-alt"></i>
+                  Ticket List  <i class="far fa-list-alt"></i>
                 </h1>
             
               </div>
