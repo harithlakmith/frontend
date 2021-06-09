@@ -122,13 +122,13 @@ componentDidMount(){
                 <div class="card-body">
       
       
-        <div class="mt-5 p-5">
-          <h2 class="card-title card-header px-3 headgd  text-light">
+        <div class="mt-5 py-5">
+          <h2 class="card-title card-header headgd  text-light">
                 Ticket Information
                 </h2>
                 <br></br>
                 <div class= "row">
-                    <div class= "col-12 col-md-6 col-lg-3">
+                    <div class= "col-10 col-md-6 col-lg-3">
                       <div class="alert alert-dark">
                       <h4>Total : Rs {tot}</h4>
                             
@@ -148,7 +148,7 @@ componentDidMount(){
                     data={Sdata} 
                     searchTop 
                     info ={false}
-                    scrollY maxHeight='300px' 
+                    //scrollY maxHeight='400px' 
                     searchBottom={false} 
                   />
                         
