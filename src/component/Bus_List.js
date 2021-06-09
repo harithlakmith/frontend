@@ -130,7 +130,8 @@ class Bus_List extends Component {
         );
       })
     ) : (
-      <div className="center">No Buses available</div>
+            load?( <div className="center">No Buses available</div>):( <div className="center">No Buses available</div>)
+     
     );
 
     return (
