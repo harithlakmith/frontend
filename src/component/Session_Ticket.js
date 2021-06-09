@@ -122,12 +122,12 @@ componentDidMount(){
                 <div class="card-body">
       
       
-        <div class="mt-5 py-5">
+        <div class="mt-5 py-5 px-md-3">
           <h2 class="card-title card-header headgd  text-light">
                 Ticket Information
                 </h2>
                 <br></br>
-                <div class= "row">
+                <div class= "row px-md-3">
                     <div class= "col-10 col-md-6 col-lg-3">
                       <div class="alert alert-dark">
                       <h4>Total : Rs {tot}</h4>
@@ -136,7 +136,7 @@ componentDidMount(){
                         
                     </div> 
                 </div>
-                <div class="row">
+                <div class="row px-md-3">
                     <div class="col-lg-12 col-sm-12">
                     <MDBDataTableV5 
                     responsive 
