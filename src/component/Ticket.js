@@ -27,8 +27,8 @@ class Ticket extends Component {
         msgStatus:[],
         sms:'', 
         sending:true,
-        isPaylater:false,
-        TickId:JSON.parse(localStorage.getItem('ticket')).tid
+        isPaylater:'false',
+        TickId:parseInt(localStorage.getItem('ticket')).tid
       };
         this.handleChange = this.handleChange.bind(this);
         this.sendsms = this.sendsms.bind(this);
@@ -39,7 +39,9 @@ class Ticket extends Component {
           this.setState(
             {[e.target.name]:e.target.value,
             });   
-      } 
+      }
+      
+      
 
       componentDidMount() {
           //const value = queryString.parse(this.props.location.search);
@@ -51,13 +53,13 @@ class Ticket extends Component {
                 ticket: JSON.parse(localStorage.getItem('ticket')),
                 userInfo:JSON.parse(localStorage.getItem('userInfo')),
                 isPaylater:value.get('isPaylater'),
-                TickId:tid
+                TickId:parseInt(tid)
               });
 
 
             const ticket = JSON.parse(localStorage.getItem('ticket'));
 
-          if((value.get('success')=="false")){
+          if(value.get('success')=="false"){
            
               fetch(window.$API_SERVER + 'Ticket/' + ticket.tid, { //delete ticket
                   method: 'DELETE',
@@ -67,23 +69,30 @@ class Ticket extends Component {
                 .then(res => console.log(res))
                 .catch(err=> console.log(err))
   
-          }else if((value.get('success')=="true")&&(value.get('isPaylater')==false)){
+          }else if(value.get('success')=="true"){
 
-             //  this.sendsms();
-                axios.post(window.$API_SERVER + "Ticket/PaymentUpdate",{TId: this.state.TId,PStatus: 1}, { headers: authHeader() })//paid
-                .then((json) => {
-                  console.log(json.data);
-                });
+                if(value.get('isPaylater')=="false"){
+                          //  this.sendsms();
+                      axios.post(window.$API_SERVER + "Ticket/PaymentUpdate",{TId: ticket.tid, PStatus: 1}, { headers: authHeader() })//paid
+                      .then((json) => {
+                        console.log("st");
+                        console.log(json.data);
+                      });
+                      console.log("stc");
+                      }
 
-          }else if((value.get('success')=="true")&&(value.get('isPaylater')==true)){
+                if(value.get('isPaylater')=="true"){
+                  //  this.sendsms();
+                      axios.post(window.$API_SERVER + "Ticket/PaymentUpdate",{TId: ticket.tid, PStatus: 2}, { headers: authHeader() })//paid
+                      .then((json) => {
+                        console.log("st");
+                        console.log(json.data);
+                      });
+                      console.log("stc");
+                      }
+            
 
-                //  this.sendsms();
-                axios.post(window.$API_SERVER + "Ticket/PaymentUpdate",{TId: this.state.TId,PStatus: 2}, { headers: authHeader() })//paid
-                .then((json) => {
-                  console.log(json.data);
-                });
-
-         }
+          }
       }
 
     

@@ -21,7 +21,7 @@ export default function authHeader() {
 
 
     
-    axios.interceptors.response.use(undefined,error =>{
+    /*axios.interceptors.response.use(undefined,error =>{
       if (error.response.status === 401) {
         //console.log(error.response)
         return <Redirect to={"/sign-in"} />;
@@ -30,5 +30,5 @@ export default function authHeader() {
       throw error.response
     }
 
-    )
+    )*/
   } 

@@ -157,7 +157,7 @@ axios.get(window.$API_SERVER +"SearchTicket/" +id,{ headers: authHeader() })
             icon = <MDBIcon className="pl-2 text-warning red-text" icon="exclamation-circle"></MDBIcon>
         }
         else if(psts==3){
-            Psts = <span class="text-warning">Paylater-Paid</span>;
+            Psts = <span class="text-success">Paylater-Paid</span>;
             icon = <MDBIcon className="pl-2 text-success green-text pr-3" far icon="check-square" />
         }
          return {
