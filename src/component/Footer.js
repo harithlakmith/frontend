@@ -77,7 +77,7 @@ class Footer extends React.Component {
                 <div className="row">
                   <div className="col-lg-8 col-sm-12">
                     <div className="row">
-                      <div className="col-lg-3 col-sm-12" align="center">
+                      <div className="col-lg-3 my-3 col-sm-12" align="center">
                         <img
                           src="logo.png"
                           class="img-fluid"
@@ -96,7 +96,7 @@ class Footer extends React.Component {
                 </div>
               </div>
 
-              <div className="col-lg-4 col-sm-12">
+              <div className="text-md-left text-center col-lg-4 mt-5 mt-md-0 col-sm-12">
                 <h4 class="text-light">CONTACT US</h4>
                 <ui className="list-unstyled">
                   <br></br>

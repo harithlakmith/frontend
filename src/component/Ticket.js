@@ -207,7 +207,9 @@ doc.setFont("helvetica", "bold");
 doc.text("Price : Rs " + ticket.ticketPrice, 105, y+175, null, null, "center");
 doc.setFont("times", "normal");
 doc.setTextColor("#000000");
-doc.addImage(QRimage, 'png', 85, y+185,null, null, "center");
+
+doc.addImage(QRimage, 'png', 85, y+185,40,40, "center");
+
 doc.setTextColor("#9f9d9d");
 doc.setFontSize(11);
 doc.text("* This QR code valid only for PayLater passengers. They should provide this QR",45, y+235)
@@ -314,9 +316,17 @@ render(){
               <div class="row align-items-end text-center">
                 <div class="col-lg">
                 <button class="btn btn-success" onClick={this.printDocument} >Download Ticket</button>
-                
+               
                 </div>
               </div>
+
+              <div class="row align-items-end text-center">
+                <div class="col-lg">
+                
+                <a href="/home" class="m-4 btn btn-primary">Home Page</a>
+                </div>
+              </div>
+
 
             </div> 
           </div>

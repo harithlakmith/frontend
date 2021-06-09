@@ -81,15 +81,15 @@ class Bus_List extends Component {
           bus.FreeSeats;
 
         return (
-          <div class=" container p-3  ">
+          <div class=" container p-md-3  ">
             <div class=" card bg-light   ">
               <div class="card-header">
                 <div class="row">
                   <div class="col-lg-6">
-                    <h3>
+                    <h3><b>
                       {bus.RNum}&nbsp;&nbsp; {bus.RouteStartHolt} -{" "}
                       {bus.RouteStopHolt}
-                    </h3>
+                      </b></h3>
                   </div>
                   <div class="col-lg-6">
                     <h3>{Moment(bus.Date).format("YYYY-MM-DD")}</h3>
@@ -100,17 +100,17 @@ class Bus_List extends Component {
                 <div class="row">
                   <div class="col-lg-3">
                     <p>
-                      From: {bus.FromHolt} To: {bus.ToHolt}
+                      <b>From:</b> {bus.FromHolt} To: {bus.ToHolt}
                     </p>
-                    <p>Time Duration:{bus.Duration} hours</p>
+                    <p><b>Time Duration:</b> {bus.Duration} hours</p>
                   </div>
                   <div class="col-lg-3">
                     <p>
-                      Arriving Time:{Moment(bus.ArrivedTime).format("hh:mm A")}
+                      <b>Arriving Time: </b>{Moment(bus.ArrivedTime).format("hh:mm A")}
                     </p>
                   </div>
                   <div class="col-lg-3">
-                    <p>Price:Rs {bus.TicketPrice} /=</p>
+                    <p><b>Price: </b>Rs {bus.TicketPrice} /=</p>
                   </div>
 
                   <div class="col-lg-3">
@@ -134,14 +134,14 @@ class Bus_List extends Component {
     );
 
     return (
-      <div class=" container p-5  ">
-        <div class="card border headgd border-primary rounded mb-3 mt-5">
+      <div class=" container mt-5 p-md-5  ">
+        <div class="card border headg border-primary rounded mb-3 mt-5">
           <div class="card-body ">
             <div class="row justify-content-center">
               <div class="col-lg-12">
                 <div class="text-center lg-5 ">
                   <h2 class="card-title card-header  headgd text-center text-light  ">
-                    TICKETS RESERVATION SOLUTION
+                    Session List
                   </h2>
                 </div>
               </div>

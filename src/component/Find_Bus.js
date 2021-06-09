@@ -222,7 +222,7 @@ import {  MDBCardImage,MDBCardFooter } from 'mdbreact';
 
                                   <div class="carousel-item active pl-5" data-interval="2000">
                                       <div class="media ">
-                                        <img src="images/7.png" class="mr-3 " height="64" width="64"  alt="..."/>
+                                        <img src="images/7.png" class="mr-3 d-none d-lg-block" height="64" width="64"  alt="..."/>
                                         <div class="media-body">
                                           <h5 class="mt-0">01. First Step</h5>
                                           Choose your destinations and date.
@@ -237,7 +237,7 @@ import {  MDBCardImage,MDBCardFooter } from 'mdbreact';
                                     
 
                                       <div class="media ">
-                                        <img src="images/5.png" class="mr-3 " height="64" width="64"  alt="..."/>
+                                        <img src="images/5.png" class="mr-3 d-none d-lg-block " height="64" width="64"  alt="..."/>
                                         <div class="media-body">
                                           <h5 class="mt-0">02. Second Step</h5>
                                           Choose correct Bus and Route.
@@ -250,7 +250,7 @@ import {  MDBCardImage,MDBCardFooter } from 'mdbreact';
                                   <div class="carousel-item pl-5" data-interval="2000">
                                   
                                       <div class="media ">
-                                        <img src="images/9.jpg" class="mr-3 " height="64" width="64"  alt="..."/>
+                                        <img src="images/9.jpg" class="mr-3 d-none d-lg-block" height="64" width="64"  alt="..."/>
                                         <div class="media-body">
                                           <h5 class="mt-0">03. Third Step</h5>
                                           Select number of seats.
@@ -263,7 +263,7 @@ import {  MDBCardImage,MDBCardFooter } from 'mdbreact';
                                   <div class="carousel-item  pl-5" data-interval="2000">
                                   
                                       <div class="media ">
-                                        <img src="images/8.png" class="mr-3 " height="60" width="60"  alt="..."/>
+                                        <img src="images/8.png" class="mr-3 d-none d-lg-block" height="60" width="60"  alt="..."/>
                                         <div class="media-body">
                                           <h5 class="mt-0">04. Forth Step</h5>
                                           Make Payment&nbsp;<small class="text-muted"> Powered by Stripe</small>.
@@ -276,7 +276,7 @@ import {  MDBCardImage,MDBCardFooter } from 'mdbreact';
                                   
 
                                       <div class="media ">
-                                        <img src="images/10.jpg" class="mr-3 " height="60" width="60"  alt="..."/>
+                                        <img src="images/10.jpg" class="mr-3 d-none d-lg-block" height="60" width="60"  alt="..."/>
                                         <div class="media-body">
                                           <h5 class="mt-0">05. Final Step</h5>
                                           Download your Ticket.
@@ -300,7 +300,7 @@ import {  MDBCardImage,MDBCardFooter } from 'mdbreact';
       </div>
 </section>
 
-
+<section class="pt-md-3 wave-img1">
 <MDBContainer>
 <p class="h2 bold text-success uppercase"><strong><MDBIcon icon="file-alt" />&nbsp;&nbsp;Recieved Documents</strong><br/><small class="text-muted h6">&emsp;&emsp;&emsp;<em>you will receive these documents after reserving</em></small></p> 
       <hr />
@@ -338,7 +338,7 @@ import {  MDBCardImage,MDBCardFooter } from 'mdbreact';
                    
                   </MDBCardBody>
                   <MDBCardFooter small muted>
-                    Online payment
+                    Online Payment
                   </MDBCardFooter>
                 </MDBCard>
               </MDBCol>
@@ -355,7 +355,7 @@ import {  MDBCardImage,MDBCardFooter } from 'mdbreact';
                    
                   </MDBCardBody>
                   <MDBCardFooter small muted>
-                    SMS text message
+                    SMS Text Message
                   </MDBCardFooter>
                 </MDBCard>
               </MDBCol>
@@ -365,7 +365,7 @@ import {  MDBCardImage,MDBCardFooter } from 'mdbreact';
         </MDBCol>
       </MDBRow>
     </MDBContainer>
-
+    </section>
 
 
 
