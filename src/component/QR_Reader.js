@@ -30,6 +30,9 @@ class QR_Reader extends Component {
     console.error(err);
   };
   render() {
+    if (JSON.parse(localStorage.getItem('role'))!='BusController'){
+      return <Redirect to={'/sign-in'} />
+    }
     const { result, ManualResult } = this.state;
     var d = "/manual-pay?TId=" + result;
     if (result != "") {

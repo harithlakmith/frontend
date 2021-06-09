@@ -17,13 +17,7 @@ class Bus_List extends Component {
 
     axios
       .get(
-        window.$API_SERVER +
-          "Search/SearchTicket?date=" +
-          value.get("date") +
-          "&from_=" +
-          value.get("from") +
-          "&to_=" +
-          value.get("to"),
+        window.$API_SERVER +"Search/SearchTicket?date=" + value.get("date") + "&from_=" + value.get("from") + "&to_=" + value.get("to"),
         { headers: authHeader() }
       )
       .then(
@@ -130,7 +124,10 @@ class Bus_List extends Component {
         );
       })
     ) : (
-      <div className="center">No Buses available</div>
+            load?( <div className="spinner-border text-primary" role="status">
+            <span className="sr-only">Loading...</span>
+          </div>):( <div className="center">No Buses available</div>)
+     
     );
 
     return (
