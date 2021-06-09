@@ -14,9 +14,22 @@ import {
 } from "mdbreact";
 
 class Admin_Session_List extends Component {
-  state = {
-    sessions: [],
-  };
+
+  constructor(props) {
+    super(props);
+    
+      this. state = {
+        sessions: [],
+        test:[],
+        tot:0
+      };
+       
+       
+       
+}
+
+
+ 
   componentDidMount() {
     var value = new URLSearchParams(this.props.location.search);
     //var SId = value.get("SId");
@@ -30,6 +43,10 @@ class Admin_Session_List extends Component {
       });
   }
 
+
+
+
+
   render() {
     if (JSON.parse(localStorage.getItem("role")) != "Administrator") {
       return <Redirect to={"/sign-in"} />;
@@ -41,25 +58,25 @@ class Admin_Session_List extends Component {
         {
           label: "Session Id",
           field: "SId",
-
+          sort: 'asc',
           width: 100,
         },
         {
           label: "Bus Number",
           field: "Busno",
-
+          sort: 'asc',
           width: 100,
         },
         {
           label: "Route",
           field: "RId",
-
+          sort: 'asc',
           width: 100,
         },
         {
           label: "Date",
           field: "Date",
-
+          sort: 'asc',
           width: 100,
         },
         {
@@ -74,8 +91,18 @@ class Admin_Session_List extends Component {
 
           width: 100,
         },
+      /*  {
+          label: "Revenue",
+          field: "Revenue",
+          sort: 'asc',
+          width: 100,
+        },*/
       ],
       rows: sessions.map((session) => {
+
+      
+        //var tt =10;          
+
         return {
           SId: session.SId,
           Busno: session.BusNo,
@@ -83,9 +110,13 @@ class Admin_Session_List extends Component {
           Date: Moment(session.StartTime).format("YYYY-MM-DD"),
           Starts: Moment(session.StartTime).format("hh:mm A"),
           Seats: session.Seats,
+         
         };
+     
       }),
     };
+
+      this.state.test=data;
 
     return (
       <div>
@@ -98,8 +129,8 @@ class Admin_Session_List extends Component {
                 <br></br>
               </h2>
               <br></br>
-              <div class="row">
-                <div class="col-lg p-3">
+              <div class="row p-md-5">
+                <div class="col p-3">
                   <MDBDataTableV5
                     responsive
                     hover
