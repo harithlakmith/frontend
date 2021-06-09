@@ -314,9 +314,10 @@ import {  MDBCardImage,MDBCardFooter } from 'mdbreact';
                 
                   <MDBCardImage className="img-fluid" src="tic1.png" waves />
                   <MDBCardBody>
-                    <MDBCardTitle><MDBIcon className="red-text pr-2" far icon="file-pdf" />  Your Ticket</MDBCardTitle>
+                    <MDBCardTitle><span class="text-danger"><MDBIcon className="red-text pr-2" far icon="file-pdf" /></span>  Your Ticket</MDBCardTitle>
                     <MDBCardText>
-                      You can download a pdf version of ticket after succesfull ticket reserving. Download pdf version must for PayLater passengers
+                     <p class="text-muted"> You can download a pdf version of ticket after succesfull ticket reserving. Download pdf version must for PayLater passengers
+                     </p>
                     </MDBCardText>
                    
                   </MDBCardBody>
@@ -331,10 +332,10 @@ import {  MDBCardImage,MDBCardFooter } from 'mdbreact';
                 
                   <MDBCardImage className="img-fluid" src="tic2.png" waves />
                   <MDBCardBody>
-                    <MDBCardTitle><MDBIcon className="red-text pr-2" far icon="file-pdf" /> Your Ticket</MDBCardTitle>
+                    <MDBCardTitle><span class="text-danger"><MDBIcon className="red-text pr-2" far icon="file-pdf" /></span> Your Ticket</MDBCardTitle>
                     <MDBCardText>
-                      You can download a pdf version of ticket after succesfull ticket reserving. Online payment id mentioned in the ticket.
-                    </MDBCardText>
+                    <p class="text-muted">You can download a pdf version of ticket after succesfull ticket reserving. Online payment id mentioned in the ticket.
+                    </p></MDBCardText>
                    
                   </MDBCardBody>
                   <MDBCardFooter small muted>
@@ -348,10 +349,10 @@ import {  MDBCardImage,MDBCardFooter } from 'mdbreact';
                 
                   <MDBCardImage className="img-fluid" src="tic3.jpg" waves />
                   <MDBCardBody>
-                    <MDBCardTitle><MDBIcon className="indigo-text pr-2" far icon="envelope" />Your Message </MDBCardTitle>
+                    <MDBCardTitle><span class="text-primary"><MDBIcon className="indigo-text pr-2" far icon="envelope" /></span> Your Message </MDBCardTitle>
                     <MDBCardText>
-                      You will recieved a text message of ticket after succesfull ticket reserving. This SMS will help you to verify your booking
-                    </MDBCardText>
+                    <p class="text-muted"> You will recieved a text message of ticket after succesfull ticket reserving. This SMS will help you to verify your booking
+                   </p> </MDBCardText>
                    
                   </MDBCardBody>
                   <MDBCardFooter small muted>
