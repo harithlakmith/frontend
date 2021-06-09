@@ -122,14 +122,14 @@ axios.get(window.$API_SERVER +"SearchTicket/" +id,{ headers: authHeader() })
         let sts = "";
         if (today > date){
             //sts = <span class="badge bg-danger">Expired</span>;
-            sts = "Expired";
+            sts = <span class="badge badge-danger">Expired</span>;
            
             
         }
         else {
             
             //sts = <span class="badge bg-success">Availble</span>
-            sts ="Available";
+            sts =<span class="badge badge-success">Available</span>;
            
             
         }
@@ -137,32 +137,37 @@ axios.get(window.$API_SERVER +"SearchTicket/" +id,{ headers: authHeader() })
         const psts = tick.PStatus;
         let Psts = "";
         let icon = "";
+        let prc = "Rs "+tick.Price;
+        let set = <span class="text-center"><p>{tick.NoOfSeats}</p></span>;
+        let tNo =<span class="text-center b-2"><p>#{tick.TId}</p></span>;
+        let dt = <span class="text-muted">{date}</span>
+      
         if (psts == 0){
-          Psts = "No Paid ";
-          icon = <MDBIcon className="red-text" far icon="check-circle" />
+          Psts = <span class="text-danger">Not Paid</span>;
+          icon = <MDBIcon className="pl-2 text-danger red-text" far icon="check-circle" />
          
       }
       else if (psts == 1){
-            Psts = "Paid ";
-            icon = <MDBIcon className="green-text" far icon="check-circle" />
+            Psts = <span class="text-success">Paid</span>;
+            icon = <MDBIcon className="pl-2 text-success green-text" far icon="check-circle" />
            
         }
         else if(psts ==2){
-            Psts = "Paylater-Not Paid ";
-            icon = <MDBIcon className="red-text" icon="exclamation-circle"></MDBIcon>
+            Psts = <span class="text-warning">Paylater-Not Paid</span>;
+            icon = <MDBIcon className="pl-2 text-warning red-text" icon="exclamation-circle"></MDBIcon>
         }
         else if(psts==3){
-            Psts = "Pay Later-Paid ";
-            icon = <MDBIcon className="green-text pr-3" far icon="check-square" />
+            Psts = <span class="text-warning">Paylater-Paid</span>;
+            icon = <MDBIcon className="pl-2 text-success green-text pr-3" far icon="check-square" />
         }
          return {
-           TicketNo: tick.TId,
+           TicketNo: tNo,
            From: tick.FromHalt,
            To: tick.ToHalt,
-           NoOfSeat: tick.NoOfSeats,
+           NoOfSeat: set,
            PaymentStatus:[Psts,icon],
-           Price: tick.Price,
-           date: date,
+           Price: prc,
+           date: dt,
            
            Status:sts
     }
@@ -220,7 +225,7 @@ axios.get(window.$API_SERVER +"SearchTicket/" +id,{ headers: authHeader() })
                     data={data} 
                     pagingTop 
                     searchTop 
-                    scrollY maxHeight='300px' 
+                   // scrollY maxHeight='300px' 
                     searchBottom={false} 
                   />
  
