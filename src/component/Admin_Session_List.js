@@ -35,7 +35,7 @@ class Admin_Session_List extends Component {
     //var SId = value.get("SId");
 
     axios
-      .get(window.$API_SERVER + "Session", { headers: authHeader() })
+      .get(window.$API_SERVER + "Session/rev", { headers: authHeader() })
       .then((res) => {
         this.setState({
           sessions: res.data,
@@ -91,12 +91,12 @@ class Admin_Session_List extends Component {
 
           width: 100,
         },
-      /*  {
+        {
           label: "Revenue",
           field: "Revenue",
           sort: 'asc',
           width: 100,
-        },*/
+        },
       ],
       rows: sessions.map((session) => {
 
@@ -110,7 +110,7 @@ class Admin_Session_List extends Component {
           Date: Moment(session.StartTime).format("YYYY-MM-DD"),
           Starts: Moment(session.StartTime).format("hh:mm A"),
           Seats: session.Seats,
-         
+          Revenue: session.Rev
         };
      
       }),
