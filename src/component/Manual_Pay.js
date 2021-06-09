@@ -74,7 +74,7 @@ class Manual_Pay extends Component {
         window.$API_SERVER + "Ticket/PaymentUpdate",
         {
           TId: this.state.TId,
-          PStatus: 1,
+          PStatus: 3,
         },
         { headers: authHeader() }
       )

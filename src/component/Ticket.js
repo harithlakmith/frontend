@@ -355,9 +355,12 @@ render(){
                                   C-Id&nbsp;: {userInfo.Id}<br/>
                                   S-Id&nbsp;: #{ticket.sid}
                               </div>
-                              <div id="pay" class="alert alert-success h6" role="alert">
+                              {this.state.isPaylater?( <div id="pay" class="alert alert-success h6" role="alert">
+                                PayLater Ticket
+                              </div>):( <div id="pay" class="alert alert-success h6" role="alert">
                                 Payment is Succesful!
-                              </div>
+                              </div>)}
+                             
                               <QRCode id="qr" value={qrvalue} />
                               </div>
                      

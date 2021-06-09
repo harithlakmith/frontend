@@ -137,7 +137,12 @@ axios.get(window.$API_SERVER +"SearchTicket/" +id,{ headers: authHeader() })
         const psts = tick.PStatus;
         let Psts = "";
         let icon = "";
-        if (psts == 1){
+        if (psts == 0){
+          Psts = "No Paid ";
+          icon = <MDBIcon className="red-text" far icon="check-circle" />
+         
+      }
+      else if (psts == 1){
             Psts = "Paid ";
             icon = <MDBIcon className="green-text" far icon="check-circle" />
            
@@ -146,7 +151,7 @@ axios.get(window.$API_SERVER +"SearchTicket/" +id,{ headers: authHeader() })
             Psts = "Paylater-Not Paid ";
             icon = <MDBIcon className="red-text" icon="exclamation-circle"></MDBIcon>
         }
-        else{
+        else if(psts==3){
             Psts = "Pay Later-Paid ";
             icon = <MDBIcon className="green-text pr-3" far icon="check-square" />
         }
