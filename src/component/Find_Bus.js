@@ -312,7 +312,7 @@ import {  MDBCardImage,MDBCardFooter } from 'mdbreact';
               <MDBCol  className="col-12 col-md-4 mt-2">
                 <MDBCard>
                 
-                  <MDBCardImage className="img-fluid" src="tic1.png" waves />
+                  <MDBCardImage className="img-fluid" src="tic1.jpg" waves />
                   <MDBCardBody>
                     <MDBCardTitle><span class="text-danger"><MDBIcon className="red-text pr-2" far icon="file-pdf" /></span>  Your Ticket</MDBCardTitle>
                     <MDBCardText>
@@ -330,7 +330,7 @@ import {  MDBCardImage,MDBCardFooter } from 'mdbreact';
               <MDBCol  className="col-12 col-md-4 mt-2">
                 <MDBCard>
                 
-                  <MDBCardImage className="img-fluid" src="tic2.png" waves />
+                  <MDBCardImage className="img-fluid" src="tic2.jpg" waves />
                   <MDBCardBody>
                     <MDBCardTitle><span class="text-danger"><MDBIcon className="red-text pr-2" far icon="file-pdf" /></span> Your Ticket</MDBCardTitle>
                     <MDBCardText>

@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import axios from "axios";
+import {Redirect} from 'react-router-dom';
+
 
 //import '@fortawesome/fontawesome-free/css/all.min.css'; 
 //import 'bootstrap-css-only/css/bootstrap.min.css'; 
@@ -12,6 +15,18 @@ import reportWebVitals from './reportWebVitals';
 window.$API_SERVER = "https://ticketbookingapi.azurewebsites.net/api/";
 
 //window.$API_SERVER = "http://localhost:5000/api/";
+
+axios.interceptors.response.use(undefined,error =>{
+  if (error.response.status === 401) {
+   
+    return <Redirect to={"/sign-in"} />;
+  }
+  console.log(error.response)
+  throw error.response
+}
+
+);
+
 
 
 ReactDOM.render(
