@@ -14,7 +14,7 @@ import { MDBDataTableV5, MDBIcon } from 'mdbreact';
           Session: [],
           TId:'',    
           SId:'',
-          From:'',
+          From:'', 
           To:'',
           FromHalt:'',
           ToHalt:'',
@@ -128,13 +128,13 @@ componentDidMount(){
                 </h2>
                 <br></br>
                 <div class= "row">
-                    <div class= "col-2">
+                    <div class= "col-12 col-md-6 col-lg-3">
                       <div class="alert alert-dark">
                       <h4>Total : Rs {tot}</h4>
                             
                       </div>
                         
-                    </div>
+                    </div> 
                 </div>
                 <div class="row">
                     <div class="col-lg-12 col-sm-12">

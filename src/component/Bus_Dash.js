@@ -62,7 +62,7 @@ componentDidMount(){
 
       var s = '/select-route?s='+MaxSeats;
   
-      const seslist = MySession.length ? (
+      const seslist = MySession.length?(
         MySession.map(ses=> { 
         console.clear();   
         const dte = new Date(ses.Date);
@@ -146,7 +146,7 @@ componentDidMount(){
   
                     <div class="form-group row">
                       <div class="col-lg-4 col-6">
-                      <i class="fas fa-chevron-right"></i>&nbsp;<label><b>Driver Number</b></label>
+                      <i class="fas fa-chevron-right"></i>&nbsp;<label><b>Driver No</b></label>
                       </div>
                       <div class="col-lg-5 col-6">{DriverNo}</div>
                     </div>
@@ -158,7 +158,7 @@ componentDidMount(){
                     </div>
                     <div class="form-group row">
                       <div class="col-lg-4 col-6 ">
-                      <i class="fas fa-chevron-right"></i>&nbsp;<label><b>Conducter Number</b></label>
+                      <i class="fas fa-chevron-right"></i>&nbsp;<label><b>Conducter No</b></label>
                       </div>
   
                       <div class="col-lg-5 col-6">{CondNo}</div>
