@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import authHeader from "../services/auth-header";
+import AuthService from "./../services/auth.service";
 
 class Pass_Info_Update extends Component {
 
@@ -101,13 +102,16 @@ UpdatePassenger() {
           Test:obj,
   });
   axios.post(window.$API_SERVER +'Accounts/PassUpdate', obj, { headers: authHeader() })  
-      .then(res => console.log(res.data));  
+      .then(res => console.log(res.data), this.logOut());  
 
 } 
 
 
 
   render() {
+    if (JSON.parse(localStorage.getItem("role")) != "Passenger") {
+      return <Redirect to={"/sign-in"} />;
+    }
 	  var NIC = this.state.nic;
 
   return (
