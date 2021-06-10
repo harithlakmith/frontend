@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import authHeader from "../services/auth-header";
 import AuthService from "./../services/auth.service";
+import { Redirect, withRouter } from "react-router-dom";
 
 class Pass_Info_Update extends Component {
 
@@ -161,7 +162,7 @@ UpdatePassenger() {
                        required="required"
                      />
                    </div>
-                 </div>
+                 </div> 
                </div>
                
                
