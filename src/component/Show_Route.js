@@ -21,6 +21,13 @@ componentDidMount(){
         this.setState({
           routes:res.data
         });
+      },error =>{
+        if (error.response.status === 401) {
+         
+          return <Redirect to={"/sign-in"} />;
+        }
+        console.log(error.response)
+        throw error.response
       })
      
 }
