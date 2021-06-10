@@ -51,7 +51,7 @@ render(){
       field: 'RNo',
     
       width: 100
-      },
+      }, 
       {
       label: 'Start At',
       field: 'StartAt',
