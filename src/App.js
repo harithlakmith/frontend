@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import axios from "axios";
+
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Route, Switch, Redirect, Link } from "react-router-dom";
@@ -57,6 +59,17 @@ class App extends Component {
       role: undefined,
       useInfo: undefined,
     };
+
+    axios.interceptors.response.use(undefined,error =>{
+      if (error.response.status === 401) {
+       
+        return <Redirect to={"/sign-in"} />;
+      }
+      console.log(error.response)
+      throw error.response
+    }
+    
+    );
   }
 
   componentDidMount() {
