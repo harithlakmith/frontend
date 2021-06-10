@@ -35,10 +35,10 @@ componentDidMount(){
 render(){
   const { routes } = this.state
 
-  
+  const data = "";
   const {text,text1} = this.state;
-
-const data ={
+routes.length&&(
+ data ={
   columns:[
     {
       label: 'Route Id',
@@ -120,7 +120,7 @@ const data ={
       
     })
       
-  }
+  })
 
   return (
     <div>
