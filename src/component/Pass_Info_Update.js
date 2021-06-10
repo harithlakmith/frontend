@@ -20,12 +20,15 @@ class Pass_Info_Update extends Component {
         OPassword:'',
         CPassword:''
     }; 
-    
+    this.logOut = this.logOut.bind(this);
     this.handleChange = this.handleChange.bind(this);  
     this.UpdatePassenger = this.UpdatePassenger.bind(this); 
     this.UpdatePassword = this.UpdatePassword.bind(this);  
 
 }  
+logOut() {
+  AuthService.logout();
+}
 
 handleChange = (e) => {
   this.setState({[e.target.name]:e.target.value});
@@ -71,6 +74,8 @@ UpdatePassword() {
     headers: authHeader(),
   })
   .then((res) => {
+   
+
     this.setState({
             upPassOk:"ok"
     },error=>{
@@ -103,7 +108,11 @@ UpdatePassenger() {
           Test:obj,
   });
   axios.post(window.$API_SERVER +'Accounts/PassUpdate', obj, { headers: authHeader() })  
-      .then(res => console.log(res.data), this.logOut());  
+      .then(res =>
+         console.log(res.data),
+      
+      this.logOut()
+      );  
 
 } 
 
@@ -177,13 +186,13 @@ UpdatePassenger() {
                    required="required"
                  />
                </div>
-              
+               </form>
                <div class="form-group">
-               <button type="submit" onClick={this.UpdatePassenger} class="btn btn-primary btn-s">
+               <button type="" onClick={this.UpdatePassenger} class="btn btn-primary btn-s">
                        UPDATE
                      </button>
                </div>
-             </form>
+            
           </div>
         </div>
         
