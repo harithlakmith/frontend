@@ -35,9 +35,9 @@ componentDidMount(){
 render(){
   const { routes } = this.state
 
-  let data = "";
+ 
   const {text,text1} = this.state;
-routes.length?(
+
  data ={
   columns:[
     {
@@ -120,7 +120,7 @@ routes.length?(
       
     })
       
-  }):(data=[])
+  }
 
   return (
     <div>
