@@ -37,7 +37,7 @@ render(){
 
   const data = "";
   const {text,text1} = this.state;
-routes.length&&(
+routes.length?(
  data ={
   columns:[
     {
@@ -120,7 +120,7 @@ routes.length&&(
       
     })
       
-  })
+  }):(data=[])
 
   return (
     <div>
