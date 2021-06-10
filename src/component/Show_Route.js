@@ -38,7 +38,7 @@ render(){
  
   const {text,text1} = this.state;
 
- data ={
+ const data ={
   columns:[
     {
       label: 'Route Id',
@@ -89,7 +89,7 @@ render(){
       sort: 'asc',
     
       width: 100
-      }
+      } 
   ],
   rows:routes.map(route => {
       return{
