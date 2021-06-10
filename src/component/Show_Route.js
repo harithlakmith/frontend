@@ -35,7 +35,7 @@ componentDidMount(){
 render(){
   const { routes } = this.state
 
-  const data = "";
+  let data = "";
   const {text,text1} = this.state;
 routes.length?(
  data ={
