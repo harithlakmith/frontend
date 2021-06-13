@@ -22,7 +22,6 @@ class Admin_Dash extends Component {
             </div>
           </div>
           <br></br>
-
           <div class="row">
             <div class="col-lg-8 h2 mb-4 ">
               Settings - Routes&nbsp;&nbsp;
@@ -140,7 +139,7 @@ class Admin_Dash extends Component {
                     Click below button for Displaying the information list of
                     Sessions
                   </p>
-                  <a href="/" class="btn btn-primary m-2 disabled">
+                  <a href="/session-list" class="btn btn-primary m-2 ">
                     Sessions List
                   </a>
                 </div>
@@ -158,7 +157,7 @@ class Admin_Dash extends Component {
                     Click below button for adding new session for the related
                     bus.
                   </p>
-                  <a href="/" class="btn btn-primary m-2 disabled">
+                  <a href="/add-session" class="btn btn-primary m-2 ">
                     Add session
                   </a>
                 </div>

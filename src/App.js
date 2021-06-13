@@ -41,6 +41,11 @@ import Show_Route from './component/Show_Route';
 import Footer from "./component/Footer";
 import Route_Update from "./component/Route_Update";
 import RouteInfo_Update from "./component/RouteInfo_Update";
+import taskList from './component/Test_case/taskList';
+import QR_Reader from './component/QR_Reader';
+import Manual_Pay from './component/Manual_Pay';
+import Add_Session from './component/Add_Session';
+
 
 
 
@@ -108,7 +113,7 @@ render(){
                 </a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fas fa-caret-square-down"></i>
+                <i class="fas fa-bars"></i>
                 </button>
                
                 <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -165,7 +170,15 @@ render(){
           <Route path="/home">
             <Find_Bus />
           </Route>
-         
+          
+    
+          <Route path="/qr-reader">
+            <QR_Reader />
+          </Route>
+
+          <Route path="/manual-pay">
+            <Manual_Pay />
+          </Route>
 
           <Route path="/test-case"component={Test_case}>
           <Test_case />
@@ -236,7 +249,7 @@ render(){
           <RouteInfo_Update />
           </Route>
 
-          <Route path="/ticket" >
+          <Route path="/ticket" component={Ticket}>
           <Ticket />
           </Route>
 
@@ -251,6 +264,10 @@ render(){
           <Route path="/route-info" >
           <Route_Info />
           </Route>
+          
+          <Route path="/add-session">
+            <Add_Session/>
+          </Route>
 
  
           <Route path="/route-update" >
@@ -261,7 +278,9 @@ render(){
           <Show_Route />
           </Route>
 
-          
+          <Route path="/test3" >
+          <taskList />
+          </Route>
 
           <Route path="/test2" >
           <Session_Tic />
